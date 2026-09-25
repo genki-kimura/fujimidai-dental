@@ -1,0 +1,65 @@
+@use "setting" as *;
+@use "sass:math";
+
+// メディアクエリー
+@mixin mq( $breakpoint: pc){
+  @media #{map-get($breakpoints, $breakpoint)}{
+      @content;
+  }
+} ;
+
+/*--------------------------
+font-size
+---------------------------*/
+/*行間計算*/
+@mixin fontsize($fontsize, $lin) {  //$fontsizeの数値の単位はpx
+  line-height: $lin / $fontsize;
+  font-size: #{$fontsize / 10}rem;
+}
+
+/*--------------------------
+content-width
+---------------------------*/
+@mixin w800 {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  @include mq("sp-tab"){
+    padding: 0 5%;
+  }
+}
+@mixin w1000 {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  @include mq("sp-tab"){
+    padding: 0 5%;
+  }
+}
+@mixin w1120 {
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  @include mq("sp-tab"){
+    padding: 0 5%;
+  }
+}
+@mixin w1200 {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  @include mq("sp-tab"){
+    padding: 0 5%;
+  }
+}
+
+// rem設定
+$baseFontSize: 16;
+@function rem($pixels) {
+  @return math.div($pixels, $baseFontSize) * 1rem;
+}
+// AV->letter-spacing
+$baseFontSize: 16;
+@function av($av) {
+  @return math.div($av, 1000) * 1em;
+}

@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+// ブレークポイント指定 mobile first
+$breakpoints: (
+    "sp":"screen and (max-width:767px)"
+) !default;
+
+/*-変数定義 font
+------------------------------*/
+$zenkaku : 'Zen Kaku Gothic Antique', sans-serif;
+// Medium 500 , Regular 400
+
+$shippori : 'Shippori Mincho', serif;
+// SemiBold 600
+
+$poppins : 'Poppins', sans-serif;
+// Regular 400

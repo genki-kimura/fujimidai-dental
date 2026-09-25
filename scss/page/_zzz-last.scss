@@ -1,0 +1,32 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+last
+---------------------------------------- */
+.sp-flex,.sp-block,.sp-inline{
+    display: none!important;
+}
+@include mq("sp"){
+    .sp-hide{
+        display: none!important;
+    }
+    
+    .sp-flex{
+        display: flex!important;
+    }
+    
+    .sp-block{
+        display: block!important;
+    }
+
+    .sp-inline{
+        display: inline!important;
+    }
+}
+
+.pc-hide{
+    display: none;
+    @include mq('sp'){
+        display: block;
+    }
+}

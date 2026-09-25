@@ -1,0 +1,57 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+page base
+---------------------------------------- */
+.is-page{
+    background: #F5F5F0;
+}
+.page__section:not(:last-of-type){
+    padding-top: 148px;
+    //padding-bottom: 160px;
+    @include mq('sp'){
+        padding-top: 80px;
+        //padding-bottom: 120px;
+    }
+}
+.page__section:last-of-type{
+    padding-top: 148px;
+    padding-bottom: 160px;
+    @include mq('sp'){
+        padding-top: 80px;
+        padding-bottom: 120px;
+    }
+}
+
+/* ----------------------------------------
+page mv
+---------------------------------------- */
+.mv__wrap{
+    
+}
+.mv__wrap .container:not(.breadcrumbs){
+    padding: 100px 0;
+    @include mq('sp'){
+        padding: 60px 0 80px;
+        width: 100%;
+    }
+}
+.mv__wrap .container .page__top-title,.is-404 h1{
+    text-align: center;
+    font-weight: 500;
+    font-size: rem(32);
+    letter-spacing: av(350);
+    line-height: 1.5;
+    @include mq('sp'){
+        font-size: rem(18);
+    }
+}
+
+/* ----------------------------------------
+breadcrumbs
+---------------------------------------- */
+
+
+/* ----------------------------------------
+page title
+---------------------------------------- */

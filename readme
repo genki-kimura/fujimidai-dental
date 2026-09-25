@@ -1,0 +1,39 @@
+以下のコマンドを使用することで、package.jsonに記載されているプラグインを一括でインストールすることができます。
+
+npm install
+
+以下のコマンドを使用することで、gulpタスクの実行をします。
+
+npx gulp
+
+=============================================================
+
+以下、開発に伴う参考サイトなど
+
+▼ 波アニメ
+https://mtrad-blog.com/2021/07/12/post-2312/
+https://www.webcreatorbox.com/tech/javascript-particles
+
+▼ アクセスするたびに表示する値を変える
+https://www.php-labo.net/tutorial/example/random.html
+
+▼ ロゴアニメーション
+https://www.willstyle.co.jp/blog/1569/
+
+▼ wow.js
+https://junpei-sugiyama.com/wow-js/
+
+▼ ローディング
+https://jito-site.com/jquery-loading-screen-animation/
+
+▼ ブラウザによりjsの内容を調整
+https://arts-factory.net/useragentbrowser/
+
+▼ スライダー（swiper）
+https://junpei-sugiyama.com/swiper/
+
+▼ スライダーを連携
+https://learning.mihune-web.com/swiper-controller/
+
+▼ YoastSEOがエラーを返した際のmeta title設定
+https://analyzegear.co.jp/blog/2386
