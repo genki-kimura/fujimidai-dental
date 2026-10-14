@@ -5,13 +5,13 @@ const sassGlob = require('gulp-sass-glob-use-forward');
 const plumber = require("gulp-plumber");
 const notify = require("gulp-notify");
 const postcss = require("gulp-postcss");
-const cssnext = require("postcss-cssnext")
+const autoprefixer = require("autoprefixer");
 const cleanCSS = require("gulp-clean-css");
 const sourcemaps = require("gulp-sourcemaps");
 const browsers = [
     'last 2 versions',
     '> 5%',
-    'ie = 11',
+    'ie 11',
     'not ie <= 10',
     'ios >= 8',
     'and_chr >= 5',
@@ -39,15 +39,16 @@ const imageminOption = [
 // sass
 // 読み込み先（階層が間違えていると動かないので注意）
 const srcPath = {
-  css: 'scss/**/*.scss',
+  css: 'scss/style.scss',
+  block: 'scss/block.scss',
 }
 
 // 吐き出し先（なければ生成される）
 const destPath = {
   css: 'css/',
 }
-const cssSass = () => {
-  return src(srcPath.css)
+const compileSass = (entry) => {
+  return src(entry)
       .pipe(sourcemaps.init())
       .pipe(
           plumber({
@@ -58,7 +59,7 @@ const cssSass = () => {
           includePaths: ['src/sass'],
           outputStyle: 'expanded'
       }))
-      .pipe(postcss([cssnext(browsers)]))
+      .pipe(postcss([autoprefixer({ overrideBrowserslist: browsers })]))
       .pipe(sourcemaps.write('./'))
       .pipe(dest(destPath.css))
       .pipe(notify({
@@ -67,14 +68,20 @@ const cssSass = () => {
       }))
 }
 
+const cssSass = () => compileSass(srcPath.css);
+const blockSass = () => compileSass(srcPath.block);
+const cssAll = parallel(cssSass, blockSass);
+const sassWatchOptions = { usePolling: true, interval: 500 };
+
 // watchFile
 const watchFiles = (done) => {
   watch('./*.php', browserReload);
-  watch('./scss/**/*.scss', series(cssSass, browserReload));
-  watch('./scss/*.scss', series(cssSass, browserReload));
+  watch('./scss/**/*.scss', sassWatchOptions, series(cssAll, browserReload));
   watch('./js/*.js', browserReload);
   done();
 };
+
+const watchSass = () => watch('./scss/**/*.scss', sassWatchOptions, cssAll);
 
 // buildServer
 const buildServer = (done) => {
@@ -103,4 +110,6 @@ const imageMin = (done) => {
 };
 
 exports.imagemin = imageMin;
-exports.default = series(parallel(cssSass , buildServer, watchFiles));
+exports.css = cssAll;
+exports['watch:css'] = series(cssAll, watchSass);
+exports.default = series(parallel(cssAll, buildServer, watchFiles));

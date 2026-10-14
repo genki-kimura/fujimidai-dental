@@ -1,0 +1,3173 @@
+@charset "UTF-8";
+.page-common-head {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2732/640;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: url("../img/Logo02.webp") no-repeat 104% 50%/auto 118%, radial-gradient(circle at 0 0, #d2b6ee 0%, rgba(210, 182, 238, 0) 28%), linear-gradient(100deg, #8e80b7 0%, #8e80b7 18%, #b9aed6 48%, #fff 72%, #fff 100%);
+}
+.page-common-head__image {
+  display: none;
+}
+.page-common-head::before {
+  content: "";
+  position: absolute;
+  left: -12.5%;
+  top: -88%;
+  width: 41.4%;
+  aspect-ratio: 1;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.page-common-head::after {
+  content: "";
+  position: absolute;
+  left: 4.2%;
+  top: 35.5%;
+  width: 28.6%;
+  aspect-ratio: 1;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.page-common-head .page-common-head__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 0 0 17.5%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.page-common-head__title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: clamp(24px, 3.3vw, 48px);
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(70, 50, 120, 0.35);
+}
+.page-common-head__title::before {
+  content: none;
+}
+.page-common-head__title::after {
+  content: "";
+  display: block;
+  width: 1.7em;
+  height: 1px;
+  margin-top: 0.55em;
+  background: #fff;
+}
+
+@media (max-width: 767px) {
+  .page-common-head {
+    aspect-ratio: auto;
+    min-height: 160px;
+    background: url("../img/Logo02.webp") no-repeat 118% 50%/auto 120%, radial-gradient(circle at 0 0, #d2b6ee 0%, rgba(210, 182, 238, 0) 40%), linear-gradient(100deg, #8e80b7 0%, #8e80b7 30%, #b9aed6 62%, #f4f1fa 100%);
+  }
+  .page-common-head::before {
+    left: -30%;
+    width: 90%;
+  }
+  .page-common-head::after {
+    left: 8%;
+    top: 45%;
+    width: 60%;
+  }
+  .page-common-head .page-common-head__inner {
+    padding: 0 6%;
+  }
+  .page-common-head__title {
+    font-size: clamp(22px, 6vw, 28px);
+  }
+}
+h1.editor-post-title__input,
+h1.wp-block-post-title {
+  position: relative;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 2732/640;
+  margin: 0 0 2rem;
+  padding: 0 0 0 17.5%;
+  border: 0;
+  text-align: left;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: clamp(24px, 3.3vw, 48px);
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  color: #fff;
+  caret-color: #fff;
+  text-shadow: 0 2px 14px rgba(70, 50, 120, 0.35);
+  background: url("../img/Logo02.webp") no-repeat 104% 50%/auto 118%, radial-gradient(circle at 0 0, #d2b6ee 0%, rgba(210, 182, 238, 0) 28%), linear-gradient(100deg, #8e80b7 0%, #8e80b7 18%, #b9aed6 48%, #fff 72%, #fff 100%);
+}
+h1.editor-post-title__input::before,
+h1.wp-block-post-title::before {
+  content: "";
+  position: absolute;
+  left: -12.5%;
+  top: -88%;
+  width: 41.4%;
+  aspect-ratio: 1;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  pointer-events: none;
+}
+h1.editor-post-title__input::after,
+h1.wp-block-post-title::after {
+  content: "";
+  display: block;
+  width: 1.7em;
+  height: 1px;
+  margin-top: 0.55em;
+  background: #fff;
+}
+
+@media (max-width: 767px) {
+  h1.editor-post-title__input,
+  h1.wp-block-post-title {
+    aspect-ratio: auto;
+    min-height: 160px;
+    padding: 0 6%;
+    font-size: clamp(22px, 6vw, 28px);
+    background: url("../img/Logo02.webp") no-repeat 118% 50%/auto 120%, radial-gradient(circle at 0 0, #d2b6ee 0%, rgba(210, 182, 238, 0) 40%), linear-gradient(100deg, #8e80b7 0%, #8e80b7 30%, #b9aed6 62%, #f4f1fa 100%);
+  }
+  h1.editor-post-title__input::before,
+  h1.wp-block-post-title::before {
+    left: -30%;
+    width: 90%;
+  }
+}
+#breadcrumbs {
+  margin: 0;
+  padding: 1.4rem 17.5%;
+  font-size: 0;
+  line-height: 1;
+}
+#breadcrumbs > span {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  row-gap: 0.4rem;
+}
+#breadcrumbs > span > span {
+  font-family: "Jost", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: #6e6e73;
+}
+#breadcrumbs a {
+  color: #7a5fa8;
+  text-decoration: none;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+#breadcrumbs a:hover {
+  opacity: 0.7;
+}
+#breadcrumbs > span > span:first-child a {
+  font-size: 1.1em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+#breadcrumbs > span > span + span::before {
+  content: ">";
+  display: inline-block;
+  margin: 0 10px;
+  color: #6e6e73;
+  font-weight: 400;
+  position: relative;
+  top: -0.12em;
+}
+#breadcrumbs .breadcrumb_last {
+  color: #6e6e73;
+}
+
+@media (max-width: 767px) {
+  #breadcrumbs {
+    padding: 1rem 6%;
+  }
+  #breadcrumbs > span > span {
+    font-size: 13px;
+  }
+}
+.page-common-content .page-common-content__inner {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+.is-root-container > .wp-block {
+  max-width: 860px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.page-common-content h2,
+.is-root-container h2 {
+  position: relative;
+  margin: 2.4em 0 1em;
+  padding: 0 0 0.6em;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  color: #2b2b33;
+}
+.page-common-content h2:first-child,
+.is-root-container h2:first-child {
+  margin-top: 0;
+}
+.page-common-content h2::after,
+.is-root-container h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: #c9c0e0;
+}
+.page-common-content h2::before,
+.is-root-container h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 9%;
+  min-width: 48px;
+  height: 3px;
+  background: #e8b4c6;
+}
+
+@media (max-width: 767px) {
+  .page-common-content h2,
+  .is-root-container h2 {
+    margin: 2em 0 1em;
+    font-size: clamp(20px, 5.4vw, 24px);
+  }
+  .page-common-content h2::before,
+  .is-root-container h2::before {
+    width: 20%;
+  }
+}
+.page-common-content h3,
+.is-root-container h3 {
+  position: relative;
+  margin: 2em 0 1em;
+  padding: 0 0 0 0.85em;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  color: #2b2b33;
+}
+.page-common-content h3:first-child,
+.is-root-container h3:first-child {
+  margin-top: 0;
+}
+.page-common-content h3::before,
+.is-root-container h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 5px;
+  height: 1.35em;
+  border-radius: 999px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#9a86d0), to(#e8b4c6));
+  background: linear-gradient(180deg, #9a86d0 0%, #e8b4c6 100%);
+}
+.page-common-content h3.h3-another,
+.is-root-container h3.h3-another {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1em;
+  padding-left: 0;
+}
+.page-common-content h3.h3-another::before,
+.is-root-container h3.h3-another::before {
+  content: none;
+}
+.page-common-content h3.h3-another::after,
+.is-root-container h3.h3-another::after {
+  content: "";
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  min-width: 1em;
+  height: 1px;
+  background: #c9c0e0;
+}
+
+@media (max-width: 767px) {
+  .page-common-content h3,
+  .is-root-container h3 {
+    margin: 1.8em 0 0.9em;
+    font-size: clamp(17px, 4.6vw, 20px);
+  }
+  .page-common-content h3::before,
+  .is-root-container h3::before {
+    width: 4px;
+  }
+  .page-common-content h3.h3-another,
+  .is-root-container h3.h3-another {
+    gap: 0.7em;
+  }
+}
+.page-common-content h4,
+.is-root-container h4 {
+  position: relative;
+  margin: 1.8em 0 0.8em;
+  padding: 0 0 0 1.15em;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: clamp(16px, 1.7vw, 22px);
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  color: #2b2b33;
+}
+.page-common-content h4:first-child,
+.is-root-container h4:first-child {
+  margin-top: 0;
+}
+.page-common-content h4::before,
+.is-root-container h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 0.34em;
+  height: 0.34em;
+  border-radius: 50%;
+  background: #9a86d0;
+}
+
+@media (max-width: 767px) {
+  .page-common-content h4,
+  .is-root-container h4 {
+    margin: 1.6em 0 0.7em;
+    font-size: clamp(15px, 4.2vw, 18px);
+  }
+}
+.page-common-content h5,
+.is-root-container h5 {
+  margin: 1.6em 0 0.6em;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  color: #6f5ca6;
+}
+.page-common-content h5:first-child,
+.is-root-container h5:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  .page-common-content h5,
+  .is-root-container h5 {
+    margin: 1.4em 0 0.5em;
+    font-size: clamp(15px, 4vw, 16px);
+  }
+}
+.page-common-content p,
+.is-root-container p {
+  margin: 0.5em 0 1.5em;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 2;
+  letter-spacing: 0.5px;
+  color: #2b2b33;
+}
+.page-common-content p:last-child,
+.is-root-container p:last-child {
+  margin-bottom: 0;
+}
+
+.page-common-content ul.wp-block-list,
+.page-common-content ol.wp-block-list,
+.is-root-container ul.wp-block-list,
+.is-root-container ol.wp-block-list {
+  margin: 0 0 2em;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.page-common-content ul.wp-block-list > li,
+.page-common-content ol.wp-block-list > li,
+.is-root-container ul.wp-block-list > li,
+.is-root-container ol.wp-block-list > li {
+  position: relative;
+  margin: 0;
+  padding-left: 24px;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 2;
+  letter-spacing: 0.5px;
+  color: #2b2b33;
+}
+.page-common-content ul.wp-block-list > li + li,
+.page-common-content ol.wp-block-list > li + li,
+.is-root-container ul.wp-block-list > li + li,
+.is-root-container ol.wp-block-list > li + li {
+  margin-top: 4px;
+}
+
+.page-common-content ul.wp-block-list:not(.another-list) > li::before,
+.is-root-container ul.wp-block-list:not(.another-list) > li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1em;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9a86d0;
+}
+
+.page-common-content ol.wp-block-list,
+.is-root-container ol.wp-block-list {
+  counter-reset: list-num;
+}
+.page-common-content ol.wp-block-list > li,
+.is-root-container ol.wp-block-list > li {
+  counter-increment: list-num;
+  padding-left: 1.8em;
+}
+.page-common-content ol.wp-block-list > li::before,
+.is-root-container ol.wp-block-list > li::before {
+  content: counter(list-num) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #7e69a9;
+}
+
+.page-common-content .list-another,
+.is-root-container .list-another {
+  margin: 0 0 2em;
+  padding: 22px 24px;
+  border-radius: 20px;
+  background: #f4f1fb;
+}
+.page-common-content .list-another .wp-block-group__inner-container,
+.is-root-container .list-another .wp-block-group__inner-container {
+  margin: 0;
+  padding: 0;
+}
+.page-common-content .list-another ul.wp-block-list,
+.is-root-container .list-another ul.wp-block-list {
+  margin: 0;
+}
+.page-common-content .list-another ul.wp-block-list > li,
+.is-root-container .list-another ul.wp-block-list > li {
+  padding-left: 30px;
+}
+.page-common-content .list-another ul.wp-block-list > li + li,
+.is-root-container .list-another ul.wp-block-list > li + li {
+  margin-top: 10px;
+}
+.page-common-content .list-another ul.wp-block-list > li::before,
+.is-root-container .list-another ul.wp-block-list > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  -webkit-transform: none;
+          transform: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #7e69a9;
+}
+.page-common-content .list-another ul.wp-block-list > li::after,
+.is-root-container .list-another ul.wp-block-list > li::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 9px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 1.5px 1.5px 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.page-common-content ul.wp-block-list:not(.another-list) > li.check-list-02,
+.is-root-container ul.wp-block-list:not(.another-list) > li.check-list-02 {
+  padding-left: 32px;
+}
+.page-common-content ul.wp-block-list:not(.another-list) > li.check-list-02 + li.check-list-02,
+.is-root-container ul.wp-block-list:not(.another-list) > li.check-list-02 + li.check-list-02 {
+  margin-top: 5px;
+}
+.page-common-content ul.wp-block-list:not(.another-list) > li.check-list-02::before,
+.is-root-container ul.wp-block-list:not(.another-list) > li.check-list-02::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  -webkit-transform: none;
+          transform: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: #7e69a9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='white' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.2 10.6l3.4 3.4L14.8 6'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .list-another,
+  .is-root-container .list-another {
+    padding: 18px 16px;
+  }
+}
+.page-common-content .wp-block-buttons,
+.is-root-container .wp-block-buttons {
+  gap: 16px 20px;
+  margin: 0 0 2em;
+}
+.page-common-content .wp-block-buttons .wp-block-button,
+.is-root-container .wp-block-buttons .wp-block-button {
+  margin: 0;
+}
+.page-common-content .wp-block-buttons .wp-block-button .wp-block-button__link,
+.is-root-container .wp-block-buttons .wp-block-button .wp-block-button__link {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 6px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 16px 47px 14px;
+  border: 2px solid #c9c0e0;
+  border-radius: 20px;
+  background: #fff;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-decoration: none;
+  color: #7e69a9;
+  -webkit-transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+  transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+}
+.page-common-content .wp-block-buttons .wp-block-button .wp-block-button__link::after,
+.is-root-container .wp-block-buttons .wp-block-button .wp-block-button__link::after {
+  content: "▼";
+  font-size: 12px;
+  line-height: 1;
+  color: #9a86d0;
+  -webkit-transition: color 0.25s;
+  transition: color 0.25s;
+}
+.page-common-content .wp-block-buttons .wp-block-button .wp-block-button__link:hover,
+.is-root-container .wp-block-buttons .wp-block-button .wp-block-button__link:hover {
+  border-color: #7e69a9;
+  background: #7e69a9;
+  color: #fff;
+}
+.page-common-content .wp-block-buttons .wp-block-button .wp-block-button__link:hover::after,
+.is-root-container .wp-block-buttons .wp-block-button .wp-block-button__link:hover::after {
+  color: #fff;
+}
+.page-common-content .wp-block-buttons .internal-btn .wp-block-button__link,
+.page-common-content .wp-block-buttons .external-btn .wp-block-button__link,
+.is-root-container .wp-block-buttons .internal-btn .wp-block-button__link,
+.is-root-container .wp-block-buttons .external-btn .wp-block-button__link {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 12px;
+  padding: 20px 50px 20px 62px;
+  border: 2px solid #7e69a9;
+  border-radius: 999px;
+  background: #7e69a9;
+  color: #fff;
+}
+.page-common-content .wp-block-buttons .internal-btn .wp-block-button__link:hover,
+.page-common-content .wp-block-buttons .external-btn .wp-block-button__link:hover,
+.is-root-container .wp-block-buttons .internal-btn .wp-block-button__link:hover,
+.is-root-container .wp-block-buttons .external-btn .wp-block-button__link:hover {
+  background: #fff;
+  color: #7e69a9;
+}
+.page-common-content .wp-block-buttons .internal-btn .wp-block-button__link::after,
+.is-root-container .wp-block-buttons .internal-btn .wp-block-button__link::after {
+  content: "→";
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+}
+.page-common-content .wp-block-buttons .internal-btn .wp-block-button__link:hover::after,
+.is-root-container .wp-block-buttons .internal-btn .wp-block-button__link:hover::after {
+  color: #7e69a9;
+}
+.page-common-content .wp-block-buttons .external-btn .wp-block-button__link::after,
+.is-root-container .wp-block-buttons .external-btn .wp-block-button__link::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Crect x='3' y='9' width='12' height='12' rx='2'/%3E%3Cpath d='M9 9V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.page-common-content .wp-block-buttons .external-btn .wp-block-button__link:hover::after,
+.is-root-container .wp-block-buttons .external-btn .wp-block-button__link:hover::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237e69a9' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Crect x='3' y='9' width='12' height='12' rx='2'/%3E%3Cpath d='M9 9V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 767px) {
+  .page-common-content .wp-block-buttons .wp-block-button .wp-block-button__link,
+  .is-root-container .wp-block-buttons .wp-block-button .wp-block-button__link {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+.page-common-content .lwptoc.lwptoc,
+.is-root-container .lwptoc.lwptoc {
+  display: block;
+  width: 100%;
+  margin: 0 0 2em;
+  padding: 0;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_i,
+.is-root-container .lwptoc.lwptoc .lwptoc_i {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #c9c0e0;
+  border-radius: 16px;
+  background: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  color: #2b2b33;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_header,
+.is-root-container .lwptoc.lwptoc .lwptoc_header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-height: 62px;
+  margin: 0;
+  padding: 0 28px;
+  background: #f9f7fd;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_title,
+.is-root-container .lwptoc.lwptoc .lwptoc_title {
+  margin: 0;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  color: #2b2b33;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_toggle,
+.is-root-container .lwptoc.lwptoc .lwptoc_toggle {
+  float: none;
+  margin: 0;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0;
+  color: #7e69a9;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_toggle a,
+.is-root-container .lwptoc.lwptoc .lwptoc_toggle a {
+  color: inherit;
+  text-decoration: none;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_items,
+.is-root-container .lwptoc.lwptoc .lwptoc_items {
+  margin: 0;
+  padding: 26px 36px;
+  border-top: 1px solid #ece8f6;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_itemWrap,
+.is-root-container .lwptoc.lwptoc .lwptoc_itemWrap {
+  margin: 0;
+  padding: 0;
+  counter-reset: toc-n;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_item,
+.is-root-container .lwptoc.lwptoc .lwptoc_item {
+  margin: 0;
+  padding: 0;
+  counter-increment: toc-n;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_item + .lwptoc_item,
+.is-root-container .lwptoc.lwptoc .lwptoc_item + .lwptoc_item {
+  margin-top: 19px;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_item > a,
+.is-root-container .lwptoc.lwptoc .lwptoc_item > a {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  color: #2b2b33;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_item > a:hover,
+.is-root-container .lwptoc.lwptoc .lwptoc_item > a:hover {
+  color: #7e69a9;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_item > a::before,
+.is-root-container .lwptoc.lwptoc .lwptoc_item > a::before {
+  content: counter(toc-n) ".";
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #7e69a9;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_item_number,
+.is-root-container .lwptoc.lwptoc .lwptoc_item_number {
+  display: none;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_item > .lwptoc_itemWrap,
+.is-root-container .lwptoc.lwptoc .lwptoc_item > .lwptoc_itemWrap {
+  margin: 11px 0 0 27px;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_itemWrap .lwptoc_itemWrap .lwptoc_item + .lwptoc_item,
+.is-root-container .lwptoc.lwptoc .lwptoc_itemWrap .lwptoc_itemWrap .lwptoc_item + .lwptoc_item {
+  margin-top: 6px;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_itemWrap .lwptoc_itemWrap .lwptoc_item > a,
+.is-root-container .lwptoc.lwptoc .lwptoc_itemWrap .lwptoc_itemWrap .lwptoc_item > a {
+  gap: 8px;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+.page-common-content .lwptoc.lwptoc .lwptoc_itemWrap .lwptoc_itemWrap .lwptoc_item > .lwptoc_itemWrap,
+.is-root-container .lwptoc.lwptoc .lwptoc_itemWrap .lwptoc_itemWrap .lwptoc_item > .lwptoc_itemWrap {
+  margin: 6px 0 0 24px;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .lwptoc.lwptoc .lwptoc_header,
+  .is-root-container .lwptoc.lwptoc .lwptoc_header {
+    min-height: 52px;
+    padding: 0 18px;
+  }
+  .page-common-content .lwptoc.lwptoc .lwptoc_title,
+  .is-root-container .lwptoc.lwptoc .lwptoc_title {
+    font-size: 17px;
+  }
+  .page-common-content .lwptoc.lwptoc .lwptoc_items,
+  .is-root-container .lwptoc.lwptoc .lwptoc_items {
+    padding: 20px 18px;
+  }
+  .page-common-content .lwptoc.lwptoc .lwptoc_item > .lwptoc_itemWrap,
+  .is-root-container .lwptoc.lwptoc .lwptoc_item > .lwptoc_itemWrap {
+    margin-left: 20px;
+  }
+}
+.page-common-content .point-heading-box,
+.is-root-container .point-heading-box {
+  position: relative;
+  margin: 2.4em 0 2em;
+  padding: 20px 0;
+  border: 1px solid #c9c0e0;
+  border-radius: 16px;
+  background: #f9f7fd;
+}
+.page-common-content .point-heading-box .point-heading-box-tag-top,
+.is-root-container .point-heading-box .point-heading-box-tag-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  max-width: calc(100% - 32px);
+}
+.page-common-content .point-heading-box .point-heading-box-title,
+.is-root-container .point-heading-box .point-heading-box-title {
+  display: block;
+  margin: 0;
+  padding: 10px 50px;
+  border: 0;
+  border-radius: 999px;
+  background: #8069a5;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-align: center;
+  white-space: nowrap;
+  color: #fff;
+}
+.page-common-content .point-heading-box .point-heading-box-title::before, .page-common-content .point-heading-box .point-heading-box-title::after,
+.is-root-container .point-heading-box .point-heading-box-title::before,
+.is-root-container .point-heading-box .point-heading-box-title::after {
+  content: none;
+}
+.page-common-content .point-heading-box .point-heading-box-bottom,
+.is-root-container .point-heading-box .point-heading-box-bottom {
+  padding: 16px 38px;
+}
+.page-common-content .point-heading-box .point-heading-box-bottom > *:first-child,
+.is-root-container .point-heading-box .point-heading-box-bottom > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .point-heading-box .point-heading-box-bottom > *:last-child,
+.is-root-container .point-heading-box .point-heading-box-bottom > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .point-heading-box .point-heading-box-bottom p,
+.is-root-container .point-heading-box .point-heading-box-bottom p {
+  margin: 0 0 1.5em;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .point-heading-box,
+  .is-root-container .point-heading-box {
+    margin: 2.2em 0 1.6em;
+    padding: 16px 0;
+    border-radius: 18px;
+  }
+  .page-common-content .point-heading-box .point-heading-box-title,
+  .is-root-container .point-heading-box .point-heading-box-title {
+    padding: 11px 40px;
+  }
+  .page-common-content .point-heading-box .point-heading-box-bottom,
+  .is-root-container .point-heading-box .point-heading-box-bottom {
+    padding: 20px 18px 12px;
+  }
+}
+.page-common-content .heading-box,
+.is-root-container .heading-box {
+  margin: 0 0 2em;
+  overflow: hidden;
+  border: 1px solid #c9c0e0;
+  border-radius: 16px;
+  background: #fff;
+}
+.page-common-content .heading-box .heading-box-top,
+.is-root-container .heading-box .heading-box-top {
+  background: #8069a5;
+}
+.page-common-content .heading-box .heading-box-title,
+.is-root-container .heading-box .heading-box-title {
+  display: block;
+  margin: 0;
+  padding: 18px 28px;
+  border: 0;
+  background: none;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-align: left;
+  color: #fff;
+}
+.page-common-content .heading-box .heading-box-title::before, .page-common-content .heading-box .heading-box-title::after,
+.is-root-container .heading-box .heading-box-title::before,
+.is-root-container .heading-box .heading-box-title::after {
+  content: none;
+}
+.page-common-content .heading-box .heading-box-bottom,
+.is-root-container .heading-box .heading-box-bottom {
+  padding: 28px 28px;
+}
+.page-common-content .heading-box .heading-box-bottom > *:first-child,
+.is-root-container .heading-box .heading-box-bottom > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .heading-box .heading-box-bottom > *:last-child,
+.is-root-container .heading-box .heading-box-bottom > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .heading-box .heading-box-bottom p,
+.is-root-container .heading-box .heading-box-bottom p {
+  margin: 0 0 1.5em;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .heading-box,
+  .is-root-container .heading-box {
+    margin: 0 0 1.6em;
+    border-radius: 18px;
+  }
+  .page-common-content .heading-box .heading-box-title,
+  .is-root-container .heading-box .heading-box-title {
+    padding: 14px 18px;
+  }
+  .page-common-content .heading-box .heading-box-bottom,
+  .is-root-container .heading-box .heading-box-bottom {
+    padding: 20px 18px;
+  }
+}
+.page-common-content .attention-box,
+.is-root-container .attention-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 30px;
+  margin: 0 0 2em;
+  padding: 30px;
+  border: 1px solid #f0c4d6;
+  border-radius: 16px;
+  background: #fcf1f5;
+}
+.page-common-content .attention-box .attention-box-icon,
+.is-root-container .attention-box .attention-box-icon {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 62px;
+      -ms-flex: 0 0 62px;
+          flex: 0 0 62px;
+  width: 62px;
+  height: 56px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 56'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23d97b9f'/%3E%3Cstop offset='1' stop-color='%23b85a80'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M31 3C28.6 3 26.6 4.2 25.4 6.3L2.6 44.8C-0.5 50 3.2 56 9.3 56H52.7C58.8 56 62.5 50 59.4 44.8L36.6 6.3C35.4 4.2 33.4 3 31 3Z' transform='translate(0 -3)' fill='url(%23g)'/%3E%3Crect x='28' y='16' width='6' height='19' rx='3' fill='white'/%3E%3Ccircle cx='31' cy='42.5' r='3.5' fill='white'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-filter: drop-shadow(0 6px 8px rgba(184, 90, 128, 0.25));
+          filter: drop-shadow(0 6px 8px rgba(184, 90, 128, 0.25));
+}
+.page-common-content .attention-box .attention-box-text,
+.is-root-container .attention-box .attention-box-text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  min-width: 0;
+}
+.page-common-content .attention-box .attention-box-text > *:first-child,
+.is-root-container .attention-box .attention-box-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .attention-box .attention-box-text > *:last-child,
+.is-root-container .attention-box .attention-box-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .attention-box .attention-box-text p,
+.is-root-container .attention-box .attention-box-text p {
+  margin: 0 0 1.2em;
+  font-weight: 700;
+  font-size: 14.5px;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+  text-align: left;
+  color: #b85a80;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .attention-box,
+  .is-root-container .attention-box {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    gap: 14px;
+    padding: 22px 18px;
+    border-radius: 12px;
+  }
+  .page-common-content .attention-box .attention-box-icon,
+  .is-root-container .attention-box .attention-box-icon {
+    -webkit-flex-basis: auto;
+        -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+    width: 44px;
+    height: 40px;
+  }
+  .page-common-content .attention-box .attention-box-text p,
+  .is-root-container .attention-box .attention-box-text p {
+    font-size: 14px;
+  }
+}
+.page-common-content .case-box,
+.is-root-container .case-box {
+  margin: 0 0 2em;
+}
+.page-common-content .case-box .case-box-images,
+.is-root-container .case-box .case-box-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 0 0 30px;
+}
+.page-common-content .case-box .case-box-image-label,
+.is-root-container .case-box .case-box-image-label {
+  margin: 0 0 8px;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+  color: #2b2b33;
+}
+.page-common-content .case-box .case-box-image-label--after,
+.is-root-container .case-box .case-box-image-label--after {
+  color: #7e69a9;
+}
+.page-common-content .case-box .case-box-image-frame,
+.is-root-container .case-box .case-box-image-frame {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #e2e2e2;
+  aspect-ratio: 840/630;
+}
+.page-common-content .case-box .case-box-image-frame img,
+.is-root-container .case-box .case-box-image-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-common-content .case-box .case-box-heading,
+.is-root-container .case-box .case-box-heading {
+  margin: 0 0 1em;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-align: left;
+  color: #2b2b33;
+}
+.page-common-content .case-box .case-box-heading::before, .page-common-content .case-box .case-box-heading::after,
+.is-root-container .case-box .case-box-heading::before,
+.is-root-container .case-box .case-box-heading::after {
+  content: none;
+}
+.page-common-content .case-box .case-box-text,
+.is-root-container .case-box .case-box-text {
+  margin: 0 0 24px;
+}
+.page-common-content .case-box .case-box-text > *:last-child,
+.is-root-container .case-box .case-box-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .case-box .case-box-information,
+.is-root-container .case-box .case-box-information {
+  margin: 0 0 16px;
+  padding: 30px;
+  border-radius: 16px;
+  background: #f9f7fd;
+}
+.page-common-content .case-box .case-box-information-title,
+.is-root-container .case-box .case-box-information-title {
+  margin: 0 0 20px;
+  font-weight: 700;
+  font-size: 13.5px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: #2b2b33;
+}
+.page-common-content .case-box .case-box-information-list,
+.is-root-container .case-box .case-box-information-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 40px;
+  margin: 0;
+  padding: 0;
+}
+.page-common-content .case-box .case-box-information-item,
+.is-root-container .case-box .case-box-information-item {
+  margin: 0;
+  padding: 0;
+}
+.page-common-content .case-box .case-box-information-item dt,
+.is-root-container .case-box .case-box-information-item dt {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #6e6e73;
+}
+.page-common-content .case-box .case-box-information-item dd,
+.is-root-container .case-box .case-box-information-item dd {
+  margin: 0;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2b2b33;
+}
+.page-common-content .case-box .case-box-attention,
+.is-root-container .case-box .case-box-attention {
+  margin: 0 0 30px;
+  padding: 16px 32px;
+  border-radius: 16px;
+  background: #f9f7fd;
+  font-size: 11.5px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #6e6e73;
+}
+.page-common-content .case-box .case-box-btn,
+.is-root-container .case-box .case-box-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 0;
+}
+.page-common-content .case-box .case-box-btn-link,
+.is-root-container .case-box .case-box-btn-link {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 14px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 280px;
+  padding: 20px 60px 20px 70px;
+  border: 2px solid #7e69a9;
+  border-radius: 999px;
+  background: #fff;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: #7e69a9;
+  -webkit-transition: background-color 0.25s, color 0.25s;
+  transition: background-color 0.25s, color 0.25s;
+}
+.page-common-content .case-box .case-box-btn-link::after,
+.is-root-container .case-box .case-box-btn-link::after {
+  content: "→";
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+}
+.page-common-content .case-box .case-box-btn-link:hover,
+.is-root-container .case-box .case-box-btn-link:hover {
+  background: #7e69a9;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .case-box .case-box-images,
+  .is-root-container .case-box .case-box-images {
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .page-common-content .case-box .case-box-image-label,
+  .is-root-container .case-box .case-box-image-label {
+    font-size: 12px;
+  }
+  .page-common-content .case-box .case-box-image-frame,
+  .is-root-container .case-box .case-box-image-frame {
+    border-radius: 12px;
+  }
+  .page-common-content .case-box .case-box-heading,
+  .is-root-container .case-box .case-box-heading {
+    font-size: 17px;
+  }
+  .page-common-content .case-box .case-box-information,
+  .is-root-container .case-box .case-box-information {
+    padding: 24px 20px 28px;
+    border-radius: 16px;
+  }
+  .page-common-content .case-box .case-box-information-title,
+  .is-root-container .case-box .case-box-information-title {
+    font-size: 16px;
+  }
+  .page-common-content .case-box .case-box-information-list,
+  .is-root-container .case-box .case-box-information-list {
+    gap: 16px 16px;
+  }
+  .page-common-content .case-box .case-box-information-item dt,
+  .is-root-container .case-box .case-box-information-item dt {
+    font-size: 13px;
+  }
+  .page-common-content .case-box .case-box-information-item dd,
+  .is-root-container .case-box .case-box-information-item dd {
+    font-size: 16px;
+  }
+  .page-common-content .case-box .case-box-attention,
+  .is-root-container .case-box .case-box-attention {
+    margin-bottom: 36px;
+    padding: 14px 18px;
+  }
+  .page-common-content .case-box .case-box-btn,
+  .is-root-container .case-box .case-box-btn {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .page-common-content .case-box .case-box-btn-link,
+  .is-root-container .case-box .case-box-btn-link {
+    width: 100%;
+    min-width: 0;
+    padding: 20px 24px;
+    font-size: 16px;
+  }
+}
+.page-common-content h2 span,
+.page-common-content h3 span,
+.is-root-container h2 span,
+.is-root-container h3 span {
+  font-family: inherit;
+}
+
+.page-common-content .flow-box,
+.is-root-container .flow-box {
+  padding: 20px 0;
+}
+.page-common-content .flow-box:last-child,
+.is-root-container .flow-box:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .flow-box .flow-box-inner,
+.is-root-container .flow-box .flow-box-inner {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  -webkit-column-gap: 30px;
+     -moz-column-gap: 30px;
+          column-gap: 30px;
+  -webkit-box-align: start;
+  -webkit-align-items: start;
+      -ms-flex-align: start;
+          align-items: start;
+}
+.page-common-content .flow-box.flow-box--right .flow-box-inner,
+.is-root-container .flow-box.flow-box--right .flow-box-inner {
+  grid-template-columns: 1fr 40%;
+}
+.page-common-content .flow-box.flow-box--right .flow-box-img,
+.is-root-container .flow-box.flow-box--right .flow-box-img {
+  -webkit-box-ordinal-group: 3;
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.page-common-content .flow-box .flow-box-img,
+.is-root-container .flow-box .flow-box-img {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #e2e2e2;
+  aspect-ratio: 33/25;
+}
+.page-common-content .flow-box .flow-box-img img,
+.is-root-container .flow-box .flow-box-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-common-content .flow-box .flow-box-step,
+.is-root-container .flow-box .flow-box-step {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 58px;
+  height: 58px;
+  margin: 3px 0 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f1f3ff 0%, #fff 45%, #fff2f8 100%);
+  -webkit-box-shadow: -3px 3px 10px rgba(160, 170, 255, 0.22), 3px 4px 10px rgba(255, 170, 205, 0.22);
+          box-shadow: -3px 3px 10px rgba(160, 170, 255, 0.22), 3px 4px 10px rgba(255, 170, 205, 0.22);
+}
+.page-common-content .flow-box .flow-box-step::before,
+.is-root-container .flow-box .flow-box-step::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid #ece6f6;
+  border-radius: 50%;
+}
+.page-common-content .flow-box .flow-box-step-letter,
+.is-root-container .flow-box .flow-box-step-letter {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 53px;
+  height: 17px;
+  border: 1px solid #a396d0;
+  border-radius: 999px;
+  background: #fff;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  color: #52407e;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.page-common-content .flow-box .flow-box-step-number,
+.is-root-container .flow-box .flow-box-step-number {
+  position: relative;
+  margin-top: 4px;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #6f5aa2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#67529a), to(#7d65ac));
+  background: linear-gradient(180deg, #67529a 0%, #7d65ac 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.page-common-content .flow-box .flow-box-title,
+.is-root-container .flow-box .flow-box-title {
+  position: relative;
+  margin: 15px 0;
+  padding: 0 0 0 0.85em;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  color: #2b2b33;
+}
+.page-common-content .flow-box .flow-box-title::before,
+.is-root-container .flow-box .flow-box-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 5px;
+  height: 1.35em;
+  border-radius: 999px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#9a86d0), to(#e8b4c6));
+  background: linear-gradient(180deg, #9a86d0 0%, #e8b4c6 100%);
+}
+.page-common-content .flow-box .flow-box-title::after,
+.is-root-container .flow-box .flow-box-title::after {
+  content: none;
+}
+.page-common-content .flow-box .flow-box-text > *:first-child,
+.is-root-container .flow-box .flow-box-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .flow-box .flow-box-text > *:last-child,
+.is-root-container .flow-box .flow-box-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .flow-box .flow-box-text p,
+.is-root-container .flow-box .flow-box-text p {
+  margin: 0 0 1em;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: #2e2a33;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .flow-box,
+  .is-root-container .flow-box {
+    margin-bottom: 44px;
+  }
+  .page-common-content .flow-box .flow-box-inner, .page-common-content .flow-box.flow-box--right .flow-box-inner,
+  .is-root-container .flow-box .flow-box-inner,
+  .is-root-container .flow-box.flow-box--right .flow-box-inner {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+  .page-common-content .flow-box.flow-box--right .flow-box-img,
+  .is-root-container .flow-box.flow-box--right .flow-box-img {
+    -webkit-box-ordinal-group: 1;
+    -webkit-order: 0;
+        -ms-flex-order: 0;
+            order: 0;
+  }
+  .page-common-content .flow-box .flow-box-img,
+  .is-root-container .flow-box .flow-box-img {
+    border-radius: 12px;
+  }
+  .page-common-content .flow-box .flow-box-title,
+  .is-root-container .flow-box .flow-box-title {
+    font-size: 20px;
+  }
+  .page-common-content .flow-box .flow-box-title::before,
+  .is-root-container .flow-box .flow-box-title::before {
+    width: 4px;
+  }
+}
+.page-common-content .point-content,
+.is-root-container .point-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 20px;
+     -moz-column-gap: 20px;
+          column-gap: 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 20px 0;
+  padding: 24px 28px 22px 20px;
+  border: 1px solid #eeeaf3;
+  border-radius: 16px;
+  background: #fff;
+  -webkit-box-shadow: 0 2px 10px rgba(80, 60, 110, 0.05);
+          box-shadow: 0 2px 10px rgba(80, 60, 110, 0.05);
+}
+.page-common-content .point-content.point-content--has-img,
+.is-root-container .point-content.point-content--has-img {
+  grid-template-columns: 1fr 280px;
+  padding: 20px 24px 20px 20px;
+}
+.page-common-content .point-content .point-content-head,
+.is-root-container .point-content .point-content-head {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 18px;
+  margin: 0 0 12px;
+}
+.page-common-content .point-content .point-content-step,
+.is-root-container .point-content .point-content-step {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 58px;
+  height: 58px;
+  margin: 3px 0 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f1f3ff 0%, #fff 45%, #fff2f8 100%);
+  -webkit-box-shadow: -3px 3px 10px rgba(160, 170, 255, 0.22), 3px 4px 10px rgba(255, 170, 205, 0.22);
+          box-shadow: -3px 3px 10px rgba(160, 170, 255, 0.22), 3px 4px 10px rgba(255, 170, 205, 0.22);
+}
+.page-common-content .point-content .point-content-step::before,
+.is-root-container .point-content .point-content-step::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid #ece6f6;
+  border-radius: 50%;
+}
+.page-common-content .point-content .point-content-step-letter,
+.is-root-container .point-content .point-content-step-letter {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 53px;
+  height: 17px;
+  border: 1px solid #a396d0;
+  border-radius: 999px;
+  background: #fff;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  color: #52407e;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.page-common-content .point-content .point-content-step-number,
+.is-root-container .point-content .point-content-step-number {
+  position: relative;
+  margin-top: 4px;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #6f5aa2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#67529a), to(#7d65ac));
+  background: linear-gradient(180deg, #67529a 0%, #7d65ac 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.page-common-content .point-content .point-content-title,
+.is-root-container .point-content .point-content-title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  color: #2b2b33;
+}
+.page-common-content .point-content .point-content-title::before, .page-common-content .point-content .point-content-title::after,
+.is-root-container .point-content .point-content-title::before,
+.is-root-container .point-content .point-content-title::after {
+  content: none;
+}
+.page-common-content .point-content .point-content-title span,
+.is-root-container .point-content .point-content-title span {
+  font-family: inherit;
+}
+.page-common-content .point-content .point-content-text > *:first-child,
+.is-root-container .point-content .point-content-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .point-content .point-content-text > *:last-child,
+.is-root-container .point-content .point-content-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .point-content .point-content-text p,
+.is-root-container .point-content .point-content-text p {
+  margin: 0 0 1em;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: #6e6875;
+}
+.page-common-content .point-content .point-content-img,
+.is-root-container .point-content .point-content-img {
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 4/3;
+}
+.page-common-content .point-content .point-content-img img,
+.is-root-container .point-content .point-content-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .point-content,
+  .is-root-container .point-content {
+    padding: 20px 16px 18px;
+    border-radius: 12px;
+  }
+  .page-common-content .point-content.point-content--has-img,
+  .is-root-container .point-content.point-content--has-img {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    padding: 20px 16px 16px;
+  }
+  .page-common-content .point-content .point-content-head,
+  .is-root-container .point-content .point-content-head {
+    gap: 14px;
+  }
+  .page-common-content .point-content .point-content-title,
+  .is-root-container .point-content .point-content-title {
+    font-size: 20px;
+  }
+  .page-common-content .point-content .point-content-img,
+  .is-root-container .point-content .point-content-img {
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+.page-common-content .list-background,
+.is-root-container .list-background {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 20px 0;
+  padding: 48px 48px 44px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+}
+.page-common-content .list-background:last-child,
+.is-root-container .list-background:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .list-background.list-background--white,
+.is-root-container .list-background.list-background--white {
+  border-color: #cbc3e6;
+  background: #fff;
+}
+.page-common-content .list-background.list-background--white .list-background-head,
+.is-root-container .list-background.list-background--white .list-background-head {
+  border-bottom-color: #cbc3e6;
+}
+.page-common-content .list-background.list-background--purple,
+.is-root-container .list-background.list-background--purple {
+  background: linear-gradient(120deg, #f1edfb 0%, #f6eef7 55%, #faeff5 100%);
+}
+.page-common-content .list-background.list-background--purple .list-background-head,
+.is-root-container .list-background.list-background--purple .list-background-head {
+  border-bottom-color: #e0b6ca;
+}
+.page-common-content .list-background .list-background-head,
+.is-root-container .list-background .list-background-head {
+  margin: 0 0 20px;
+  padding: 0 0 22px;
+  border-bottom: 1px solid #cbc3e6;
+}
+.page-common-content .list-background .list-background-title,
+.is-root-container .list-background .list-background-title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.5;
+  letter-spacing: 0.15em;
+  color: #2b2b33;
+}
+.page-common-content .list-background .list-background-title::before, .page-common-content .list-background .list-background-title::after,
+.is-root-container .list-background .list-background-title::before,
+.is-root-container .list-background .list-background-title::after {
+  content: none;
+}
+.page-common-content .list-background .list-background-title span,
+.is-root-container .list-background .list-background-title span {
+  font-family: inherit;
+}
+.page-common-content .list-background .list-background-text > *:first-child,
+.is-root-container .list-background .list-background-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .list-background .list-background-text > *:last-child,
+.is-root-container .list-background .list-background-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .list-background .list-background-text ul.wp-block-list,
+.is-root-container .list-background .list-background-text ul.wp-block-list {
+  margin: 0;
+}
+.page-common-content .list-background .list-background-text ul.wp-block-list > li + li,
+.page-common-content .list-background .list-background-text ul.wp-block-list:not(.another-list) > li.check-list-02 + li.check-list-02,
+.is-root-container .list-background .list-background-text ul.wp-block-list > li + li,
+.is-root-container .list-background .list-background-text ul.wp-block-list:not(.another-list) > li.check-list-02 + li.check-list-02 {
+  margin-top: 12px;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .list-background,
+  .is-root-container .list-background {
+    margin-bottom: 24px;
+    padding: 28px 20px 26px;
+    border-radius: 14px;
+  }
+  .page-common-content .list-background .list-background-head,
+  .is-root-container .list-background .list-background-head {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+  }
+  .page-common-content .list-background .list-background-title,
+  .is-root-container .list-background .list-background-title {
+    font-size: 20px;
+  }
+  .page-common-content .list-background .list-background-text ul.wp-block-list > li + li,
+  .page-common-content .list-background .list-background-text ul.wp-block-list:not(.another-list) > li.check-list-02 + li.check-list-02,
+  .is-root-container .list-background .list-background-text ul.wp-block-list > li + li,
+  .is-root-container .list-background .list-background-text ul.wp-block-list:not(.another-list) > li.check-list-02 + li.check-list-02 {
+    margin-top: 10px;
+  }
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table {
+  --tb-line: #ebe8f0;
+  overflow: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 0 2em;
+  border: 1px solid var(--tb-line);
+  border-radius: 16px;
+  background: #fff;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table table,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table table {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th,
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 53px;
+  margin: 0;
+  padding: 12px 16px;
+  border: 0;
+  border-right: 1px solid var(--tb-line);
+  border-bottom: 1px solid var(--tb-line);
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+  color: #2b2b33;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th:last-child,
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td:last-child,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th:last-child,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td:last-child {
+  border-right: 0;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tr:last-child > th,
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tr:last-child > td,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tr:last-child > th,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tr:last-child > td {
+  border-bottom: 0;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table thead th,
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table thead td,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table thead th,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table thead td {
+  border-right-color: #fff;
+  border-bottom: 0;
+  background: #7e69a9;
+  text-align: center;
+  color: #fff;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table thead th:last-child,
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table thead td:last-child,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table thead th:last-child,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table thead td:last-child {
+  border-right: 0;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tbody th,
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tbody td,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tbody th,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tbody td {
+  background: #fff;
+  text-align: left;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tbody th:first-child,
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tbody td:first-child,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tbody th:first-child,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table tbody td:first-child {
+  background: #f9f7fd;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table.tb-line-white,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table.tb-line-white {
+  --tb-line: #ffffff;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table.tb-line-purple,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table.tb-line-purple {
+  --tb-line: #cdc4e8;
+}
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table.tb-line-gray,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table.tb-line-gray {
+  --tb-line: #d9d6de;
+}
+
+@media (max-width: 767px) {
+  .page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table,
+  .is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table {
+    border-radius: 12px;
+  }
+  .page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th,
+  .page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td,
+  .is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th,
+  .is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td {
+    height: 46px;
+    padding: 10px 10px;
+    font-size: 13px;
+  }
+}
+.wp-block-buttons .wp-block-button.WEB-reservation-btn,
+.wp-block-buttons .wp-block-button.whitening-reservation-btn,
+.wp-block-buttons .wp-block-button.telephone-number-btn {
+  width: 100%;
+  margin: 0 0 4px;
+}
+.wp-block-buttons .wp-block-button.WEB-reservation-btn a.wp-block-button__link,
+.wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link,
+.wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link {
+  display: grid;
+  grid-template-columns: auto auto;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+          align-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 7px;
+     -moz-column-gap: 7px;
+          column-gap: 7px;
+  row-gap: 4px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  white-space: nowrap;
+  min-height: 84px;
+  padding: 12px 14px;
+  border: 2px solid #7e69a9;
+  border-radius: 12px;
+  background: #fff;
+  -webkit-box-shadow: 0 4px 0 #7e69a9;
+          box-shadow: 0 4px 0 #7e69a9;
+  font-family: "Zen Maru Gothic", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-decoration: none;
+  color: #7e69a9;
+  -webkit-transition: background-color 0.25s, -webkit-transform 0.15s, -webkit-box-shadow 0.15s;
+  transition: background-color 0.25s, -webkit-transform 0.15s, -webkit-box-shadow 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s, background-color 0.25s;
+  transition: transform 0.15s, box-shadow 0.15s, background-color 0.25s, -webkit-transform 0.15s, -webkit-box-shadow 0.15s;
+}
+.wp-block-buttons .wp-block-button.WEB-reservation-btn a.wp-block-button__link::before,
+.wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link::before,
+.wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link::before {
+  grid-column: 1/-1;
+  white-space: nowrap;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: #7e69a9;
+}
+.wp-block-buttons .wp-block-button.WEB-reservation-btn a.wp-block-button__link::after,
+.wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link::after,
+.wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link::after {
+  content: "";
+  grid-column: 1;
+  grid-row: 2;
+  width: 24px;
+  height: 24px;
+  font-size: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.wp-block-buttons .wp-block-button.WEB-reservation-btn a.wp-block-button__link:hover,
+.wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link:hover,
+.wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link:hover {
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+  border-color: #7e69a9;
+  background: #faf8fd;
+  -webkit-box-shadow: 0 2px 0 #7e69a9;
+          box-shadow: 0 2px 0 #7e69a9;
+  color: #7e69a9;
+}
+
+.wp-block-buttons .wp-block-button.WEB-reservation-btn a.wp-block-button__link::before {
+  content: "＼ 24時間受付！お気軽にご来院ください！ ／";
+  grid-row: 1;
+}
+.wp-block-buttons .wp-block-button.WEB-reservation-btn a.wp-block-button__link::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='7' y='2' width='2.2' height='5' rx='1.1' fill='%237e69a9'/%3E%3Crect x='14.8' y='2' width='2.2' height='5' rx='1.1' fill='%237e69a9'/%3E%3Crect x='2' y='4.5' width='20' height='17.5' rx='3.5' fill='%237e69a9'/%3E%3Crect x='4' y='10' width='16' height='10' rx='1.8' fill='white'/%3E%3Crect x='6.2' y='12' width='3' height='2.6' rx='.6' fill='%237e69a9'/%3E%3Crect x='10.5' y='12' width='3' height='2.6' rx='.6' fill='%237e69a9'/%3E%3Crect x='14.8' y='12' width='3' height='2.6' rx='.6' fill='%237e69a9'/%3E%3Crect x='6.2' y='15.7' width='3' height='2.6' rx='.6' fill='%237e69a9'/%3E%3Crect x='10.5' y='15.7' width='3' height='2.6' rx='.6' fill='%237e69a9'/%3E%3C/svg%3E");
+}
+
+.wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link::before {
+  content: "＼ ホワイトエッセンス提携医院 ／";
+  grid-row: 1;
+}
+.wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237e69a9'%3E%3Cpath d='M10 1C10.7 6.8 13.2 9.3 19 10 13.2 10.7 10.7 13.2 10 19 9.3 13.2 6.8 10.7 1 10 6.8 9.3 9.3 6.8 10 1Z'/%3E%3Cpath d='M19.5 15C19.7 17.4 20.6 18.3 23 18.5 20.6 18.7 19.7 19.6 19.5 22 19.3 19.6 18.4 18.7 16 18.5 18.4 18.3 19.3 17.4 19.5 15Z'/%3E%3C/svg%3E");
+}
+
+.wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 8px;
+     -moz-column-gap: 8px;
+          column-gap: 8px;
+  padding-left: 12px;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 0.02em;
+}
+.wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link::before {
+  content: "月〜土 9:00–12:00 / 13:00–18:00（休診：日曜・祝日）";
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 100%;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  position: relative;
+  left: 4px;
+  margin-top: 2px;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0;
+  color: #2b2b33;
+}
+.wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link::after {
+  -webkit-box-ordinal-group: 0;
+  -webkit-order: -1;
+      -ms-flex-order: -1;
+          order: -1;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  width: 22px;
+  height: 22px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237e69a9'%3E%3Cpath d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 767px) {
+  .wp-block-buttons .wp-block-button.WEB-reservation-btn a.wp-block-button__link,
+  .wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link,
+  .wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link {
+    width: 100%;
+    min-height: 76px;
+    padding: 12px 10px;
+    font-size: 18px;
+  }
+  .wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link {
+    font-size: 24px;
+  }
+}
+.page-common-content .cta-box,
+.is-root-container .cta-box {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 2em 0;
+  padding: 55px 15px 49px;
+  border: 1px solid #cbc3e6;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #f1edfb 0%, #f6eef7 55%, #faeff5 100%);
+  text-align: center;
+}
+.page-common-content .cta-box .cta-box-lead,
+.is-root-container .cta-box .cta-box-lead {
+  margin: 0 0 20px;
+  text-align: center;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.15em;
+  color: #2b2b33;
+}
+.page-common-content .cta-box .cta-box-title,
+.is-root-container .cta-box .cta-box-title {
+  margin: 0 0 15px;
+  text-align: center;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #2b2b33;
+}
+.page-common-content .cta-box .cta-box-text,
+.is-root-container .cta-box .cta-box-text {
+  margin: 0 0 28px;
+}
+.page-common-content .cta-box .cta-box-text > *:first-child,
+.is-root-container .cta-box .cta-box-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .cta-box .cta-box-text > *:last-child,
+.is-root-container .cta-box .cta-box-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .cta-box .cta-box-text p,
+.is-root-container .cta-box .cta-box-text p {
+  margin: 0 0 0.5em;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-align: center;
+  color: #2b2b33;
+}
+.page-common-content .cta-box .cta-box-buttons.wp-block-buttons,
+.is-root-container .cta-box .cta-box-buttons.wp-block-buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 10px;
+  margin: 0;
+}
+.page-common-content .cta-box .cta-box-buttons.wp-block-buttons .wp-block-button,
+.is-root-container .cta-box .cta-box-buttons.wp-block-buttons .wp-block-button {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 1 calc((100% - 20px) / 3);
+      -ms-flex: 0 1 calc((100% - 20px) / 3);
+          flex: 0 1 calc((100% - 20px) / 3);
+  min-width: 0;
+  width: auto;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .cta-box,
+  .is-root-container .cta-box {
+    padding: 36px 16px 30px;
+    border-radius: 16px;
+  }
+  .page-common-content .cta-box .cta-box-lead,
+  .is-root-container .cta-box .cta-box-lead {
+    margin-bottom: 14px;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+  }
+  .page-common-content .cta-box .cta-box-title,
+  .is-root-container .cta-box .cta-box-title {
+    margin-bottom: 12px;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+  }
+  .page-common-content .cta-box .cta-box-text,
+  .is-root-container .cta-box .cta-box-text {
+    margin-bottom: 24px;
+  }
+  .page-common-content .cta-box .cta-box-text p,
+  .is-root-container .cta-box .cta-box-text p {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-align: left;
+  }
+  .page-common-content .cta-box .cta-box-buttons.wp-block-buttons,
+  .is-root-container .cta-box .cta-box-buttons.wp-block-buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 8px;
+  }
+  .page-common-content .cta-box .cta-box-buttons.wp-block-buttons .wp-block-button,
+  .is-root-container .cta-box .cta-box-buttons.wp-block-buttons .wp-block-button {
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+        -ms-flex: none;
+            flex: none;
+    width: 100%;
+  }
+}
+.page-common-content,
+.is-root-container {
+  counter-reset: comparison-card-num;
+}
+
+.page-common-content .comparison-card,
+.is-root-container .comparison-card {
+  counter-increment: comparison-card-num;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 0 2em;
+  padding: 36px;
+  border: 1px solid #eeeaf3;
+  border-radius: 20px;
+  background: #fff;
+  -webkit-box-shadow: 0 8px 28px rgba(80, 60, 110, 0.08);
+          box-shadow: 0 8px 28px rgba(80, 60, 110, 0.08);
+}
+.page-common-content .comparison-card .comparison-card-top,
+.is-root-container .comparison-card .comparison-card-top {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 32px;
+  margin: 0 0 24px;
+}
+.page-common-content .comparison-card.comparison-card--no-img .comparison-card-top,
+.is-root-container .comparison-card.comparison-card--no-img .comparison-card-top {
+  grid-template-columns: 1fr;
+}
+.page-common-content .comparison-card .comparison-card-image,
+.is-root-container .comparison-card .comparison-card-image {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #e2e2e2;
+  aspect-ratio: 1.4444444444;
+}
+.page-common-content .comparison-card .comparison-card-image img,
+.is-root-container .comparison-card .comparison-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-common-content .comparison-card .comparison-card-info,
+.is-root-container .comparison-card .comparison-card-info {
+  min-width: 0;
+}
+.page-common-content .comparison-card .comparison-card-badge,
+.is-root-container .comparison-card .comparison-card-badge {
+  display: inline-block;
+  margin: 0 0 13px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #8069a5;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 22px;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+.page-common-content .comparison-card .comparison-card-heading,
+.is-root-container .comparison-card .comparison-card-heading {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 14px;
+  margin: 0 0 14px;
+}
+.page-common-content .comparison-card .comparison-card-number,
+.is-root-container .comparison-card .comparison-card-number {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #8069a5;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+.page-common-content .comparison-card .comparison-card-number::before,
+.is-root-container .comparison-card .comparison-card-number::before {
+  content: counter(comparison-card-num, decimal-leading-zero);
+  position: relative;
+  top: 1px;
+}
+.page-common-content .comparison-card .comparison-card-title,
+.is-root-container .comparison-card .comparison-card-title {
+  margin: 0;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  color: #2b2b33;
+}
+.page-common-content .comparison-card .comparison-card-en,
+.is-root-container .comparison-card .comparison-card-en {
+  margin: 0 0 13px;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.3em;
+  color: #6e6875;
+}
+.page-common-content .comparison-card .comparison-card-fee,
+.is-root-container .comparison-card .comparison-card-fee {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 4px 14px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-height: 48px;
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: #f9f7fd;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+}
+.page-common-content .comparison-card .comparison-card-fee dt,
+.page-common-content .comparison-card .comparison-card-fee dd,
+.is-root-container .comparison-card .comparison-card-fee dt,
+.is-root-container .comparison-card .comparison-card-fee dd {
+  margin: 0;
+  padding: 0;
+}
+.page-common-content .comparison-card .comparison-card-fee-label,
+.is-root-container .comparison-card .comparison-card-fee-label {
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: #6e6875;
+}
+.page-common-content .comparison-card .comparison-card-fee-price,
+.is-root-container .comparison-card .comparison-card-fee-price {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: #2b2b33;
+}
+.page-common-content .comparison-card .comparison-card-fee-note,
+.is-root-container .comparison-card .comparison-card-fee-note {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #6e6875;
+}
+.page-common-content .comparison-card .comparison-card-ratings,
+.is-root-container .comparison-card .comparison-card-ratings {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0 0 32px;
+  padding: 0;
+  border-radius: 16px;
+  background: #f9f7fd;
+  list-style: none;
+}
+.page-common-content .comparison-card .comparison-card-rating,
+.is-root-container .comparison-card .comparison-card-rating {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  padding: 16px 8px 14px;
+  text-align: center;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+}
+.page-common-content .comparison-card .comparison-card-rating + .comparison-card-rating,
+.is-root-container .comparison-card .comparison-card-rating + .comparison-card-rating {
+  position: relative;
+}
+.page-common-content .comparison-card .comparison-card-rating + .comparison-card-rating::before,
+.is-root-container .comparison-card .comparison-card-rating + .comparison-card-rating::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: #ece8f6;
+}
+.page-common-content .comparison-card .comparison-card-rating::marker,
+.is-root-container .comparison-card .comparison-card-rating::marker {
+  content: none;
+}
+.page-common-content .comparison-card .comparison-card-rating-name,
+.is-root-container .comparison-card .comparison-card-rating-name {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: #2b2b33;
+}
+.page-common-content .comparison-card .comparison-card-rating-sub,
+.is-root-container .comparison-card .comparison-card-rating-sub {
+  margin: 1px 0 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #6e6875;
+}
+.page-common-content .comparison-card .comparison-card-rating-name + .comparison-card-stars,
+.is-root-container .comparison-card .comparison-card-rating-name + .comparison-card-stars {
+  margin-top: 4px;
+}
+.page-common-content .comparison-card .comparison-card-stars,
+.is-root-container .comparison-card .comparison-card-stars {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  gap: 2px;
+  line-height: 1;
+}
+.page-common-content .comparison-card .comparison-card-star,
+.is-root-container .comparison-card .comparison-card-star {
+  font-size: 16px;
+  line-height: 1;
+  color: #e8e4f0;
+}
+.page-common-content .comparison-card .comparison-card-star.is-on,
+.is-root-container .comparison-card .comparison-card-star.is-on {
+  color: #8069a5;
+}
+.page-common-content .comparison-card .comparison-card-summary,
+.is-root-container .comparison-card .comparison-card-summary {
+  margin: 0 0 28px;
+}
+.page-common-content .comparison-card .comparison-card-summary-title,
+.is-root-container .comparison-card .comparison-card-summary-title {
+  margin: 0 0 12px;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: #2b2b33;
+}
+.page-common-content .comparison-card .comparison-card-text > *:first-child,
+.is-root-container .comparison-card .comparison-card-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .comparison-card .comparison-card-text > *:last-child,
+.is-root-container .comparison-card .comparison-card-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .comparison-card .comparison-card-text p,
+.is-root-container .comparison-card .comparison-card-text p {
+  margin: 0 0 0.5em;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 1.65;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: #2b2b33;
+}
+.page-common-content .comparison-card .comparison-card-lists,
+.is-root-container .comparison-card .comparison-card-lists {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.page-common-content .comparison-card .comparison-card-list,
+.is-root-container .comparison-card .comparison-card-list {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 0;
+  padding: 28px 16px 22px;
+  border-radius: 20px;
+  background: #f9f7fd;
+}
+.page-common-content .comparison-card .comparison-card-list ul,
+.is-root-container .comparison-card .comparison-card-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.page-common-content .comparison-card .comparison-card-list li,
+.is-root-container .comparison-card .comparison-card-list li {
+  position: relative;
+  margin: 0 0 8px;
+  padding: 0 0 0 28px;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #2b2b33;
+}
+.page-common-content .comparison-card .comparison-card-list li:last-child,
+.is-root-container .comparison-card .comparison-card-list li:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .comparison-card .comparison-card-list li::marker,
+.is-root-container .comparison-card .comparison-card-list li::marker {
+  content: none;
+}
+.page-common-content .comparison-card .comparison-card-list li::before,
+.is-root-container .comparison-card .comparison-card-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.2em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 1.1em;
+  height: 1.1em;
+  background: none;
+}
+.page-common-content .comparison-card .comparison-card-list-title,
+.is-root-container .comparison-card .comparison-card-list-title {
+  margin: 0 0 16px;
+  padding-left: 5px;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  color: #2b2b33;
+}
+.page-common-content .comparison-card .comparison-card-list--recommend li::before,
+.is-root-container .comparison-card .comparison-card-list--recommend li::before {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%238069a5' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 10.6l4 4L16 5.6'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.page-common-content .comparison-card .comparison-card-list--merit li::before,
+.is-root-container .comparison-card .comparison-card-list--merit li::before {
+  border: 1px solid #8069a5;
+  border-radius: 50%;
+}
+.page-common-content .comparison-card .comparison-card-list--demerit li::before,
+.is-root-container .comparison-card .comparison-card-list--demerit li::before {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23b85a80' stroke-width='1.4' stroke-linejoin='round'%3E%3Cpath d='M10 3.2L18 16.8H2z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .comparison-card,
+  .is-root-container .comparison-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+  .page-common-content .comparison-card .comparison-card-top,
+  .is-root-container .comparison-card .comparison-card-top {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+  .page-common-content .comparison-card .comparison-card-image,
+  .is-root-container .comparison-card .comparison-card-image {
+    aspect-ratio: 16/10;
+  }
+  .page-common-content .comparison-card .comparison-card-title,
+  .is-root-container .comparison-card .comparison-card-title {
+    font-size: 19px;
+  }
+  .page-common-content .comparison-card .comparison-card-fee,
+  .is-root-container .comparison-card .comparison-card-fee {
+    gap: 2px 12px;
+    padding: 10px 14px;
+  }
+  .page-common-content .comparison-card .comparison-card-fee-price,
+  .is-root-container .comparison-card .comparison-card-fee-price {
+    font-size: 19px;
+  }
+  .page-common-content .comparison-card .comparison-card-fee-note,
+  .is-root-container .comparison-card .comparison-card-fee-note {
+    width: 100%;
+  }
+  .page-common-content .comparison-card .comparison-card-ratings,
+  .is-root-container .comparison-card .comparison-card-ratings {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 24px;
+  }
+  .page-common-content .comparison-card .comparison-card-rating,
+  .is-root-container .comparison-card .comparison-card-rating {
+    position: relative;
+    padding: 14px 6px 12px;
+  }
+  .page-common-content .comparison-card .comparison-card-rating:nth-child(n+3)::after,
+  .is-root-container .comparison-card .comparison-card-rating:nth-child(n+3)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12px;
+    right: 12px;
+    height: 1px;
+    background: #ece8f6;
+  }
+  .page-common-content .comparison-card .comparison-card-lists,
+  .is-root-container .comparison-card .comparison-card-lists {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .page-common-content .comparison-card .comparison-card-list,
+  .is-root-container .comparison-card .comparison-card-list {
+    padding: 22px 16px 18px;
+  }
+}
+.page-common-content .faq-box,
+.is-root-container .faq-box {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 0 15px;
+  border: 1px solid #8f7fd0;
+  border-radius: 16px;
+  background: #faf8fd;
+  overflow: hidden;
+}
+.page-common-content .faq-box .faq-box-heading,
+.is-root-container .faq-box .faq-box-heading {
+  all: unset;
+  display: block;
+}
+.page-common-content .faq-box .faq-box-heading::before, .page-common-content .faq-box .faq-box-heading::after,
+.is-root-container .faq-box .faq-box-heading::before,
+.is-root-container .faq-box .faq-box-heading::after {
+  content: none;
+  display: none;
+}
+.page-common-content .faq-box .faq-box-q,
+.is-root-container .faq-box .faq-box-q {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 16px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  min-height: 62px;
+  margin: 0;
+  padding: 0 28px 0 25px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  font: inherit;
+  text-align: left;
+  color: #3a3a4a;
+  cursor: pointer;
+}
+.page-common-content .faq-box .faq-box-q:focus-visible,
+.is-root-container .faq-box .faq-box-q:focus-visible {
+  outline: 2px solid #8f7fd0;
+  outline-offset: -4px;
+  border-radius: 16px;
+}
+.page-common-content .faq-box .faq-box-mark,
+.is-root-container .faq-box .faq-box-mark {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 24px;
+  font-family: "Shippori Mincho", serif;
+  font-size: 20px;
+  line-height: 1;
+  color: #8f7fd0;
+}
+.page-common-content .faq-box .faq-box-mark.faq-box-mark--a,
+.is-root-container .faq-box .faq-box-mark.faq-box-mark--a {
+  color: #b8628f;
+}
+.page-common-content .faq-box .faq-box-q-text,
+.is-root-container .faq-box .faq-box-q-text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+.page-common-content .faq-box .faq-box-icon,
+.is-root-container .faq-box .faq-box-icon {
+  position: relative;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+.page-common-content .faq-box .faq-box-icon::before, .page-common-content .faq-box .faq-box-icon::after,
+.is-root-container .faq-box .faq-box-icon::before,
+.is-root-container .faq-box .faq-box-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 1.5px;
+  background: #8f7fd0;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.page-common-content .faq-box .faq-box-icon::after,
+.is-root-container .faq-box .faq-box-icon::after {
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+          transform: translate(-50%, -50%) rotate(90deg);
+}
+.page-common-content .faq-box .faq-box-q[aria-expanded=true] .faq-box-icon::after,
+.is-root-container .faq-box .faq-box-q[aria-expanded=true] .faq-box-icon::after {
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+          transform: translate(-50%, -50%) rotate(0deg);
+}
+.page-common-content .faq-box .faq-box-a,
+.is-root-container .faq-box .faq-box-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  -webkit-transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+  transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+  transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s, -ms-grid-rows 0.35s ease;
+}
+.page-common-content .faq-box .faq-box-a.is-open,
+.is-root-container .faq-box .faq-box-a.is-open {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  -webkit-transition: grid-template-rows 0.35s ease, visibility 0s;
+  transition: grid-template-rows 0.35s ease, visibility 0s;
+  transition: grid-template-rows 0.35s ease, visibility 0s, -ms-grid-rows 0.35s ease;
+}
+.page-common-content .faq-box .faq-box-a-inner,
+.is-root-container .faq-box .faq-box-a-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+.page-common-content .faq-box .faq-box-a-body,
+.is-root-container .faq-box .faq-box-a-body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 16px;
+  padding: 6px 28px 28px 25px;
+}
+.page-common-content .faq-box .faq-box-a-text,
+.is-root-container .faq-box .faq-box-a-text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+  color: #6a6a78;
+}
+.page-common-content .faq-box .faq-box-a-text p,
+.is-root-container .faq-box .faq-box-a-text p {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+.page-common-content .faq-box .faq-box-a-text p + p,
+.is-root-container .faq-box .faq-box-a-text p + p {
+  margin-top: 1.9em;
+}
+.page-common-content .faq-box .faq-box-a-text ul,
+.page-common-content .faq-box .faq-box-a-text ol,
+.is-root-container .faq-box .faq-box-a-text ul,
+.is-root-container .faq-box .faq-box-a-text ol {
+  margin: 1em 0 0;
+  padding-left: 1.4em;
+}
+.page-common-content .faq-box .faq-box-a-text > :first-child,
+.is-root-container .faq-box .faq-box-a-text > :first-child {
+  margin-top: 0;
+}
+.page-common-content .faq-box .faq-box-a-text > :last-child,
+.is-root-container .faq-box .faq-box-a-text > :last-child {
+  margin-bottom: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-common-content .faq-box .faq-box-a,
+  .page-common-content .faq-box .faq-box-a.is-open,
+  .page-common-content .faq-box .faq-box-icon::before,
+  .page-common-content .faq-box .faq-box-icon::after,
+  .is-root-container .faq-box .faq-box-a,
+  .is-root-container .faq-box .faq-box-a.is-open,
+  .is-root-container .faq-box .faq-box-icon::before,
+  .is-root-container .faq-box .faq-box-icon::after {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+@media (max-width: 767px) {
+  .page-common-content .faq-box .faq-box-q,
+  .is-root-container .faq-box .faq-box-q {
+    gap: 12px;
+    min-height: 60px;
+    padding: 14px 16px;
+  }
+  .page-common-content .faq-box .faq-box-a-body,
+  .is-root-container .faq-box .faq-box-a-body {
+    gap: 12px;
+    padding: 4px 16px 22px;
+  }
+}
+
+.page-common-content .speech-bubble,
+.is-root-container .speech-bubble {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 36px;
+     -moz-column-gap: 36px;
+          column-gap: 36px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 40px 0;
+}
+.page-common-content .speech-bubble .speech-bubble-person,
+.is-root-container .speech-bubble .speech-bubble-person {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+.page-common-content .speech-bubble .speech-bubble-photo,
+.is-root-container .speech-bubble .speech-bubble-photo {
+  position: relative;
+  width: 104px;
+  height: 104px;
+}
+.page-common-content .speech-bubble .speech-bubble-photo::before,
+.is-root-container .speech-bubble .speech-bubble-photo::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9d0ff 0%, #e2d3ff 42%, #ffcadd 100%);
+  opacity: 0.8;
+  -webkit-filter: blur(6px);
+          filter: blur(6px);
+}
+.page-common-content .speech-bubble .speech-bubble-photo-frame,
+.is-root-container .speech-bubble .speech-bubble-photo-frame {
+  position: relative;
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #e2e2e2;
+}
+.page-common-content .speech-bubble .speech-bubble-photo-img,
+.is-root-container .speech-bubble .speech-bubble-photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-common-content .speech-bubble .speech-bubble-position,
+.is-root-container .speech-bubble .speech-bubble-position {
+  margin: 20px 0 0;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #7160AD;
+}
+.page-common-content .speech-bubble .speech-bubble-name,
+.is-root-container .speech-bubble .speech-bubble-name {
+  margin: 10px 0 0;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  color: #2b2b33;
+}
+.page-common-content .speech-bubble .speech-bubble-body,
+.is-root-container .speech-bubble .speech-bubble-body {
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 0;
+  padding: 28px 36px;
+  border-radius: 24px;
+  background: #fff;
+  -webkit-box-shadow: 0 8px 28px rgba(80, 60, 110, 0.1);
+          box-shadow: 0 8px 28px rgba(80, 60, 110, 0.1);
+}
+.page-common-content .speech-bubble .speech-bubble-body::before,
+.is-root-container .speech-bubble .speech-bubble-body::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 24px);
+  left: -6px;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  border-radius: 0 0 0 3px;
+  background: #fff;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.page-common-content .speech-bubble .speech-bubble-text > *:first-child,
+.is-root-container .speech-bubble .speech-bubble-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .speech-bubble .speech-bubble-text > *:last-child,
+.is-root-container .speech-bubble .speech-bubble-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .speech-bubble .speech-bubble-text p,
+.is-root-container .speech-bubble .speech-bubble-text p {
+  margin: 0 0 1em;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 2;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #2b2b33;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .speech-bubble,
+  .is-root-container .speech-bubble {
+    grid-template-columns: 1fr;
+    -webkit-box-align: start;
+    -webkit-align-items: start;
+        -ms-flex-align: start;
+            align-items: start;
+    row-gap: 20px;
+    margin: 32px 0;
+  }
+  .page-common-content .speech-bubble .speech-bubble-person,
+  .is-root-container .speech-bubble .speech-bubble-person {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    -webkit-align-content: center;
+        -ms-flex-line-pack: center;
+            align-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-items: start;
+    -webkit-column-gap: 18px;
+       -moz-column-gap: 18px;
+            column-gap: 18px;
+    margin-left: 8px;
+    text-align: left;
+  }
+  .page-common-content .speech-bubble .speech-bubble-photo,
+  .is-root-container .speech-bubble .speech-bubble-photo {
+    grid-row: 1/3;
+    width: 76px;
+    height: 76px;
+  }
+  .page-common-content .speech-bubble .speech-bubble-photo::before,
+  .is-root-container .speech-bubble .speech-bubble-photo::before {
+    inset: -5px;
+  }
+  .page-common-content .speech-bubble .speech-bubble-position,
+  .is-root-container .speech-bubble .speech-bubble-position {
+    -webkit-align-self: end;
+        -ms-flex-item-align: end;
+            align-self: end;
+    margin: 0;
+  }
+  .page-common-content .speech-bubble .speech-bubble-name,
+  .is-root-container .speech-bubble .speech-bubble-name {
+    -webkit-align-self: start;
+        -ms-flex-item-align: start;
+            align-self: start;
+    margin: 4px 0 0;
+    font-size: 16px;
+  }
+  .page-common-content .speech-bubble .speech-bubble-body,
+  .is-root-container .speech-bubble .speech-bubble-body {
+    padding: 22px 20px;
+    border-radius: 18px;
+  }
+  .page-common-content .speech-bubble .speech-bubble-body::before,
+  .is-root-container .speech-bubble .speech-bubble-body::before {
+    top: -6px;
+    left: 38px;
+    margin-top: 0;
+    border-radius: 3px 0 0 0;
+  }
+  .page-common-content .speech-bubble .speech-bubble-text p,
+  .is-root-container .speech-bubble .speech-bubble-text p {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=block.css.map */

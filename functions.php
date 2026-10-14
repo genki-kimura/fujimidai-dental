@@ -25,9 +25,12 @@ add_action('after_setup_theme', 'my_setup');
 ---------------------------------------- */
 function my_script_init()
 {
+  $block_css_path = get_theme_file_path('/css/block.css');
+  $block_css_version = file_exists($block_css_path) ? md5_file($block_css_path) : '1.0.0';
   wp_enqueue_style('fontawesome', 'https://use.fontawesome.com/releases/v5.8.2/css/all.css', array(), '5.8.2', 'all');
   wp_enqueue_style('destyle', get_template_directory_uri() . '/css/destyle.css', array(), '1.0.0', 'all');
   wp_enqueue_style('my', get_template_directory_uri() . '/css/style.css', array(), '1.0.0', 'all');
+  wp_enqueue_style('block', get_template_directory_uri() . '/css/block.css', array('my'), $block_css_version, 'all');
 
   wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.6.1.min.js"integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="crossorigin="anonymous' , array(), '1.0.0', true);
   wp_enqueue_script('my', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0.0', true);
@@ -134,6 +137,7 @@ add_action('after_setup_theme', 'block_editor_css');
 function block_editor_css() {
 	add_theme_support('editor-styles');
 	add_editor_style('css/style.css'); //サイトオリジナル
+  add_editor_style('css/block.css');
 	add_editor_style('editor-style.css'); //エディタ専用
 }
 
@@ -324,3 +328,354 @@ function json_breadcrumb() {
 }
  
 add_action( 'wp_head', 'json_breadcrumb' );
+
+// ACFのオプションページ「ヘッダー設定」と入力項目を登録
+// ※オプションページとリピーターは ACF Pro の機能です
+add_action('acf/init', function () {
+    if (!function_exists('acf_add_options_page') || !function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_options_page(array(
+        'page_title' => 'ヘッダー設定',
+        'menu_title' => 'ヘッダー設定',
+        'menu_slug'  => 'header-settings',
+        'capability' => 'edit_posts',
+        'redirect'   => false,
+    ));
+
+    acf_add_local_field_group(array(
+        'key'    => 'group_header_settings',
+        'title'  => 'ヘッダー設定',
+        'fields' => array(
+            array(
+                'key'   => 'field_header_catch',
+                'label' => 'キャッチコピー（小さい文字）',
+                'name'  => 'header_catch',
+                'type'  => 'text',
+            ),
+            array(
+                'key'   => 'field_header_address',
+                'label' => '住所',
+                'name'  => 'header_address',
+                'type'  => 'text',
+            ),
+            array(
+                'key'   => 'field_header_hours',
+                'label' => '診療時間',
+                'name'  => 'header_hours',
+                'type'  => 'text',
+            ),
+            array(
+                'key'   => 'field_header_closed',
+                'label' => '休診日',
+                'name'  => 'header_closed',
+                'type'  => 'text',
+            ),
+            array(
+                'key'          => 'field_header_nav',
+                'label'        => 'ナビゲーション',
+                'name'         => 'header_nav',
+                'type'         => 'repeater',
+                'layout'       => 'table',
+                'button_label' => 'メニューを追加',
+                'sub_fields'   => array(
+                    array(
+                        'key'   => 'field_header_nav_label',
+                        'label' => '表示名',
+                        'name'  => 'label',
+                        'type'  => 'text',
+                    ),
+                    array(
+                        'key'          => 'field_header_nav_url',
+                        'label'        => 'リンク先（例：/staff/ または https://…）',
+                        'name'         => 'url',
+                        'type'         => 'text',
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'options_page',
+                    'operator' => '==',
+                    'value'    => 'header-settings',
+                ),
+            ),
+        ),
+    ));
+});
+
+/* ----------------------------------------
+// Googleフォント（Noto Sans JP / Shippori Mincho）
+// ※すでにstyle.cssなどで読み込んでいる場合は、この処理は削除してください
+---------------------------------------- */
+function theme_google_fonts_url() {
+    return 'https://fonts.googleapis.com/css2?family=Jost:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;500&display=swap';
+}
+
+add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_style(
+        'theme-google-fonts',
+        theme_google_fonts_url(),
+        array(),
+        null
+    );
+});
+
+// ブロックエディタ(編集画面)でも同じフォントを読み込む
+// ※ wp_enqueue_scripts は編集画面では動かないため、enqueue_block_assets を使う
+add_action('enqueue_block_assets', function () {
+    if (!is_admin()) {
+        return;
+    }
+    wp_enqueue_style(
+        'theme-google-fonts-editor',
+        theme_google_fonts_url(),
+        array(),
+        null
+    );
+});
+
+/* ----------------------------------------
+// ACF：フッター設定（オプションページ）
+// ※オプションページとリピーターは ACF Pro の機能です
+// ※空欄の項目は、footer.php に書いてある初期値が表示されます
+---------------------------------------- */
+add_action('acf/init', function () {
+    if (!function_exists('acf_add_options_page') || !function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_options_page(array(
+        'page_title' => 'フッター設定',
+        'menu_title' => 'フッター設定',
+        'menu_slug'  => 'footer-settings',
+        'capability' => 'edit_posts',
+        'redirect'   => false,
+    ));
+
+    // 「表示名 + リンク先」のリピーター
+    $menu_repeater = function ($key, $label, $name, $instructions = '') {
+        return array(
+            'key'          => 'field_' . $key,
+            'label'        => $label,
+            'name'         => $name,
+            'type'         => 'repeater',
+            'instructions' => $instructions,
+            'layout'       => 'table',
+            'button_label' => '項目を追加',
+            'sub_fields'   => array(
+                array(
+                    'key'   => 'field_' . $key . '_label',
+                    'label' => '表示名',
+                    'name'  => 'label',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'   => 'field_' . $key . '_url',
+                    'label' => 'リンク先（例：/staff/ または https://…）',
+                    'name'  => 'url',
+                    'type'  => 'text',
+                ),
+            ),
+        );
+    };
+
+    acf_add_local_field_group(array(
+        'key'    => 'group_footer_settings',
+        'title'  => 'フッター設定',
+        'fields' => array(
+            // ---- フッターメニュー ----
+            array(
+                'key'       => 'field_footer_tab_menu',
+                'label'     => 'フッターメニュー',
+                'name'      => '',
+                'type'      => 'tab',
+                'placement' => 'top',
+            ),
+            $menu_repeater('footer_menu_about', '医院について', 'footer_menu_about', '空欄の場合は初期値が表示されます'),
+            $menu_repeater('footer_menu_treatment', '診療案内', 'footer_menu_treatment', '件数の半分ずつ、左の列から順に2列で表示されます'),
+            $menu_repeater('footer_menu_other', 'その他', 'footer_menu_other'),
+
+            // ---- ガイドライン・コピーライト ----
+            array(
+                'key'       => 'field_footer_tab_guideline',
+                'label'     => 'ガイドライン・コピーライト',
+                'name'      => '',
+                'type'      => 'tab',
+                'placement' => 'top',
+            ),
+            array(
+                'key'   => 'field_footer_guideline_text',
+                'label' => '医療広告ガイドラインの説明文',
+                'name'  => 'footer_guideline_text',
+                'type'  => 'textarea',
+                'rows'  => 3,
+            ),
+            $menu_repeater('footer_guideline_links', 'ガイドラインのリンク', 'footer_guideline_links', '別タブで開きます'),
+            array(
+                'key'   => 'field_footer_copyright',
+                'label' => 'コピーライト',
+                'name'  => 'footer_copyright',
+                'type'  => 'text',
+            ),
+
+            // ---- 追従ボタン ----
+            array(
+                'key'       => 'field_footer_tab_cta',
+                'label'     => '追従ボタン',
+                'name'      => '',
+                'type'      => 'tab',
+                'placement' => 'top',
+            ),
+            array(
+                'key'   => 'field_cta_web_url',
+                'label' => 'WEB予約のリンク先',
+                'name'  => 'cta_web_url',
+                'type'  => 'text',
+            ),
+            array(
+                'key'   => 'field_cta_white_url',
+                'label' => 'ホワイトニング予約のリンク先',
+                'name'  => 'cta_white_url',
+                'type'  => 'text',
+            ),
+            array(
+                'key'   => 'field_cta_tel',
+                'label' => '電話番号（例：03-5848-9373）',
+                'name'  => 'cta_tel',
+                'type'  => 'text',
+            ),
+            array(
+                'key'   => 'field_cta_tel_hours',
+                'label' => '電話の受付時間の表記',
+                'name'  => 'cta_tel_hours',
+                'type'  => 'text',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'options_page',
+                    'operator' => '==',
+                    'value'    => 'footer-settings',
+                ),
+            ),
+        ),
+    ));
+});
+
+/* ----------------------------------------
+// ACF：トップページのメインビジュアル（トップページの編集画面に表示されます）
+// ※リピーターは ACF Pro の機能です
+// ※「設定 > 表示設定」でトップページを固定ページに設定している場合に表示されます
+// ※空欄の項目は、front-page.php に書いてある初期値が表示されます
+---------------------------------------- */
+add_action('acf/init', function () {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key'    => 'group_front_mv',
+        'title'  => 'メインビジュアル',
+        'fields' => array(
+            array(
+                'key'   => 'field_mv_en',
+                'label' => '英字コピー（小さい文字）',
+                'name'  => 'mv_en',
+                'type'  => 'text',
+            ),
+            array(
+                'key'   => 'field_mv_lead',
+                'label' => 'サブコピー',
+                'name'  => 'mv_lead',
+                'type'  => 'text',
+            ),
+            array(
+                'key'          => 'field_mv_badges',
+                'label'        => '丸いバッジ（最大3つ）',
+                'name'         => 'mv_badges',
+                'type'         => 'repeater',
+                'instructions' => '改行した位置で、そのまま行が変わります',
+                'layout'       => 'table',
+                'max'          => 3,
+                'button_label' => 'バッジを追加',
+                'sub_fields'   => array(
+                    array(
+                        'key'   => 'field_mv_badges_text',
+                        'label' => '文言',
+                        'name'  => 'text',
+                        'type'  => 'textarea',
+                        'rows'  => 3,
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'page_type',
+                    'operator' => '==',
+                    'value'    => 'front_page',
+                ),
+            ),
+        ),
+    ));
+});
+
+/* ----------------------------------------
+// ACF：トップページの Instagram 新着投稿（トップページの編集画面に表示されます）
+// ※リピーターは ACF Pro の機能です
+// ※画像は 1080×1350px（縦長 4:5）を推奨。表示は最大5件までです
+// ※空欄の場合は、front-page.php でグレーの枠が仮表示されます
+---------------------------------------- */
+add_action('acf/init', function () {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key'    => 'group_front_instagram',
+        'title'  => 'Instagram 新着投稿',
+        'fields' => array(
+            array(
+                'key'          => 'field_insta_posts',
+                'label'        => '投稿',
+                'name'         => 'insta_posts',
+                'type'         => 'repeater',
+                'instructions' => '最大5件まで。順番に真ん中へ回ってきます。画像は 1080×1350px（縦長）がおすすめです',
+                'layout'       => 'table',
+                'max'          => 5,
+                'button_label' => '投稿を追加',
+                'sub_fields'   => array(
+                    array(
+                        'key'           => 'field_insta_posts_image',
+                        'label'         => '画像',
+                        'name'          => 'image',
+                        'type'          => 'image',
+                        'return_format' => 'id',
+                        'preview_size'  => 'medium',
+                    ),
+                    array(
+                        'key'   => 'field_insta_posts_url',
+                        'label' => 'リンク先（Instagramの投稿URL・空欄ならリンクなし）',
+                        'name'  => 'url',
+                        'type'  => 'url',
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'page_type',
+                    'operator' => '==',
+                    'value'    => 'front_page',
+                ),
+            ),
+        ),
+    ));
+});

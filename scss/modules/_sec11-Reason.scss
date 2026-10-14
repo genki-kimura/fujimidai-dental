@@ -1,0 +1,410 @@
+@use "setting" as *;
+
+// ----------------------------------------
+// Reason（選ばれる5つの魅力）
+// ※ 色・寸法はデザイン画像から測った値です。
+//    サイト共通の変数がある場合は、そちらに置き換えてください。
+// ----------------------------------------
+$re-purple: #8b7bc7;
+$re-btn: #7f6ba6;
+$re-title: #2e2a33;
+$re-text: #6e6875;
+$re-point: #52407e; // 「POINT」の文字
+$re-pink-line: #f1d0dc; // 見出し下の短い線
+$re-serif: "Shippori Mincho", "Noto Serif JP", "Yu Mincho", "游明朝", serif;
+$re-en: "Jost", "Helvetica Neue", Arial, sans-serif;
+$re-pc: 1180px; // これ以上：右に写真を重ねて配置 / 未満：写真は一覧の下に並べる
+$re-sp: 768px;
+
+.Reason {
+  position: relative;
+  overflow: hidden; // 背景のぼかしのはみ出しを隠す
+  // 背景は画面いっぱいに広げる。ぼかしの位置は、1366pxの枠の左上・右下に合わせる
+  // （画面が1366pxより狭いときは 8% / 86% の位置、広いときは枠の端に追従）
+  background:
+    // 右下のうす紫のぼかし
+    radial-gradient(circle 360px at min(86%, calc(50% + 492px)) 98%, #e6dcf1 0%, rgba(240, 232, 246, 0.7) 50%, rgba(252, 244, 246, 0) 100%),
+    // 左上のピンクのぼかし
+    radial-gradient(circle 520px at max(8%, calc(50% - 574px)) 9%, #f8e6ed 0%, rgba(250, 238, 243, 0) 100%),
+    // 全体のうすいピンク
+    linear-gradient(100deg, #faf0f3 0%, #fcf4f6 40%, #fdf6f7 70%, #fbf2f5 100%);
+
+  // SPだけ使う背景写真・改行（PC・タブレットでは非表示。SPのブロックで表示します）
+  &__bg,
+  &__sp-br {
+    display: none;
+  }
+
+  // 中身（見出し・一覧・右の写真）は 1366px の枠の中に収める
+  &__frame {
+    position: relative;
+    max-width: 1366px;
+    margin: 0 auto;
+    // 上下120px。左は画面が狭くなるほど縮む（最大143px）。右の写真と重ならないための計算
+    padding: 120px 0 120px clamp(24px, calc(100vw - 1140px), 143px);
+  }
+
+  // ---------- 左：見出し・一覧・ボタン ----------
+  &__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__head {
+    width: 600px;
+    max-width: 100%;
+  }
+
+  &__en {
+    margin: 0;
+    font-family: $re-en;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.2em;
+    color: $re-purple;
+  }
+
+  &__title {
+    margin: 13px 0 0;
+    font-family: $re-serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    color: $re-title;
+  }
+
+  &__line {
+    display: block;
+    width: 56px;
+    height: 2px;
+    margin-top: 14px;
+    background: $re-pink-line;
+  }
+
+  // ---------- 5つのカード ----------
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 600px;
+    max-width: 100%;
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    min-height: 96px;
+    box-sizing: border-box;
+    // 右の31pxで、説明文の幅が約469pxになる（折り返し位置を合わせるため）
+    padding: 15px 31px 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 3px 14px rgba(176, 128, 156, 0.12);
+  }
+
+  // 「POINT 01」の丸いバッジ
+  &__badge {
+    position: relative;
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 58px;
+    height: 58px;
+    margin: 4px 11px 0 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f1f3ff 0%, #fff 45%, #fff2f8 100%);
+    // 左は青むらさき・右下はピンクのやわらかい光
+    box-shadow:
+      -3px 3px 10px rgba(160, 170, 255, 0.22),
+      3px 4px 10px rgba(255, 170, 205, 0.22);
+
+    // 内側の細い輪
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid #ece6f6;
+      border-radius: 50%;
+    }
+  }
+
+  &__badge-label {
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 53px;
+    height: 17px;
+    border: 1px solid #a396d0;
+    border-radius: 999px;
+    background: #fff;
+    font-family: $re-en;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: 0.2em;
+    text-indent: 0.2em; // 字間のぶん右にずれるのを戻す
+    color: $re-point;
+    transform: translateX(-50%);
+  }
+
+  &__badge-num {
+    position: relative;
+    margin-top: 4px;
+    font-family: $re-en;
+    font-size: 28px;
+    font-weight: 600; // functions.php で読み込んでいる Jost は 400 と 600
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #6f5aa2; // グラデーション非対応時の色
+    background: linear-gradient(180deg, #67529a 0%, #7d65ac 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  // タイトルの左の縦棒（むらさき→ピンク）
+  &__bar {
+    flex: none;
+    width: 3px;
+    height: 20px;
+    margin: 4px 14px 0 0;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #8d7cc7 0%, #e0afc8 100%);
+  }
+
+  &__item-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__item-title {
+    margin: 0;
+    font-family: $re-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    color: $re-title;
+  }
+
+  &__item-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.8;
+    letter-spacing: 0.07em;
+    color: $re-text;
+  }
+
+  // ---------- ボタン ----------
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 179px;
+    height: 48px;
+    box-sizing: border-box;
+    margin-top: 40px;
+    padding: 0 28px;
+    border-radius: 999px;
+    background: $re-btn;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s;
+
+    span {
+      margin-left: 2px;
+      transition: transform 0.3s;
+    }
+
+    &:hover {
+      opacity: 0.85;
+
+      span {
+        transform: translateX(3px);
+      }
+    }
+  }
+
+  // ---------- 右：写真と飾り（右上基準で配置） ----------
+  &__visual {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 540px;
+    height: 100%;
+  }
+
+  // 飾りの輪（細い線・写真の後ろ）
+  &__ring {
+    position: absolute;
+    top: 98px;
+    right: 103px;
+    width: 134px;
+    height: 134px;
+    box-sizing: border-box;
+    border: 1px solid rgba(139, 123, 199, 0.2);
+    border-radius: 50%;
+  }
+
+  // 飾りの丸（ピンク・写真の後ろ）
+  &__dot {
+    position: absolute;
+    top: 402px;
+    right: 460px;
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background: #f4dce5;
+  }
+
+  // 写真（3:2）
+  &__img {
+    position: absolute;
+    display: block;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 2px;
+
+    &--1 {
+      top: 201px;
+      right: 36px;
+      width: 322px;
+    }
+
+    &--2 {
+      top: 447px;
+      right: 63px;
+      width: 435px;
+    }
+
+    // 右の端にくっつけて、はみ出したぶんは隠す
+    &--3 {
+      top: 768px;
+      right: 0;
+      width: 322px;
+    }
+  }
+
+  // ---------- タブレット（写真は一覧の下に3枚並べる） ----------
+  @media (max-width: #{$re-pc - 1px}) {
+    &__frame {
+      padding: 80px 40px 96px;
+    }
+
+    &__visual {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: auto;
+      height: auto;
+      margin-top: 56px;
+    }
+
+    &__ring,
+    &__dot {
+      display: none;
+    }
+
+    &__img {
+      position: static;
+      width: 100%;
+
+      &--1,
+      &--2,
+      &--3 {
+        position: static;
+        width: 100%;
+      }
+    }
+  }
+
+  // ---------- SP ----------
+  @media (max-width: $re-sp) {
+    &__frame {
+      padding: 56px 24px 64px;
+    }
+
+    // 背景写真（セクション全面。一覧のカードの後ろに敷く）
+    &__bg {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      pointer-events: none;
+    }
+
+    // 右の写真・飾りはSPでは出さない（背景写真に置き換え）
+    &__visual {
+      display: none;
+    }
+
+    &__title {
+      font-size: 22px;
+      letter-spacing: 0.02em; // 「富士見台さくら歯科が選ばれる」を1行に収めるため
+    }
+
+    // 各カードのタイトルをSPだけ改行
+    &__sp-br {
+      display: inline;
+    }
+
+    &__item {
+      padding: 14px 16px 12px 12px;
+    }
+
+    &__badge {
+      width: 52px;
+      height: 52px;
+      margin-right: 10px;
+    }
+
+    &__badge-num {
+      font-size: 20px;
+    }
+
+    &__bar {
+      margin-right: 10px;
+    }
+
+    &__item-title {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    &__item-text {
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Reason__btn,
+  .Reason__btn span {
+    transition: none;
+  }
+
+  .Reason__btn:hover span {
+    transform: none;
+  }
+}

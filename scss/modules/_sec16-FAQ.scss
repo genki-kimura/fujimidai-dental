@@ -1,0 +1,219 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+FAQ（よくあるご質問）
+---------------------------------------- */
+$faq-purple: #8f7fd0;        // 枠線・Q・＋－・EN
+$faq-pink: #b8628f;          // A
+$faq-line: #f0b8cc;          // 見出し下の線
+$faq-bg: #faf8fd;            // 質問枠の背景
+$faq-text: #3a3a4a;          // 質問文・見出し
+$faq-sub: #6a6a78;           // 回答文
+$faq-bp: 767px;              // スマホ幅の境目
+
+.FAQ {
+  padding: 120px 20px;
+  background: #fff;
+
+  @media (max-width: $faq-bp) {
+    padding: 72px 16px;
+  }
+
+  &__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  /* ---------- 見出し（_sec12-Menu.scss と同じ書き方） ---------- */
+  &__head {
+    text-align: center;
+    margin-bottom: 88px;
+
+    @media (max-width: $faq-bp) {
+      margin-bottom: 48px;
+    }
+  }
+
+  &__en {
+    margin: 0;
+    text-align: center;
+    font-family: "Jost", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.2em;
+    color: #8e7cc3;
+  }
+
+  &__title {
+    margin: 14px 0 0;
+    text-align: center;
+    font-family: "Shippori Mincho", serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    color: #2b2635;
+
+    @media (max-width: $faq-bp) {
+      font-size: 28px;
+    }
+  }
+
+  &__line {
+    display: block;
+    width: 56px;
+    height: 1px;
+    margin: 24px auto 0;
+    background: $faq-line;
+  }
+
+  /* ---------- 質問リスト ---------- */
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    border: 1px solid $faq-purple;
+    border-radius: 16px;
+    background: $faq-bg;
+    overflow: hidden;
+  }
+
+  /* 質問（押すところ） */
+  &__q {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    min-height: 62px;
+    padding: 0 28px 0 25px;
+    border: 0;
+    background: none;
+    font: inherit;
+    text-align: left;
+    color: $faq-text;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid $faq-purple;
+      outline-offset: -4px;
+      border-radius: 16px;
+    }
+
+    @media (max-width: $faq-bp) {
+      gap: 12px;
+      min-height: 60px;
+      padding: 14px 16px;
+    }
+  }
+
+  &__mark {
+    flex-shrink: 0;
+    width: 24px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 20px;
+    line-height: 1;
+    color: $faq-purple;
+
+    &--a {
+      color: $faq-pink;
+    }
+  }
+
+  &__q-text {
+    flex: 1;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+  }
+
+  /* ＋／－ アイコン */
+  &__icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 14px;
+      height: 1.5px;
+      background: $faq-purple;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease;
+    }
+
+    // たて棒：開いたら横に寝かせて「－」にする
+    &::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  &__q[aria-expanded='true'] &__icon::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  /* 回答（開閉する部分）
+     grid の 0fr → 1fr で高さを滑らかに変える */
+  &__a {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+
+    &.is-open {
+      grid-template-rows: 1fr;
+      visibility: visible;
+      transition: grid-template-rows 0.35s ease, visibility 0s;
+    }
+  }
+
+  &__a-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  &__a-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 6px 28px 28px 25px;
+
+    @media (max-width: $faq-bp) {
+      gap: 12px;
+      padding: 4px 16px 22px;
+    }
+  }
+
+  &__a-text {
+    flex: 1;
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    line-height: 1.9;
+    color: $faq-sub;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__a,
+    &__a.is-open,
+    &__icon::before,
+    &__icon::after {
+      transition: none;
+    }
+  }
+}

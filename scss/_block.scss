@@ -1,0 +1,3339 @@
+// ==========================================================
+// 下層ページ共通ヘッド(h1)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$head-purple-light: #d2b6ee; // 左上の明るい紫
+$head-purple:       #8e80b7; // メインの紫
+$head-purple-mid:   #b9aed6; // 中間
+$head-logo:         "../img/Logo02.webp"; // ← コンパイル後のCSSからの相対パスに合わせる
+$head-font:         "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+
+// --- セクション本体 ---------------------------------------
+.page-common-head {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2732 / 640; // モックアップの比率
+  display: flex;
+  align-items: center;
+  background:
+    // ① ロゴ透かし(右端・少しはみ出す)
+    url($head-logo) no-repeat calc(100% + 4%) 50% / auto 118%,
+    // ② 左上のふわっと明るい部分
+    radial-gradient(circle at 0 0, $head-purple-light 0%, rgba($head-purple-light, 0) 28%),
+    // ③ 左から右へ 紫 → 白
+    linear-gradient(100deg,
+      $head-purple 0%,
+      $head-purple 18%,
+      $head-purple-mid 48%,
+      #fff 72%,
+      #fff 100%);
+
+  // 旧背景画像(Group 518.webp)は使わない
+  // ※ 不要なら page.php の <img class="page-common-head__image"> ごと削除してOK
+  &__image {
+    display: none;
+  }
+
+  // 白い円の線(大)
+  &::before {
+    content: "";
+    position: absolute;
+    left: -12.5%;
+    top: -88%;
+    width: 41.4%;
+    aspect-ratio: 1;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // 白い円の線(小)
+  &::after {
+    content: "";
+    position: absolute;
+    left: 4.2%;
+    top: 35.5%;
+    width: 28.6%;
+    aspect-ratio: 1;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // 文字の開始位置(モックアップ比 17.5%)
+  // .inner860 の幅・中央寄せ・余白を打ち消すため、親クラス付きで書く
+  .page-common-head__inner {
+    position: relative;
+    z-index: 1; // 円の線より前面に
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 0 0 17.5%;
+    box-sizing: border-box;
+  }
+
+  // h1
+  &__title {
+    margin: 0;
+    padding: 0;
+    border: 0;       // テーマ既存のh1装飾を打ち消す
+    background: none;
+    font-family: $head-font;
+    font-weight: 500;
+    font-size: clamp(24px, 3.3vw, 48px);
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    color: #fff;
+    text-shadow: 0 2px 14px rgba(70, 50, 120, 0.35);
+
+    // 細い下線
+    &::before {
+      content: none; // 既存の飾りがあれば無効化
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 1.7em;
+      height: 1px;
+      margin-top: 0.55em;
+      background: #fff;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-head {
+    aspect-ratio: auto;
+    min-height: 160px;
+    background:
+      url($head-logo) no-repeat calc(100% + 18%) 50% / auto 120%,
+      radial-gradient(circle at 0 0, $head-purple-light 0%, rgba($head-purple-light, 0) 40%),
+      linear-gradient(100deg, $head-purple 0%, $head-purple 30%, $head-purple-mid 62%, #f4f1fa 100%);
+
+    &::before {
+      left: -30%;
+      width: 90%;
+    }
+
+    &::after {
+      left: 8%;
+      top: 45%;
+      width: 60%;
+    }
+
+    .page-common-head__inner {
+      padding: 0 6%;
+    }
+
+    &__title {
+      font-size: clamp(22px, 6vw, 28px);
+    }
+  }
+}
+
+// ==========================================================
+// h1(ブロックエディタのタイトル欄)
+//   フロントの .page-common-head と見た目を揃える
+//   ※ 編集画面にしか存在しないクラスなので、フロントには影響なし
+// ==========================================================
+
+$head-bg-pc:
+  url($head-logo) no-repeat calc(100% + 4%) 50% / auto 118%,
+  radial-gradient(circle at 0 0, $head-purple-light 0%, rgba($head-purple-light, 0) 28%),
+  linear-gradient(100deg, $head-purple 0%, $head-purple 18%, $head-purple-mid 48%, #fff 72%, #fff 100%);
+
+$head-bg-sp:
+  url($head-logo) no-repeat calc(100% + 18%) 50% / auto 120%,
+  radial-gradient(circle at 0 0, $head-purple-light 0%, rgba($head-purple-light, 0) 40%),
+  linear-gradient(100deg, $head-purple 0%, $head-purple 30%, $head-purple-mid 62%, #f4f1fa 100%);
+
+h1.editor-post-title__input,
+h1.wp-block-post-title {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   // 縦中央(文字+下線をまとめて)
+  width: 100%;
+  max-width: none;           // エディタ標準の本文幅制限を解除
+  aspect-ratio: 2732 / 640;
+  margin: 0 0 2rem;
+  padding: 0 0 0 17.5%;      // 文字の開始位置
+  border: 0;
+  text-align: left;
+  font-family: $head-font;
+  font-weight: 500;
+  font-size: clamp(24px, 3.3vw, 48px);
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  color: #fff;
+  caret-color: #fff;
+  text-shadow: 0 2px 14px rgba(70, 50, 120, 0.35);
+  background: $head-bg-pc;
+
+  // 白い円の線(大)
+  &::before {
+    content: "";
+    position: absolute;
+    left: -12.5%;
+    top: -88%;
+    width: 41.4%;
+    aspect-ratio: 1;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // 細い下線
+  &::after {
+    content: "";
+    display: block;
+    width: 1.7em;
+    height: 1px;
+    margin-top: 0.55em;
+    background: #fff;
+  }
+}
+
+@media (max-width: 767px) {
+  h1.editor-post-title__input,
+  h1.wp-block-post-title {
+    aspect-ratio: auto;
+    min-height: 160px;
+    padding: 0 6%;
+    font-size: clamp(22px, 6vw, 28px);
+    background: $head-bg-sp;
+
+    &::before {
+      left: -30%;
+      width: 90%;
+    }
+  }
+}
+
+// ==========================================================
+// パンくずリスト
+// ==========================================================
+
+$bc-purple: #7a5fa8; // リンク色
+$bc-gray:   #6e6e73; // 現在ページ・区切り
+$bc-font:   "Jost", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+
+#breadcrumbs {
+  margin: 0;
+  padding: 1.4rem 17.5%; // ヘッドの文字開始位置に揃える
+  font-size: 0;          // 素のテキスト「 » 」を非表示
+  line-height: 1;
+
+  > span {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline; // center から変更
+    row-gap: 0.4rem;
+  }
+
+  > span > span {
+    font-family: $bc-font;
+    font-size: 15px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    color: $bc-gray;
+  }
+
+  a {
+    color: $bc-purple;
+    text-decoration: none;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  > span > span:first-child a {
+    font-size: 1.1em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  // 区切り「>」
+  > span > span + span::before {
+    content: ">";
+    display: inline-block;
+    margin: 0 10px;
+    color: $bc-gray;
+    font-weight: 400;
+    position: relative;
+    top: -0.12em;
+  }
+
+  // 現在ページ(リンクなし・グレー)
+  .breadcrumb_last {
+    color: $bc-gray;
+  }
+}
+
+@media (max-width: 767px) {
+  #breadcrumbs {
+    padding: 1rem 6%;
+
+    > span > span {
+      font-size: 13px;
+    }
+  }
+}
+
+// ==========================================================
+// 本文エリア(inner860)
+// ==========================================================
+
+.page-common-content .page-common-content__inner {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;      // 中央寄せ
+  padding-bottom: 4rem; // 下層ページの本文の下余白は4rem
+}
+
+// ブロックエディタ(編集画面)でも本文幅を860pxに揃える
+// ※ .is-root-container はエディタ内の本文領域。フロントには存在しないので影響なし
+// ※ 各ブロックの margin 指定(リスト・グループ等)で左右の auto が消えて
+//    左寄せになるのを防ぐため、左右だけ !important で中央寄せを固定する
+.is-root-container > .wp-block {
+  max-width: 860px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+// ==========================================================
+// h2
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$h2-text:      #2b2b33; // 見出し文字(ほぼ黒の墨色)
+$h2-line:      #c9c0e0; // 下線(淡いラベンダー)
+$h2-line-accent: #e8b4c6; // 下線の左端(淡いピンク)
+$h2-font:      "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+
+// 下層ページ本文(section.page-common-content)内のh2
+.page-common-content h2,
+.is-root-container h2 {
+  position: relative;
+  margin: 2.4em 0 1em;
+  padding: 0 0 0.6em;
+  border: 0;       // テーマ既存のh2装飾を打ち消す
+  background: none;
+  text-align: left; // body の text-align: justify を打ち消す
+  font-family: $h2-font;
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  color: $h2-text;
+
+  // 最初の見出しは上余白なし
+  &:first-child {
+    margin-top: 0;
+  }
+
+  // 下線(全幅・ラベンダー)
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: $h2-line;
+  }
+
+  // 下線の左端だけピンク
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;      // ラベンダーの線より前面に
+    width: 9%;
+    min-width: 48px;
+    height: 3px;
+    background: $h2-line-accent;
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content h2,
+  .is-root-container h2 {
+    margin: 2em 0 1em;
+    font-size: clamp(20px, 5.4vw, 24px);
+
+    &::before {
+      width: 20%;
+    }
+  }
+}
+
+// ==========================================================
+// h3(2種類)
+//   ① 通常:      左に縦バー(紫→ピンクのグラデ)
+//   ② .h3-another: 文字の右に細いラインが伸びる
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$h3-text:     $h2-text;
+$h3-font:     $h2-font;
+$h3-bar-from: #9a86d0; // バー上端(紫)
+$h3-bar-to:   #e8b4c6; // バー下端(ピンク)
+$h3-line:     $h2-line; // ラインの色(h2下線と同じラベンダー)
+
+// 共通 + ① 左バータイプ
+.page-common-content h3,
+.is-root-container h3 {
+  position: relative;
+  margin: 2em 0 1em;
+  padding: 0 0 0 0.85em;
+  border: 0;        // テーマ既存のh3装飾を打ち消す
+  background: none;
+  text-align: left; // body の text-align: justify を打ち消す
+  font-family: $h3-font;
+  font-weight: 500;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  color: $h3-text;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  // 左の縦バー(上:紫 → 下:ピンク)
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 1.35em;
+    border-radius: 999px;
+    background: linear-gradient(180deg, $h3-bar-from 0%, $h3-bar-to 100%);
+  }
+
+  // ② 右にラインが伸びるタイプ
+  &.h3-another {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding-left: 0;
+
+    // バーは消す
+    &::before {
+      content: none;
+    }
+
+    // 文字の右側に伸びる細線
+    &::after {
+      content: "";
+      flex: 1 1 auto;
+      min-width: 1em;
+      height: 1px;
+      background: $h3-line;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content h3,
+  .is-root-container h3 {
+    margin: 1.8em 0 0.9em;
+    font-size: clamp(17px, 4.6vw, 20px);
+
+    &::before {
+      width: 4px;
+    }
+
+    &.h3-another {
+      gap: 0.7em;
+    }
+  }
+}
+
+// ==========================================================
+// h4(紫のドット付き)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$h4-text: $h2-text;
+$h4-font: $h2-font;
+$h4-dot:  $h3-bar-from; // ドットの色(h3バーの紫)
+
+.page-common-content h4,
+.is-root-container h4 {
+  position: relative;
+  margin: 1.8em 0 0.8em;
+  padding: 0 0 0 1.15em;
+  border: 0;        // テーマ既存のh4装飾を打ち消す
+  background: none;
+  text-align: left; // body の text-align: justify を打ち消す
+  font-family: $h4-font;
+  font-weight: 500;
+  font-size: clamp(16px, 1.7vw, 22px);
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  color: $h4-text;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  // 左の丸ドット(複数行になっても1行目の高さに揃える)
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.8em;      // line-height 1.6 の半分
+    transform: translateY(-50%);
+    width: 0.34em;
+    height: 0.34em;
+    border-radius: 50%;
+    background: $h4-dot;
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content h4,
+  .is-root-container h4 {
+    margin: 1.6em 0 0.7em;
+    font-size: clamp(15px, 4.2vw, 18px);
+  }
+}
+
+// ==========================================================
+// h5(紫・太字のゴシック)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$h5-color: #6f5ca6; // 紫(デザインから目測)
+$h5-font:  "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+
+.page-common-content h5,
+.is-root-container h5 {
+  margin: 1.6em 0 0.6em;
+  padding: 0;
+  border: 0;        // テーマ既存のh5装飾を打ち消す
+  background: none;
+  text-align: left; // body の text-align: justify を打ち消す
+  font-family: $h5-font;
+  font-weight: 700;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  color: $h5-color;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content h5,
+  .is-root-container h5 {
+    margin: 1.4em 0 0.5em;
+    font-size: clamp(15px, 4vw, 16px);
+  }
+}
+
+// ==========================================================
+// 本文テキスト(段落)
+//   デザイン: Noto Sans JP / Regular 400 / 15px / 行間200% / 字間0.5px / #2E2A33
+// ==========================================================
+
+$text-color: $h2-text;
+$text-font:  "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+
+.page-common-content p,
+.is-root-container p {
+  margin: 0.5em 0 1.5em;
+  font-family: $text-font;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 2;      // 200%
+  letter-spacing: 0.5px;
+  color: $text-color;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// ==========================================================
+// リスト(4種類)
+//   ① ul           : 紫ドット
+//   ② ol           : 紫の数字「1.」
+//   ③ .list-another > ul.another-list : ラベンダー背景 + チェック丸
+//   ④ li.check-list-02 : 紫の角丸四角 + 白いチェック(背景なし)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$list-accent: #7e69a9;  // 数字・チェック丸の紫
+$list-dot:    $h4-dot;  // ドットの紫(h4と共通)
+$list-bg:     #f4f1fb;  // チェックリストの背景(淡いラベンダー)
+$list-num-font: "Jost", "Noto Sans JP", sans-serif;
+
+// 共通(ul / ol)
+.page-common-content ul.wp-block-list,
+.page-common-content ol.wp-block-list,
+.is-root-container ul.wp-block-list,
+.is-root-container ol.wp-block-list {
+  margin: 0 0 2em;
+  padding: 0;
+  list-style: none;      // 標準のマーカーを消す
+  text-align: left;
+
+  > li {
+    position: relative;
+    margin: 0;
+    padding-left: 24px;
+    font-family: $text-font;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 2;
+    letter-spacing: 0.5px;
+    color: $text-color;
+  }
+
+  > li + li {
+    margin-top: 4px;
+  }
+}
+
+// ① ul:紫ドット
+.page-common-content ul.wp-block-list:not(.another-list),
+.is-root-container ul.wp-block-list:not(.another-list) {
+  > li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 1em;              // 1行目の中央(line-height 2 の半分)
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $list-dot;
+  }
+}
+
+// ② ol:紫の数字
+.page-common-content ol.wp-block-list,
+.is-root-container ol.wp-block-list {
+  counter-reset: list-num;
+
+  > li {
+    counter-increment: list-num;
+    padding-left: 1.8em;
+  }
+
+  > li::before {
+    content: counter(list-num) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: $list-num-font;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: $list-accent;
+  }
+}
+
+// ③ チェックリスト(グループ .list-another の中の ul.another-list)
+.page-common-content .list-another,
+.is-root-container .list-another {
+  margin: 0 0 2em;
+  padding: 22px 24px;
+  border-radius: 20px;
+  background: $list-bg;
+
+  // グループ内の余白をリセット
+  .wp-block-group__inner-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.wp-block-list {
+    margin: 0;
+
+    > li {
+      padding-left: 30px;   // チェック丸(20px) + 余白
+    }
+
+    > li + li {
+      margin-top: 10px;
+    }
+
+    // チェック丸
+    > li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 5px;
+      transform: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: $list-accent;
+    }
+
+    // チェックマーク(白)
+    > li::after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 9px;
+      width: 4px;
+      height: 8px;
+      border: solid #fff;
+      border-width: 0 1.5px 1.5px 0;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+// ④ チェックリスト02(ul.wp-block-list の li に class="check-list-02" を付ける)
+//   紫の角丸四角 + 白い細いチェック。背景のグループは不要
+//   ※ ① のドット(li::before)より詳細度を上げて上書きしている
+$list-check-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='white' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.2 10.6l3.4 3.4L14.8 6'/%3E%3C/svg%3E");
+
+.page-common-content ul.wp-block-list:not(.another-list),
+.is-root-container ul.wp-block-list:not(.another-list) {
+  > li.check-list-02 {
+    padding-left: 32px; // 四角(20px) + 余白(12px)
+
+    + li.check-list-02 {
+      margin-top: 5px;
+    }
+
+    // 紫の角丸四角(中にチェック)
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 5px; // 1行目(line-height 30px)の中央に 20px を置く
+      transform: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: $list-accent $list-check-svg center / 100% 100% no-repeat;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .list-another,
+  .is-root-container .list-another {
+    padding: 18px 16px;
+  }
+}
+
+// ==========================================================
+// ボタン(3種類)  .wp-block-buttons > .wp-block-button > .wp-block-button__link
+//   ① 無印(ページ内リンク): 白地 + ラベンダー枠 + 下向き▼
+//   ② .internal-btn(内部リンク): 紫の塗り + →
+//   ③ .external-btn(外部リンク): 紫の塗り + 別窓アイコン
+//   ホバー時は色が反転(白地↔紫の塗り)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$btn-purple: $list-accent;   // 塗りボタン・①の文字色
+$btn-border: $h2-line;       // ①の枠(ラベンダー)
+$btn-arrow:  $h4-dot;        // ①の▼
+
+// 別窓アイコン(SVG)  ※紫は $btn-purple(#7e69a9)と同じ値。変える場合は %23 の後ろも合わせる
+$btn-icon-external-white:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Crect x='3' y='9' width='12' height='12' rx='2'/%3E%3Cpath d='M9 9V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4'/%3E%3C/svg%3E");
+$btn-icon-external-purple: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237e69a9' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Crect x='3' y='9' width='12' height='12' rx='2'/%3E%3Cpath d='M9 9V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4'/%3E%3C/svg%3E");
+
+.page-common-content .wp-block-buttons,
+.is-root-container .wp-block-buttons {
+  gap: 16px 20px;
+  margin: 0 0 2em;
+
+  .wp-block-button {
+    margin: 0;
+  }
+
+  // ① 共通ベース = ページ内リンクボタン(白地・枠・▼)
+  .wp-block-button .wp-block-button__link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-sizing: border-box;
+    padding: 16px 47px 14px;
+    border: 2px solid $btn-border;
+    border-radius: 20px;
+    background: #fff;
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-decoration: none;
+    color: $btn-purple;
+    transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+
+    // 下向き三角
+    &::after {
+      content: "\25BC";
+      font-size: 12px;
+      line-height: 1;
+      color: $btn-arrow;
+      transition: color 0.25s;
+    }
+
+    // ホバー: 紫の塗り + 白文字に反転
+    &:hover {
+      border-color: $btn-purple;
+      background: $btn-purple;
+      color: #fff;
+
+      &::after {
+        color: #fff;
+      }
+    }
+  }
+
+  // ② 内部リンク / ③ 外部リンク 共通(紫の塗り・パイ型)
+  //   ※ ホバーで枠が出ても大きさが変わらないよう、最初から2pxの枠を持たせる
+  .internal-btn .wp-block-button__link,
+  .external-btn .wp-block-button__link {
+    flex-direction: row;
+    gap: 12px;
+    padding: 20px 50px 20px 62px;
+    border: 2px solid $btn-purple;
+    border-radius: 999px;
+    background: $btn-purple;
+    color: #fff;
+
+    // ホバー: 白地 + 紫文字に反転
+    &:hover {
+      background: #fff;
+      color: $btn-purple;
+    }
+  }
+
+  // ② →
+  .internal-btn .wp-block-button__link {
+    &::after {
+      content: "\2192";
+      font-size: 20px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    &:hover::after {
+      color: $btn-purple;
+    }
+  }
+
+  // ③ 別窓アイコン(ホバーで白線→紫線に差し替え)
+  .external-btn .wp-block-button__link {
+    &::after {
+      content: "";
+      width: 18px;
+      height: 18px;
+      background: $btn-icon-external-white center / contain no-repeat;
+    }
+
+    &:hover::after {
+      background-image: $btn-icon-external-purple;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .wp-block-buttons .wp-block-button .wp-block-button__link,
+  .is-root-container .wp-block-buttons .wp-block-button .wp-block-button__link {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+// ==========================================================
+// 目次(LuckyWP Table of Contents  .lwptoc)
+//   ・枠 + 薄いラベンダーのヘッダー(タイトル左 / [非表示] 右)
+//   ・番号はプラグインの「1.1」ではなく、階層ごとに「1. 2. 3.」と振り直す
+//   ※ プラグイン側のCSSに勝つため、.lwptoc を二重に指定している
+//   ※ タイトルを「目次」にするには、プラグイン設定の「タイトル」を変更
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$toc-accent:    $btn-purple;   // 番号・[非表示] の紫
+$toc-border:    $h2-line;      // 外枠
+$toc-head-bg:   #f9f7fd;       // ヘッダー背景
+$toc-divider:   #ece8f6;       // ヘッダーと本体の区切り線
+
+.page-common-content .lwptoc.lwptoc,
+.is-root-container .lwptoc.lwptoc {
+  display: block;
+  width: 100%;
+  margin: 0 0 2em;
+  padding: 0;
+
+  // 外枠
+  .lwptoc_i {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;          // 角丸でヘッダー背景をクリップ
+    border: 1px solid $toc-border;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: none;
+    font-family: $text-font;
+    color: $text-color;
+  }
+
+  // ヘッダー(タイトル + 表示/非表示)
+  .lwptoc_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 62px;
+    margin: 0;
+    padding: 0 28px;
+    background: $toc-head-bg;
+  }
+
+  .lwptoc_title {
+    margin: 0;
+    font-family: $h2-font;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    color: $h2-text;
+  }
+
+  .lwptoc_toggle {
+    float: none;
+    margin: 0;
+    font-family: $text-font;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0;
+    color: $toc-accent;       // [ ] もこの色になる
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  // 本体(※ display は触らない:プラグインが表示/非表示を切り替えるため)
+  .lwptoc_items {
+    margin: 0;
+    padding: 26px 36px;
+    border-top: 1px solid $toc-divider;  // 閉じたときに線が残らないよう本体側に持たせる
+    font-family: $text-font;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .lwptoc_itemWrap {
+    margin: 0;
+    padding: 0;
+    counter-reset: toc-n;      // 階層ごとに番号を振り直す
+  }
+
+  .lwptoc_item {
+    margin: 0;
+    padding: 0;
+    counter-increment: toc-n;
+  }
+
+  // 第1階層(h2):太字
+  .lwptoc_item + .lwptoc_item {
+    margin-top: 19px;
+  }
+
+  .lwptoc_item > a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 9px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: 0.06em;
+    color: $text-color;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $toc-accent;
+    }
+
+    // 自前の番号「1.」
+    &::before {
+      content: counter(toc-n) ".";
+      font-family: $list-num-font;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: $toc-accent;
+    }
+  }
+
+  // プラグインの番号(1.1 など)は使わない
+  .lwptoc_item_number {
+    display: none;
+  }
+
+  // 第2階層(h3)以降:細字・小さめ・字下げ
+  .lwptoc_item > .lwptoc_itemWrap {
+    margin: 11px 0 0 27px;
+  }
+
+  .lwptoc_itemWrap .lwptoc_itemWrap {
+    .lwptoc_item + .lwptoc_item {
+      margin-top: 6px;
+    }
+
+    .lwptoc_item > a {
+      gap: 8px;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    // 第3階層以降(h4, h5)
+    .lwptoc_item > .lwptoc_itemWrap {
+      margin: 6px 0 0 24px;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .lwptoc.lwptoc,
+  .is-root-container .lwptoc.lwptoc {
+    .lwptoc_header {
+      min-height: 52px;
+      padding: 0 18px;
+    }
+
+    .lwptoc_title {
+      font-size: 17px;
+    }
+
+    .lwptoc_items {
+      padding: 20px 18px;
+    }
+
+    .lwptoc_item > .lwptoc_itemWrap {
+      margin-left: 20px;
+    }
+  }
+}
+
+// ==========================================================
+// Point見出しボックス
+//   上辺の中央に紫のピルが乗り、枠線をまたぐ
+// ==========================================================
+
+$point-purple: #8069a5;  // ピルの紫
+$point-border: $h2-line; // 枠(淡いラベンダー)
+$point-bg:     #f9f7fd;  // 背景(淡いラベンダー)
+
+.page-common-content .point-heading-box,
+.is-root-container .point-heading-box {
+  position: relative;
+  margin: 2.4em 0 2em;   // ピルが上にはみ出す分の余白
+  padding: 20px 0;       // 全体の上下の空白
+  border: 1px solid $point-border;
+  border-radius: 16px;
+  background: $point-bg;
+
+  // ピル(見出し)
+  .point-heading-box-tag-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%); // 枠線の上辺にピルの中央を合わせる
+    max-width: calc(100% - 32px);
+  }
+
+  .point-heading-box-title {
+    display: block;
+    margin: 0;
+    padding: 10px 50px;
+    border: 0;
+    border-radius: 999px;
+    background: $point-purple;
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+
+    // h2〜h5のテーマ装飾を打ち消す
+    &::before,
+    &::after {
+      content: none;
+    }
+  }
+
+  // 本文エリア
+  .point-heading-box-bottom {
+    padding: 16px 38px;
+
+    // インナーブロックの余白を調整
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 0 1.5em;
+      font-size: 13.5px;
+      text-align: left;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .point-heading-box,
+  .is-root-container .point-heading-box {
+    margin: 2.2em 0 1.6em;
+    padding: 16px 0;
+    border-radius: 18px;
+
+    .point-heading-box-title {
+      padding: 11px 40px;
+    }
+
+    .point-heading-box-bottom {
+      padding: 20px 18px 12px;
+    }
+  }
+}
+
+// ==========================================================
+// 見出しボックス
+//   上部に紫のヘッダー帯、下に白い本文エリア
+//   文字サイズ等は Point見出しボックスに合わせている
+// ==========================================================
+
+$heading-box-purple: $point-purple; // ヘッダーの紫(Pointボックスと共通)
+$heading-box-border: $h2-line;      // 枠(淡いラベンダー)
+
+.page-common-content .heading-box,
+.is-root-container .heading-box {
+  margin: 0 0 2em;
+  overflow: hidden;      // 角丸でヘッダー背景をクリップ
+  border: 1px solid $heading-box-border;
+  border-radius: 16px;
+  background: #fff;
+
+  // ヘッダー帯(見出し)
+  .heading-box-top {
+    background: $heading-box-purple;
+  }
+
+  .heading-box-title {
+    display: block;
+    margin: 0;
+    padding: 18px 28px;
+    border: 0;
+    background: none;
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-align: left;
+    color: #fff;
+
+    // h2〜h5のテーマ装飾を打ち消す
+    &::before,
+    &::after {
+      content: none;
+    }
+  }
+
+  // 本文エリア
+  .heading-box-bottom {
+    padding: 28px 28px;
+
+    // インナーブロックの余白を調整
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 0 1.5em;
+      font-size: 13.5px;
+      text-align: left;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .heading-box,
+  .is-root-container .heading-box {
+    margin: 0 0 1.6em;
+    border-radius: 18px;
+
+    .heading-box-title {
+      padding: 14px 18px;
+    }
+
+    .heading-box-bottom {
+      padding: 20px 18px;
+    }
+  }
+}
+
+// ==========================================================
+// 注意ブロック
+//   左:ピンクの三角アイコン(!) / 右:ピンクの太字テキスト
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$attention-text:   #b85a80; // 文字・アイコンのピンク
+$attention-border: #f0c4d6; // 枠
+$attention-bg:     #fcf1f5; // 背景
+
+// 三角アイコン(SVG:上が明るいピンク → 下が濃いピンクのグラデ + 白の「!」)
+$attention-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 56'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23d97b9f'/%3E%3Cstop offset='1' stop-color='%23b85a80'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M31 3C28.6 3 26.6 4.2 25.4 6.3L2.6 44.8C-0.5 50 3.2 56 9.3 56H52.7C58.8 56 62.5 50 59.4 44.8L36.6 6.3C35.4 4.2 33.4 3 31 3Z' transform='translate(0 -3)' fill='url(%23g)'/%3E%3Crect x='28' y='16' width='6' height='19' rx='3' fill='white'/%3E%3Ccircle cx='31' cy='42.5' r='3.5' fill='white'/%3E%3C/svg%3E");
+
+.page-common-content .attention-box,
+.is-root-container .attention-box {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 0 0 2em;
+  padding: 30px;
+  border: 1px solid $attention-border;
+  border-radius: 16px;
+  background: $attention-bg;
+
+  // 三角アイコン
+  .attention-box-icon {
+    flex: 0 0 62px;
+    width: 62px;
+    height: 56px;
+    background: $attention-icon center / contain no-repeat;
+    filter: drop-shadow(0 6px 8px rgba(184, 90, 128, 0.25));
+  }
+
+  // テキスト
+  .attention-box-text {
+    flex: 1 1 auto;
+    min-width: 0;
+
+    // インナーブロックの余白を調整
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 0 1.2em;
+      font-weight: 700;
+      font-size: 14.5px;
+      line-height: 1.9;
+      letter-spacing: 0.06em;
+      text-align: left;
+      color: $attention-text;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .attention-box,
+  .is-root-container .attention-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 22px 18px;
+    border-radius: 12px;
+
+    .attention-box-icon {
+      flex-basis: auto;
+      width: 44px;
+      height: 40px;
+    }
+
+    .attention-box-text p {
+      font-size: 14px;
+    }
+  }
+}
+
+// ==========================================================
+// 症例ブロック
+//   BEFORE / AFTER 画像 → 施術内容 → 治療情報 → 注意事項 → ボタン
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$case-label-before: $text-color; // BEFORE の文字色
+$case-label-after:  $list-accent; // AFTER の文字色(紫)
+$case-img-bg:       #e2e2e2;      // 画像未設定時の背景
+$case-info-bg:      #f9f7fd;      // 治療情報・注意事項の背景
+$case-info-sub:     #6e6e73;      // 項目名のグレー
+
+.page-common-content .case-box,
+.is-root-container .case-box {
+  margin: 0 0 2em;
+
+  // ---------- BEFORE / AFTER ----------
+  .case-box-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 0 0 30px;
+  }
+
+  .case-box-image-label {
+    margin: 0 0 8px;
+    font-family: $list-num-font;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.2em;
+    color: $case-label-before;
+
+    &--after {
+      color: $case-label-after;
+    }
+  }
+
+  .case-box-image-frame {
+    overflow: hidden;
+    border-radius: 16px;
+    background: $case-img-bg;
+    aspect-ratio: 840 / 630;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // ---------- 施術内容 ----------
+  .case-box-heading {
+    margin: 0 0 1em;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    text-align: left;
+    color: $text-color;
+
+    // 見出し装飾を打ち消す
+    &::before,
+    &::after {
+      content: none;
+    }
+  }
+
+  .case-box-text {
+    margin: 0 0 24px;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // ---------- 治療情報 ----------
+  .case-box-information {
+    margin: 0 0 16px;
+    padding: 30px;
+    border-radius: 16px;
+    background: $case-info-bg;
+  }
+
+  .case-box-information-title {
+    margin: 0 0 20px;
+    font-weight: 700;
+    font-size: 13.5px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    color: $text-color;
+  }
+
+  .case-box-information-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 40px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .case-box-information-item {
+    margin: 0;
+    padding: 0;
+
+    dt {
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      color: $case-info-sub;
+    }
+
+    dd {
+      margin: 0;
+      font-family: $text-font;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      color: $text-color;
+    }
+  }
+
+  // ---------- 注意事項 ----------
+  .case-box-attention {
+    margin: 0 0 30px;
+    padding: 16px 32px;
+    border-radius: 16px;
+    background: $case-info-bg;
+    font-size: 11.5px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+    text-align: left;
+    color: $case-info-sub;
+  }
+
+  // ---------- ボタン(右寄せ・白地+紫枠・→) ----------
+  .case-box-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+  }
+
+  .case-box-btn-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    box-sizing: border-box;
+    min-width: 280px;
+    padding: 20px 60px 20px 70px;
+    border: 2px solid $btn-purple;
+    border-radius: 999px;
+    background: #fff;
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: $btn-purple;
+    transition: background-color 0.25s, color 0.25s;
+
+    &::after {
+      content: "\2192";
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    // ホバー: 紫の塗り + 白文字に反転
+    &:hover {
+      background: $btn-purple;
+      color: #fff;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .case-box,
+  .is-root-container .case-box {
+    .case-box-images {
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .case-box-image-label {
+      font-size: 12px;
+    }
+
+    .case-box-image-frame {
+      border-radius: 12px;
+    }
+
+    .case-box-heading {
+      font-size: 17px;
+    }
+
+    .case-box-information {
+      padding: 24px 20px 28px;
+      border-radius: 16px;
+    }
+
+    .case-box-information-title {
+      font-size: 16px;
+    }
+
+    .case-box-information-list {
+      gap: 16px 16px;
+    }
+
+    .case-box-information-item {
+      dt {
+        font-size: 13px;
+      }
+
+      dd {
+        font-size: 16px;
+      }
+    }
+
+    .case-box-attention {
+      margin-bottom: 36px;
+      padding: 14px 18px;
+    }
+
+    .case-box-btn {
+      justify-content: center;
+    }
+
+    .case-box-btn-link {
+      width: 100%;
+      min-width: 0;
+      padding: 20px 24px;
+      font-size: 16px;
+    }
+  }
+}
+
+// ==========================================================
+// 見出し内の span のフォント修正(h2 / h3 共通)
+//   見出しの中身が <span id="..."> で包まれていて、
+//   base.scss の「* { font-family: Zen Kaku Gothic Antique }」が
+//   span に直接当たるため、見出しの明朝が効かなくなっていた。
+//   → span は親(見出し)のフォントを引き継ぐ
+// ==========================================================
+.page-common-content h2 span,
+.page-common-content h3 span,
+.is-root-container h2 span,
+.is-root-container h3 span {
+  font-family: inherit;
+}
+
+// ==========================================================
+// STEPバッジ(Reason の __badge と同じデザイン)
+//   流れコンテンツ・ポイントコンテンツで共用
+//   構造: <div step><span letter>STEP</span><span number>01</span></div>
+// ==========================================================
+$step-text: #52407e; // 「STEP」「POINT」の文字(Reasonの $re-point と同じ)
+$step-line: #a396d0; // ピルの枠線(Reasonと同じ)
+
+// 円本体
+@mixin step-badge {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 58px;
+  height: 58px;
+  margin: 3px 0 0; // 上は「STEP」ピルが -3px はみ出す分
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f1f3ff 0%, #fff 45%, #fff2f8 100%);
+  // 左は青むらさき・右下はピンクのやわらかい光
+  box-shadow:
+    -3px 3px 10px rgba(160, 170, 255, 0.22),
+    3px 4px 10px rgba(255, 170, 205, 0.22);
+
+  // 内側の細い輪
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid #ece6f6;
+    border-radius: 50%;
+  }
+}
+
+// 「STEP」ピル(円の上にかぶる)
+@mixin step-badge-letter {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 53px;
+  height: 17px;
+  border: 1px solid $step-line;
+  border-radius: 999px;
+  background: #fff;
+  font-family: $list-num-font;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-indent: 0.2em; // 字間のぶん右にずれるのを戻す
+  color: $step-text;
+  transform: translateX(-50%);
+}
+
+// 「01」(紫グラデの文字)
+@mixin step-badge-number {
+  position: relative;
+  margin-top: 4px;
+  font-family: $list-num-font;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #6f5aa2; // グラデーション非対応時の色
+  background: linear-gradient(180deg, #67529a 0%, #7d65ac 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// ==========================================================
+// 流れコンテンツ(STEP)
+//   .flow-box--left  : 画像左 + テキスト右(STEP01型)
+//   .flow-box--right : テキスト左 + 画像右(STEP02型)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$flow-img-w:      40%;      // 画像の幅(本文幅に対する割合)
+$flow-gap:        30px;     // 画像とテキストの間
+
+.page-common-content .flow-box,
+.is-root-container .flow-box {
+  padding: 20px 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // ---------- 2カラム ----------
+  .flow-box-inner {
+    display: grid;
+    grid-template-columns: $flow-img-w 1fr;
+    column-gap: $flow-gap;
+    align-items: start;
+  }
+
+  // right: 列の幅を入れ替え + 画像を右へ
+  &.flow-box--right {
+    .flow-box-inner {
+      grid-template-columns: 1fr $flow-img-w;
+    }
+
+    .flow-box-img {
+      order: 2;
+    }
+  }
+
+  // ---------- 画像 ----------
+  .flow-box-img {
+    overflow: hidden;
+    border-radius: 16px;
+    background: $case-img-bg; // 画像未設定時のグレー
+    aspect-ratio: 33 / 25;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // ---------- STEPバッジ(Reason の __badge と同じデザイン / mixin は上で定義) ----------
+  .flow-box-step {
+    @include step-badge;
+  }
+
+  .flow-box-step-letter {
+    @include step-badge-letter;
+  }
+
+  .flow-box-step-number {
+    @include step-badge-number;
+  }
+
+  // ---------- 見出し(タグがh3でもpでも同じ見た目) ----------
+  .flow-box-title {
+    position: relative;
+    margin: 15px 0;
+    padding: 0 0 0 0.85em;
+    border: 0;
+    background: none;
+    text-align: left;
+    font-family: $h3-font;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+    color: $h3-text;
+
+    // 左の縦バー(紫 → ピンク)
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 1.35em;
+      border-radius: 999px;
+      background: linear-gradient(180deg, $h3-bar-from 0%, $h3-bar-to 100%);
+    }
+
+    &::after {
+      content: none; // テーマ既存の装飾を打ち消す
+    }
+  }
+
+  // ---------- 本文(Noto Sans JP / 400 / 13.5px / 行間170% / 字間0 / #2E2A33) ----------
+  .flow-box-text {
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 0 1em;
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 13.5px;
+      line-height: 1.7;
+      letter-spacing: 0;
+      color: #2e2a33;
+    }
+  }
+}
+
+// --- スマホ(画像 → STEP → 見出し → 本文 の縦並び) ------
+@media (max-width: 767px) {
+  .page-common-content .flow-box,
+  .is-root-container .flow-box {
+    margin-bottom: 44px;
+
+    .flow-box-inner,
+    &.flow-box--right .flow-box-inner {
+      grid-template-columns: 1fr;
+      row-gap: 20px;
+    }
+
+    &.flow-box--right .flow-box-img {
+      order: 0;
+    }
+
+    .flow-box-img {
+      border-radius: 12px;
+    }
+
+    .flow-box-title {
+      font-size: 20px;
+
+      &::before {
+        width: 4px;
+      }
+    }
+  }
+}
+
+// ==========================================================
+// ポイントコンテンツ(POINT)
+//   角丸の枠の中に「バッジ + 見出し」→ 本文
+//   画像があるときだけ右に表示(.point-content--has-img)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$point-border:  #eeeaf3;  // 枠線
+$point-text:    #6e6875;  // 本文のグレー(Reasonの $re-text と同じ)
+$point-img-w:   280px;    // 画像の幅
+$point-gap:     20px;     // 文章と画像の間
+
+.page-common-content .point-content,
+.is-root-container .point-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center; // 画像があるとき、文章を縦中央に
+  column-gap: $point-gap;
+  box-sizing: border-box;
+  margin: 20px 0;
+  padding: 24px 28px 22px 20px;
+  border: 1px solid $point-border;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(80, 60, 110, 0.05);
+
+  // 画像あり:右に画像(上下の余白は20px)
+  &.point-content--has-img {
+    grid-template-columns: 1fr $point-img-w;
+    padding: 20px 24px 20px 20px;
+  }
+
+  // ---------- バッジ + 見出し ----------
+  .point-content-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 0 0 12px;
+  }
+
+  .point-content-step {
+    @include step-badge;
+  }
+
+  .point-content-step-letter {
+    @include step-badge-letter;
+  }
+
+  .point-content-step-number {
+    @include step-badge-number;
+  }
+
+  // 見出し(タグがh3でもpでも同じ見た目・縦バーなし)
+  .point-content-title {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: left;
+    font-family: $h3-font;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+    color: $h3-text;
+
+    // テーマ既存の装飾を打ち消す
+    &::before,
+    &::after {
+      content: none;
+    }
+
+    // <span id="..."> で包まれてもフォントを引き継ぐ
+    span {
+      font-family: inherit;
+    }
+  }
+
+  // ---------- 本文(Noto Sans JP / 400 / 13.5px / 行間170% / 字間0) ----------
+  .point-content-text {
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 0 1em;
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 13.5px;
+      line-height: 1.7;
+      letter-spacing: 0;
+      color: $point-text;
+    }
+  }
+
+  // ---------- 画像 ----------
+  .point-content-img {
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 4 / 3;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// --- スマホ(文章 → 画像 の縦並び) --------------------
+@media (max-width: 767px) {
+  .page-common-content .point-content,
+  .is-root-container .point-content {
+    padding: 20px 16px 18px;
+    border-radius: 12px;
+
+    &.point-content--has-img {
+      grid-template-columns: 1fr;
+      row-gap: 16px;
+      padding: 20px 16px 16px;
+    }
+
+    .point-content-head {
+      gap: 14px;
+    }
+
+    .point-content-title {
+      font-size: 20px;
+    }
+
+    .point-content-img {
+      width: 100%;
+      border-radius: 10px;
+    }
+  }
+}
+
+// ==========================================================
+// リスト(見出し・背景あり)
+//   枠 + 見出し + 区切り線。中のリストは WordPress 側で入れる
+//   .list-background--white  : 白地 + ラベンダーの枠線 + ラベンダーの区切り線
+//   .list-background--purple : 紫→ピンクのグラデ背景 + ピンクの区切り線
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$lb-border:       #cbc3e6; // white の枠線・区切り線(ラベンダー)
+$lb-line-purple:  #e0b6ca; // purple の区切り線(ピンク)
+$lb-bg-purple:    linear-gradient(120deg, #f1edfb 0%, #f6eef7 55%, #faeff5 100%);
+
+.page-common-content .list-background,
+.is-root-container .list-background {
+  box-sizing: border-box;
+  margin: 20px 0;
+  padding: 48px 48px 44px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // ---------- 切り替え ----------
+  &.list-background--white {
+    border-color: $lb-border;
+    background: #fff;
+
+    .list-background-head {
+      border-bottom-color: $lb-border;
+    }
+  }
+
+  &.list-background--purple {
+    background: $lb-bg-purple;
+
+    .list-background-head {
+      border-bottom-color: $lb-line-purple;
+    }
+  }
+
+  // ---------- 見出し + 区切り線 ----------
+  .list-background-head {
+    margin: 0 0 20px;
+    padding: 0 0 22px;
+    border-bottom: 1px solid $lb-border;
+  }
+
+  // 見出し(タグがh3でもpでも同じ見た目・縦バーなし)
+  .list-background-title {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: left;
+    font-family: $h3-font;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.5;
+    letter-spacing: 0.15em;
+    color: $h3-text;
+
+    // テーマ既存の装飾を打ち消す
+    &::before,
+    &::after {
+      content: none;
+    }
+
+    // <span id="..."> で包まれてもフォントを引き継ぐ
+    span {
+      font-family: inherit;
+    }
+  }
+
+  // ---------- 中身(WordPress側のリスト) ----------
+  .list-background-text {
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    // リストの行間(check-list-02 の 5px より広い 12px)
+    ul.wp-block-list {
+      margin: 0;
+    }
+
+    ul.wp-block-list > li + li,
+    ul.wp-block-list:not(.another-list) > li.check-list-02 + li.check-list-02 {
+      margin-top: 12px;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .list-background,
+  .is-root-container .list-background {
+    margin-bottom: 24px;
+    padding: 28px 20px 26px;
+    border-radius: 14px;
+
+    .list-background-head {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+    }
+
+    .list-background-title {
+      font-size: 20px;
+    }
+
+    .list-background-text {
+      ul.wp-block-list > li + li,
+      ul.wp-block-list:not(.another-list) > li.check-list-02 + li.check-list-02 {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+// ==========================================================
+// テーブル(Flexible Table Block)
+//   figure.wp-block-flexible-table-block-table > table
+//   ヘッダー(thead):紫の塗り + 白い縦線 / 本文:薄い罫線、1列目だけ淡いラベンダー
+//   外枠は角丸(figure で丸めて、中身をクリップ)
+// ==========================================================
+
+// ※ プラグイン側のCSS(.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table > table ...)に
+//   罫線・余白を上書きされるため、クラスを2回重ねて詳細度を上げている
+
+// --- 変数 -------------------------------------------------
+$tb-head:   $list-accent; // ヘッダーの紫
+$tb-line:   #ebe8f0;      // 罫線・外枠の標準色(ごく薄いグレー)
+
+// 罫線・外枠の色の切り替え
+//   ブロックの「高度な設定 → 追加CSSクラス」に tb-line-○○ を入れると切り替わる
+//   色を足したいときは、下のマップに「名前: 色」を1行足すだけ(例: blue: #c9d9f0 → tb-line-blue)
+$tb-line-colors: (
+  white:   #ffffff, // tb-line-white
+  purple: #cdc4e8, // tb-line-purple
+  gray:   #d9d6de, // tb-line-gray
+);
+$tb-first:  #f9f7fd;      // 本文1列目の背景(淡いラベンダー)
+$tb-row-h:  53px;         // 1行の高さ
+
+.page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table,
+.is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table {
+  // 罫線・外枠の色(CSS変数)。追加CSSクラスで上書きできる
+  --tb-line: #{$tb-line};
+
+  overflow: auto;           // 角丸でクリップ + 幅が足りないときは横スクロール
+  box-sizing: border-box;
+  margin: 0 0 2em;
+  border: 1px solid var(--tb-line);
+  border-radius: 16px;
+  background: #fff;
+
+  table {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    border-collapse: separate; // 角丸と罫線を両立させるため
+    border-spacing: 0;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    box-sizing: border-box;
+    height: $tb-row-h;
+    margin: 0;
+    padding: 12px 16px;
+    border: 0;
+    border-right: 1px solid var(--tb-line);
+    border-bottom: 1px solid var(--tb-line);
+    font-family: $text-font;
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    vertical-align: middle;
+    color: $text-color;
+
+    // 端の罫線は figure の外枠に任せる
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  tr:last-child > th,
+  tr:last-child > td {
+    border-bottom: 0;
+  }
+
+  // ---------- ヘッダー ----------
+  thead th,
+  thead td {
+    border-right-color: #fff; // 白い縦線
+    border-bottom: 0;
+    background: $tb-head;
+    text-align: center;
+    color: #fff;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  // ---------- 本文 ----------
+  tbody th,
+  tbody td {
+    background: #fff;
+    text-align: left;
+  }
+
+  // 1列目だけ淡いラベンダー
+  tbody th:first-child,
+  tbody td:first-child {
+    background: $tb-first;
+  }
+
+  // ---------- 罫線・外枠の色の切り替え(追加CSSクラス tb-line-○○) ----------
+  @each $name, $color in $tb-line-colors {
+    &.tb-line-#{$name} {
+      --tb-line: #{$color};
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table,
+  .is-root-container figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table {
+    border-radius: 12px;
+
+    th,
+    td {
+      height: 46px;
+      padding: 10px 10px;
+      font-size: 13px;
+    }
+  }
+}
+
+// ==========================================================
+// CTAボタン(3種類・カード型)
+//   .WEB-reservation-btn        : Web予約(上に補足 + カレンダーアイコン)
+//   .whitening-reservation-btn  : ホワイトニング予約(上に補足 + キラキラアイコン)
+//   .telephone-number-btn       : 電話番号(電話アイコン + 下に受付時間)
+//
+//   ・白地 + 紫の枠 + 下に紫の厚み(box-shadow)
+//   ・補足テキスト/受付時間は ::before、アイコンは ::after で出している
+//     (HTML側は「ボタンの文言だけ」でOK)
+//   ・「コンパイル後に _block.scss のボタンセクションより後ろ」に置くこと
+//     (既存の .wp-block-button__link のスタイルを上書きするため)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$cta-purple: $btn-purple;   // 枠・文字・アイコン・下の厚み
+$cta-radius: 12px;
+$cta-depth:  4px;           // 下の紫の厚み
+$cta-hover-bg: #faf8fd;     // ホバー時の背景(ごく薄いラベンダー)
+$cta-font:   "Zen Maru Gothic", $text-font; // 丸ゴ。読み込んでいなければ $text-font にフォールバック
+
+// アイコン(SVG)  ※紫は $cta-purple(#7e69a9)と同じ値。変える場合は %23 の後ろも合わせる
+// カレンダー
+$cta-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='7' y='2' width='2.2' height='5' rx='1.1' fill='%237e69a9'/%3E%3Crect x='14.8' y='2' width='2.2' height='5' rx='1.1' fill='%237e69a9'/%3E%3Crect x='2' y='4.5' width='20' height='17.5' rx='3.5' fill='%237e69a9'/%3E%3Crect x='4' y='10' width='16' height='10' rx='1.8' fill='white'/%3E%3Crect x='6.2' y='12' width='3' height='2.6' rx='.6' fill='%237e69a9'/%3E%3Crect x='10.5' y='12' width='3' height='2.6' rx='.6' fill='%237e69a9'/%3E%3Crect x='14.8' y='12' width='3' height='2.6' rx='.6' fill='%237e69a9'/%3E%3Crect x='6.2' y='15.7' width='3' height='2.6' rx='.6' fill='%237e69a9'/%3E%3Crect x='10.5' y='15.7' width='3' height='2.6' rx='.6' fill='%237e69a9'/%3E%3C/svg%3E");
+// キラキラ(大小2つの4点星)
+$cta-icon-sparkle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237e69a9'%3E%3Cpath d='M10 1C10.7 6.8 13.2 9.3 19 10 13.2 10.7 10.7 13.2 10 19 9.3 13.2 6.8 10.7 1 10 6.8 9.3 9.3 6.8 10 1Z'/%3E%3Cpath d='M19.5 15C19.7 17.4 20.6 18.3 23 18.5 20.6 18.7 19.7 19.6 19.5 22 19.3 19.6 18.4 18.7 16 18.5 18.4 18.3 19.3 17.4 19.5 15Z'/%3E%3C/svg%3E");
+// 電話(受話器)
+$cta-icon-phone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237e69a9'%3E%3Cpath d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E");
+
+// --- 共通ベース(カードの形) ------------------------------
+// 3つのボタンの親 .wp-block-button
+.wp-block-buttons .wp-block-button.WEB-reservation-btn,
+.wp-block-buttons .wp-block-button.whitening-reservation-btn,
+.wp-block-buttons .wp-block-button.telephone-number-btn {
+  width: 100%;
+  margin: 0 0 $cta-depth; // 下の厚み(box-shadow)ぶんの逃げ
+
+  // ※ a を付けて詳細度を上げ、既存の .wp-block-button__link を上書き
+  a.wp-block-button__link {
+    // 2行構成: [補足 or アイコン+本文] / [本文 or 受付時間]
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    column-gap: 7px;
+    row-gap: 4px;
+    box-sizing: border-box;
+    width: 100%;
+    white-space: nowrap; 
+    min-height: 84px;
+    padding: 12px 14px;
+    border: 2px solid $cta-purple;
+    border-radius: $cta-radius;
+    background: #fff;
+    box-shadow: 0 $cta-depth 0 $cta-purple; // 下の紫の厚み
+    font-family: $cta-font;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.3;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-decoration: none;
+    color: $cta-purple;
+    transition: transform 0.15s, box-shadow 0.15s, background-color 0.25s;
+
+    // 補足テキスト(上) / 受付時間(下)
+    &::before {
+      grid-column: 1 / -1;
+      white-space: nowrap;
+      font-family: $text-font;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      text-align: center;
+      color: $cta-purple;
+    }
+
+    // アイコン(本文の左)
+    &::after {
+      content: "";
+      grid-column: 1;
+      grid-row: 2;
+      width: 24px;
+      height: 24px;
+      font-size: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    // ホバー: 少し沈み込む(下の厚みが縮む)
+    &:hover {
+      transform: translateY($cta-depth - 2px);
+      border-color: $cta-purple;
+      background: $cta-hover-bg;
+      box-shadow: 0 2px 0 $cta-purple;
+      color: $cta-purple;
+    }
+  }
+}
+
+// --- ① Web予約 ---------------------------------------------
+.wp-block-buttons .wp-block-button.WEB-reservation-btn a.wp-block-button__link {
+  &::before {
+    content: "＼ 24時間受付！お気軽にご来院ください！ ／";
+    grid-row: 1;
+  }
+
+  &::after {
+    background-image: $cta-icon-calendar;
+  }
+}
+
+// --- ② ホワイトニング予約 ----------------------------------
+.wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link {
+  &::before {
+    content: "＼ ホワイトエッセンス提携医院 ／";
+    grid-row: 1;
+  }
+
+  &::after {
+    background-image: $cta-icon-sparkle;
+  }
+}
+
+// --- ③ 電話番号(アイコン + 番号 / 下に受付時間) -----------
+.wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link {
+  $tel-shift: 4px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;            // アイコンと番号の間(近づけたいなら小さく)
+  padding-left: 20px - $tel-shift * 2;
+  font-family: $list-num-font; // 数字は Jost
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 0.02em;     // 数字の間隔(狭めたいなら 0 に)
+
+  // 受付時間(下の段)
+  &::before {
+    content: "月〜土 9:00–12:00 / 13:00–18:00（休診：日曜・祝日）";
+    display: flex;
+    justify-content: center;
+    order: 1;
+    flex: 0 0 100%;
+    position: relative;
+    left: $tel-shift;
+    margin-top: 2px;
+    font-family: $text-font;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0;
+    color: $text-color;
+  }
+
+  // アイコン(番号の左 = order を前にする)
+  &::after {
+    order: -1;
+    flex: none;
+    width: 22px;
+    height: 22px;
+    background-image: $cta-icon-phone;
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .wp-block-buttons .wp-block-button.WEB-reservation-btn a.wp-block-button__link,
+  .wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link,
+  .wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link {
+    width: 100%;
+    min-height: 76px;
+    padding: 12px 10px;
+    font-size: 18px;
+  }
+
+  .wp-block-buttons .wp-block-button.telephone-number-btn a.wp-block-button__link {
+    font-size: 24px;
+  }
+}
+
+// ==========================================================
+// CTAブロック(block-cta.php)
+//   リード → 見出し → 内容 → ボタン3つ を中央揃えで縦に並べた、淡いグラデの箱
+//   ・ボタン本体の見た目は「CTAボタン」セクションをそのまま使う
+//   ・★ このセクションは「CTAボタン」セクションより後ろに置くこと
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$cta-box-border: $lb-border;     // 枠(淡いラベンダー)
+$cta-box-bg:     $lb-bg-purple;  // 背景(ラベンダー → ピンクのグラデ)
+
+.page-common-content .cta-box,
+.is-root-container .cta-box {
+  box-sizing: border-box;
+  margin: 2em 0;
+  padding: 55px 15px 49px; // 下は、ボタンの厚み(6px)ぶんを足して見た目 50px
+  border: 1px solid $cta-box-border;
+  border-radius: 20px;
+  background: $cta-box-bg;
+  text-align: center;
+
+  // ---------- リードテキスト ----------
+  .cta-box-lead {
+    margin: 0 0 20px;
+    text-align: center;
+    font-family: $h2-font;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 0.15em;
+    color: $h2-text;
+  }
+
+  // ---------- 見出し(div なので h2 の下線装飾は付かない) ----------
+  .cta-box-title {
+    margin: 0 0 15px;
+    text-align: center;
+    font-family: $h2-font;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    color: $h2-text;
+  }
+
+  // ---------- 内容(リッチテキスト) ----------
+  .cta-box-text {
+    margin: 0 0 28px;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 0 0.5em;
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 13.5px;
+      line-height: 1.5;
+      letter-spacing: 0;
+      text-align: center; // body の justify を打ち消す
+      color: $text-color;
+    }
+  }
+
+  // ---------- ボタン3つ(同じ幅で横並び) ----------
+  .cta-box-buttons.wp-block-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+
+    .wp-block-button {
+      flex: 0 1 calc((100% - 20px) / 3); // 3つ分の幅(gap 10px × 2 を引いて3等分)
+      min-width: 0;
+      width: auto;
+    }
+  }
+}
+
+// --- スマホ(ボタンは縦1列) --------------------------------
+@media (max-width: 767px) {
+  .page-common-content .cta-box,
+  .is-root-container .cta-box {
+    padding: 36px 16px 30px;
+    border-radius: 16px;
+
+    .cta-box-lead {
+      margin-bottom: 14px;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+    }
+
+    .cta-box-title {
+      margin-bottom: 12px;
+      font-size: 22px;
+      letter-spacing: 0.06em;
+    }
+
+    .cta-box-text {
+      margin-bottom: 24px;
+
+      p {
+        font-size: 14px;
+        letter-spacing: 0.1em;
+        text-align: left; // 長文は左揃えの方が読みやすい。中央のままでよければこの行を削除
+      }
+    }
+
+    .cta-box-buttons.wp-block-buttons {
+      flex-direction: column;
+      gap: 8px;
+
+      .wp-block-button {
+        flex: none;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ==========================================================
+// 比較カードブロック(Genesis Custom Blocks: block-comparison-card)
+//   画像 + 基本情報(ピル / 番号 / 見出し / 英字 / 料金)
+//   → 評価(星4項目) → 概要 → おすすめ・メリット・デメリット
+//   デザインは「切り替え」で .comparison-card--zirconia / --cleaning / --whitening が付く
+//   (3つとも骨格は共通。文字・評価項目の違いは PHP 側で切り替え)
+//   ※ _block.scss の末尾に貼り付けてください(変数は既存のものを再利用)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$comparison-card-purple:    #8069a5;  // ピル・番号・星・チェックの紫(Pointボックスと共通)
+$comparison-card-bg:        #f9f7fd;  // 評価・リストの背景(淡いラベンダー)
+$comparison-card-divider:   #ece8f6;  // 評価の区切り線
+$comparison-card-line: #eeeaf3;  // カードの枠線
+$comparison-card-star-off:  #e8e4f0;  // 空の星
+$comparison-card-sub:       #6e6875;  // 補足のグレー
+$comparison-card-pink:      #b85a80;  // デメリットの△(Attentionと同系色)
+$comparison-card-img-bg:    #e2e2e2;  // 画像未設定時の背景
+$comparison-card-img-w:     260px;    // 画像の幅
+$comparison-card-img-ratio: 13 / 9;   // 画像の比率
+
+// 番号(01, 02 …)の自動採番
+//   本文エリア(エディタ内も含む)でカウンターをリセットし、ブロックごとに +1
+.page-common-content,
+.is-root-container {
+  counter-reset: comparison-card-num;
+}
+
+.page-common-content .comparison-card,
+.is-root-container .comparison-card {
+  counter-increment: comparison-card-num;
+  box-sizing: border-box;
+  margin: 0 0 2em;
+  padding: 36px;
+  border: 1px solid $comparison-card-line;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(80, 60, 110, 0.08);
+
+  // ---------- 上段(画像 + 基本情報) ----------
+  .comparison-card-top {
+    display: grid;
+    grid-template-columns: $comparison-card-img-w 1fr;
+    align-items: center;
+    gap: 32px;
+    margin: 0 0 24px;
+  }
+
+  // 画像なしのときは基本情報だけ
+  &.comparison-card--no-img .comparison-card-top {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-card-image {
+    overflow: hidden;
+    border-radius: 16px;
+    background: $comparison-card-img-bg;
+    aspect-ratio: $comparison-card-img-ratio;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // ---------- 基本情報 ----------
+  .comparison-card-info {
+    min-width: 0;
+  }
+
+  // ピル(自費詰め物 / クリーニング / オススメ！ など。デザインごとに文字が変わる)
+  .comparison-card-badge {
+    display: inline-block;
+    margin: 0 0 13px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: $comparison-card-purple;
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 22px;
+    letter-spacing: 0.06em;
+    color: #fff;
+  }
+
+  // 番号 + 見出し
+  .comparison-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 14px;
+  }
+
+  .comparison-card-number {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: $comparison-card-purple;
+    font-family: $list-num-font;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: #fff;
+
+    &::before {
+      content: counter(comparison-card-num, decimal-leading-zero);
+      position: relative;
+      top: 1px; // 数字を少し下げて円の中心に合わせる
+    }
+  }
+
+  // div なので h2 / h3 の装飾は付かない
+  .comparison-card-title {
+    margin: 0;
+    font-family: $h2-font;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    color: $h2-text;
+  }
+
+  // 英字の小見出し(ZIRCONIA / OFFICE WHITENING など。ないデザインでは非表示)
+  .comparison-card-en {
+    margin: 0 0 13px;
+    font-family: $list-num-font;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.3em;
+    color: $comparison-card-sub;
+  }
+
+  // 料金
+  .comparison-card-fee {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 14px;
+    box-sizing: border-box;
+    min-height: 48px;
+    margin: 0;
+    padding: 8px 14px;
+    border-radius: 12px;
+    background: $comparison-card-bg;
+    font-family: $text-font;
+
+    dt,
+    dd {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .comparison-card-fee-label {
+    font-weight: 400;
+    font-size: 13.5px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    color: $comparison-card-sub;
+  }
+
+  .comparison-card-fee-price {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    color: $h2-text;
+  }
+
+  .comparison-card-fee-note {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: $comparison-card-sub;
+  }
+
+  // ---------- 評価(星) ----------
+  .comparison-card-ratings {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 0 32px;
+    padding: 0;
+    border-radius: 16px;
+    background: $comparison-card-bg;
+    list-style: none;
+  }
+
+  .comparison-card-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 16px 8px 14px;
+    text-align: center;
+    font-family: $text-font;
+
+    // 項目の間の縦線(上下は少し空ける)
+    & + .comparison-card-rating {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 1px;
+        background: $comparison-card-divider;
+      }
+    }
+
+    &::marker {
+      content: none;
+    }
+  }
+
+  .comparison-card-rating-name {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    color: $h2-text;
+  }
+
+  .comparison-card-rating-sub {
+    margin: 1px 0 4px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: $comparison-card-sub;
+  }
+
+  // 補足(サブ)がないデザイン(クリーニング / ホワイトニング)は名前と星を少し離す
+  .comparison-card-rating-name + .comparison-card-stars {
+    margin-top: 4px;
+  }
+
+  .comparison-card-stars {
+    display: inline-flex;
+    gap: 2px;
+    line-height: 1;
+  }
+
+  .comparison-card-star {
+    font-size: 16px;
+    line-height: 1;
+    color: $comparison-card-star-off;
+
+    &.is-on {
+      color: $comparison-card-purple;
+    }
+  }
+
+  // ---------- 概要 ----------
+  .comparison-card-summary {
+    margin: 0 0 28px;
+  }
+
+  .comparison-card-summary-title {
+    margin: 0 0 12px;
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    color: $h2-text;
+  }
+
+  .comparison-card-text {
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 0 0.5em;
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 13.5px;
+      line-height: 1.65;
+      letter-spacing: 0.02em;
+      text-align: left; // body の justify を打ち消す
+      color: $text-color;
+    }
+  }
+
+  // ---------- おすすめ / メリット / デメリット ----------
+  .comparison-card-lists {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .comparison-card-list {
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 28px 16px 22px;
+    border-radius: 20px;
+    background: $comparison-card-bg;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      margin: 0 0 8px;
+      padding: 0 0 0 28px;
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 13.5px;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      color: $text-color;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      // 既存のリスト装飾(丸・ドット)を打ち消す
+      &::marker {
+        content: none;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 0.2em;
+        box-sizing: border-box;
+        width: 1.1em;
+        height: 1.1em;
+        background: none;
+      }
+    }
+  }
+
+  .comparison-card-list-title {
+    margin: 0 0 16px;
+    padding-left: 5px;
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    color: $h2-text;
+  }
+
+  // ✓ おすすめ
+  .comparison-card-list--recommend li::before {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%238069a5' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 10.6l4 4L16 5.6'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  // ○ メリット
+  .comparison-card-list--merit li::before {
+    border: 1px solid $comparison-card-purple;
+    border-radius: 50%;
+  }
+
+  // △ デメリット
+  .comparison-card-list--demerit li::before {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23b85a80' stroke-width='1.4' stroke-linejoin='round'%3E%3Cpath d='M10 3.2L18 16.8H2z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .comparison-card,
+  .is-root-container .comparison-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+
+    .comparison-card-top {
+      grid-template-columns: 1fr; // 画像を上、情報を下
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .comparison-card-image {
+      aspect-ratio: 16 / 10;
+    }
+
+    .comparison-card-title {
+      font-size: 19px;
+    }
+
+    .comparison-card-fee {
+      gap: 2px 12px;
+      padding: 10px 14px;
+    }
+
+    .comparison-card-fee-price {
+      font-size: 19px;
+    }
+
+    .comparison-card-fee-note {
+      width: 100%;
+    }
+
+    // 星は2×2
+    .comparison-card-ratings {
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 24px;
+    }
+
+    .comparison-card-rating {
+      position: relative;
+      padding: 14px 6px 12px;
+
+      // 2行目(3・4番目)の上に横線
+      &:nth-child(n + 3)::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 12px;
+        right: 12px;
+        height: 1px;
+        background: $comparison-card-divider;
+      }
+    }
+
+    .comparison-card-lists {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .comparison-card-list {
+      padding: 22px 16px 18px;
+    }
+  }
+}
+
+// ==========================================================
+// FAQブロック(Genesis Custom Blocks: block-faq)
+//   質問(＋ / － で開閉)+ 回答(Inner Blocks)を 1組ぶん
+//   見た目は front-page.php の section.FAQ(_sec16-FAQ.scss)と同じ
+//   開閉は script.js の「FAQブロックの開閉」
+//   ※ _block.scss の末尾に貼り付けてください
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$faq-box-purple: #8f7fd0; // 枠線・Q・＋－
+$faq-box-pink:   #b8628f; // A
+$faq-box-bg:     #faf8fd; // 質問枠の背景
+$faq-box-text:   #3a3a4a; // 質問文
+$faq-box-sub:    #6a6a78; // 回答文
+
+.page-common-content .faq-box,
+.is-root-container .faq-box {
+  box-sizing: border-box;
+  margin: 0 0 15px; // ブロックを並べたときの質問どうしの間隔
+  border: 1px solid $faq-box-purple;
+  border-radius: 16px;
+  background: $faq-box-bg;
+  overflow: hidden;
+
+  // 見出しタグ(h2〜h6 など)の既存の装飾(余白・線・飾り)を受けないようにする
+  .faq-box-heading {
+    all: unset;
+    display: block;
+
+    &::before,
+    &::after {
+      content: none;
+      display: none;
+    }
+  }
+
+  // ---------- 質問(押すところ) ----------
+  .faq-box-q {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 62px;
+    margin: 0;
+    padding: 0 28px 0 25px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    font: inherit;
+    text-align: left;
+    color: $faq-box-text;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid $faq-box-purple;
+      outline-offset: -4px;
+      border-radius: 16px;
+    }
+  }
+
+  // Q. / A.
+  .faq-box-mark {
+    flex-shrink: 0;
+    width: 24px;
+    font-family: "Shippori Mincho", serif;
+    font-size: 20px;
+    line-height: 1;
+    color: $faq-box-purple;
+
+    &.faq-box-mark--a {
+      color: $faq-box-pink;
+    }
+  }
+
+  .faq-box-q-text {
+    flex: 1;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+  }
+
+  // ＋／－ アイコン
+  .faq-box-icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 14px;
+      height: 1.5px;
+      background: $faq-box-purple;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease;
+    }
+
+    // たて棒:開いたら横に寝かせて「－」にする
+    &::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  .faq-box-q[aria-expanded="true"] .faq-box-icon::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  // ---------- 回答(開閉する部分) ----------
+  // grid の 0fr → 1fr で高さを滑らかに変える
+  .faq-box-a {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+
+    &.is-open {
+      grid-template-rows: 1fr;
+      visibility: visible;
+      transition: grid-template-rows 0.35s ease, visibility 0s;
+    }
+  }
+
+  .faq-box-a-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .faq-box-a-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 6px 28px 28px 25px;
+  }
+
+  .faq-box-a-text {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    line-height: 1.9;
+    color: $faq-box-sub;
+
+    // 回答の中の段落(Inner Blocks)
+    p {
+      margin: 0;
+      font: inherit;
+      letter-spacing: inherit;
+      line-height: inherit;
+      color: inherit;
+    }
+
+    // 段落の間は 1行ぶん空ける
+    p + p {
+      margin-top: 1.9em;
+    }
+
+    ul,
+    ol {
+      margin: 1em 0 0;
+      padding-left: 1.4em;
+    }
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-box-a,
+    .faq-box-a.is-open,
+    .faq-box-icon::before,
+    .faq-box-icon::after {
+      transition: none;
+    }
+  }
+
+  // ---------- スマホ ----------
+  @media (max-width: 767px) {
+    .faq-box-q {
+      gap: 12px;
+      min-height: 60px;
+      padding: 14px 16px;
+    }
+
+    .faq-box-a-body {
+      gap: 12px;
+      padding: 4px 16px 22px;
+    }
+  }
+}
+
+// ==========================================================
+// 吹き出しブロック(Genesis Custom Blocks: block-speech-bubble)
+//   左:丸い画像(まわりに青紫→ピンクのやわらかい光)+ 肩書き + 名前
+//   右:白い吹き出し(左に小さなしっぽ)+ 文章(Inner Blocks)
+//   ※ _block.scss の末尾に貼り付けてください(変数は既存のものを再利用)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$speech-bubble-photo:     104px;     // 丸の大きさ(白い枠を含む)
+$speech-bubble-photo-sp:  76px;      // スマホの丸
+$speech-bubble-gap:       36px;      // 左(人物)と吹き出しの間
+$speech-bubble-radius:    24px;
+$speech-bubble-position:  $list-accent; // 肩書きの紫
+$speech-bubble-glow:      linear-gradient(135deg, #c9d0ff 0%, #e2d3ff 42%, #ffcadd 100%);
+
+.page-common-content .speech-bubble,
+.is-root-container .speech-bubble {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center; // 吹き出しを左側(人物)の縦中央に合わせる
+  column-gap: $speech-bubble-gap;
+  box-sizing: border-box;
+  margin: 40px 0; // 上下の空白
+
+  // ---------- 左:人物 ----------
+  .speech-bubble-person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  // 丸 + まわりの光
+  .speech-bubble-photo {
+    position: relative;
+    width: $speech-bubble-photo;
+    height: $speech-bubble-photo;
+
+    // 光(青紫 → ピンク)
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: $speech-bubble-glow;
+      opacity: 0.8;
+      filter: blur(6px);
+    }
+  }
+
+  .speech-bubble-photo-frame {
+    position: relative; // 光より前面に
+    z-index: 1;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: $case-img-bg; // 画像未設定時のグレー
+  }
+
+  .speech-bubble-photo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+
+  // 肩書き
+  .speech-bubble-position {
+    margin: 20px 0 0;
+    font-family: $text-font;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    color: #7160AD;
+  }
+
+  // 名前
+  .speech-bubble-name {
+    margin: 10px 0 0;
+    font-family: $h2-font;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    color: $h2-text;
+  }
+
+  // ---------- 右:吹き出し ----------
+  .speech-bubble-body {
+    position: relative;
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 28px 36px;
+    border-radius: $speech-bubble-radius;
+    background: #fff;
+    box-shadow: 0 8px 28px rgba(80, 60, 110, 0.1);
+
+    // 左のしっぽ(回転させた四角の左角だけが飛び出す)
+    &::before {
+      content: "";
+      position: absolute;
+      top: calc(50% - 24px); // 丸の高さあたりを指す
+      left: -6px;
+      width: 14px;
+      height: 14px;
+      margin-top: -7px;
+      border-radius: 0 0 0 3px;
+      background: #fff;
+      transform: rotate(45deg);
+    }
+  }
+
+  // 文章(Inner Blocks)
+  .speech-bubble-text {
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 0 1em;
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 2;
+      letter-spacing: 0.5px;
+      text-align: left; // body の justify を打ち消す
+      color: $text-color;
+    }
+  }
+}
+
+// --- スマホ(上:丸 + 肩書き・名前 / 下:吹き出し) --------
+@media (max-width: 767px) {
+  .page-common-content .speech-bubble,
+  .is-root-container .speech-bubble {
+    grid-template-columns: 1fr;
+    align-items: start;
+    row-gap: 20px;
+    margin: 32px 0;
+
+    .speech-bubble-person {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      align-content: center;
+      align-items: center;
+      justify-items: start;
+      column-gap: 18px;
+      margin-left: 8px; // 光がはみ出す分
+      text-align: left;
+    }
+
+    .speech-bubble-photo {
+      grid-row: 1 / 3;
+      width: $speech-bubble-photo-sp;
+      height: $speech-bubble-photo-sp;
+
+      &::before {
+        inset: -5px;
+      }
+    }
+
+    .speech-bubble-position {
+      align-self: end;
+      margin: 0;
+    }
+
+    .speech-bubble-name {
+      align-self: start;
+      margin: 4px 0 0;
+      font-size: 16px;
+    }
+
+    .speech-bubble-body {
+      padding: 22px 20px;
+      border-radius: 18px;
+
+      // しっぽは上向き(丸の真下あたり)
+      &::before {
+        top: -6px;
+        left: 38px;
+        margin-top: 0;
+        border-radius: 3px 0 0 0;
+      }
+    }
+
+    .speech-bubble-text p {
+      font-size: 14px;
+    }
+  }
+}

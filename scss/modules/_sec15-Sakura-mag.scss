@@ -1,0 +1,377 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+Sakura MAG（コラムの最新3件）
+---------------------------------------- */
+.Sakura-mag {
+  $purple: #8b7bc7;
+  $purple-dark: #6a55a8;
+  $text: #3d3a55;
+
+  position: relative;
+  padding: 160px 24px;
+  overflow: hidden;
+  color: $text;
+  // うすいピンクの背景 + 左下と右上にやわらかい光
+  background:
+    radial-gradient(circle 280px at 10% 92%, rgba(244, 212, 226, 0.85), rgba(244, 212, 226, 0) 100%),
+    radial-gradient(circle 300px at 88% 18%, rgba(241, 226, 240, 0.75), rgba(241, 226, 240, 0) 100%),
+    linear-gradient(to bottom, #fcf4f8 0%, #fdf7fa 50%, #fbf2f6 100%);
+
+  // SPだけ使う背景画像・改行（PC・タブレットでは非表示。SPのブロックで表示します）
+  &__bg,
+  &__sp-br {
+    display: none;
+  }
+
+  &__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  // 見出し（左）と「コラムを見る →」（右）
+  &__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  &__head-main {
+    min-width: 0;
+  }
+
+  &__en {
+    margin: 0 0 15px;
+    text-align: left;
+    font-family: "Jost", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 3px;
+    color: $purple;
+  }
+
+  &__title {
+    margin: 0 0 16px;
+    text-align: left;
+    font-family: "Shippori Mincho", serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 2.6px;
+    color: #2e2a33;
+  }
+
+  &__line {
+    display: block;
+    width: 56px;
+    height: 1px;
+    background: #e8b4c8;
+  }
+
+  &__more {
+    flex-shrink: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cdc2e8;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    white-space: nowrap;
+    color: $purple-dark;
+    transition: color 0.3s, border-color 0.3s;
+
+    span {
+      display: inline-block;
+      margin-left: 4px;
+      transition: transform 0.3s;
+    }
+
+    &:hover {
+      border-color: $purple-dark;
+      color: #4d3a88;
+
+      span {
+        transform: translateX(3px);
+      }
+    }
+
+    &:focus-visible {
+      outline: 3px solid $purple;
+      outline-offset: 3px;
+    }
+  }
+
+  // カード一覧（PC：3列）
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin: 110px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    min-width: 0;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 18px 40px rgba(180, 150, 180, 0.14);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 48px rgba(180, 150, 180, 0.22);
+    }
+
+    &:focus-visible {
+      outline: 3px solid $purple;
+      outline-offset: 3px;
+    }
+  }
+
+  // 画像（アイキャッチがないときはグレーの枠）
+  &__thumb {
+    aspect-ratio: 343 / 180;
+    overflow: hidden;
+    background: #d9d9d9;
+  }
+
+  &__img,
+  &__noimg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__img {
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  &__card:hover &__img {
+    transform: scale(1.05);
+  }
+
+  &__noimg {
+    background: #d9d9d9;
+  }
+
+  &__body {
+    flex: 1;
+    padding: 34px 28px 36px;
+  }
+
+  // 日付 + カテゴリ
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+  }
+
+  &__date {
+    font-family: "Jost", sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    color: #77727f;
+  }
+
+  &__cat {
+    padding: 3px 12px;
+    border: 1px solid #cfc6e4;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.6);
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    color: $purple-dark;
+  }
+
+  // タイトル（1行でも2行でも、説明文の位置がそろうよう2行分の高さを確保して中央に置く）
+  &__name {
+    display: flex;
+    align-items: center;
+    min-height: 68px;
+    margin: 6px 0 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 34px;
+    letter-spacing: 0.12em;
+    color: #2e2a33;
+    transition: color 0.3s;
+
+    span {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  &__card:hover &__name {
+    color: $purple-dark;
+  }
+
+  &__text {
+    display: -webkit-box;
+    overflow: hidden;
+    margin: 11px 0 0;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 13px;
+    line-height: 26px;
+    letter-spacing: 0.04em;
+    color: #5b5670;
+  }
+
+  &__empty {
+    margin: 110px 0 0;
+    text-align: center;
+    font-size: 14px;
+    color: #77727f;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Sakura-mag__card,
+  .Sakura-mag__img,
+  .Sakura-mag__more,
+  .Sakura-mag__more span,
+  .Sakura-mag__name {
+    transition: none;
+  }
+
+  .Sakura-mag__card:hover,
+  .Sakura-mag__card:hover .Sakura-mag__img {
+    transform: none;
+  }
+}
+
+/* ----------------------------------------
+Sakura MAG タブレット（3列のまま少しコンパクトに）
+---------------------------------------- */
+@media (max-width: 1023px) {
+  .Sakura-mag {
+    padding: 112px 24px 120px;
+
+    &__list {
+      gap: 16px;
+      margin-top: 64px;
+    }
+
+    &__body {
+      padding: 26px 20px 28px;
+    }
+
+    &__name {
+      min-height: 58px;
+      font-size: 17px;
+      line-height: 29px;
+    }
+  }
+}
+
+/* ----------------------------------------
+Sakura MAG sp（1列・画像を左、文字を右に横並び）
+---------------------------------------- */
+@media (max-width: 767px) {
+  .Sakura-mag {
+    padding: 48px 20px 48px;
+    // 背景画像（ピンクの光）を重ねるので、PC用の光は外し、ベースの色だけにする
+    background: linear-gradient(to bottom, #fcf4f8 0%, #fdf7fa 50%, #fbf2f6 100%);
+
+    // 背景画像（セクション全面）
+    &__bg {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    // 背景画像より前に出す
+    &__inner {
+      position: relative;
+    }
+
+    &__head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__title {
+      font-size: 22px;
+      line-height: 1.8;
+      letter-spacing: 0.1em;
+    }
+
+    // 「スタッフが発信する、」のあとをSPだけ改行
+    &__sp-br {
+      display: inline;
+    }
+
+    &__list {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    // カード：画像を左・文字を右に横並び
+    &__card {
+      flex-direction: row;
+      align-items: center;
+      padding: 14px 13px;
+    }
+
+    &__thumb {
+      flex: none;
+      width: 100px;
+      aspect-ratio: 4 / 3;
+      border-radius: 4px;
+    }
+
+    &__body {
+      min-width: 0;
+      padding: 0 0 0 12px;
+    }
+
+    &__meta {
+      gap: 6px 11px;
+    }
+
+    &__cat {
+      padding: 5px 12px;
+    }
+
+    &__name {
+      min-height: 0;
+      margin-top: 5px;
+      font-size: 14px;
+      line-height: 19px;
+      letter-spacing: 0.1em;
+    }
+
+    &__text {
+      margin-top: 5px;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+  }
+}

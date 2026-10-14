@@ -1,0 +1,407 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+Mv
+---------------------------------------- */
+// ▼ デザイン幅(1440px)を基準に、画面幅に合わせて縮小して表示します（1440px以上は実寸のまま）
+//   u(100) は「1440px幅のときの100px」という意味です
+@function u($px) {
+  @return calc(#{$px} * var(--mv-u));
+}
+
+// ▼ スマホ用レイアウトに切り替える画面幅
+$mv-bp: 1024px;
+
+.Mv {
+  --mv-u: min(1px, calc(100vw / 1440));
+  position: relative;
+  height: u(648);
+  overflow: hidden;
+  color: #fff;
+  // 1440pxより広い画面で、枠の左右に広がる背景
+  //   左側：#B3A8D2（画面の左半分を塗る。中央は枠の背景画像で隠れる）
+  //   右側：うすいラベンダー
+  // 枠の中の背景画像は、左右の端をぼかしてこの色になじませる（__bg の mask を参照）
+  background:
+    linear-gradient(#b3a8d2, #b3a8d2) no-repeat left top / 50% 100%,
+    linear-gradient(to bottom, #dad5ea 0%, #e6e0f0 50%, #e8e3f1 100%);
+
+  // 中身（背景画像・写真・文字・サムネイル）は 1440px の枠の中に収める
+  &__frame {
+    position: relative;
+    max-width: 1440px;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  // 背景（img/Mv-Background.png：紫のグラデーション + やわらかい光 + 細い円）
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background: url("../img/Mv-Background.png") no-repeat left top / cover;
+
+    @media (min-width: 1441px) {
+      // 左右とも200pxかけてやわらかくぼかす（外側ほど背景色になじむ）
+      -webkit-mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.25) 60px, rgba(0, 0, 0, 0.6) 120px, #000 200px, #000 calc(100% - 200px), rgba(0, 0, 0, 0.6) calc(100% - 120px), rgba(0, 0, 0, 0.25) calc(100% - 60px), transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.25) 60px, rgba(0, 0, 0, 0.6) 120px, #000 200px, #000 calc(100% - 200px), rgba(0, 0, 0, 0.6) calc(100% - 120px), rgba(0, 0, 0, 0.25) calc(100% - 60px), transparent 100%);
+    }
+  }
+
+  // 後ろで大きく表示される写真（重ねて、表示中のものだけ opacity: 1 にする）
+  &__photos {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: u(810);
+    height: 100%;
+    // 左側が背景になじむように、左に向かって薄くする
+    -webkit-mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.6) 14%, #000 40%);
+    mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.6) 14%, #000 40%);
+
+    @media (min-width: 1441px) {
+      -webkit-mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.6) 14%, #000 40%, #000 88%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.6) 14%, #000 40%, #000 88%, transparent 100%);
+    }
+  }
+
+  &__photo {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+
+    &.is-active {
+      opacity: 1;
+    }
+
+    picture,
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  // テキスト部分
+  &__body {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &__en,
+  &__title,
+  &__line,
+  &__lead,
+  &__badges {
+    position: absolute;
+    left: u(76);
+  }
+
+  &__en {
+    top: u(92);
+    margin: 0;
+    font-family: "Jost", sans-serif;
+    font-size: u(25);
+    font-weight: 400;
+    line-height: u(36);
+    letter-spacing: u(5);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__title {
+    top: u(149.2);
+    margin: 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: u(96.439);
+    font-weight: 400;
+    line-height: 1.22;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+    color: #fff;
+    text-shadow: 0 u(2.352) u(35.283) rgba(86, 68, 124, 0.22);
+    > span {
+      font-family: inherit;
+    }
+  }
+
+  // 「、」と「めぐる。」は字間を詰めてデザインどおりの見た目にする
+  &__title-comma {
+    letter-spacing: -0.585em;
+  }
+
+  &__title-tail {
+    letter-spacing: -0.183em;
+  }
+
+  &__line {
+    top: u(282);
+    width: u(120);
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.35));
+  }
+
+  &__lead {
+    top: u(312);
+    margin: 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: u(25);
+    font-weight: 400;
+    line-height: u(36);
+    letter-spacing: u(5);
+    white-space: nowrap;
+    color: #fff;
+  }
+
+  // 丸いバッジ（3つ・少し重なる）
+  &__badges {
+    top: u(392);
+    display: flex;
+    margin-block: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__badge {
+    position: relative;
+    flex-shrink: 0;
+    width: u(176);
+    height: u(176);
+
+    & + & {
+      margin-left: u(-20);
+    }
+
+    // ぼかした光
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 90deg, rgba(255, 214, 234, 0.85), rgba(214, 226, 255, 0.8) 25%, rgba(236, 214, 250, 0.75) 50%, rgba(255, 232, 242, 0.8) 75%, rgba(255, 214, 234, 0.85));
+      filter: blur(6.5px);
+      opacity: 0.8;
+    }
+
+    // 白い円
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 4.545%;
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      background: linear-gradient(150deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.66));
+      box-shadow: inset 0 1px 16px 1px rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(2px);
+    }
+  }
+
+  // 円の内側の細い線 + 文字
+  &__badge-ring {
+    position: absolute;
+    inset: 12.5%;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(150, 126, 190, 0.2);
+    border-radius: 50%;
+  }
+
+  &__badge-text {
+    font-family: "Shippori Mincho", serif;
+    font-size: u(16);
+    font-weight: 500;
+    line-height: 1.95;
+    letter-spacing: -0.0625em;
+    text-align: center;
+    white-space: nowrap;
+    color: #45356a;
+  }
+
+  // 小さい写真（クリックで切り替え）
+  &__thumbs {
+    position: absolute;
+    right: u(50);
+    bottom: u(50);
+    z-index: 2;
+    display: flex;
+    gap: u(20);
+  }
+
+  &__thumb {
+    display: block;
+    width: u(216);
+    height: u(138);
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 14px 34px rgba(120, 100, 150, 0.16);
+    cursor: pointer;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: filter 0.6s ease;
+    }
+
+    // 大きく表示中の写真に対応する小さい写真だけ、少し暗くする（#cbcbcb を乗算した明るさ）
+    &.is-active img {
+      filter: brightness(0.796);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Mv__photo,
+  .Mv__thumb img {
+    transition: none;
+  }
+}
+
+/* ----------------------------------------
+Mv sp（上に写真、その下に文字とバッジを縦に並べるレイアウト）
+・写真の下の端は、紫の背景にとけるようにぼかします
+・小さい写真（サムネイル）はスマホでは表示しません
+  （大きい写真は、PCと同じように時間で自動的に切り替わります）
+・文字やバッジの大きさ・余白は、画面幅（vw）に合わせて変わります
+・デザインカンプ（幅750px）を基準にしています。 1vw = 7.5px
+---------------------------------------- */
+@media (max-width: #{$mv-bp - 1px}) {
+  .Mv {
+    --mv-badge: min(31vw, 200px);
+    height: auto;
+    background: none;
+
+    &__frame {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+
+    // 背景：写真の下から、うえ→したに向かって、濃い紫 → うすいラベンダー
+    &__bg {
+      background: linear-gradient(to bottom, #988ac4 0, #988ac4 43%, #a698cd 70%, #c8bede 100%);
+    }
+
+    // 写真：いちばん上に横いっぱい。下のほうを紫の背景にとかす
+    //   （以前より少し横長にして、文字エリアを上に寄せています）
+    &__photos {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 750 / 540;
+      -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 66%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 0, #000 66%, transparent 100%);
+    }
+
+    // 文字とバッジ
+    &__body {
+      position: relative;
+      inset: auto;
+      padding: 2vw clamp(20px, 5.3vw, 56px) 6vw;
+
+      // うすい白い円の線（背景の飾り）
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: min(6vw, 40px);
+        left: calc(min(106vw, 640px) / -2);
+        width: min(106vw, 640px);
+        aspect-ratio: 1;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+    }
+
+    &__en,
+    &__title,
+    &__line,
+    &__lead,
+    &__badges {
+      position: static;
+    }
+
+    &__en {
+      font-size: clamp(13px, 3.6vw, 24px);
+      line-height: 1.6;
+      letter-spacing: 0.32em;
+    }
+
+    // タイトル：文字を小さく、英語コピーとの間もつめる
+    &__title {
+      margin-top: 3.7vw;
+      font-size: clamp(38px, 10vw, 90px);
+      line-height: 1.22;
+    }
+
+    // 線：タイトルのすぐ下に置く
+    &__line {
+      width: clamp(64px, 17vw, 140px);
+      height: 2px;
+      margin: 2.2vw 0 3.5vw;
+    }
+
+    &__lead {
+      font-size: clamp(14px, 4vw, 26px);
+      line-height: 1.6;
+      letter-spacing: 0.15em;
+    }
+
+    &__badges {
+      margin-top: 4.7vw;
+      counter-reset: mv-badge;
+    }
+
+    &__badge {
+      width: var(--mv-badge);
+      height: var(--mv-badge);
+      counter-increment: mv-badge;
+
+      & + & {
+        margin-left: calc(var(--mv-badge) * -0.077);
+      }
+    }
+
+    &__badge-text {
+      font-size: clamp(9px, 2.9vw, 17px);
+      line-height: 1.45;
+      letter-spacing: -0.06em;
+
+      // 「01」「02」「03」の番号（HTMLの変更は不要です）
+      &::before {
+        content: counter(mv-badge, decimal-leading-zero);
+        display: block;
+        margin-bottom: 0.4em;
+        font-family: "Jost", sans-serif;
+        font-size: 1.2em;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.04em;
+        color: #8f7fc0;
+      }
+    }
+
+    // 小さい写真はスマホでは見せない（表示しないだけで、切り替えの動きには影響しません）
+    &__thumbs {
+      display: none;
+    }
+  }
+}

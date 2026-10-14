@@ -1,0 +1,310 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+Menu（診療案内）
+---------------------------------------- */
+.Menu {
+  padding: 96px 20px 120px;
+  background: #fff;
+  color: #2f2a3a;
+
+  &__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  // 見出し
+  &__head {
+    text-align: center;
+  }
+
+  &__en {
+    margin: 0;
+    text-align: center;
+    font-family: "Jost", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.2em;
+    color: #8e7cc3;
+  }
+
+  &__title {
+    margin: 14px 0 0;
+    text-align: center;
+    font-family: "Shippori Mincho", serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    color: #2b2635;
+  }
+
+  &__lead {
+    margin: 22px 0 0;
+    text-align: center;
+    font-family: "Shippori Mincho", serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.08em;
+    color: #4a4456;
+  }
+
+  // カード一覧（PC：3列）
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin: 64px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    min-width: 0;
+  }
+
+  // カード（右上にうすい紫のぼかしを敷く）
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 22px 24px 24px;
+    border: 1px solid #ebe8f1;
+    border-radius: 12px;
+    background:
+      radial-gradient(125px 108px at calc(100% - 14px) 14px, rgba(224, 215, 243, 0.55) 0%, rgba(224, 215, 243, 0) 100%),
+      #fff;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+      border-color: #ddd3ee;
+      box-shadow: 0 12px 30px rgba(120, 100, 150, 0.12);
+    }
+  }
+
+  // アイコン + 診療名
+  &__card-head {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  &__icon {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #e5dbf1;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #fdf1f6, #f1ebfa);
+
+    img {
+      display: block;
+      width: auto;
+      height: 21px;
+    }
+  }
+
+  // 診療名の中の改行（SPだけ有効。SPのブロックで表示します）
+  &__sp-br {
+    display: none;
+  }
+
+  &__name {
+    margin: 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    color: #2b2635;
+  }
+
+  // 「こんな方はご相談ください」（左にピンク、右にグレーの線）
+  &__label {
+    display: flex;
+    align-items: center;
+    margin: 18px 0 0;
+    font-size: 11px;
+    line-height: 1.6;
+    letter-spacing: 0.06em;
+    color: #77727f;
+
+    &::before,
+    &::after {
+      content: "";
+      height: 1px;
+    }
+
+    &::before {
+      flex-shrink: 0;
+      width: 22px;
+      margin-right: 12px;
+      background: #f0c2d4;
+    }
+
+    &::after {
+      flex: 1;
+      margin-left: 12px;
+      background: #e7e5eb;
+    }
+  }
+
+  // 相談例
+  &__points {
+    margin: 12px 0 24px;
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 13px;
+      line-height: 26px;
+      letter-spacing: 0.03em;
+      color: #35303f;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 6px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #c9c0e2;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  // 「詳しくはこちら →」（カード全体がクリックできる）
+  &__btn {
+    align-self: flex-end;
+    margin-top: auto;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cdc2e8;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: #6a55a8;
+    transition: color 0.3s ease, border-color 0.3s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+    }
+
+    &:hover {
+      border-color: #6a55a8;
+      color: #4d3a88;
+    }
+  }
+
+  &__btn-arrow {
+    display: inline-block;
+    margin-left: 4px;
+    transition: transform 0.3s ease;
+  }
+
+}
+
+.Menu__card:hover .Menu__btn-arrow {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Menu__card,
+  .Menu__btn,
+  .Menu__btn-arrow {
+    transition: none;
+  }
+}
+
+/* ----------------------------------------
+Menu タブレット（2列）
+---------------------------------------- */
+@media (max-width: 1023px) {
+  .Menu {
+    padding: 80px 24px 96px;
+
+    &__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+/* ----------------------------------------
+Menu sp（2列・アイコンを上に、診療名を中央に）
+---------------------------------------- */
+@media (max-width: 599px) {
+  .Menu {
+    padding: 56px 20px 72px;
+
+    &__title {
+      font-size: 22px;
+    }
+
+    &__lead {
+      margin-top: 16px;
+      font-size: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    &__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 1fr; // すべての項目（Menu__item）を同じ高さにそろえる
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    // 「一般歯科｜（むし歯治療）」「口腔外科｜（親知らず）」をここで改行
+    &__sp-br {
+      display: inline;
+    }
+
+    &__card {
+      align-items: center;
+      padding: 16px 12px 14px;
+    }
+
+    // アイコンを上、診療名をその下に中央揃え
+    &__card-head {
+      flex-direction: column;
+      align-items: center; // アイコン・診療名を中央に
+      width: 100%;
+      gap: 10px;
+      text-align: center;
+    }
+
+    &__name {
+      font-size: 13.5px;
+      letter-spacing: 0.05em;
+      text-align: center; // 2行になったときも各行を中央ぞろえ
+    }
+
+    // 「こんな方はご相談ください」と相談例はSPでは出さない
+    &__label,
+    &__points {
+      display: none;
+    }
+
+    // ボタンはカードの下・中央（診療名が1行／2行でも各行で下端がそろう）
+    &__btn {
+      align-self: center;
+      margin-top: auto;
+      padding-top: 14px; // 診療名とボタンの間の最低限の余白
+      padding-bottom: 4px;
+      font-size: 11.5px;
+      text-align: center;
+      white-space: nowrap;
+    }
+  }
+}

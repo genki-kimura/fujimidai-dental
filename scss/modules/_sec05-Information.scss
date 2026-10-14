@@ -1,0 +1,458 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+Information
+---------------------------------------- */
+.Information {
+  $purple: #8b7bc8;
+  $purple-dark: #6f5fb0;
+  $pink: #c0708f;
+  $text: #3d3a55;
+  $border: #e3e0ee;
+
+  padding: 60px 20px 72px;
+  color: $text;
+
+  @media (min-width: 768px) {
+    padding: 80px 40px 96px;
+  }
+
+  &__inner {
+    max-width: 966px;
+    margin: 0 auto;
+  }
+
+  // 見出し（Aboutの見出しと同じ指定）
+  &__head {
+    text-align: center;
+  }
+
+  &__en {
+    margin: 0 0 15px;
+    text-align: center;
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 2px;
+    color: #8b7bc7;
+  }
+
+  &__title {
+    margin: 0 0 16px;
+    text-align: center;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.5;
+    letter-spacing: 2.6px;
+    color: #2e2a33;
+
+    @media (min-width: 768px) {
+      font-size: 36px;
+    }
+  }
+
+  &__line {
+    display: block;
+    width: 56px;
+    height: 1px;
+    margin-inline: auto;
+    background: #e8b4c8;
+  }
+
+  // 2カラム
+  &__body {
+    display: grid;
+    gap: 40px;
+    margin-top: 40px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: minmax(0, 464fr) minmax(0, 444fr);
+      gap: 40px;
+      margin-top: 48px;
+      align-items: start;
+    }
+  }
+
+  // 診療時間
+  &__sub {
+    display: flex;
+    align-items: center;
+    font-family: "Shippori Mincho", serif;
+    gap: 8px;
+    margin: 0 0 14px;
+    font-size: 16px;
+    font-weight: 500;
+
+    &::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: $purple;
+    }
+  }
+
+  // 診療時間の表（テーマ側のth/td指定に負けないよう .Information を付けて詳細度を上げています）
+  & &__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid $border;
+    border-radius: 12px;
+    overflow: hidden;
+    table-layout: fixed;
+    font-size: 13px;
+
+    th,
+    td {
+      padding: 0;
+      text-align: center;
+      vertical-align: middle;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    // 時間の列は広めにとる
+    tr > :first-child {
+      width: 26%;
+    }
+
+    thead th {
+      height: 42px;
+      background: #f9f8fc;
+    }
+
+    tbody th {
+      padding: 0 8px;
+      font-size: 12px;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    tbody td {
+      height: 60px;
+    }
+
+    .is-holiday {
+      color: $pink;
+    }
+
+    @media (min-width: 768px) {
+      tr > :first-child {
+        width: 22%;
+      }
+
+      tbody th {
+        font-size: 13px;
+      }
+    }
+  }
+
+  // 診療マーク（セルの中央に置く）
+  &__mark {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+
+    // ●
+    &--open {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: $purple;
+    }
+
+    // △（_sec17-Access.scss と同じ赤い三角）
+    &--half {
+      width: 24px;
+      height: 24px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5 20.5 19.5H3.5Z' fill='none' stroke='%23b8628f' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
+
+    // ／
+    &--closed {
+      width: 18px;
+      height: 18px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 24px;
+        height: 1px;
+        background: #b9b6c8;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+
+  &__note {
+    margin: 12px 0 20px;
+    font-size: 11px;
+    line-height: 1.7;
+    color: #6b6a7c;
+
+    // 2つの文の間（スマホでは縦に並べるので、この空きはなくなります）
+    span + span {
+      margin-left: 1em;
+    }
+  }
+
+  // TEL（外来・訪問）：PCは横に並べる、スマホは1つずつ改行
+  &__tel {
+    display: inline;
+  }
+
+  // 医院情報
+  &__list {
+    margin: 0;
+    border-top: 1px solid $border;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 5.5em 1fr;
+    gap: 12px;
+    padding: 10px 0 5px 0;
+    border-bottom: 1px solid $border;
+    font-size: 13.5px;
+    line-height: 1.7;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 94px 1fr;
+    }
+
+    dt {
+      margin: 0;
+      font-size: 13.5px;
+      font-weight: 400;
+      color: #6E6875;
+    }
+
+    dd {
+      margin: 0;
+      font-size: 13.5px;
+      color: #2E2A33;
+    }
+
+    address {
+      margin: 0;
+      font-style: normal;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+
+  // 右カラム（マップ＋バナー）
+  &__side {
+    display: grid;
+    gap: 30px;
+    padding-top: 10px;
+  }
+
+  &__map {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    line-height: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__banner {
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    line-height: 0;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(110, 90, 180, 0.25);
+      opacity: 0.95;
+    }
+
+    &:focus-visible {
+      outline: 3px solid $purple;
+      outline-offset: 3px;
+    }
+  }
+
+  // 詳しくはこちら
+  &__more {
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 40px;
+    border: 1.5px solid $purple;
+    border-radius: 999px;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: $purple-dark;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: $purple;
+      color: #fff;
+    }
+
+    &:focus-visible {
+      outline: 3px solid $purple;
+      outline-offset: 3px;
+    }
+  }
+
+  /* SP（スマホ：診療時間 → バナー → 医院情報 → 地図 → ボタン の順に縦に並べる） ----------------
+     ・数値は、幅375pxの画面をもとにしています */
+  @media (max-width: 767px) {
+    padding-bottom: 48px;
+
+    &__en {
+      margin-bottom: 20px;
+    }
+
+    &__title {
+      margin-bottom: 17px;
+      font-size: clamp(17px, 5.9vw, 28px);
+      letter-spacing: 0.07em;
+    }
+
+    // 左右の2つのかたまりをほどいて、中身を1つずつ好きな順に並べる
+    &__body {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      margin-top: 28px;
+    }
+
+    &__main,
+    &__side {
+      display: contents;
+    }
+
+    &__sub {
+      order: 1;
+      margin-bottom: 11px;
+      font-size: 15px;
+    }
+
+    & &__table {
+      order: 2;
+
+      tr > :first-child {
+        width: 22%;
+      }
+
+      thead th {
+        height: 33px;
+      }
+
+      // 時間は「9:00–」「12:00」のように2行に折り返す
+      tbody th {
+        padding: 0 10px;
+        font-size: 11.5px;
+        line-height: 1.35;
+        white-space: normal;
+      }
+
+      tbody td {
+        height: 49px;
+      }
+    }
+
+    &__mark {
+      &--open {
+        width: 13px;
+        height: 13px;
+      }
+
+      &--half {
+        width: 17px;
+        height: 17px;
+      }
+
+      &--closed {
+        width: 14px;
+        height: 14px;
+
+        &::before {
+          width: 18px;
+        }
+      }
+    }
+
+    // 注記は2行に分けて表示
+    &__note {
+      order: 3;
+      margin: 12px 0;
+      font-size: 12px;
+      line-height: 1.75;
+
+      span {
+        display: block;
+
+        & + span {
+          margin-left: 0;
+        }
+      }
+    }
+
+    // TEL：2つの番号の間で改行
+    &__tel {
+      display: block;
+    }
+
+    &__banner {
+      order: 4;
+      margin-bottom: 16px;
+      border-radius: 8px;
+    }
+
+    &__list {
+      order: 5;
+    }
+
+    &__row {
+      grid-template-columns: 64px minmax(0, 1fr);
+      padding: 10px 0;
+    }
+
+    &__map {
+      order: 6;
+      margin-top: 32px;
+      border-radius: 8px;
+    }
+
+    &__more {
+      margin-top: 32px;
+    }
+
+    &__btn {
+      gap: 24px;
+      height: 59px;
+      padding: 0 28px 0 32px;
+    }
+  }
+}
