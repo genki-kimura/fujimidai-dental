@@ -1,0 +1,192 @@
+@use "setting" as *;
+
+// ----------------------------------------
+// News（お知らせ）
+// ----------------------------------------
+$news-purple: #7f6ba8;       // ボタン・ホバー
+$news-text: #222;
+$news-sub: #666;
+$news-border: #E0E0E0;
+$news-bp: 768px;             // これ未満をスマホ表示
+
+.News {
+  padding: 55px 20px 62px;
+
+  @media (min-width: $news-bp) {
+    padding: 80px 40px 96px;
+  }
+
+  &__inner {
+    max-width: 906px;
+    margin: 0 auto;
+  }
+
+  // ---------- 見出し（Information の見出しと同じ指定） ----------
+  &__head {
+    text-align: center;
+  }
+
+  &__en {
+    margin: 0 0 18px;
+    text-align: center;
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 2px;
+    color: #8b7bc7;
+
+    @media (min-width: $news-bp) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__title {
+    margin: 0 0 16px;
+    text-align: center;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-size: clamp(17px, 5.9vw, 26px); // スマホは画面幅に合わせて少し伸び縮み（375pxで約22px）
+    line-height: 1.5;
+    letter-spacing: 2.6px;
+    color: #2e2a33;
+
+    @media (min-width: $news-bp) {
+      font-size: 36px;
+    }
+  }
+
+  // ---------- 一覧 ----------
+  &__list {
+    margin: 13px 0 0;
+    padding: 0;
+    list-style: none;
+
+    @media (min-width: $news-bp) {
+      margin-top: 48px;
+    }
+  }
+
+  &__item {
+    border-bottom: 1.5px solid $news-border; // 各お知らせの間の線（PC・スマホ共通）
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 16px;
+    padding: 15px 0;
+    color: $news-text;
+    text-decoration: none;
+
+    @media (min-width: $news-bp) {
+      flex-wrap: nowrap;
+      gap: 0;
+      padding: 20px 0;
+    }
+  }
+
+  &__date {
+    flex-shrink: 0;
+    width: 92px; // カテゴリの位置をそろえる
+    font-family: "Jost", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: $news-sub;
+
+    @media (min-width: $news-bp) {
+      width: 118px;
+    }
+  }
+
+  &__cat {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    min-width: 67px;
+    padding: 3px 12px;
+    border: 1px solid $news-sub;
+    border-radius: 999px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    color: $news-sub;
+  }
+
+  &__text {
+    // スマホでは日付・カテゴリの下に1行で折り返す
+    flex-basis: 100%;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    transition: color 0.3s;
+
+    @media (min-width: $news-bp) {
+      flex: 1;
+      min-width: 0;
+      margin-left: 24px;
+      font-size: 15px;
+    }
+  }
+
+  &__link:hover {
+    .News__text {
+      color: $news-purple;
+    }
+  }
+
+  &__empty {
+    margin: 40px 0 0;
+    text-align: center;
+    font-size: 14px;
+    color: $news-sub;
+  }
+
+  // ---------- 一覧ボタン ----------
+  &__more {
+    margin-top: 30px;
+    text-align: center;
+
+    @media (min-width: $news-bp) {
+      margin-top: 52px;
+    }
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 177px;
+    height: 47px;
+    padding: 0 28px;
+    border-radius: 999px;
+    background: $news-purple;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s;
+
+    span {
+      margin-left: 4px;
+      transition: transform 0.3s;
+    }
+
+    &:hover {
+      opacity: 0.85;
+
+      span {
+        transform: translateX(3px);
+      }
+    }
+  }
+}

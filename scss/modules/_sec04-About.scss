@@ -1,0 +1,463 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+About
+---------------------------------------- */
+// Figma（PC 1366px）の数値をそのまま使っています。
+// ブレイクポイントは、プロジェクトの mixin / 変数があればそちらに置き換えてください。
+$about-main: #5b4a99; // 見出し・線の紫
+$about-text: #3a3640; // 本文
+$about-btn: #7f6ba6;  // ボタンの縁・矢印
+$about-bg-top: 14vw;  // 背景画像（上）の高さの目安
+$about-serif: "Shippori Mincho", serif;
+$about-en: "Jost", sans-serif;
+
+.About {
+  position: relative;
+  overflow: hidden;
+  padding: 69px 0 87px;
+  // 背景：上のカーブとピンクのにじみは画像（Group_8）を上下に分けて使っています
+  //  ① 上：カーブの部分。幅に合わせた比率のまま、いちばん上に置く
+  //  ② 下：にじみの部分。残りの高さに合わせて縦に伸び縮みする（どんな画面サイズでも下まで続く）
+  //  ③ 保険の色（画像の読み込み前など）。カーブの外に色が出ないよう、①の下から敷く
+  // ※ $about-bg-top は、上の画像の高さ（幅の約14.64%）より少しだけ小さくして、つなぎ目に隙間を作らない
+  background:
+    url("../img/About-bg-top.webp") center top / 100% auto no-repeat,
+    url("../img/About-bg-bottom.webp") center bottom / 100% calc(100% - #{$about-bg-top}) no-repeat,
+    linear-gradient(#fcf9fc, #fcf9fc) left bottom / 100% calc(100% - #{$about-bg-top}) no-repeat;
+
+  &__inner {
+    position: relative;
+    width: min(100% - 40px, 1080px);
+    margin-inline: auto;
+  }
+
+  /* 見出し ---------------- */
+  &__head {
+    text-align: center;
+  }
+
+  &__en {
+    margin: 0 0 15px;
+    text-align: center;
+    font-family: $about-en;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 2px;
+    color: #8b7bc7;
+  }
+
+  &__title {
+    margin: 0 0 16px;
+    text-align: center;
+    font-family: $about-serif;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.5;
+    letter-spacing: 2.6px;
+    color: #2e2a33;
+  }
+
+  &__line {
+    display: block;
+    width: 56px;
+    height: 1px;
+    margin-inline: auto;
+    background: #e8b4c8;
+  }
+
+  /* 院内写真（横に流れ続ける） ---------------- */
+  &__slider {
+    margin-top: 31px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  &__slides {
+    display: flex;
+    width: max-content;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: about-slide 50s linear infinite;
+  }
+
+  &__slide {
+    flex: none;
+    width: 368px;
+    margin: 0 24px 0 0;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  /* 笑顔 ＝ 健康 × 美 ---------------- */
+  &__catch {
+    margin: 39px 0 0;
+    text-align: center;
+    font-family: $about-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.5;
+    letter-spacing: 2.6px;
+    color: #4a4550;
+  }
+
+  &__lead {
+    margin: 43px 0 0;
+    text-align: center;
+    font-family: $about-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.75;
+    letter-spacing: 2.8px;
+    color: #4a4550;
+  }
+
+  /* 健康 × 美 ---------------- */
+  &__venn {
+    position: relative;
+    height: 412px;
+  }
+
+  &__flower {
+    position: absolute;
+    top: -78px;
+    left: 50%;
+    width: 504px;
+    height: auto;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  &__col {
+    position: absolute;
+    top: 60px;
+    width: 255px;
+
+    &--health {
+      left: 0;
+    }
+
+    &--beauty {
+      left: 778px;
+    }
+  }
+
+  &__col-title {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $about-main;
+    font-family: $about-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.5;
+    color: $about-main;
+
+    span {
+      font-family: $about-en;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.6px;
+      color: #c9c1e2;
+    }
+  }
+
+  &__list {
+    margin: 44px 0 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+      font-family: $about-serif;
+      font-size: 14px;
+      line-height: 26px;
+      letter-spacing: 1.4px;
+      color: #4a4550;
+
+      // 白い丸（ふわっと光る）
+      &::before {
+        content: "";
+        flex: none;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 12px rgba(160, 130, 230, 0.35);
+      }
+    }
+  }
+
+  /* すべての、大切な人へ。 ---------------- */
+  &__card {
+    position: relative;
+    height: 280px;
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  // 写真：Figmaの表示（幅792px・左-95px・上-103px）に合わせています
+  // 右へ向かってゆっくり白へなじみ、文字のあたりまで薄く残ります
+  &__card-img {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 700px;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.69) 200px, rgba(0, 0, 0, 0.4) 400px, rgba(0, 0, 0, 0.27) 500px, rgba(0, 0, 0, 0.13) 600px, rgba(0, 0, 0, 0) 700px);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.69) 200px, rgba(0, 0, 0, 0.4) 400px, rgba(0, 0, 0, 0.27) 500px, rgba(0, 0, 0, 0.13) 600px, rgba(0, 0, 0, 0) 700px);
+
+    img {
+      position: absolute;
+      top: -103px;
+      left: -95px;
+      display: block;
+      width: 792px;
+      max-width: none;
+      height: auto;
+    }
+  }
+
+  &__card-body {
+    position: relative; // 写真より前に出す
+    padding: 36px 40px 29px 501px;
+  }
+
+  &__card-title {
+    margin: 0;
+    text-align: left;
+    font-family: $about-serif;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.5;
+    letter-spacing: 0.07em;
+    color: #2e2a33;
+  }
+
+  &__card-text {
+    margin: 23px 0 0;
+    text-align: left;
+    white-space: nowrap; // PCは <br> の位置で3行に固定
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 15px;
+    line-height: 2.11;
+    letter-spacing: 0.075em;
+    color: $about-text;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-sizing: border-box;
+    width: 372px;
+    height: 50px;
+    margin-top: 8px;
+    padding: 0 0 0 24px;
+    border: 1px solid $about-btn;
+    border-radius: 25px;
+    background: #fff;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: $about-text;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+    // 矢印（短め・縁と同じ色・矢じりの2本の線がゆるく湾曲）
+    &::after {
+      content: "";
+      flex: none;
+      width: 25px;
+      height: 16px;
+      background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='16' viewBox='0 0 25 16' fill='none' stroke='%237F6BA6' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 8H24.5M16.5 1C17.2 4.2 20.3 7 24.5 8C20.3 9 17.2 11.8 16.5 15'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background: #f6f3fa;
+      }
+    }
+  }
+
+  /* SP（スマホ：縦に並べるレイアウト） ----------------
+     ・文字や余白は、幅375pxの画面をもとにした数値です（文字は画面幅に合わせて少し伸び縮みします）
+     ・背景は About-bg-sp.webp を、セクション全体に敷いています */
+  @media (max-width: 767px) {
+    padding: 54px 0 66px;
+    // 画像は上の斜めの外側が透明なので、保険の色は「斜めより下」だけに敷く
+    // （全面に敷くと、透明な部分まで色で埋まって斜めが見えなくなります）
+    background:
+      url("../img/About-bg-sp.webp") center top / 100% 100% no-repeat,
+      linear-gradient(#fcf9fc, #fcf9fc) left bottom / 100% calc(100% - 37vw) no-repeat;
+
+    &__en {
+      margin-bottom: 11px;
+      font-size: 13px;
+    }
+
+    &__title {
+      margin-bottom: 9px;
+      font-size: clamp(16px, 5.6vw, 26px);
+      letter-spacing: 0.11em;
+    }
+
+    // 院内写真：左端を20pxあけて、右に向かってゆっくり流れる
+    &__slider {
+      margin-top: 24px;
+    }
+
+    &__slides {
+      margin-left: 20px;
+      animation-name: about-slide-sp;
+    }
+
+    &__slide {
+      width: 61vw;
+      margin-right: 12px;
+    }
+
+    &__catch {
+      margin-top: 34px;
+      font-size: clamp(19px, 6.4vw, 30px);
+      letter-spacing: 0.067em;
+    }
+
+    &__lead {
+      position: relative; // うしろの花より前に出す
+      z-index: 1;
+      margin-top: 21px;
+      font-size: clamp(13px, 4.27vw, 19px);
+      line-height: 1.75;
+      letter-spacing: 0.17em;
+    }
+
+    /* 健康 × 美：円と文字は画像（About-img01.webp）に入っています ---------------- */
+    &__venn {
+      width: min(100%, 300px);
+      height: auto;
+      margin: -60px auto 0; // うしろの花が、文章の下にすこし重なる
+    }
+
+    &__flower {
+      position: static;
+      display: block;
+      width: 100%;
+      height: auto;
+      transform: none;
+    }
+
+    // 画像の下のリスト（健康・美）は、見た目は隠して、読み上げ用には残す
+    &__col {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    /* すべての、大切な人へ。 ---------------- */
+    &__card {
+      height: auto;
+      margin-top: 0;
+      border-radius: 12px;
+    }
+
+    // 写真は、下をぼかさずに、すっきり切る
+    &__card-img {
+      position: relative;
+      inset: auto;
+      width: 100%;
+      height: 200px;
+      -webkit-mask-image: none;
+      mask-image: none;
+
+      img {
+        position: static;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left top;
+      }
+    }
+
+    &__card-body {
+      padding: 28px 21px 28px;
+    }
+
+    &__card-title {
+      font-size: clamp(17px, 5.33vw, 24px);
+      letter-spacing: 0.07em;
+    }
+
+    &__card-text {
+      max-width: 280px;
+      margin-top: 13px;
+      white-space: normal;
+      font-size: clamp(12px, 3.73vw, 15px);
+      line-height: 2.1;
+      letter-spacing: 0.07em;
+    }
+
+    // PC用の改行はSPでは使わない
+    &__br {
+      display: none;
+    }
+
+    &__btn {
+      width: 100%;
+      height: 55px;
+      margin-top: 20px;
+      padding: 0 19px 0 21px;
+      border-radius: 999px;
+      font-size: clamp(12px, 3.47vw, 15px);
+      letter-spacing: 0.6px;
+
+      &::after {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+@keyframes about-slide-sp {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes about-slide {
+  from {
+    transform: translateX(-280px);
+  }
+  to {
+    transform: translateX(calc(-50% - 280px));
+  }
+}
+
+// 「視差・動きを減らす」設定の人には流さない
+@media (prefers-reduced-motion: reduce) {
+  .About__slides {
+    animation: none;
+  }
+}

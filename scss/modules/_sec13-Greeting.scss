@@ -1,0 +1,487 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+Greeting（院長挨拶）
+---------------------------------------- */
+.Greeting {
+  $purple: #8b7bc7;
+  $purple-dark: #6a55a8;
+  $text: #3d3a55;
+
+  position: relative;
+  padding: 108px 0 72px;
+  overflow: hidden;
+  color: $text;
+  // うすいラベンダーの背景 + 右上にピンクのやわらかい光
+  background:
+    radial-gradient(ellipse 720px 440px at 88% 8%, rgba(245, 214, 228, 0.8), rgba(245, 214, 228, 0) 100%),
+    linear-gradient(to bottom, #f8f4fb 0%, #f4effa 55%, #f6f2fb 100%);
+
+  // 上の端の、白いゆるやかな波
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 56px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath fill='%23fff' d='M0 0H1440V22C1200 46 920 56 660 50C400 44 160 34 0 44Z'/%3E%3C/svg%3E") no-repeat center top / 100% 100%;
+    pointer-events: none;
+  }
+
+  // 左：写真 / 右：文章
+  // 背景は画面いっぱいに広げ、中身は 1440px の枠の中に収める（画面が広くても写真は動かない）
+  &__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    // 写真の幅は 581px（狭い画面では画面幅の46%まで縮む）。比率は固定
+    grid-template-columns: min(581px, 46vw) minmax(0, 584px);
+    column-gap: 60px;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  // SPだけ使う背景画像・改行（PC・タブレットでは非表示。SPのブロックで表示します）
+  &__bg,
+  &__sp-br {
+    display: none;
+  }
+
+  // 写真（左右反転した写真・比率 581:520 で固定）
+  // 画面が1440px以下：画面の左端にくっつく（右だけ角丸）
+  // 画面が1440pxより広い：枠の左端にとどまり、左側の角も丸くなる
+  &__photo {
+    position: relative;
+    margin: 96px 0 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 581 / 520;
+      object-fit: cover;
+      object-position: 26% 50%;
+      border-radius: 0 16px 16px 0;
+
+      @media (min-width: 1441px) {
+        border-radius: 16px;
+      }
+    }
+  }
+
+  // 写真の上の飾り（細い円とピンクの円）
+  &__ring,
+  &__dot {
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &__ring {
+    top: -26px;
+    left: 20%;
+    width: 120px;
+    height: 120px;
+    border: 1px solid #d9d2ea;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &__dot {
+    top: -65px;
+    right: -4px;
+    width: 86px;
+    height: 86px;
+    background: radial-gradient(circle at 50% 40%, #f7e2eb, #f1d3e1);
+    opacity: 0.95;
+  }
+
+  // 見出し
+  &__body {
+    min-width: 0;
+  }
+
+  &__head {
+    text-align: left;
+  }
+
+  &__en {
+    margin: 0 0 15px;
+    text-align: left;
+    font-family: "Jost", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 3px;
+    color: $purple;
+  }
+
+  &__title {
+    margin: 0 0 16px;
+    text-align: left;
+    font-family: "Shippori Mincho", serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 2.6px;
+    color: #2e2a33;
+  }
+
+  &__line {
+    display: block;
+    width: 56px;
+    height: 1px;
+    background: #e8b4c8;
+  }
+
+  &__catch {
+    margin: 32px 0 0;
+    text-align: left;
+    font-family: "Shippori Mincho", serif;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.15em;
+    color: #2e2a33;
+  }
+
+  &__text {
+    margin: 22px 0 0;
+    padding-bottom: 12px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 32px;
+    letter-spacing: 0.04em;
+    color: $text;
+    // 下に、右へ向かって薄くなる細い線
+    background: linear-gradient(to right, #e9e4f3, rgba(233, 228, 243, 0)) no-repeat left bottom / 100% 1px;
+  }
+
+  // 院長名
+  &__name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 20px;
+    margin-top: 28px;
+  }
+
+  &__name-role {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    color: #6e6875;
+  }
+
+  &__name-main {
+    font-family: "Shippori Mincho", serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    color: #2e2a33;
+  }
+
+  &__name-note {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    color: #6e6875;
+  }
+
+  // 略歴 / 所属・資格（2列）
+  &__profile {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 48px;
+    margin-top: 30px;
+  }
+
+  &__block {
+    min-width: 0;
+  }
+
+  // 見出し（h3）と英字（p）を、これまでと同じ見た目で横に並べる
+  &__block-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  &__block-title {
+    margin: 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    color: #2e2a33;
+  }
+
+  &__block-en {
+    margin: 0;
+    font-family: "Jost", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    color: $purple;
+  }
+
+  // 略歴（左に細い縦線）
+  &__career {
+    margin: 22px 0 0;
+    padding: 4px 0 0 22px;
+    border-left: 1px solid #e5e0f0;
+    list-style: none;
+  }
+
+  &__career-item {
+    & + & {
+      margin-top: 14px;
+    }
+  }
+
+  &__year {
+    display: block;
+    margin-bottom: 4px;
+    font-family: "Jost", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: $purple;
+  }
+
+  &__career-line,
+  &__member-line {
+    display: block;
+    font-size: 13px;
+    line-height: 24px;
+    letter-spacing: 0.03em;
+    color: $text;
+  }
+
+  // 所属・資格
+  &__member {
+    margin: 22px 0 0;
+    padding: 2px 0 0;
+    list-style: none;
+  }
+
+  &__member-item {
+    & + & {
+      margin-top: 12px;
+    }
+  }
+
+  // スタッフ紹介ボタン
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    min-width: 288px;
+    height: 50px;
+    margin-top: 34px;
+    padding: 0 24px 0 30px;
+    border: 1px solid $purple;
+    border-radius: 999px;
+    background-color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: $purple-dark;
+    transition: background-color 0.3s, color 0.3s;
+
+    span {
+      display: inline-block;
+      margin-left: 6px;
+      transition: transform 0.3s;
+    }
+
+    // ホバーで紫（_sec08-Implant.scss のボタンと同じ動き）
+    &:hover {
+      background: $purple;
+      color: #fff;
+
+      span {
+        transform: translateX(4px);
+      }
+    }
+
+    &:focus-visible {
+      outline: 3px solid $purple;
+      outline-offset: 3px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Greeting__btn,
+  .Greeting__btn span {
+    transition: none;
+  }
+}
+
+/* ----------------------------------------
+Greeting タブレット・SP（写真の下に文章を縦に並べる）
+---------------------------------------- */
+@media (max-width: 1100px) {
+  .Greeting {
+    padding: 96px 0 64px;
+
+    &__inner {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 48px;
+      align-items: start;
+    }
+
+    &__photo {
+      margin: 0 24px 0 0;
+
+      img {
+        height: auto;
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+    &__ring {
+      left: 12%;
+    }
+
+    &__body {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+  }
+}
+
+/* ----------------------------------------
+Greeting SP（見出し → 写真 → 文章の順）
+※ 見出しを写真の上に出すため、__body を display: contents にして、
+   見出し・文章などを __inner の直接の子として並べ替えています
+---------------------------------------- */
+@media (max-width: 599px) {
+  .Greeting {
+    padding: 56px 0 56px;
+    // 背景画像（上の波＋ピンクの光）を敷くので、PC用のピンクの光は外し、ラベンダーのグラデーションだけにする
+    background: linear-gradient(to bottom, #f8f4fb 0%, #f4effa 55%, #f6f2fb 100%);
+
+    // 波は背景画像に含まれているので、PC・タブレット用の波は出さない
+    &::before {
+      display: none;
+    }
+
+    // 背景画像（セクションの上端に、横幅いっぱいで敷く）
+    &__bg {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      pointer-events: none;
+    }
+
+    &__inner {
+      row-gap: 0;
+      padding: 0 20px;
+    }
+
+    // 並び順：見出し → 写真 → 文章（__body の中身を直接 __inner に並べる）
+    &__body {
+      display: contents;
+    }
+
+    &__head {
+      order: -2;
+      margin-bottom: 28px;
+    }
+
+    &__photo {
+      order: -1;
+      margin: 0;
+
+      img {
+        aspect-ratio: 581 / 520; // 写真の比率（PCと同じ）
+        border-radius: 16px; // 左右の余白があるので、四隅とも角丸
+      }
+    }
+
+    // 飾りの円はSPでは出さない
+    &__ring,
+    &__dot {
+      display: none;
+    }
+
+    &__title {
+      margin-bottom: 14px;
+      font-size: 22px;
+    }
+
+    // 「患者様の一生に、」のあとをSPだけ改行
+    &__sp-br {
+      display: inline;
+    }
+
+    &__catch {
+      margin-top: 32px;
+      font-size: 20px;
+      letter-spacing: 0.1em;
+    }
+
+    &__text {
+      margin-top: 26px;
+      font-size: 14px;
+      line-height: 26px;
+      background: none; // 本文の下のうっすらした横線を消す
+    }
+
+    &__name-role,
+    &__name-note {
+      font-size: 12px;
+    }
+
+    &__name-main {
+      font-size: 18px;
+    }
+
+    &__profile {
+      grid-template-columns: 1fr;
+      row-gap: 32px;
+      margin-top: 40px;
+    }
+
+    &__block-title {
+      font-size: 14px;
+    }
+
+    &__career {
+      margin-top: 10px;
+    }
+
+    &__career-item + &__career-item {
+      margin-top: 16px;
+    }
+
+    &__career-line,
+    &__member-line {
+      line-height: 23px;
+    }
+
+    // 略歴の長い行は、ここで折り返す（「…いしかわ歯科医院理／事」の位置を合わせる）
+    &__career-line {
+      max-width: 19em;
+    }
+
+    &__member {
+      margin-top: 12px;
+    }
+
+    // ボタンは幅いっぱいにせず、左寄せのまま（PCと同じ形）
+    &__btn {
+      justify-self: start;
+    }
+  }
+}

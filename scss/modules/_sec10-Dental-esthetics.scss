@@ -1,0 +1,380 @@
+@use "setting" as *;
+
+// ----------------------------------------
+// Dental Esthetics（デンタルエステ）
+// ※ _sec08-Implant.scss と同じ作り（文字が左・画像が右）
+// ----------------------------------------
+// ※ 色・フォントはこのファイル内の変数です。
+//    サイト共通の変数がある場合は、そちらに置き換えてください。
+$de-purple: #8b7bc7;
+$de-purple-light: #c3b6e8; // 施術ステップの ▶
+$de-text: #404040;
+$de-title: #2e2a33;
+$de-note: #737373;
+$de-box-bg: #f6f4fa; // 施術ステップの枠の背景
+$de-box-line: #e8e4f1; // 施術ステップの枠の線
+$de-serif: "Shippori Mincho", "Noto Serif JP", "Yu Mincho", "游明朝", serif;
+$de-en: "Jost", "Helvetica Neue", Arial, sans-serif;
+$de-inner: 1080px; // .Dental-esthetics__inner の最大幅
+$de-shift: 0px; // 左側（文字・施術ステップ）をさらに左へ寄せたいときの量（0で中央寄せ）
+$de-top: 40px; // セクション上の余白（右の画像の位置も同じ値）
+
+.Dental-esthetics {
+  position: relative;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: $de-top 0 80px;
+  background: #fff;
+  isolation: isolate; // ロゴを z-index: -1 で背景の上・文字の下に置くため
+  // ※ overflow: hidden は付けない（画面が1366pxより広いとき、ロゴが左の余白にはみ出して全体が見えるようにするため）
+
+  // 左上の透かしロゴ（_sec08-Implant.scss と同じ位置）
+  // 画面が1366px以下：画面の左端で途切れる ／ 1366pxより広い：左の余白に出て全体が見える
+  &__logo {
+    position: absolute;
+    top: 10px;
+    left: -115px;
+    z-index: -1;
+    width: 405px;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  // ※ ここには position を付けない（右の画像を .Dental-esthetics 基準で配置するため）
+  &__inner {
+    max-width: $de-inner;
+    // 中央寄せの位置から $de-shift だけ左へ（狭い画面では 0 まで）。左右のpadding 24px×2 を含めて計算
+    margin: 0 auto 0 max(0px, calc((100% - #{$de-inner + 48px}) / 2 - #{$de-shift}));
+    padding: 0 24px;
+    box-sizing: content-box;
+  }
+
+  // ---------- 左：テキスト ----------
+  &__body {
+    width: 570px;
+    max-width: 100%;
+  }
+
+  &__en {
+    margin: 0;
+    font-family: $de-en;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: $de-purple;
+  }
+
+  &__title {
+    margin: 20px 0 0;
+    font-family: $de-serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    color: $de-title;
+  }
+
+  // 見出しのすぐ下の（　）書き
+  &__sub {
+    margin: 0;
+    font-family: $de-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    color: $de-text;
+  }
+
+  &__lead {
+    margin: 8px 0 0;
+    font-family: $de-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.07em;
+    color: $de-text;
+  }
+
+  &__text {
+    margin: 28px 0 0;
+    font-size: 16px;
+    line-height: 30px;
+    color: $de-text;
+  }
+
+  // ---------- ボタン ----------
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    height: 46px;
+    margin-top: 32px;
+    padding: 0 20px 0 19px;
+    border: 1px solid $de-purple;
+    border-radius: 999px;
+    background-color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: $de-text;
+    transition: background-color 0.3s, color 0.3s;
+
+    svg {
+      display: none;
+    }
+
+    &::after {
+      content: "";
+      flex: none;
+      width: 25px;
+      height: 16px;
+      background: $de-purple;
+      -webkit-mask: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='16' viewBox='0 0 25 16' fill='none' stroke='%23000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 8H24.5M16.5 1C17.2 4.2 20.3 7 24.5 8C20.3 9 17.2 11.8 16.5 15'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='16' viewBox='0 0 25 16' fill='none' stroke='%23000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 8H24.5M16.5 1C17.2 4.2 20.3 7 24.5 8C20.3 9 17.2 11.8 16.5 15'/%3E%3C/svg%3E") no-repeat center / contain;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    &:hover {
+      background: $de-purple;
+      color: #fff;
+
+      &::after {
+        background: #fff;
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  // ---------- 施術ステップ ----------
+  &__steps {
+    margin-top: 32px;
+    padding: 20px 19px 16px;
+    border: 1px solid $de-box-line;
+    border-radius: 16px;
+    background: $de-box-bg;
+  }
+
+  // 1段目（バッジ＋2枚）・2段目（3枚）。写真の幅はどちらも同じ（3等分）
+  &__steps-row {
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    & + & {
+      margin-top: 12px;
+    }
+  }
+
+  // 「施術 STEP」バッジ（写真の縦中央に合わせる）
+  &__steps-badge {
+    display: flex;
+    flex: none;
+    align-items: center;
+    align-self: stretch;
+    box-sizing: border-box;
+    width: 59px;
+    margin-right: 12px;
+    padding-bottom: 26px; // ラベルのぶん（__step-label の高さ）
+  }
+
+  &__steps-badge-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 59px;
+    height: 59px;
+    border: 1px solid #cfc6ea;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: $de-purple;
+
+    span:last-child {
+      font-family: $de-en;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+  }
+
+  &__step {
+    position: relative;
+    flex: none;
+    width: calc((100% - 30px) / 3);
+    margin: 0;
+
+    & + & {
+      margin-left: 15px;
+    }
+
+    // 次の写真へ向かう ▶（写真の縦中央）
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: calc((100% - 26px) / 2);
+      left: 100%;
+      width: 9px;
+      height: 10px;
+      margin-left: 3px;
+      background: $de-purple-light;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      transform: translateY(-50%);
+    }
+  }
+
+  &__step-fig {
+    margin: 0;
+  }
+
+  &__step-img {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #d9d9d9;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__step-label {
+    margin-top: 6px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 20px; // 6px + 20px = 26px（バッジ・▶の位置計算に使用）
+    letter-spacing: 0.02em;
+    color: #333;
+  }
+
+  // ---------- 右：画像（正方形・.Dental-esthetics の右端にくっつける） ----------
+  // 画面が1366px以下：画面の右端にくっつく（左だけ角丸）
+  // 画面が1366pxより広い：.Dental-esthetics の右端にとどまり、右側の角も丸くなる
+  // 幅は _sec08-Implant.scss の画像と同じ（画面幅の41%・最大560px・狭い画面では縮む）
+  &__visual {
+    position: absolute;
+    top: $de-top; // .Dental-esthetics の padding-top と同じ
+    right: 0;
+    width: min(560px, 41vw, calc(100vw - 612px));
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px 0 0 8px;
+
+    @media (min-width: 1367px) {
+      border-radius: 8px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 34% 50%; // 写真の見せる位置（左右）
+    }
+  }
+
+  // ---------- SP ----------
+  @media (max-width: 768px) {
+    padding: 28px 0 40px;
+
+    &__logo {
+      top: 8px;
+      left: -90px;
+      width: 240px;
+    }
+
+    &__inner {
+      padding: 0;
+    }
+
+    &__body {
+      width: auto;
+      padding: 0 20px;
+    }
+
+    // 角丸のカード（画像を背景に敷き、その上に文字を重ねる）※ _sec08-Implant.scss と同じ作り
+    &__intro {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 25px 20px 20px;
+      border-radius: 16px;
+      background: #f8f8fb;
+      box-shadow: 0 8px 24px rgba(46, 42, 51, 0.1);
+    }
+
+    // 画像はカード全面の背景。文字が読めるよう半透明の白を重ねる
+    &__visual {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      width: auto;
+      aspect-ratio: auto;
+      border-radius: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      img {
+        object-position: 34% 50%;
+      }
+    }
+
+    &__title {
+      margin: 15px 0 0;
+      font-size: 24px;
+    }
+
+    &__lead {
+      margin: 3px 0 0;
+      font-size: 16px;
+    }
+
+    &__text {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 25px;
+    }
+
+    &__btn {
+      margin-top: 10px;
+    }
+
+    // 施術ステップはカードの外（下）に表示
+    &__steps {
+      margin-top: 28px;
+      padding: 16px 14px 12px;
+    }
+
+    &__step-label {
+      font-size: 11px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Dental-esthetics__btn,
+  .Dental-esthetics__btn::after {
+    transition: none;
+  }
+
+  .Dental-esthetics__btn:hover::after {
+    transform: none;
+  }
+}

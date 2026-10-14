@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "SCSS: Watch and compile",
+      "type": "npm",
+      "script": "watch:css",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "scss-watch",
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Starting 'watch:css'\\.\\.\\.",
+          "endsPattern": "Starting 'watchSass'\\.\\.\\."
+        }
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "reveal": "never",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+@use "setting" as *;
+
+// ----------------------------------------
+// Recommend
+// ----------------------------------------
+// ※ 色・フォントはこのファイル内の変数です。
+//    サイト共通の変数がある場合は、そちらに置き換えてください。
+$rec-purple: #8b7bc7;
+$rec-pink: #b0728a;
+$rec-line: #eabccf;
+$rec-text: #2e2a33;
+$rec-text-sub: #4a4550;
+$rec-btn: #6b5ba8;
+$rec-serif: "Shippori Mincho", "Noto Serif JP", "Yu Mincho", "游明朝", serif;
+$rec-en: "Jost", "Helvetica Neue", Arial, sans-serif;
+
+.Recommend {
+  position: relative;
+  padding: 72px 0 88px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 38%, rgba(139, 123, 199, 0.09), transparent 70%),
+    linear-gradient(180deg, #fff 0%, #f9f7fd 45%, #fff 100%);
+
+  &__inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  // ---------- 見出し ----------
+  &__head {
+    text-align: center;
+  }
+
+  &__head-en {
+    margin: 0;
+    text-align: center;
+    font-family: $rec-en;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: $rec-purple;
+  }
+
+  &__title {
+    margin: 14px 0 0;
+    text-align: center;
+    font-family: $rec-serif;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    color: $rec-text;
+  }
+
+  &__head-line {
+    display: block;
+    width: 48px;
+    height: 1px;
+    margin: 22px auto 0;
+    background: $rec-line;
+  }
+
+  // ---------- リスト ----------
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 24px;
+    margin: 48px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    --accent: #{$rec-purple};
+    --ring: rgba(139, 123, 199, 0.35);
+    --glow: rgba(139, 123, 199, 0.18);
+
+    &--whitening {
+      --accent: #{$rec-pink};
+      --ring: rgba(176, 114, 138, 0.35);
+      --glow: rgba(176, 114, 138, 0.16);
+    }
+  }
+
+  // ---------- 丸写真 ----------
+  &__visual {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1;
+  }
+
+  // 外側のうすい輪
+  &__visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--ring);
+    border-radius: 50%;
+    box-shadow: 0 14px 40px var(--glow);
+  }
+
+  &__photo {
+    position: absolute;
+    inset: 4.5%;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(60, 50, 90, 0.1);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: var(--pos, 50% 50%);
+      transition: transform 0.6s ease;
+    }
+  }
+
+  &__item:hover &__photo img {
+    transform: scale(1.05);
+  }
+
+  // 番号
+  &__num {
+    position: absolute;
+    top: 2.5%;
+    left: 2.5%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18.6%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(60, 50, 90, 0.12);
+    font-family: $rec-en;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+
+  // 「ホワイトエッセンス加盟店」の弧状テキスト
+  &__badge {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+
+    text {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      fill: $rec-pink;
+    }
+
+    line {
+      stroke: $rec-pink;
+      stroke-width: 1;
+      stroke-linecap: round;
+    }
+  }
+
+  // ---------- テキスト ----------
+  &__en {
+    margin: 28px 0 0;
+    text-align: center;
+    font-family: $rec-en;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+  }
+
+  // 3つの行の高さを揃えるため、最低2行ぶんの高さを確保
+  &__name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.4em;
+    margin: 10px 0 0;
+    text-align: center;
+    font-family: $rec-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.15em;
+    color: $rec-text;
+  }
+
+  // 他のCSS（span などの共通指定）に負けないよう、親を含めて詳細度を上げています
+  &__name &__name-sub {
+    display: block;
+    text-align: center;
+    font-family: $rec-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  &__text {
+    margin: 8px 0 0;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+    color: $rec-text-sub;
+  }
+
+  // ---------- ボタン ----------
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 122px;
+    height: 36px;
+    margin-top: 24px;
+    padding: 0 20px;
+    border: 1px solid rgba(139, 123, 199, 0.4);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: $rec-btn;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+
+    &:hover {
+      border-color: $rec-purple;
+      background: $rec-purple;
+      color: #fff;
+    }
+  }
+
+  &__item--whitening &__btn {
+    border-color: rgba(176, 114, 138, 0.4);
+    color: $rec-pink;
+  }
+
+  &__item--whitening &__btn:hover {
+    border-color: $rec-pink;
+    background: $rec-pink;
+    color: #fff;
+  }
+
+  // ---------- SP ----------
+  // 数値は、幅375pxの画面をもとにしています（見出しは画面幅に合わせて少し伸び縮みします）
+  @media (max-width: 768px) {
+    padding: 56px 0;
+
+    &__head-en {
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    // 「富士見台さくら歯科の」で改行されるよう、1行の幅を11.5文字ぶんにしています
+    &__title {
+      max-width: 11.5em;
+      margin: 18px auto 0;
+      font-size: clamp(17px, 5.6vw, 28px);
+      line-height: 1.85;
+      letter-spacing: 0.1em;
+    }
+
+    &__head-line {
+      width: 56px;
+      margin-top: 14px;
+    }
+
+    &__list {
+      grid-template-columns: 1fr;
+      gap: 50px 0;
+      margin-top: 40px;
+    }
+
+    &__visual {
+      max-width: 240px;
+    }
+
+    &__num {
+      font-size: 13px;
+    }
+
+    &__en {
+      margin-top: 15px;
+      font-size: 11px;
+    }
+
+    &__name {
+      min-height: 0;
+      margin-top: 20px;
+      font-size: 18px;
+      letter-spacing: 0.17em;
+    }
+
+    &__name &__name-sub {
+      margin-top: 6px;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+    }
+
+    &__text {
+      margin-top: 18px;
+      font-size: 14px;
+      letter-spacing: 0.09em;
+    }
+
+    &__btn {
+      min-width: 142px;
+      height: 42px;
+      margin-top: 26px;
+      font-size: 13px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Recommend__photo img,
+  .Recommend__btn {
+    transition: none;
+  }
+
+  .Recommend__item:hover .Recommend__photo img {
+    transform: none;
+  }
+}

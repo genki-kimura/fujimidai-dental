@@ -1,0 +1,349 @@
+@use "setting" as *;
+
+// ----------------------------------------
+// Implant（インプラント紹介）
+// ----------------------------------------
+// ※ 色・フォントはこのファイル内の変数です。
+//    サイト共通の変数がある場合は、そちらに置き換えてください。
+$imp-purple: #8b7bc7;
+$imp-text: #404040;
+$imp-title: #2e2a33;
+$imp-note: #737373;
+$imp-serif: "Shippori Mincho", "Noto Serif JP", "Yu Mincho", "游明朝", serif;
+$imp-en: "Jost", "Helvetica Neue", Arial, sans-serif;
+$imp-inner: 1080px; // .Implant__inner の最大幅
+$imp-shift: 0px; // 左側（文字・症例）をさらに左へ寄せたいときの量（0で中央寄せ）
+
+.Implant {
+  position: relative;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 136px 0 40px;
+  background: #fff;
+  isolation: isolate; // ロゴを z-index: -1 で背景の上・文字の下に置くため
+  // ※ overflow: hidden は付けない（画面が1366pxより広いとき、ロゴが左の余白にはみ出して全体が見えるようにするため）
+
+  // 左上の透かしロゴ（セクションの左端から少しはみ出させる）
+  // 画面が1366px以下：画面の左端で途切れる ／ 1366pxより広い：左の余白に出て全体が見える
+  &__logo {
+    position: absolute;
+    top: 10px;
+    left: -115px;
+    z-index: -1;
+    width: 405px;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  // ※ ここには position を付けない（右の画像を .Implant 基準で配置するため）
+  &__inner {
+    max-width: $imp-inner;
+    // 中央寄せの位置から $imp-shift だけ左へ（狭い画面では 0 まで）。左右のpadding 24px×2 を含めて計算
+    margin: 0 auto 0 max(0px, calc((100% - #{$imp-inner + 48px}) / 2 - #{$imp-shift}));
+    padding: 0 24px;
+    box-sizing: content-box;
+  }
+
+  // ---------- 左：テキスト ----------
+  &__body {
+    width: 540px;
+    max-width: 100%;
+  }
+
+  &__en {
+    margin: 0;
+    font-family: $imp-en;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: $imp-purple;
+  }
+
+  &__title {
+    margin: 20px 0 0;
+    font-family: $imp-serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    color: $imp-title;
+  }
+
+  &__lead {
+    margin: 8px 0 0;
+    font-family: $imp-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.07em;
+    color: $imp-text;
+  }
+
+  &__text {
+    max-width: 500px; // 16px化に合わせて拡大（折り返し位置は要確認）
+    margin: 28px 0 0;
+    font-size: 16px;
+    line-height: 30px;
+    color: $imp-text;
+  }
+
+  // ---------- ボタン ----------
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    height: 46px;
+    margin-top: 32px;
+    padding: 0 20px 0 19px;
+    border: 1px solid $imp-purple;
+    border-radius: 999px;
+    background-color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: $imp-text;
+    transition: background-color 0.3s, color 0.3s;
+
+    svg {
+      display: none;
+    }
+
+    &::after {
+      content: "";
+      flex: none;
+      width: 25px;
+      height: 16px;
+      background: $imp-purple;
+      -webkit-mask: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='16' viewBox='0 0 25 16' fill='none' stroke='%23000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 8H24.5M16.5 1C17.2 4.2 20.3 7 24.5 8C20.3 9 17.2 11.8 16.5 15'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='16' viewBox='0 0 25 16' fill='none' stroke='%23000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 8H24.5M16.5 1C17.2 4.2 20.3 7 24.5 8C20.3 9 17.2 11.8 16.5 15'/%3E%3C/svg%3E") no-repeat center / contain;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    &:hover {
+      background: $imp-purple;
+      color: #fff;
+
+      &::after {
+        background: #fff;
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  // ---------- 症例 ----------
+  &__case {
+    margin-top: 28px;
+  }
+
+  &__case-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #333;
+  }
+
+  &__case-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 520px;
+    max-width: 100%;
+    margin-top: 13px;
+  }
+
+  &__case-item {
+    width: calc((100% - 42px) / 2);
+    margin: 0;
+    text-align: center;
+  }
+
+  &__case-img {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #d9d9d9;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // 画像が未設定のときのダミー表示
+    &--empty span {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      font-family: $imp-en;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: #e7e7e7;
+    }
+  }
+
+  &__case-label {
+    margin-top: 7px;
+    text-align: center;
+    font-family: $imp-en;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: $imp-text;
+  }
+
+  // 矢印を画像の縦中央に合わせる
+  &__case-arrow {
+    margin-top: calc((100% - 42px) / 6 - 9px);
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    color: #666;
+  }
+
+  // ---------- 注意書き ----------
+  &__notes {
+    max-width: 540px;
+    margin-top: 12px;
+    font-size: 11px;
+    line-height: 17px;
+    letter-spacing: 0;
+    color: $imp-note;
+
+    p {
+      margin: 0;
+    }
+
+    span {
+      margin-right: 2.5em;
+    }
+  }
+
+  // ---------- 右：画像（正方形・.Implant の右端にくっつける） ----------
+  // 画面が1366px以下：画面の右端にくっつく（左だけ角丸）
+  // 画面が1366pxより広い：.Implant の右端にとどまり、右側の角も丸くなる
+  // 幅は 画面幅の41%（最大560px）。本文と重ならないよう、狭い画面では縮みます
+  &__visual {
+    position: absolute;
+    top: 136px; // .Implant の padding-top と同じ
+    right: 0;
+    width: min(560px, 41vw, calc(100vw - 612px));
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px 0 0 8px;
+
+    @media (min-width: 1367px) {
+      border-radius: 8px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 60% 50%;
+    }
+  }
+
+  // ---------- SP ----------
+  @media (max-width: 768px) {
+    padding: 28px 0 40px;
+
+    &__logo {
+      top: 8px;
+      left: -90px;
+      width: 240px;
+    }
+
+    &__inner {
+      padding: 0;
+    }
+
+    &__body {
+      width: auto;
+      padding: 0 20px;
+    }
+
+    // 角丸のカード（画像を背景に敷き、その上に文字を重ねる）
+    &__intro {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 25px 20px 20px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #f8f8fb 0%, #f8f8fb 45%, #f6dde3 100%);
+      box-shadow: 0 8px 24px rgba(46, 42, 51, 0.1);
+    }
+
+    // 画像はカード全面の背景。文字が読めるよう白いベールを重ねる
+    &__visual {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      width: auto;
+      aspect-ratio: auto;
+      border-radius: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      img {
+        object-position: 75% 50%;
+      }
+    }
+
+    &__title {
+      margin: 15px 0 0;
+      font-size: 24px;
+    }
+
+    &__lead {
+      margin: 3px 0 0;
+      font-size: 16px;
+    }
+
+    &__text {
+      max-width: none;
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 25px;
+    }
+
+    &__btn {
+      margin-top: 10px;
+    }
+
+    &__case {
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    &__case-row {
+      margin: 13px auto 0;
+    }
+
+    &__notes {
+      margin: 12px auto 0; 
+      text-align: left;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Implant__btn,
+  .Implant__btn::after {
+    transition: none;
+  }
+
+  .Implant__btn:hover::after {
+    transform: none;
+  }
+}

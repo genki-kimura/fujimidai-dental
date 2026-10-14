@@ -1,0 +1,360 @@
+@use "setting" as *;
+
+// ----------------------------------------
+// Whitening（ホワイトニング）
+// ※ _sec08-Implant.scss を左右反転した作り（画像が左・文字が右）
+// ----------------------------------------
+// ※ 色・フォントはこのファイル内の変数です。
+//    サイト共通の変数がある場合は、そちらに置き換えてください。
+$wh-purple: #8b7bc7;
+$wh-text: #404040;
+$wh-title: #2e2a33;
+$wh-note: #737373;
+$wh-serif: "Shippori Mincho", "Noto Serif JP", "Yu Mincho", "游明朝", serif;
+$wh-en: "Jost", "Helvetica Neue", Arial, sans-serif;
+$wh-gap: 80px; // 画像と文字の間の余白（最大値。狭い画面では自動で縮みます）
+
+.Whitening {
+  // 左の画像の幅：_sec08-Implant.scss の画像と同じ（画面幅の41%・最大560px・狭い画面では縮む）
+  --wh-visual: min(560px, 41vw, calc(100vw - 612px));
+  // 画像と文字の間の余白：基本は80px。画像が大きくなる狭めの画面では、文字（540px）が
+  // はみ出さないよう 48px まで縮みます（右の余白24pxを含めて計算）
+  --wh-gap: min(#{$wh-gap}, calc(100vw - var(--wh-visual) - 564px));
+
+  position: relative;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 136px 0 96px;
+  background: #fff;
+  isolation: isolate; // ロゴを z-index: -1 で背景の上・文字の下に置くため
+  // ※ overflow: hidden は付けない（画面が1366pxより広いとき、ロゴが右の余白にはみ出して全体が見えるようにするため）
+
+  // 右上の透かしロゴ（_sec08-Implant.scss の左右反転。画像が左なので、ロゴは右側に置く）
+  // 画面が1366px以下：画面の右端で途切れる ／ 1366pxより広い：右の余白に出て全体が見える
+  &__logo {
+    position: absolute;
+    top: 10px;
+    right: -115px;
+    z-index: -1;
+    width: 405px;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  // 画面が1366px以下では、はみ出したロゴで横スクロールが出ないよう右側を切る
+  @media (max-width: 1366px) {
+    overflow-x: clip;
+  }
+
+  // ※ ここには position を付けない（左の画像を .Whitening 基準で配置するため）
+  // 画像の幅＋余白のぶん、文字を右へ送る
+  &__inner {
+    padding: 0 24px 0 calc(var(--wh-visual) + var(--wh-gap));
+  }
+
+  // ---------- 右：テキスト ----------
+  &__body {
+    width: 540px;
+    max-width: 100%;
+  }
+
+  &__en {
+    margin: 0;
+    font-family: $wh-en;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: $wh-purple;
+  }
+
+  &__title {
+    margin: 20px 0 0;
+    font-family: $wh-serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    color: $wh-title;
+  }
+
+  &__lead {
+    margin: 8px 0 0;
+    font-family: $wh-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.07em;
+    color: $wh-text;
+  }
+
+  &__text {
+    max-width: 35em; // 1行35文字ぶん（折り返し位置は要確認）
+    margin: 28px 0 0;
+    font-size: 16px;
+    line-height: 30px;
+    color: $wh-text;
+  }
+
+  // ---------- ボタン ----------
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    height: 46px;
+    margin-top: 32px;
+    padding: 0 20px 0 19px;
+    border: 1px solid $wh-purple;
+    border-radius: 999px;
+    background-color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: $wh-text;
+    transition: background-color 0.3s, color 0.3s;
+
+    svg {
+      display: none;
+    }
+
+    &::after {
+      content: "";
+      flex: none;
+      width: 25px;
+      height: 16px;
+      background: $wh-purple;
+      -webkit-mask: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='16' viewBox='0 0 25 16' fill='none' stroke='%23000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 8H24.5M16.5 1C17.2 4.2 20.3 7 24.5 8C20.3 9 17.2 11.8 16.5 15'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='16' viewBox='0 0 25 16' fill='none' stroke='%23000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 8H24.5M16.5 1C17.2 4.2 20.3 7 24.5 8C20.3 9 17.2 11.8 16.5 15'/%3E%3C/svg%3E") no-repeat center / contain;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    &:hover {
+      background: $wh-purple;
+      color: #fff;
+
+      &::after {
+        background: #fff;
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  // ---------- 症例 ----------
+  &__case {
+    margin-top: 28px;
+  }
+
+  &__case-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #333;
+  }
+
+  &__case-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 520px;
+    max-width: 100%;
+    margin-top: 13px;
+  }
+
+  &__case-item {
+    width: calc((100% - 42px) / 2);
+    margin: 0;
+    text-align: center;
+  }
+
+  &__case-img {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #d9d9d9;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // 画像が未設定のときのダミー表示
+    &--empty span {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      font-family: $wh-en;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: #e7e7e7;
+    }
+  }
+
+  &__case-label {
+    margin-top: 7px;
+    text-align: center;
+    font-family: $wh-en;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: $wh-text;
+  }
+
+  // 矢印を画像の縦中央に合わせる
+  &__case-arrow {
+    margin-top: calc((100% - 42px) / 6 - 9px);
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    color: #666;
+  }
+
+  // ---------- 注意書き ----------
+  &__notes {
+    max-width: 540px;
+    margin-top: 12px;
+    font-size: 11px;
+    line-height: 17px;
+    letter-spacing: 0;
+    color: $wh-note;
+
+    p {
+      margin: 0;
+    }
+
+    span {
+      margin-right: 2.5em;
+    }
+  }
+
+  // ---------- 左：画像（.Whitening の左端にくっつける） ----------
+  // 画面が1366px以下：画面の左端にくっつく（右だけ角丸）
+  // 画面が1366pxより広い：.Whitening の左端にとどまり、左側の角も丸くなる
+  &__visual {
+    position: absolute;
+    top: 136px; // .Whitening の padding-top と同じ
+    left: 0;
+    width: var(--wh-visual);
+    aspect-ratio: 1; // _sec08-Implant.scss の画像と同じ正方形
+    overflow: hidden;
+    border-radius: 0 8px 8px 0;
+
+    @media (min-width: 1367px) {
+      border-radius: 8px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 62% 50%; // 写真の見せる位置（左右）
+      transform: scaleX(-1); // 左右反転
+    }
+  }
+
+  // ---------- SP ----------
+  @media (max-width: 768px) {
+    padding: 28px 0 40px;
+
+    // SPでは _sec08-Implant.scss と同じく左上に置く
+    &__logo {
+      top: 8px;
+      right: auto;
+      left: -90px;
+      width: 240px;
+    }
+
+    &__inner {
+      padding: 0;
+    }
+
+    &__body {
+      width: auto;
+      padding: 0 20px;
+    }
+
+    // 角丸のカード（画像を背景に敷き、その上に文字を重ねる）※ _sec08-Implant.scss と同じ作り
+    &__intro {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 25px 20px 20px;
+      border-radius: 16px;
+      background: #f8f8fb;
+      box-shadow: 0 8px 24px rgba(46, 42, 51, 0.1);
+    }
+
+    // 画像はカード全面の背景。文字が読めるよう半透明の白を重ねる
+    &__visual {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      width: auto;
+      aspect-ratio: auto;
+      border-radius: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      img {
+        object-position: 62% 50%;
+        transform: none; // SPでは左右反転を戻す
+      }
+    }
+
+    &__title {
+      margin: 15px 0 0;
+      font-size: 24px;
+    }
+
+    &__lead {
+      margin: 3px 0 0;
+      font-size: 16px;
+    }
+
+    &__text {
+      max-width: none;
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 25px;
+    }
+
+    &__btn {
+      margin-top: 10px;
+    }
+
+    &__case {
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    &__case-row {
+      margin: 13px auto 0;
+    }
+
+    &__notes {
+      margin: 12px auto 0;
+      text-align: left;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Whitening__btn,
+  .Whitening__btn::after {
+    transition: none;
+  }
+
+  .Whitening__btn:hover::after {
+    transform: none;
+  }
+}

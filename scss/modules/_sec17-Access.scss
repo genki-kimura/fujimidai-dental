@@ -1,0 +1,796 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+Access（医院情報・アクセス）
+---------------------------------------- */
+$access-purple: #8169a8;       // ボタン・枠線
+$access-purple-light: #8e7cc3; // 小見出し・リンク・●
+$access-pink: #b8628f;         // 日祝・△
+$access-text: #2b2635;
+$access-sub: #5a5568;
+$access-border: #e3e0ee;       // 表の線（_sec05-Information.scss と同じ）
+$access-table-pink: #c0708f;   // 表の「日祝」（_sec05-Information.scss と同じ）
+$access-bp: 899px;             // この幅以下で1カラムにする
+$access-sp: 767px;             // この幅以下でスマホ用のレイアウトにする（_sec05-Information.scss と同じ）
+
+// ○ △ ／ のマークはSVGで描く
+$access-mark-open: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='8' fill='%238e7cc3'/%3E%3C/svg%3E");
+$access-mark-half: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5 20.5 19.5H3.5Z' fill='none' stroke='%23b8628f' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E");
+$access-mark-closed: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 19 19 5' stroke='%23999' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+
+// 医院情報（スマホ）の丸アイコン
+$access-icon-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238169a8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z'/%3E%3Ccircle cx='12' cy='10' r='2.4'/%3E%3C/svg%3E");
+$access-icon-phone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238169a8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E");
+$access-icon-train: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238169a8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='3' width='14' height='15' rx='3'/%3E%3Cpath d='M5 11h14M8 21l1.5-3M16 21l-1.5-3'/%3E%3Ccircle cx='9' cy='14.5' r='.6'/%3E%3Ccircle cx='15' cy='14.5' r='.6'/%3E%3C/svg%3E");
+$access-icon-car: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238169a8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l1.6-4.6A2 2 0 0 1 8.5 6h7a2 2 0 0 1 1.9 1.4L19 12'/%3E%3Crect x='3' y='12' width='18' height='6' rx='2'/%3E%3Cpath d='M6.5 18v2M17.5 18v2'/%3E%3Ccircle cx='7.5' cy='15' r='.7'/%3E%3Ccircle cx='16.5' cy='15' r='.7'/%3E%3C/svg%3E");
+
+// 上のふちのゆるやかな波（白）※ _sec13-Greeting.scss と同じ形
+$access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath fill='%23fff' d='M0 0H1440V22C1200 46 920 56 660 50C400 44 160 34 0 44Z'/%3E%3C/svg%3E");
+
+.Access {
+  position: relative;
+  padding: 120px 20px 100px;
+  color: $access-text;
+  background:
+    radial-gradient(ellipse 50% 45% at 100% 100%, rgba(246, 218, 232, 0.8), transparent 70%),
+    linear-gradient(135deg, #e7e2f5 0%, #f6f3fb 38%, #faf6fb 70%, #f8eef5 100%);
+
+  @media (max-width: $access-bp) {
+    padding: 88px 16px 72px;
+  }
+
+  // 上のふちの波
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background: $access-wave no-repeat center top / 100% 100%;
+    pointer-events: none;
+
+    @media (max-width: $access-bp) {
+      height: 32px;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 9fr) minmax(0, 10fr);
+    column-gap: 60px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media (max-width: $access-bp) {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 48px;
+    }
+  }
+
+  /* ========== 左：医院情報 ========== */
+  &__lead {
+    margin: 0;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+    color: $access-purple-light;
+  }
+
+  &__name {
+    margin: 20px 0 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: 38px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    color: $access-text;
+
+    @media (max-width: $access-bp) {
+      font-size: 30px;
+    }
+  }
+
+  &__line {
+    display: block;
+    width: 64px;
+    height: 1px;
+    margin-top: 26px;
+    background: #d6d2e3;
+  }
+
+  &__info {
+    margin: 32px 0 0;
+    padding: 0;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: $access-sub;
+
+    p,
+    address {
+      margin: 0;
+      font-style: normal;
+    }
+  }
+
+  &__info-row + &__info-row {
+    margin-top: 8px;
+  }
+
+  // 「住所」「電話」などの小見出しは、スマホだけ表示
+  &__info-label {
+    display: none;
+  }
+
+  // 電話：PCは「TEL 03-xxxx（外来）／ 03-xxxx（訪問）」と1行、スマホは1件ずつ改行
+  &__tel-type {
+    &::before {
+      content: "（";
+    }
+
+    &::after {
+      content: "）";
+    }
+  }
+
+  &__tel {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: $access-text;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    @media (max-width: $access-bp) {
+      font-size: 16px;
+    }
+  }
+
+  &__sub {
+    margin: 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    color: $access-sub;
+  }
+
+  /* 診療時間 */
+  &__hours {
+    margin-top: 40px;
+  }
+
+  &__table-wrap {
+    margin-top: 12px;
+    overflow-x: auto;
+  }
+
+  // 診療時間の表（_sec05-Information.scss の表と同じ作り。
+  // テーマ側のth/td指定に負けないよう .Access を付けて詳細度を上げています）
+  & &__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid $access-border;
+    border-radius: 12px;
+    background: #fff; // 背景がグラデーションなので、表は白地にする
+    overflow: hidden;
+    table-layout: fixed;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+
+    th,
+    td {
+      padding: 0;
+      text-align: center;
+      vertical-align: middle;
+      font-weight: 400;
+      line-height: 1;
+      border-right: 1px solid $access-border;
+      border-bottom: 1px solid $access-border;
+    }
+
+    // 時間の列は広めにとる
+    tr > :first-child {
+      width: 26%;
+    }
+
+    thead th {
+      height: 42px;
+      background: #f9f8fc;
+    }
+
+    tr > :last-child {
+      border-right: 0;
+    }
+
+    tbody tr:last-child > * {
+      border-bottom: 0;
+    }
+
+    tbody th {
+      padding: 0 8px;
+      font-size: 12px;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    tbody td {
+      height: 60px;
+    }
+
+    .is-holiday {
+      color: $access-table-pink;
+    }
+
+    @media (min-width: 768px) {
+      tr > :first-child {
+        width: 22%;
+      }
+
+      tbody th {
+        font-size: 13px;
+      }
+    }
+  }
+
+  &__mark {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    &--open {
+      background-image: $access-mark-open;
+    }
+
+    &--half {
+      background-image: $access-mark-half;
+    }
+
+    &--closed {
+      background-image: $access-mark-closed;
+    }
+  }
+
+  &__note {
+    margin: 14px 0 0;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #6f6a7c;
+  }
+
+  /* 決済方法 */
+  &__pay {
+    margin-top: 36px;
+  }
+
+  &__pay-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 36px;
+    row-gap: 6px;
+  }
+
+  &__pay-text {
+    margin: 0;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: $access-text;
+  }
+
+  &__pay-img {
+    margin: 14px 0 0;
+    background: #fff;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  // スマホ用の2枚組はPCでは隠す
+  &__pay-img--sp {
+    display: none;
+  }
+
+  /* ========== 右：予約ボタン・バナー・地図 ========== */
+  &__side {
+    min-width: 0;
+  }
+
+  &__cta {
+    display: grid;
+    grid-template-columns: 1.06fr 1fr;
+    gap: 18px;
+
+    @media (max-width: 599px) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 72px;
+    padding: 0 30px 0 26px;
+    border: 2px solid $access-purple;
+    border-radius: 999px;
+    font-family: "Noto Sans JP", sans-serif;
+    color: #fff;
+    text-decoration: none;
+    background: $access-purple;
+    box-shadow: 0 8px 20px rgba(129, 105, 168, 0.28);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &--outline {
+      color: $access-purple;
+      background: #fff;
+      box-shadow: none;
+    }
+
+    &:focus-visible {
+      outline: 3px solid rgba(129, 105, 168, 0.4);
+      outline-offset: 3px;
+    }
+  }
+
+  &__btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-left: 6px;
+  }
+
+  &__btn-sub {
+    font-size: 11px;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    opacity: 0.95;
+  }
+
+  &__btn-main {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+  }
+
+  &__btn-arrow {
+    flex-shrink: 0;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  &__banner {
+    display: block;
+    margin-top: 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.88;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  /* 地図（Googleマップ埋め込み用） */
+  &__map {
+    position: relative;
+    height: 366px;
+    margin: 16px 0 0;
+    border: 1px solid #e3deec;
+    border-radius: 12px;
+    overflow: hidden;
+    background: repeating-linear-gradient(
+      -45deg,
+      #e9e6f0 0,
+      #e9e6f0 10px,
+      #dedae8 10px,
+      #dedae8 20px
+    );
+
+    iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: $access-bp) {
+      height: 300px;
+    }
+  }
+
+  &__map-card {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+    width: 300px;
+    max-width: calc(100% - 20px);
+    padding: 33px 25px ;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(80, 60, 120, 0.15);
+
+    @media (max-width: 599px) {
+      width: 290px;
+      padding: 16px 18px 14px;
+    }
+  }
+
+  &__map-name {
+    margin: 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    color: $access-text;
+
+    @media (max-width: 599px) {
+      font-size: 16px;
+    }
+  }
+
+  &__map-address {
+    margin: 10px 0 0;
+    font-style: normal;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: $access-sub;
+
+    @media (max-width: 599px) {
+      font-size: 12px;
+    }
+  }
+
+  &__map-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 0 0;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    line-height: 1;
+    color: $access-sub;
+
+    a {
+      color: $access-purple-light;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    @media (max-width: 599px) {
+      font-size: 12px;
+    }
+  }
+
+  &__map-rate {
+    padding-right: 12px;
+    border-right: 1px solid #ddd8e8;
+  }
+
+  &__map-label {
+    position: absolute;
+    right: 20px;
+    bottom: 14px;
+    margin: 0;
+    font-family: "Jost", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #8f8a9c;
+  }
+
+  /* SP（スマホ：モックアップ幅375px（書き出し750px）をもとにしています）
+     診療時間 → 医院情報 → 決済方法 → 予約ボタン → バナー → 地図 の順に縦に並べる
+     表やマークの数値は _sec05-Information.scss のSPと同じです */
+  @media (max-width: $access-sp) {
+    padding: 88px 20px 48px; // 上は波(32px)＋余白
+
+    &__inner {
+      row-gap: 32px;
+    }
+
+    // 左カラムは中身を並べ替えるため縦並びのflexにする
+    &__main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__lead {
+      font-size: 12px;
+    }
+
+    &__name {
+      margin-top: 24px;
+      font-size: 22.5px;
+    }
+
+    &__sub {
+      font-size: 16.5px;
+    }
+
+    /* 診療時間 */
+    &__hours {
+      order: 1;
+      margin-top: 36px;
+    }
+
+    &__table-wrap {
+      margin-top: 11px;
+    }
+
+    & &__table {
+      th,
+      td {
+        border-right: 0; // スマホは縦線なし（横線のみ）
+      }
+
+      tr > :first-child {
+        width: 22%;
+      }
+
+      thead th {
+        height: 33px;
+      }
+
+      // 時間は「9:00–」「12:00」のように2行に折り返す
+      tbody th {
+        padding: 0 10px;
+        font-size: 11.5px;
+        line-height: 1.35;
+        white-space: normal;
+      }
+
+      tbody td {
+        height: 49px;
+      }
+    }
+
+    &__mark {
+      width: 20px;
+      height: 20px;
+    }
+
+    &__note {
+      margin-top: 12px;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      line-height: 1.23;
+    }
+
+    /* 医院情報（アイコン付きカード） */
+    &__info {
+      order: 2;
+      margin-top: 24px;
+      padding: 4px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.65;
+      // 外側は少し透けた白、中の行は白
+      background:
+        linear-gradient(#fff, #fff) content-box,
+        linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)) border-box;
+    }
+
+    &__info-row {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      column-gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid $access-border;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      // 丸アイコン（左。小見出しと本文の2行ぶんの高さにまたがる）
+      &::before {
+        content: "";
+        grid-row: 1 / span 2;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #f1eef8 no-repeat center / 14px;
+      }
+
+      &--address::before {
+        background-image: $access-icon-pin;
+      }
+
+      &--tel::before {
+        background-image: $access-icon-phone;
+      }
+
+      &--access::before {
+        background-image: $access-icon-train;
+      }
+
+      &--parking::before {
+        background-image: $access-icon-car;
+      }
+    }
+
+    &__info-row + &__info-row {
+      margin-top: 0;
+    }
+
+    &__info-label {
+      display: block;
+      grid-column: 2;
+      font-size: 11px;
+      line-height: 1.3;
+      color: $access-purple-light;
+    }
+
+    &__info-text {
+      grid-column: 2;
+    }
+
+    // 電話：「外来　03-…」「訪問　03-…」を1件ずつ改行
+    &__tel {
+      font-size: 14px;
+      line-height: 23px;
+      letter-spacing: 0;
+    }
+
+    &__tel-title,
+    &__tel-sep {
+      display: none;
+    }
+
+    &__tel-item {
+      display: flex;
+    }
+
+    &__tel-type {
+      order: -1;
+      margin-right: 14px;
+
+      &::before,
+      &::after {
+        content: none;
+      }
+    }
+
+    /* 決済方法 */
+    &__pay {
+      order: 3;
+      margin-top: 26px;
+    }
+
+    &__pay-head {
+      display: block;
+    }
+
+    &__pay-text {
+      margin-top: 9px;
+    }
+
+    &__pay-img {
+      background: transparent; // 画像自体が白地なので、枠は透明
+
+      &--pc {
+        display: none;
+      }
+
+      &--sp {
+        display: block;
+
+        // 画像は書き出しサイズの半分（2x）で、左寄せに2段で並べる
+        img {
+          width: 254px;
+          max-width: 100%;
+
+          & + img {
+            width: 287px;
+            margin-top: 4px;
+          }
+        }
+      }
+    }
+
+    /* 予約ボタン */
+    &__cta {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    &__btn {
+      min-height: 72px;
+      padding: 0 63px 0 18px;
+    }
+
+    &__btn-sub {
+      font-size: 11px;
+    }
+
+    &__btn-main {
+      padding-left: 43px;
+      font-size: 15px;
+    }
+
+    &__banner {
+      border-radius: 8px;
+    }
+
+    /* 地図（カードの文字はモックアップどおり小さめです） */
+    &__map {
+      height: 204px;
+      border-radius: 4px;
+    }
+
+    &__map-card {
+      width: 183px;
+      padding: 9px 11px 10px;
+      border-radius: 4px;
+    }
+
+    &__map-name {
+      font-size: 8px;
+    }
+
+    &__map-address {
+      margin-top: 4px;
+      font-size: 6px;
+    }
+
+    &__map-meta {
+      gap: 6px;
+      margin-top: 7px;
+      font-size: 6px;
+    }
+
+    &__map-rate {
+      padding-right: 6px;
+    }
+
+    &__map-label {
+      right: 11px;
+      bottom: 10px;
+      font-size: 6px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__btn,
+    &__banner {
+      transition: none;
+    }
+  }
+}

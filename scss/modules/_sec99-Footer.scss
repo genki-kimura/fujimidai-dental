@@ -3,3 +3,399 @@
 /* ----------------------------------------
 Footer
 ---------------------------------------- */
+// ▼ スマホ用レイアウトに切り替える画面幅
+$footer-bp: 768px;
+
+$footer-color-bg: #372f42;
+$footer-color-line: rgba(255, 255, 255, 0.14);
+$footer-color-link: rgba(255, 255, 255, 0.78);
+$footer-color-text: rgba(255, 255, 255, 0.72);
+$footer-color-link-strong: rgba(255, 255, 255, 0.86);
+$footer-color-copy: rgba(255, 255, 255, 0.6);
+
+// 右側の飾り（医院のマーク：img/Logo02.webp）の透明度
+// Logo02.webp には最初から薄い透明度（約15%）が含まれているので 1 のままにします
+// （濃く見える場合だけ 0.15 などに下げてください）
+$footer-emblem-opacity: 1;
+
+.footer {
+  position: relative;
+  overflow: hidden;
+  background: $footer-color-bg;
+  color: #fff;
+  font-family: "Noto Sans JP", sans-serif;
+
+  &__inner {
+    position: relative;
+    max-width: 1366px;
+    margin: 0 auto;
+    padding: 52px clamp(24px, 5.12vw, 70px) 30px; // デザイン: 上52px / 左右70px / 下30px
+
+    // 右側の飾り（img/Logo02.webp）
+    &::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: 0;
+      bottom: 0;
+      width: 417px;
+      background: url("../img/Logo02.webp") no-repeat right top / contain;
+      opacity: $footer-emblem-opacity;
+      pointer-events: none;
+    }
+  }
+
+  // メニュー（4列：医院について / 診療案内（2列分） / その他）
+  &__nav {
+    position: relative;
+    display: grid;
+    grid-template-columns: 263fr 297fr 298fr 368fr;
+    padding-bottom: 28px;
+  }
+
+  &__group--treatment {
+    grid-column: span 2;
+  }
+
+  &__heading {
+    margin: 0 0 13px;
+    font-family: "Shippori Mincho", serif;
+    font-size: 14.886px;
+    line-height: 21.891px;
+    letter-spacing: 1.4886px;
+    color: #fff;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  // 診療案内：件数の半分ずつを、左の列から順に並べる
+  &__list--2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(var(--footer-rows, 7), auto);
+    grid-auto-flow: column;
+  }
+
+  &__link {
+    display: block;
+    padding: 3.6px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: $footer-color-link;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  // 医療広告ガイドライン
+  &__guideline {
+    position: relative;
+    padding: 29px 0 30px;
+    border-top: 1px solid $footer-color-line;
+  }
+
+  &__guideline-title {
+    margin: 0 0 9.4px;
+    font-family: "Shippori Mincho", serif;
+    font-size: 14.886px;
+    line-height: 21.891px;
+    letter-spacing: 1.1909px;
+    color: #fff;
+  }
+
+  &__guideline-text {
+    margin: 0;
+    font-size: 12px;
+    line-height: 22.46px;
+    color: $footer-color-text;
+  }
+
+  &__guideline-links {
+    margin: 16.6px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+    line-height: 1.45;
+
+    li + li {
+      margin-top: 10.6px;
+    }
+
+    a {
+      color: $footer-color-link-strong;
+      text-decoration: underline;
+      text-underline-position: from-font;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  // コピーライト
+  &__bottom {
+    position: relative;
+    padding-top: 19px;
+    border-top: 1px solid $footer-color-line;
+  }
+
+  &__copy {
+    margin: 0;
+    font-size: 10.946px;
+    line-height: 1.52;
+    color: $footer-color-copy;
+  }
+}
+
+/* ----------------------------------------
+Floating CTA（画面右側に追従）
+---------------------------------------- */
+.floating-cta {
+  position: fixed;
+  top: 35%;
+  right: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  width: max-content;
+  transform: translateY(-50%);
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: normal;
+  white-space: nowrap;
+
+  &__btn {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 13px 15px 13px 22px;
+    // 高さに関係なく左端が真円（半円）になるよう、十分大きな値を指定
+    border-radius: 999px 0 0 999px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    // WEB予約する
+    &--web {
+      --cta-label: #dcd2ee;
+      --cta-main: #fff;
+      background: #7f6ba6;
+      box-shadow: -2px 4px 14px rgba(127, 107, 166, 0.4);
+    }
+
+    // ホワイトニングを予約
+    &--white {
+      --cta-label: #8b7bc7;
+      --cta-main: #7f6ba6;
+      background: #fff;
+      border: 1.5px solid #7f6ba6;
+      border-right: 0; // 右端の縁はなくして画面端から生えているように見せる
+      box-shadow: -2px 4px 14px rgba(46, 42, 51, 0.12);
+    }
+
+    // 電話
+    &--tel {
+      --cta-label: #8b7bc7;
+      --cta-main: #7f6ba6;
+      background: #fff;
+      border: 1.5px solid #c9bfe8;
+      border-right: 0; // 右端の縁はなくす
+      box-shadow: -2px 4px 14px rgba(46, 42, 51, 0.1);
+
+      .floating-cta__label {
+        font-size: 9px;
+        letter-spacing: 0.2px;
+      }
+    }
+  }
+
+  // 電話ボタンを包む <address>（ブラウザ標準のイタリック・余白を打ち消し、ボタンをそのまま表示）
+  &__address {
+    display: flex;
+    margin: 0;
+    font-style: normal;
+
+    .floating-cta__btn {
+      flex: 1 1 auto;
+    }
+  }
+
+  // 文言の出し分け（PC用は長い文言、スマホ用は短い文言）
+  &__sp {
+    display: none;
+  }
+
+  &__label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    color: var(--cta-label);
+  }
+
+  &__main {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    color: var(--cta-main);
+  }
+}
+
+/* ----------------------------------------
+Footer / Floating CTA sp
+---------------------------------------- */
+@media (max-width: #{$footer-bp}) {
+  .footer {
+    padding-bottom: clamp(50px, 13vw, 150px); // 下部の追従バーに隠れないための余白
+
+    &__inner {
+      padding: 40px 20px 24px;
+
+      &::before {
+        width: 260px;
+      }
+    }
+
+    // 1段目：医院について（左）／その他（右）、2段目：診療案内（全幅・2列）
+    &__nav {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 22px;
+      padding-bottom: 18px;
+    }
+
+    // 「その他」はDOM上は診療案内のあとなので、位置を指定して1段目の右に置く
+    &__group:first-child {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    &__group:last-child {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    &__group--treatment {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    // 医療広告ガイドライン
+    &__guideline {
+      padding: 23px 0 25px;
+    }
+
+    &__guideline-title {
+      margin-bottom: 13px;
+    }
+
+    &__guideline-text {
+      line-height: 1.8;
+    }
+
+    &__guideline-links {
+      margin-top: 13px;
+      line-height: 1.15;
+
+      li + li {
+        margin-top: 14px;
+      }
+    }
+
+    &__bottom {
+      padding-top: 23px;
+    }
+  }
+
+  // 右側の追従ボタンは、スマホでは画面下部のバーにする
+  // （白いバーの中に、角丸のボタンが3つ横に並ぶ）
+  .floating-cta {
+    --cta-gap: clamp(6px, 1.7vw, 13px);
+    --cta-pad: clamp(8px, 2.2vw, 17px);
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--cta-gap);
+    width: auto;
+    padding: var(--cta-pad) var(--cta-pad) calc(var(--cta-pad) + env(safe-area-inset-bottom, 0px));
+    transform: none;
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 -6px 20px rgba(80, 60, 120, 0.12);
+
+    // 電話ボタン（<address>）も他のボタンと同じ幅で横に並べる
+    .floating-cta__address {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    // 短い文言に切り替える
+    .floating-cta__pc {
+      display: none;
+    }
+
+    .floating-cta__sp {
+      display: inline;
+    }
+
+    .floating-cta__btn {
+      flex: 1 1 0;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      min-width: 0;
+      min-height: clamp(54px, 11.6vw, 92px);
+      padding: 8px 4px;
+      border: 0;
+      border-radius: clamp(14px, 2.8vw, 22px);
+      text-align: center;
+      white-space: normal;
+    }
+
+    // WEB予約：紫でベタ塗り
+    .floating-cta__btn--web {
+      background: linear-gradient(to bottom, #8269ae, #775fa2);
+      box-shadow: 0 8px 16px rgba(125, 101, 168, 0.35);
+    }
+
+    // ホワイトニング：白地に紫の太い枠
+    .floating-cta__btn--white {
+      border: clamp(2px, 0.35vw, 3px) solid #7f6ba6;
+      box-shadow: 0 6px 14px rgba(46, 42, 51, 0.08);
+    }
+
+    // 電話：白地にうすい紫の枠
+    .floating-cta__btn--tel {
+      border: clamp(2px, 0.3vw, 2.5px) solid #cbc2ea;
+      box-shadow: 0 6px 14px rgba(46, 42, 51, 0.06);
+    }
+
+    .floating-cta__label,
+    .floating-cta__btn--tel .floating-cta__label {
+      font-size: clamp(9px, 2.6vw, 20px);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+    }
+
+    .floating-cta__main {
+      font-size: clamp(11px, 3.3vw, 26px);
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+    }
+  }
+}

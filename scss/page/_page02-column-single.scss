@@ -1,0 +1,151 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+コラム個別ページ（single/post.php）の、追加分だけ
+※ タイトル・パンくず・本文（h2〜h5、リスト、ボタンなど）は、
+   既存の _block.scss（.page-common-head / #breadcrumbs / .page-common-content）を使います
+---------------------------------------- */
+.Column-single {
+  $purple-dark: #6a55a8;
+
+  // 日付 + カテゴリ
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    margin: 0 0 24px;
+  }
+
+  &__date {
+    font-family: "Jost", sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    color: #77727f;
+  }
+
+  &__cat {
+    padding: 3px 12px;
+    border: 1px solid #cfc6e4;
+    border-radius: 999px;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    color: $purple-dark;
+  }
+
+  // アイキャッチ
+  &__thumb {
+    margin: 0 0 40px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+  }
+
+}
+
+// コラム一覧へ戻るボタン（ボタンの見た目は既存の .internal-btn。ここでは中央ぞろえと上の余白だけ）
+// ※ 既存の「.page-common-content .wp-block-buttons」より優先されるよう、クラスを重ねています
+.page-common-content .wp-block-buttons.Column-single__back {
+  display: flex; // フロントでは WordPress 標準のブロックCSSが読み込まれていないため、flex を自分で指定する
+  justify-content: center;
+  margin: 64px 0 0;
+}
+
+@media (max-width: 767px) {
+  .Column-single {
+    &__thumb {
+      margin-bottom: 28px;
+    }
+  }
+
+  .page-common-content .wp-block-buttons.Column-single__back {
+    margin-top: 48px;
+  }
+}
+
+/* ----------------------------------------
+コラム一覧ページ（archive/post.php）の、追加分だけ
+※ カードは、トップの「SAKURA MAG」と同じ .Sakura-mag__〜（_sec15-Sakura-mag.scss）を使います
+---------------------------------------- */
+.Column-archive {
+  padding: 24px 24px 120px;
+
+  &__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  // カード一覧：上の余白だけ、一覧ページ用にする（トップ用の110pxは大きいため）
+  .Sakura-mag__list {
+    margin-top: 0;
+  }
+
+  // ページ送り（the_posts_pagination）
+  .navigation.pagination {
+    margin: 64px 0 0;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #cdc2e8;
+    border-radius: 999px;
+    background: #fff;
+    font-family: "Jost", sans-serif;
+    font-size: 14px;
+    line-height: 1;
+    text-decoration: none;
+    color: #6a55a8;
+    transition: background-color 0.3s, color 0.3s;
+
+    &.current,
+    &:hover {
+      border-color: #7e69a9;
+      background: #7e69a9;
+      color: #fff;
+    }
+
+    &.dots {
+      border-color: transparent;
+      background: none;
+
+      &:hover {
+        color: #6a55a8;
+      }
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .Column-archive {
+    padding-bottom: 96px;
+  }
+}
+
+@media (max-width: 767px) {
+  .Column-archive {
+    padding: 8px 20px 72px;
+
+    .navigation.pagination {
+      margin-top: 40px;
+    }
+  }
+}

@@ -1,0 +1,183 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+Staff（スタッフ紹介）
+---------------------------------------- */
+.Staff {
+  $purple: #8b7bc7;
+  $text: #3d3a55;
+
+  padding: 112px 24px 64px;
+  color: $text;
+  // 上は白、下に向かってうすいラベンダーへ
+  background: linear-gradient(to bottom, #fff 0%, #f8f5fc 40%, #efeafa 100%);
+
+  // 左：見出し / 右：紹介文 / 下：写真（幅は最大1080pxで固定）
+  &__inner {
+    display: grid;
+    grid-template-columns: 437px minmax(0, 1fr);
+    grid-template-areas:
+      "head body"
+      "photo photo";
+    align-items: start;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  // 見出し（Information / Greeting の見出しと同じ指定）
+  &__head {
+    grid-area: head;
+    padding-top: 3px;
+    text-align: left;
+  }
+
+  &__en {
+    margin: 0 0 15px;
+    text-align: left;
+    font-family: "Jost", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 3px;
+    color: $purple;
+  }
+
+  &__title {
+    margin: 0 0 16px;
+    text-align: left;
+    font-family: "Shippori Mincho", serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 2.6px;
+    color: #2e2a33;
+  }
+
+  &__line {
+    display: block;
+    width: 56px;
+    height: 1px;
+    background: #e8b4c8;
+  }
+
+  // キャッチの途中の改行（SPだけ有効。SPのブロックで表示します）
+  &__sp-br {
+    display: none;
+  }
+
+  // 右：キャッチと紹介文
+  &__body {
+    grid-area: body;
+    min-width: 0;
+  }
+
+  &__catch {
+    margin: 0;
+    text-align: left;
+    font-family: "Shippori Mincho", serif;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.15em;
+    color: #2e2a33;
+  }
+
+  &__text {
+    margin: 20px 0 0;
+    text-align: left;
+    font-size: 14px;
+    line-height: 32px;
+    letter-spacing: 0.04em;
+    color: $text;
+  }
+
+  // 写真（比率を固定。画面が広くなっても大きくならない）
+  &__photo {
+    grid-area: photo;
+    margin: 36px 0 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1080 / 370;
+      object-fit: cover;
+      object-position: 50% 15%;
+      border-radius: 16px;
+    }
+  }
+}
+
+/* ----------------------------------------
+Staff タブレット・SP（見出し → 紹介文 → 写真を縦に並べる）
+---------------------------------------- */
+@media (max-width: 1023px) {
+  .Staff {
+    padding: 80px 24px 56px;
+
+    &__inner {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "head"
+        "body"
+        "photo";
+    }
+
+    &__body {
+      margin-top: 28px;
+    }
+
+    &__photo {
+      margin-top: 32px;
+
+      img {
+        aspect-ratio: 2 / 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .Staff {
+    // 下の余白は0：写真をセクションの下端にくっつける
+    padding: 52px 20px 0;
+    background: #fff; // SPは背景を白に（PC・タブレットはラベンダーのグラデーション）
+
+    &__title {
+      font-size: 22px;
+      letter-spacing: 0.05em;
+    }
+
+    // 「チームで支える、」のあとをSPだけ改行
+    &__sp-br {
+      display: inline;
+    }
+
+    &__body {
+      margin-top: 24px;
+    }
+
+    &__catch {
+      font-size: 20px;
+      line-height: 1.8;
+      letter-spacing: 0.1em;
+    }
+
+    &__text {
+      margin-top: 16px;
+      font-size: 15px;
+      line-height: 26px;
+      letter-spacing: 0;
+    }
+
+    // 写真は画面の左右いっぱい（セクションの左右の余白20pxを打ち消す）・上の角だけ丸く
+    &__photo {
+      margin: 32px -20px 0;
+
+      img {
+        aspect-ratio: 20 / 9; // 元写真（900×405）とほぼ同じ比率
+        border-radius: 3px 3px 0 0;
+      }
+    }
+  }
+}

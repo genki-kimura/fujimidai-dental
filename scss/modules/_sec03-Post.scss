@@ -1,0 +1,185 @@
+@use "setting" as *;
+
+/* ----------------------------------------
+Post（Instagram 新着投稿）
+---------------------------------------- */
+.Post {
+  $card-w: 240px;
+  $card-gap: 24px;
+  $side-pad: 35px;
+  $sp: 767px;
+
+  padding: 39px 0 80px;
+  background: #fff;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+
+  &__slider {
+    position: relative;
+    width: 100%;
+    max-width: 1366px;
+  }
+
+  &__viewport {
+    overflow: hidden;
+    margin: 0 $side-pad;
+    touch-action: pan-y;
+
+    @media (max-width: $sp) {
+      margin: 0 20px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    gap: $card-gap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @media (max-width: $sp) {
+      gap: 12px;
+    }
+  }
+
+  &__slider.is-ready &__list {
+    justify-content: flex-start;
+    width: max-content;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  &__item {
+    flex: 0 0 $card-w;
+
+    @media (max-width: $sp) {
+      flex-basis: min(62vw, $card-w);
+    }
+  }
+
+  &__card {
+    display: block;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #dedede;
+    transition: opacity 0.3s;
+
+    @media (hover: hover) {
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  // 左右の矢印
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e6e6e6;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: background-color 0.3s;
+
+    &::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-top: 2px solid #666;
+      border-left: 2px solid #666;
+    }
+
+    &--prev {
+      left: 47px;
+
+      &::before {
+        transform: translateX(2px) rotate(-45deg);
+      }
+    }
+
+    &--next {
+      right: 47px;
+
+      &::before {
+        transform: translateX(-2px) rotate(135deg);
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background: #d4d4d4;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid #555;
+      outline-offset: 2px;
+    }
+
+    @media (max-width: $sp) {
+      width: 36px;
+      height: 36px;
+
+      &--prev {
+        left: 8px;
+      }
+
+      &--next {
+        right: 8px;
+      }
+    }
+  }
+
+  &__dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  &__dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+    }
+
+    &.is-active {
+      background: #555;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #555;
+      outline-offset: 3px;
+    }
+  }
+}
