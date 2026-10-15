@@ -6889,6 +6889,238 @@ message mv
     margin-top: 40px;
   }
 }
+.page-common-content .news-single-meta {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px 20px;
+  margin: 0 0 2.4rem;
+  padding: 0 0 1.4rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+.page-common-content .news-single-meta__date {
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: #6e6e73;
+}
+.page-common-content .news-single-meta__cat {
+  display: inline-block;
+  padding: 3px 18px;
+  border: 1px solid #6e6e73;
+  border-radius: 999px;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  color: #6e6e73;
+}
+
+.page-common-content .news-single-body {
+  min-height: 2rem;
+  margin-bottom: 3rem;
+}
+
+.page-common-content .news-single-back {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 6rem;
+}
+.page-common-content .news-single-back .wp-block-buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+}
+.page-common-content .news-single-back .wp-block-buttons .wp-block-button {
+  margin: 0 auto;
+}
+
+.page-common-content .news-archive-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #e0e0e0;
+}
+.page-common-content .news-archive-list__li {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.page-common-content .news-archive-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px 28px;
+  padding: 28px 8px;
+  text-decoration: none;
+  color: #2b2b33;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+.page-common-content .news-archive-item__date {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  min-width: 7.5em;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: #6e6e73;
+}
+.page-common-content .news-archive-item__cat {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  min-width: 6.5em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 3px 14px;
+  border: 1px solid #6e6e73;
+  border-radius: 999px;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: #6e6e73;
+}
+.page-common-content .news-archive-item__title {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  min-width: 0;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+}
+.page-common-content .news-archive-item:hover {
+  background: #faf8fd;
+}
+.page-common-content .news-archive-item:hover .news-archive-item__title {
+  color: #7e69a9;
+}
+
+.page-common-content .news-archive-pagination {
+  margin-top: 4rem;
+}
+.page-common-content .news-archive-pagination ul {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.page-common-content .news-archive-pagination li {
+  margin: 0;
+  padding: 0;
+}
+.page-common-content .news-archive-pagination .page-numbers {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 8px;
+  border: 1px solid #cdc4e8;
+  border-radius: 50%;
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  color: #7e69a9;
+  -webkit-transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
+}
+.page-common-content .news-archive-pagination .page-numbers:hover {
+  background: #f4f1fb;
+}
+.page-common-content .news-archive-pagination .page-numbers.current {
+  border-color: #7e69a9;
+  background: #7e69a9;
+  color: #fff;
+}
+.page-common-content .news-archive-pagination .page-numbers.dots {
+  border-color: transparent;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .news-archive-item {
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    padding: 20px 4px;
+  }
+  .page-common-content .news-archive-item__date {
+    min-width: 0;
+  }
+  .page-common-content .news-archive-item__title {
+    -webkit-flex-basis: 100%;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+  }
+}
 /* ----------------------------------------
 last
 ---------------------------------------- */
