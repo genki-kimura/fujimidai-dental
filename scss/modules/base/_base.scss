@@ -1,5 +1,15 @@
 @use "setting" as *;
 
+// 横方向のはみ出し対策
+// 画面幅より横に出ている要素（Postスライダーの左右のクローン等）があると、
+// ページ全体が横に広がり、右側に白い空白が出るため、はみ出し分を切り落とす
+// （overflow-x: clip は横スクロール領域を作らないので、他の動きに影響しません）
+html,
+body {
+    overflow-x: hidden; // clip 非対応ブラウザ用
+    overflow-x: clip;
+}
+
 // all
 body,*{
     font-family: $zenkaku;
@@ -184,4 +194,52 @@ main.is-page{
         margin-left: 2px;
         letter-spacing: 0.3em;
     }
+}
+
+// ----------------------------------------
+// 医院マークの飾り（花は止まったまま、文字リングだけがゆっくり回る）
+// ----------------------------------------
+// 使い方（HTML）:
+//   <span class="Xxx__logo emblem" aria-hidden="true">
+//     <img class="emblem__flower" src="Logo02-flower.webp" ...>
+//     <img class="emblem__text"   src="Logo02-text.webp"   ...>
+//   </span>
+// ・大きさ・位置は、これまでどおり .Xxx__logo 側（width / top / left など）で指定します
+// ・2枚の画像は同じサイズ（834×1106）で、重ねるだけで元のロゴになります
+$emblem-duration: 90s; // 文字が1周する時間（小さいほど速い）
+$emblem-origin: 49.9% 50.1%; // 回転の中心（花の中心。通常は触らなくてOK）
+
+.emblem {
+  position: absolute;
+  aspect-ratio: 834 / 1106;
+  pointer-events: none;
+  user-select: none;
+
+  &__flower,
+  &__text {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__text {
+    transform-origin: $emblem-origin;
+    animation: emblem-rotate $emblem-duration linear infinite;
+    will-change: transform;
+  }
+}
+
+@keyframes emblem-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 「視差効果を減らす」設定の人には回さない
+@media (prefers-reduced-motion: reduce) {
+  .emblem__text {
+    animation: none;
+  }
 }

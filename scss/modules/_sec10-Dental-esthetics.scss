@@ -18,6 +18,7 @@ $de-en: "Jost", "Helvetica Neue", Arial, sans-serif;
 $de-inner: 1080px; // .Dental-esthetics__inner の最大幅
 $de-shift: 0px; // 左側（文字・施術ステップ）をさらに左へ寄せたいときの量（0で中央寄せ）
 $de-top: 40px; // セクション上の余白（右の画像の位置も同じ値）
+$de-logo-hide-from: 1001px; // この画面幅以上では、背景の透かしロゴを非表示にする（1000px以下のSPレイアウトでだけ表示）
 
 .Dental-esthetics {
   position: relative;
@@ -29,7 +30,7 @@ $de-top: 40px; // セクション上の余白（右の画像の位置も同じ�
   // ※ overflow: hidden は付けない（画面が1366pxより広いとき、ロゴが左の余白にはみ出して全体が見えるようにするため）
 
   // 左上の透かしロゴ（_sec08-Implant.scss と同じ位置）
-  // 画面が1366px以下：画面の左端で途切れる ／ 1366pxより広い：左の余白に出て全体が見える
+  // 画面が1001px以上：非表示 ／ 1000px以下：SPレイアウトで左上に表示
   &__logo {
     position: absolute;
     top: 10px;
@@ -39,6 +40,11 @@ $de-top: 40px; // セクション上の余白（右の画像の位置も同じ�
     height: auto;
     pointer-events: none;
     user-select: none;
+
+    // 画面が広いときは非表示（小さい画面だけ表示）
+    @media (min-width: $de-logo-hide-from) {
+      display: none;
+    }
   }
 
   // ※ ここには position を付けない（右の画像を .Dental-esthetics 基準で配置するため）
@@ -286,7 +292,7 @@ $de-top: 40px; // セクション上の余白（右の画像の位置も同じ�
   }
 
   // ---------- SP ----------
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     padding: 28px 0 40px;
 
     &__logo {
@@ -301,6 +307,8 @@ $de-top: 40px; // セクション上の余白（右の画像の位置も同じ�
 
     &__body {
       width: auto;
+      max-width: 680px;
+      margin: 0 auto;
       padding: 0 20px;
     }
 

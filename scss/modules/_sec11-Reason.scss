@@ -40,8 +40,8 @@ $re-sp: 768px;
     position: relative;
     max-width: 1366px;
     margin: 0 auto;
-    // 上下120px。左は画面が狭くなるほど縮む（最大143px）。右の写真と重ならないための計算
-    padding: 120px 0 120px clamp(24px, calc(100vw - 1140px), 143px);
+    // PCで一画面（約840px）に収まるよう上下を64pxに。左は画面が狭くなるほど縮む（最大143px）
+    padding: 64px 0 64px clamp(24px, calc(100vw - 1140px), 143px);
   }
 
   // ---------- 左：見出し・一覧・ボタン ----------
@@ -66,11 +66,11 @@ $re-sp: 768px;
   }
 
   &__title {
-    margin: 13px 0 0;
+    margin: 8px 0 0;
     font-family: $re-serif;
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 500;
-    line-height: 1.4;
+    line-height: 1.35;
     letter-spacing: 0.05em;
     color: $re-title;
   }
@@ -79,7 +79,7 @@ $re-sp: 768px;
     display: block;
     width: 56px;
     height: 2px;
-    margin-top: 14px;
+    margin-top: 12px;
     background: $re-pink-line;
   }
 
@@ -87,10 +87,10 @@ $re-sp: 768px;
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     width: 600px;
     max-width: 100%;
-    margin: 40px 0 0;
+    margin: 28px 0 0;
     padding: 0;
     list-style: none;
   }
@@ -98,10 +98,10 @@ $re-sp: 768px;
   &__item {
     display: flex;
     align-items: flex-start;
-    min-height: 96px;
+    min-height: 84px;
     box-sizing: border-box;
     // 右の31pxで、説明文の幅が約469pxになる（折り返し位置を合わせるため）
-    padding: 15px 31px 10px 14px;
+    padding: 12px 31px 10px 14px;
     border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 14px;
     background: rgba(255, 255, 255, 0.7);
@@ -193,7 +193,7 @@ $re-sp: 768px;
     font-family: $re-serif;
     font-size: 16px;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 22px;
     letter-spacing: 0.1em;
     color: $re-title;
   }
@@ -201,7 +201,7 @@ $re-sp: 768px;
   &__item-text {
     margin: 0;
     font-size: 13px;
-    line-height: 1.8;
+    line-height: 1.7;
     letter-spacing: 0.07em;
     color: $re-text;
   }
@@ -212,18 +212,20 @@ $re-sp: 768px;
     align-items: center;
     justify-content: center;
     min-width: 179px;
-    height: 48px;
+    height: 44px;
     box-sizing: border-box;
-    margin-top: 40px;
+    margin-top: 28px;
     padding: 0 28px;
+    // Information（診療案内）のボタンと同じ：白地 + 紫の線 → ホバーで紫地 + 白文字
+    border: 1.5px solid #8b7bc8;
     border-radius: 999px;
-    background: $re-btn;
+    background: #fff;
     font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #6f5fb0;
     text-decoration: none;
-    transition: opacity 0.3s;
+    transition: background 0.2s, color 0.2s;
 
     span {
       margin-left: 2px;
@@ -231,11 +233,17 @@ $re-sp: 768px;
     }
 
     &:hover {
-      opacity: 0.85;
+      background: #8b7bc8;
+      color: #fff;
 
       span {
         transform: translateX(3px);
       }
+    }
+
+    &:focus-visible {
+      outline: 3px solid #8b7bc8;
+      outline-offset: 3px;
     }
   }
 
@@ -251,10 +259,10 @@ $re-sp: 768px;
   // 飾りの輪（細い線・写真の後ろ）
   &__ring {
     position: absolute;
-    top: 98px;
-    right: 103px;
-    width: 134px;
-    height: 134px;
+    top: 52px;
+    right: 85px;
+    width: 110px;
+    height: 110px;
     box-sizing: border-box;
     border: 1px solid rgba(139, 123, 199, 0.2);
     border-radius: 50%;
@@ -263,10 +271,10 @@ $re-sp: 768px;
   // 飾りの丸（ピンク・写真の後ろ）
   &__dot {
     position: absolute;
-    top: 402px;
-    right: 460px;
-    width: 78px;
-    height: 78px;
+    top: 312px;
+    right: 368px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     background: #f4dce5;
   }
@@ -280,28 +288,40 @@ $re-sp: 768px;
     object-fit: cover;
     border-radius: 2px;
 
+    // 高さを抑えるため、写真は約80%に縮小して配置
     &--1 {
-      top: 201px;
-      right: 36px;
-      width: 322px;
+      top: 150px;
+      right: 29px;
+      width: 258px;
     }
 
     &--2 {
-      top: 447px;
-      right: 63px;
-      width: 435px;
+      top: 347px;
+      right: 50px;
+      width: 348px;
     }
 
     // 右の端にくっつけて、はみ出したぶんは隠す
     &--3 {
-      top: 768px;
+      top: 604px;
       right: 0;
-      width: 322px;
+      width: 258px;
     }
   }
 
   // ---------- タブレット（写真は一覧の下に3枚並べる） ----------
   @media (max-width: #{$re-pc - 1px}) {
+    &__list {
+      margin: 28px auto 0;
+    }
+
+    // ボタンを真ん中へ（inline-flex のままだと margin: auto で中央に寄らないため、flex + 中身の幅にする）
+    &__btn {
+      display: flex;
+      width: fit-content;
+      margin: 28px auto 0;
+    }
+
     &__frame {
       padding: 80px 40px 96px;
     }

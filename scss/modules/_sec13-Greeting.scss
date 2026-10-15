@@ -9,7 +9,7 @@ Greeting（院長挨拶）
   $text: #3d3a55;
 
   position: relative;
-  padding: 108px 0 72px;
+  padding: 100px 0 70px;
   overflow: hidden;
   color: $text;
   // うすいラベンダーの背景 + 右上にピンクのやわらかい光
@@ -54,7 +54,7 @@ Greeting（院長挨拶）
   // 画面が1440pxより広い：枠の左端にとどまり、左側の角も丸くなる
   &__photo {
     position: relative;
-    margin: 96px 0 0;
+    margin: 72px 0 0;
 
     img {
       display: block;
@@ -108,7 +108,7 @@ Greeting（院長挨拶）
   }
 
   &__en {
-    margin: 0 0 15px;
+    margin: 0 0 10px;
     text-align: left;
     font-family: "Jost", sans-serif;
     font-size: 13px;
@@ -119,7 +119,7 @@ Greeting（院長挨拶）
   }
 
   &__title {
-    margin: 0 0 16px;
+    margin: 0 0 12px;
     text-align: left;
     font-family: "Shippori Mincho", serif;
     font-size: 36px;
@@ -137,7 +137,7 @@ Greeting（院長挨拶）
   }
 
   &__catch {
-    margin: 32px 0 0;
+    margin: 22px 0 0;
     text-align: left;
     font-family: "Shippori Mincho", serif;
     font-size: 26px;
@@ -148,11 +148,11 @@ Greeting（院長挨拶）
   }
 
   &__text {
-    margin: 22px 0 0;
+    margin: 16px 0 0;
     padding-bottom: 12px;
     text-align: left;
     font-size: 14px;
-    line-height: 32px;
+    line-height: 28px;
     letter-spacing: 0.04em;
     color: $text;
     // 下に、右へ向かって薄くなる細い線
@@ -165,7 +165,7 @@ Greeting（院長挨拶）
     flex-wrap: wrap;
     align-items: baseline;
     gap: 6px 20px;
-    margin-top: 28px;
+    margin-top: 20px;
   }
 
   &__name-role {
@@ -192,9 +192,10 @@ Greeting（院長挨拶）
   // 略歴 / 所属・資格（2列）
   &__profile {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 48px;
-    margin-top: 30px;
+    // 略歴を少し広くして「…歯科医院理事」が折り返さないようにする
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    column-gap: 32px;
+    margin-top: 22px;
   }
 
   &__block {
@@ -230,21 +231,21 @@ Greeting（院長挨拶）
 
   // 略歴（左に細い縦線）
   &__career {
-    margin: 22px 0 0;
-    padding: 4px 0 0 22px;
+    margin: 12px 0 0;
+    padding: 2px 0 0 22px;
     border-left: 1px solid #e5e0f0;
     list-style: none;
   }
 
   &__career-item {
     & + & {
-      margin-top: 14px;
+      margin-top: 10px;
     }
   }
 
   &__year {
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     font-family: "Jost", sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -257,21 +258,21 @@ Greeting（院長挨拶）
   &__member-line {
     display: block;
     font-size: 13px;
-    line-height: 24px;
+    line-height: 22px;
     letter-spacing: 0.03em;
     color: $text;
   }
 
   // 所属・資格
   &__member {
-    margin: 22px 0 0;
+    margin: 12px 0 0;
     padding: 2px 0 0;
     list-style: none;
   }
 
   &__member-item {
     & + & {
-      margin-top: 12px;
+      margin-top: 10px;
     }
   }
 
@@ -280,8 +281,8 @@ Greeting（院長挨拶）
     display: inline-flex;
     align-items: center;
     min-width: 288px;
-    height: 50px;
-    margin-top: 34px;
+    height: 46px;
+    margin-top: 24px;
     padding: 0 24px 0 30px;
     border: 1px solid $purple;
     border-radius: 999px;

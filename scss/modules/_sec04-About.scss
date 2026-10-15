@@ -15,7 +15,7 @@ $about-en: "Jost", sans-serif;
 .About {
   position: relative;
   overflow: hidden;
-  padding: 69px 0 87px;
+  padding: 48px 0 56px; // 余白を縮めて、1画面に収まるように（元: 69px 0 87px）
   // 背景：上のカーブとピンクのにじみは画像（Group_8）を上下に分けて使っています
   //  ① 上：カーブの部分。幅に合わせた比率のまま、いちばん上に置く
   //  ② 下：にじみの部分。残りの高さに合わせて縦に伸び縮みする（どんな画面サイズでも下まで続く）
@@ -69,7 +69,7 @@ $about-en: "Jost", sans-serif;
 
   /* 院内写真（横に流れ続ける） ---------------- */
   &__slider {
-    margin-top: 31px;
+    margin-top: 24px;
     overflow: hidden;
     background: #fff;
   }
@@ -101,23 +101,23 @@ $about-en: "Jost", sans-serif;
 
   /* 笑顔 ＝ 健康 × 美 ---------------- */
   &__catch {
-    margin: 39px 0 0;
+    margin: 35px 0 0;
     text-align: center;
     font-family: $about-serif;
     font-weight: 400;
-    font-size: 32px;
-    line-height: 1.5;
+    font-size: 30px;
+    line-height: 1.4;
     letter-spacing: 2.6px;
     color: #4a4550;
   }
 
   &__lead {
-    margin: 43px 0 0;
+    margin: 30px 0 0;
     text-align: center;
     font-family: $about-serif;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 1.75;
+    font-size: 18px;
+    line-height: 1.7;
     letter-spacing: 2.8px;
     color: #4a4550;
   }
@@ -125,14 +125,14 @@ $about-en: "Jost", sans-serif;
   /* 健康 × 美 ---------------- */
   &__venn {
     position: relative;
-    height: 412px;
+    height: 310px; // 元: 412px
   }
 
   &__flower {
     position: absolute;
-    top: -78px;
+    top: -90px;
     left: 50%;
-    width: 504px;
+    width: 400px;
     height: auto;
     transform: translateX(-50%);
     pointer-events: none;
@@ -140,15 +140,16 @@ $about-en: "Jost", sans-serif;
 
   &__col {
     position: absolute;
-    top: 60px;
+    top: 36px;
     width: 255px;
 
+    // 花（円）を小さくした分、左右の文字を円に近づけています（元: 0 / 778px）
     &--health {
-      left: 0;
+      left: 70px;
     }
 
     &--beauty {
-      left: 778px;
+      left: 752px;
     }
   }
 
@@ -157,11 +158,11 @@ $about-en: "Jost", sans-serif;
     align-items: baseline;
     gap: 8px;
     margin: 0;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
     border-bottom: 1px solid $about-main;
     font-family: $about-serif;
     font-weight: 500;
-    font-size: 28px;
+    font-size: 26px;
     line-height: 1.5;
     color: $about-main;
 
@@ -175,7 +176,7 @@ $about-en: "Jost", sans-serif;
   }
 
   &__list {
-    margin: 44px 0 0;
+    margin: 26px 0 0; // 元: 44px
     padding: 0;
     list-style: none;
 
@@ -183,7 +184,7 @@ $about-en: "Jost", sans-serif;
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 22px;
+      margin-bottom: 14px; // 元: 22px
       font-family: $about-serif;
       font-size: 14px;
       line-height: 26px;
@@ -206,7 +207,7 @@ $about-en: "Jost", sans-serif;
   /* すべての、大切な人へ。 ---------------- */
   &__card {
     position: relative;
-    height: 280px;
+    height: 232px; // 元: 280px
     border-radius: 10px;
     background: #fff;
     overflow: hidden;
@@ -223,7 +224,7 @@ $about-en: "Jost", sans-serif;
 
     img {
       position: absolute;
-      top: -103px;
+      top: -88px;
       left: -95px;
       display: block;
       width: 792px;
@@ -234,7 +235,7 @@ $about-en: "Jost", sans-serif;
 
   &__card-body {
     position: relative; // 写真より前に出す
-    padding: 36px 40px 29px 501px;
+    padding: 24px 40px 18px 501px; // 元: 36px 40px 29px 501px
   }
 
   &__card-title {
@@ -242,19 +243,19 @@ $about-en: "Jost", sans-serif;
     text-align: left;
     font-family: $about-serif;
     font-weight: 500;
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1.5;
     letter-spacing: 0.07em;
     color: #2e2a33;
   }
 
   &__card-text {
-    margin: 23px 0 0;
+    margin: 12px 0 0;
     text-align: left;
     white-space: nowrap; // PCは <br> の位置で3行に固定
     font-family: "Noto Sans JP", sans-serif;
     font-size: 15px;
-    line-height: 2.11;
+    line-height: 1.85;
     letter-spacing: 0.075em;
     color: $about-text;
   }
@@ -265,32 +266,41 @@ $about-en: "Jost", sans-serif;
     gap: 14px;
     box-sizing: border-box;
     width: 372px;
-    height: 50px;
+    height: 44px; // 元: 50px
     margin-top: 8px;
     padding: 0 0 0 24px;
-    border: 1px solid $about-btn;
-    border-radius: 25px;
+    // Information（診療案内）のボタンと同じ：白地 + 紫の線 → ホバーで紫地 + 白文字
+    border: 1.5px solid #8b7bc8;
+    border-radius: 22px;
     background: #fff;
     font-family: "Noto Sans JP", sans-serif;
     font-size: 15px;
-    letter-spacing: 1px;
-    color: $about-text;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: #6f5fb0;
     text-decoration: none;
-    transition: background-color 0.3s;
+    transition: background 0.2s, color 0.2s;
 
-    // 矢印（短め・縁と同じ色・矢じりの2本の線がゆるく湾曲）
+    // 矢印（短め・矢じりの2本の線がゆるく湾曲）
+    // 画像を「型」にして色を付けているので、ホバー時に色だけ白へ切り替えられます
     &::after {
       content: "";
       flex: none;
       width: 25px;
       height: 16px;
-      background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='16' viewBox='0 0 25 16' fill='none' stroke='%237F6BA6' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 8H24.5M16.5 1C17.2 4.2 20.3 7 24.5 8C20.3 9 17.2 11.8 16.5 15'/%3E%3C/svg%3E") no-repeat center / contain;
+      background-color: currentColor; // 文字と同じ色（ホバーで白になる）
+      -webkit-mask: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='16' viewBox='0 0 25 16' fill='none' stroke='%23000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 8H24.5M16.5 1C17.2 4.2 20.3 7 24.5 8C20.3 9 17.2 11.8 16.5 15'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='16' viewBox='0 0 25 16' fill='none' stroke='%23000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M.5 8H24.5M16.5 1C17.2 4.2 20.3 7 24.5 8C20.3 9 17.2 11.8 16.5 15'/%3E%3C/svg%3E") no-repeat center / contain;
     }
 
-    @media (hover: hover) {
-      &:hover {
-        background: #f6f3fa;
-      }
+    &:hover {
+      background: #8b7bc8;
+      color: #fff;
+    }
+
+    &:focus-visible {
+      outline: 3px solid #8b7bc8;
+      outline-offset: 3px;
     }
   }
 

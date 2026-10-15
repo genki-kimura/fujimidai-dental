@@ -84,6 +84,11 @@ $cta_tel_href  = 'tel:' . preg_replace('/[^0-9+]/', '', $cta_tel);
 ?>
     <footer class="footer">
         <div class="footer__inner">
+            <!-- 右側の飾り（花は止まり、文字だけがゆっくり回る） -->
+            <span class="footer__emblem emblem" aria-hidden="true">
+                <img class="emblem__flower" src="<?php echo esc_url(get_template_directory_uri() . '/img/Logo02-flower.webp'); ?>" alt="" width="834" height="1106" loading="lazy">
+                <img class="emblem__text" src="<?php echo esc_url(get_template_directory_uri() . '/img/Logo02-text.webp'); ?>" alt="" width="834" height="1106" loading="lazy">
+            </span>
             <nav class="footer__nav" aria-label="フッターメニュー">
                 <div class="footer__group">
                     <p class="footer__heading">医院について</p>

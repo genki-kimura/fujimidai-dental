@@ -3337,3 +3337,256 @@ $speech-bubble-glow:      linear-gradient(135deg, #c9d0ff 0%, #e2d3ff 42%, #ffca
     }
   }
 }
+
+
+// ==========================================================
+// 監修者トグルブロック(Genesis Custom Blocks: block-supervisor)
+//   閉じているとき:丸い画像 + 肩書き + 名前 + 右端に「＋」
+//   開いたとき    :「－」に変わり、下に淡いラベンダーの内容エリアが開く
+//   開閉は script.js の「FAQブロックの開閉」と共通
+//   ※ _block.scss の末尾に貼り付けてください(変数は既存のものを再利用)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$supervisor-box-border:  #cdc4e8;   // 枠線・アイコンの丸の線(淡いラベンダー)
+$supervisor-box-accent:  $list-accent; // ＋／－ の紫
+$supervisor-box-icon-bg: #f4f1fb;   // アイコンの丸の背景
+$supervisor-box-open-bg: $toc-head-bg; // 開いた内容エリアの背景
+$supervisor-box-divider: $toc-divider; // 内容エリアの上の区切り線
+$supervisor-box-sub:     $case-info-sub; // 肩書きのグレー
+$supervisor-box-photo:   72px;      // 丸い画像
+$supervisor-box-photo-sp: 56px;     // スマホの丸い画像
+
+.page-common-content .supervisor-box,
+.is-root-container .supervisor-box {
+  box-sizing: border-box;
+  margin: 0 0 24px;
+  overflow: hidden;      // 角丸で内容エリアの背景をクリップ
+  border: 1px solid $supervisor-box-border;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(80, 60, 110, 0.08);
+  transition: box-shadow 0.3s;
+
+  // 開いている間は影を消す
+  &:has(.supervisor-box-q[aria-expanded="true"]) {
+    box-shadow: none;
+  }
+
+  // ---------- 押すところ(丸画像 + 肩書き・名前 + ＋) ----------
+  .supervisor-box-q {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 18px 28px 18px 22px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    font: inherit;
+    text-align: left;
+    color: $text-color;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid $supervisor-box-accent;
+      outline-offset: -4px;
+      border-radius: 20px;
+    }
+  }
+
+  // ---------- 丸い画像(未設定ならグレーの丸) ----------
+  .supervisor-box-photo {
+    display: block;
+    flex: none;
+    width: $supervisor-box-photo;
+    height: $supervisor-box-photo;
+    overflow: hidden;
+    border-radius: 50%;
+    background: $case-img-bg;
+  }
+
+  .supervisor-box-photo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+
+  // ---------- 肩書き + 名前 ----------
+  .supervisor-box-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .supervisor-box-position {
+    display: block;
+    font-family: $text-font;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    color: $supervisor-box-sub;
+  }
+
+  .supervisor-box-name {
+    display: block;
+    font-family: $h2-font;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+    color: $h2-text;
+  }
+
+  // ---------- ＋／－ アイコン(丸の中) ----------
+  .supervisor-box-icon {
+    position: relative;
+    flex: none;
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    border: 1px solid $supervisor-box-border;
+    border-radius: 50%;
+    background: $supervisor-box-icon-bg;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 1.5px;
+      background: $supervisor-box-accent;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease;
+    }
+
+    // たて棒:開いたら横に寝かせて「－」にする
+    &::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  .supervisor-box-q[aria-expanded="true"] .supervisor-box-icon::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  // ---------- 内容(開閉する部分) ----------
+  // grid の 0fr → 1fr で高さを滑らかに変える
+  .supervisor-box-a {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+
+    &.is-open {
+      grid-template-rows: 1fr;
+      visibility: visible;
+      transition: grid-template-rows 0.35s ease, visibility 0s;
+    }
+  }
+
+  .supervisor-box-a-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .supervisor-box-a-body {
+    padding: 28px 28px 30px;
+    border-top: 1px solid $supervisor-box-divider;
+    background: $supervisor-box-open-bg;
+
+    // Inner Blocks の余白を調整
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 0 1em;
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 13.5px;
+      line-height: 1.7;
+      letter-spacing: 0.04em;
+      text-align: left; // body の justify を打ち消す
+      color: $text-color;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .supervisor-box-a,
+    .supervisor-box-a.is-open,
+    .supervisor-box-icon::before,
+    .supervisor-box-icon::after {
+      transition: none;
+    }
+  }
+}
+
+// ブロックエディタ(編集画面)では JS が動かないので、内容を常に開いておく
+// ※ これがないと Inner Blocks(内容)が見えず、編集できない
+.is-root-container .supervisor-box .supervisor-box-a {
+  grid-template-rows: 1fr;
+  visibility: visible;
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .supervisor-box,
+  .is-root-container .supervisor-box {
+    margin-bottom: 18px;
+    border-radius: 16px;
+
+    .supervisor-box-q {
+      gap: 14px;
+      padding: 14px 16px;
+    }
+
+    .supervisor-box-photo {
+      width: $supervisor-box-photo-sp;
+      height: $supervisor-box-photo-sp;
+    }
+
+    .supervisor-box-info {
+      gap: 4px;
+    }
+
+    .supervisor-box-position {
+      font-size: 12px;
+    }
+
+    .supervisor-box-name {
+      font-size: 18px;
+      letter-spacing: 0.08em;
+    }
+
+    .supervisor-box-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .supervisor-box-a-body {
+      padding: 20px 18px 22px;
+
+      p {
+        font-size: 14px;
+        line-height: 1.9;
+      }
+    }
+  }
+}

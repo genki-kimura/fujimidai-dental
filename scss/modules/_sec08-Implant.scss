@@ -250,7 +250,7 @@ $imp-shift: 0px; // 左側（文字・症例）をさらに左へ寄せたいと
   }
 
   // ---------- SP ----------
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     padding: 28px 0 40px;
 
     &__logo {
@@ -265,6 +265,8 @@ $imp-shift: 0px; // 左側（文字・症例）をさらに左へ寄せたいと
 
     &__body {
       width: auto;
+      max-width: 680px;
+      margin: 0 auto;
       padding: 0 20px;
     }
 
