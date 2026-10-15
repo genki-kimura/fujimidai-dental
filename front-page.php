@@ -35,7 +35,7 @@ $mv_slides = array(
                 <div class="Mv__photos">
                     <?php foreach ($mv_slides as $i => $slide) : ?>
                         <div class="Mv__photo<?php echo $i === 0 ? ' is-active' : ''; ?>"<?php echo $i === 0 ? '' : ' aria-hidden="true"'; ?>>
-                            <img src="<?php echo esc_url($mv_dir . $slide['name'] . '.png'); ?>" alt="<?php echo esc_attr($slide['alt']); ?>" width="1620" height="1296"<?php echo $i === 0 ? ' fetchpriority="high"' : ' loading="lazy"'; ?>>
+                            <img src="<?php echo esc_url($mv_dir . $slide['name'] . '.webp'); ?>" alt="<?php echo esc_attr($slide['alt']); ?>" width="1620" height="1296"<?php echo $i === 0 ? ' fetchpriority="high"' : ' loading="lazy"'; ?>>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -478,7 +478,10 @@ $mv_slides = array(
                 ?>
 
                 <!-- 背景の透かしロゴ -->
-                <img class="Implant__logo" src="<?php echo esc_url($implant_dir . 'Logo02.webp'); ?>" alt="" width="834" height="1106" loading="lazy" aria-hidden="true">
+                <span class="Implant__logo emblem" aria-hidden="true">
+                        <img class="emblem__flower" src="<?php echo esc_url($implant_dir . 'Logo02-flower.webp'); ?>" alt="" width="834" height="1106" loading="lazy">
+                        <img class="emblem__text" src="<?php echo esc_url($implant_dir . 'Logo02-text.webp'); ?>" alt="" width="834" height="1106" loading="lazy">
+                </span>
 
                 <div class="Implant__inner">
                         <div class="Implant__body">
@@ -554,7 +557,10 @@ $mv_slides = array(
                 ?>
 
                 <!-- 背景の透かしロゴ -->
-                <img class="Whitening__logo" src="<?php echo esc_url($whitening_dir . 'Logo02.webp'); ?>" alt="" width="834" height="1106" loading="lazy" aria-hidden="true">
+                <span class="Whitening__logo emblem" aria-hidden="true">
+                        <img class="emblem__flower" src="<?php echo esc_url($whitening_dir . 'Logo02-flower.webp'); ?>" alt="" width="834" height="1106" loading="lazy">
+                        <img class="emblem__text" src="<?php echo esc_url($whitening_dir . 'Logo02-text.webp'); ?>" alt="" width="834" height="1106" loading="lazy">
+                </span>
 
                 <div class="Whitening__inner">
                         <div class="Whitening__body">
@@ -628,7 +634,10 @@ $mv_slides = array(
                 ?>
 
                 <!-- 背景の透かしロゴ -->
-                <img class="Dental-esthetics__logo" src="<?php echo esc_url($de_dir . 'Logo02.webp'); ?>" alt="" width="834" height="1106" loading="lazy" aria-hidden="true">
+                <span class="Dental-esthetics__logo emblem" aria-hidden="true">
+                        <img class="emblem__flower" src="<?php echo esc_url($de_dir . 'Logo02-flower.webp'); ?>" alt="" width="834" height="1106" loading="lazy">
+                        <img class="emblem__text" src="<?php echo esc_url($de_dir . 'Logo02-text.webp'); ?>" alt="" width="834" height="1106" loading="lazy">
+                </span>
 
                 <div class="Dental-esthetics__inner">
                         <div class="Dental-esthetics__body">
@@ -1079,7 +1088,7 @@ $mv_slides = array(
                 <?php
                 /* ----------------------------------------
                    よくあるご質問（ここを書き換えると内容が変わります）
-                   ・すべて最初は閉じた状態で表示します（＋を押すと開きます）
+                   ・一番上の質問だけ最初から開いた状態で表示します（他は＋を押すと開きます）
                    ・回答文は仮の文章です。実際の内容に差し替えてください
                 ---------------------------------------- */
                 $faq_items = array(
@@ -1093,10 +1102,6 @@ $mv_slides = array(
                         ),
                         array(
                                 'q' => 'お子さま連れでも通えますか？',
-                                'a' => '（ここに回答を入力してください）',
-                        ),
-                        array(
-                                'q' => 'インプラントの相談は無料ですか？',
                                 'a' => '（ここに回答を入力してください）',
                         ),
                         array(
@@ -1125,13 +1130,13 @@ $mv_slides = array(
                                 <?php foreach ($faq_items as $i => $faq) : ?>
                                         <li class="FAQ__item">
                                                 <h3 class="FAQ__heading">
-                                                        <button type="button" class="FAQ__q" id="faq-q-<?php echo (int) $i; ?>" aria-expanded="false" aria-controls="faq-a-<?php echo (int) $i; ?>">
+                                                        <button type="button" class="FAQ__q" id="faq-q-<?php echo (int) $i; ?>" aria-expanded="<?php echo $i === 0 ? 'true' : 'false'; ?>" aria-controls="faq-a-<?php echo (int) $i; ?>">
                                                                 <span class="FAQ__mark" aria-hidden="true">Q</span>
                                                                 <span class="FAQ__q-text"><?php echo esc_html($faq['q']); ?></span>
                                                                 <span class="FAQ__icon" aria-hidden="true"></span>
                                                         </button>
                                                 </h3>
-                                                <div class="FAQ__a" id="faq-a-<?php echo (int) $i; ?>" role="region" aria-labelledby="faq-q-<?php echo (int) $i; ?>">
+                                                <div class="FAQ__a<?php echo $i === 0 ? ' is-open' : ''; ?>" id="faq-a-<?php echo (int) $i; ?>" role="region" aria-labelledby="faq-q-<?php echo (int) $i; ?>">
                                                         <div class="FAQ__a-inner">
                                                                 <div class="FAQ__a-body">
                                                                         <span class="FAQ__mark FAQ__mark--a" aria-hidden="true">A</span>

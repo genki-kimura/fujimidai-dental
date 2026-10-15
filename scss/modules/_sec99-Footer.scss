@@ -31,18 +31,19 @@ $footer-emblem-opacity: 1;
     margin: 0 auto;
     padding: 52px clamp(24px, 5.12vw, 70px) 30px; // デザイン: 上52px / 左右70px / 下30px
 
-    // 右側の飾り（img/Logo02.webp）
-    &::before {
-      content: "";
-      position: absolute;
-      top: 12px;
-      right: 0;
-      bottom: 0;
-      width: 417px;
-      background: url("../img/Logo02.webp") no-repeat right top / contain;
-      opacity: $footer-emblem-opacity;
-      pointer-events: none;
-    }
+    // ※ 飾りを文字より後ろに置くため、ここで重なり順を独立させる
+    isolation: isolate;
+
+    // 右側の飾り（花は止まり、文字だけが回る。回転は _parts-Emblem.scss の .emblem）
+    // ※ footer.php の .footer__emblem。文字より後ろに置く
+  }
+
+  &__emblem {
+    top: 12px;
+    right: 0;
+    z-index: -1;
+    width: 417px;
+    opacity: $footer-emblem-opacity;
   }
 
   // メニュー（4列：医院について / 診療案内（2列分） / その他）
@@ -181,21 +182,26 @@ Floating CTA（画面右側に追従）
     // 高さに関係なく左端が真円（半円）になるよう、十分大きな値を指定
     border-radius: 999px 0 0 999px;
     text-decoration: none;
-    transition: opacity 0.2s;
+    // ホバーで色が反転する（薄くはならない）
+    transition: background-color 0.25s ease, border-color 0.25s ease;
 
-    &:hover {
-      opacity: 0.85;
-    }
-
-    // WEB予約する
+    // WEB予約する（通常：紫地に白文字 → ホバー：白地に紫文字）
     &--web {
       --cta-label: #dcd2ee;
       --cta-main: #fff;
       background: #7f6ba6;
+      border: 1.5px solid #7f6ba6; // ホバーで白地になっても形が分かるように枠をつけておく（通常時は背景と同色）
+      border-right: 0;
       box-shadow: -2px 4px 14px rgba(127, 107, 166, 0.4);
+
+      &:hover {
+        --cta-label: #8b7bc7;
+        --cta-main: #7f6ba6;
+        background: #fff;
+      }
     }
 
-    // ホワイトニングを予約
+    // ホワイトニングを予約（通常：白地に紫文字 → ホバー：紫地に白文字）
     &--white {
       --cta-label: #8b7bc7;
       --cta-main: #7f6ba6;
@@ -203,9 +209,15 @@ Floating CTA（画面右側に追従）
       border: 1.5px solid #7f6ba6;
       border-right: 0; // 右端の縁はなくして画面端から生えているように見せる
       box-shadow: -2px 4px 14px rgba(46, 42, 51, 0.12);
+
+      &:hover {
+        --cta-label: #dcd2ee;
+        --cta-main: #fff;
+        background: #7f6ba6;
+      }
     }
 
-    // 電話
+    // 電話（通常：白地に紫文字 → ホバー：紫地に白文字）
     &--tel {
       --cta-label: #8b7bc7;
       --cta-main: #7f6ba6;
@@ -213,6 +225,13 @@ Floating CTA（画面右側に追従）
       border: 1.5px solid #c9bfe8;
       border-right: 0; // 右端の縁はなくす
       box-shadow: -2px 4px 14px rgba(46, 42, 51, 0.1);
+
+      &:hover {
+        --cta-label: #dcd2ee;
+        --cta-main: #fff;
+        background: #7f6ba6;
+        border-color: #7f6ba6;
+      }
 
       .floating-cta__label {
         font-size: 9px;
@@ -242,6 +261,7 @@ Floating CTA（画面右側に追従）
     font-weight: 500;
     letter-spacing: 0.4px;
     color: var(--cta-label);
+    transition: color 0.25s ease;
   }
 
   &__main {
@@ -249,6 +269,7 @@ Floating CTA（画面右側に追従）
     font-weight: 700;
     letter-spacing: 0.4px;
     color: var(--cta-main);
+    transition: color 0.25s ease;
   }
 }
 
@@ -261,10 +282,10 @@ Footer / Floating CTA sp
 
     &__inner {
       padding: 40px 20px 24px;
+    }
 
-      &::before {
-        width: 260px;
-      }
+    &__emblem {
+      width: 260px;
     }
 
     // 1段目：医院について（左）／その他（右）、2段目：診療案内（全幅・2列）
@@ -372,6 +393,12 @@ Footer / Floating CTA sp
       box-shadow: 0 8px 16px rgba(125, 101, 168, 0.35);
     }
 
+    // WEB予約のホバー：白地（スマホは枠なしなので、内側の線で縁取る）
+    .floating-cta__btn--web:hover {
+      background: #fff;
+      box-shadow: inset 0 0 0 clamp(2px, 0.35vw, 3px) #7f6ba6, 0 8px 16px rgba(125, 101, 168, 0.35);
+    }
+
     // ホワイトニング：白地に紫の太い枠
     .floating-cta__btn--white {
       border: clamp(2px, 0.35vw, 3px) solid #7f6ba6;
@@ -382,6 +409,11 @@ Footer / Floating CTA sp
     .floating-cta__btn--tel {
       border: clamp(2px, 0.3vw, 2.5px) solid #cbc2ea;
       box-shadow: 0 6px 14px rgba(46, 42, 51, 0.06);
+    }
+
+    // 電話のホバー：枠線も紫に
+    .floating-cta__btn--tel:hover {
+      border-color: #7f6ba6;
     }
 
     .floating-cta__label,

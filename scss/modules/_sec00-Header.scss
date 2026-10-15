@@ -99,16 +99,32 @@ $header-color-line: #d1d1d1;
   }
 
   &__nav-link {
+    position: relative;
     display: block;
     font-size: 13px;
     line-height: normal;
     color: $header-color-nav;
     text-decoration: none;
     white-space: nowrap;
-    transition: opacity 0.2s;
 
-    &:hover {
-      opacity: 0.7;
+    // ホバー時に文字の下へ出るライン（下から上へせり上がる）
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px; // 文字とラインの間隔（レイアウトには影響しません）
+      height: 2px;
+      background: #7f6ba6;
+      opacity: 0;
+      transform: translateY(6px); // 6px下から始まる（動く距離）
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 

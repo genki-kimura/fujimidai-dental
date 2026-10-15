@@ -3170,4 +3170,272 @@ h1.wp-block-post-title::after {
     font-size: 14px;
   }
 }
+.page-common-content .supervisor-box,
+.is-root-container .supervisor-box {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 0 24px;
+  overflow: hidden;
+  border: 1px solid #cdc4e8;
+  border-radius: 20px;
+  background: #fff;
+  -webkit-box-shadow: 0 8px 24px rgba(80, 60, 110, 0.08);
+          box-shadow: 0 8px 24px rgba(80, 60, 110, 0.08);
+  -webkit-transition: -webkit-box-shadow 0.3s;
+  transition: -webkit-box-shadow 0.3s;
+  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
+}
+.page-common-content .supervisor-box:has(.supervisor-box-q[aria-expanded=true]),
+.is-root-container .supervisor-box:has(.supervisor-box-q[aria-expanded=true]) {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.page-common-content .supervisor-box .supervisor-box-q,
+.is-root-container .supervisor-box .supervisor-box-q {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 22px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 18px 28px 18px 22px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  font: inherit;
+  text-align: left;
+  color: #2b2b33;
+  cursor: pointer;
+}
+.page-common-content .supervisor-box .supervisor-box-q:focus-visible,
+.is-root-container .supervisor-box .supervisor-box-q:focus-visible {
+  outline: 2px solid #7e69a9;
+  outline-offset: -4px;
+  border-radius: 20px;
+}
+.page-common-content .supervisor-box .supervisor-box-photo,
+.is-root-container .supervisor-box .supervisor-box-photo {
+  display: block;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #e2e2e2;
+}
+.page-common-content .supervisor-box .supervisor-box-photo-img,
+.is-root-container .supervisor-box .supervisor-box-photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-common-content .supervisor-box .supervisor-box-info,
+.is-root-container .supervisor-box .supervisor-box-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.page-common-content .supervisor-box .supervisor-box-position,
+.is-root-container .supervisor-box .supervisor-box-position {
+  display: block;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: #6e6e73;
+}
+.page-common-content .supervisor-box .supervisor-box-name,
+.is-root-container .supervisor-box .supervisor-box-name {
+  display: block;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  color: #2b2b33;
+}
+.page-common-content .supervisor-box .supervisor-box-icon,
+.is-root-container .supervisor-box .supervisor-box-icon {
+  position: relative;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #cdc4e8;
+  border-radius: 50%;
+  background: #f4f1fb;
+}
+.page-common-content .supervisor-box .supervisor-box-icon::before, .page-common-content .supervisor-box .supervisor-box-icon::after,
+.is-root-container .supervisor-box .supervisor-box-icon::before,
+.is-root-container .supervisor-box .supervisor-box-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1.5px;
+  background: #7e69a9;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.page-common-content .supervisor-box .supervisor-box-icon::after,
+.is-root-container .supervisor-box .supervisor-box-icon::after {
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+          transform: translate(-50%, -50%) rotate(90deg);
+}
+.page-common-content .supervisor-box .supervisor-box-q[aria-expanded=true] .supervisor-box-icon::after,
+.is-root-container .supervisor-box .supervisor-box-q[aria-expanded=true] .supervisor-box-icon::after {
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+          transform: translate(-50%, -50%) rotate(0deg);
+}
+.page-common-content .supervisor-box .supervisor-box-a,
+.is-root-container .supervisor-box .supervisor-box-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  -webkit-transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+  transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+  transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s, -ms-grid-rows 0.35s ease;
+}
+.page-common-content .supervisor-box .supervisor-box-a.is-open,
+.is-root-container .supervisor-box .supervisor-box-a.is-open {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  -webkit-transition: grid-template-rows 0.35s ease, visibility 0s;
+  transition: grid-template-rows 0.35s ease, visibility 0s;
+  transition: grid-template-rows 0.35s ease, visibility 0s, -ms-grid-rows 0.35s ease;
+}
+.page-common-content .supervisor-box .supervisor-box-a-inner,
+.is-root-container .supervisor-box .supervisor-box-a-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+.page-common-content .supervisor-box .supervisor-box-a-body,
+.is-root-container .supervisor-box .supervisor-box-a-body {
+  padding: 28px 28px 30px;
+  border-top: 1px solid #ece8f6;
+  background: #f9f7fd;
+}
+.page-common-content .supervisor-box .supervisor-box-a-body > *:first-child,
+.is-root-container .supervisor-box .supervisor-box-a-body > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .supervisor-box .supervisor-box-a-body > *:last-child,
+.is-root-container .supervisor-box .supervisor-box-a-body > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .supervisor-box .supervisor-box-a-body p,
+.is-root-container .supervisor-box .supervisor-box-a-body p {
+  margin: 0 0 1em;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #2b2b33;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-common-content .supervisor-box .supervisor-box-a,
+  .page-common-content .supervisor-box .supervisor-box-a.is-open,
+  .page-common-content .supervisor-box .supervisor-box-icon::before,
+  .page-common-content .supervisor-box .supervisor-box-icon::after,
+  .is-root-container .supervisor-box .supervisor-box-a,
+  .is-root-container .supervisor-box .supervisor-box-a.is-open,
+  .is-root-container .supervisor-box .supervisor-box-icon::before,
+  .is-root-container .supervisor-box .supervisor-box-icon::after {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+
+.is-root-container .supervisor-box .supervisor-box-a {
+  grid-template-rows: 1fr;
+  visibility: visible;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .supervisor-box,
+  .is-root-container .supervisor-box {
+    margin-bottom: 18px;
+    border-radius: 16px;
+  }
+  .page-common-content .supervisor-box .supervisor-box-q,
+  .is-root-container .supervisor-box .supervisor-box-q {
+    gap: 14px;
+    padding: 14px 16px;
+  }
+  .page-common-content .supervisor-box .supervisor-box-photo,
+  .is-root-container .supervisor-box .supervisor-box-photo {
+    width: 56px;
+    height: 56px;
+  }
+  .page-common-content .supervisor-box .supervisor-box-info,
+  .is-root-container .supervisor-box .supervisor-box-info {
+    gap: 4px;
+  }
+  .page-common-content .supervisor-box .supervisor-box-position,
+  .is-root-container .supervisor-box .supervisor-box-position {
+    font-size: 12px;
+  }
+  .page-common-content .supervisor-box .supervisor-box-name,
+  .is-root-container .supervisor-box .supervisor-box-name {
+    font-size: 18px;
+    letter-spacing: 0.08em;
+  }
+  .page-common-content .supervisor-box .supervisor-box-icon,
+  .is-root-container .supervisor-box .supervisor-box-icon {
+    width: 28px;
+    height: 28px;
+  }
+  .page-common-content .supervisor-box .supervisor-box-a-body,
+  .is-root-container .supervisor-box .supervisor-box-a-body {
+    padding: 20px 18px 22px;
+  }
+  .page-common-content .supervisor-box .supervisor-box-a-body p,
+  .is-root-container .supervisor-box .supervisor-box-a-body p {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+}
 /*# sourceMappingURL=block.css.map */

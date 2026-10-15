@@ -332,7 +332,7 @@ FAQブロック（blocks/block-faq.php）の開閉
 ---------------------------------------- */
 (function () {
   document.addEventListener('click', function (e) {
-    var button = e.target.closest ? e.target.closest('.faq-box-q') : null;
+    var button = e.target.closest ? e.target.closest('.faq-box-q, .supervisor-box-q') : null;
     if (!button) return;
 
     var answer = document.getElementById(button.getAttribute('aria-controls'));

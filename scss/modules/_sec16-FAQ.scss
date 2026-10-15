@@ -27,7 +27,7 @@ $faq-bp: 767px;              // スマホ幅の境目
   /* ---------- 見出し（_sec12-Menu.scss と同じ書き方） ---------- */
   &__head {
     text-align: center;
-    margin-bottom: 88px;
+    margin-bottom: 50px;
 
     @media (max-width: $faq-bp) {
       margin-bottom: 48px;
