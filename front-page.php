@@ -198,7 +198,7 @@ $mv_slides = array(
                                 <div class="About__card-body">
                                         <p class="About__card-title">すべての、大切な人へ。</p>
                                         <p class="About__card-text">歯科医療を通じて、皆さまの心と体の健康、そして幸福な人生へ。<br class="About__br">「愛と信頼、安らぎに満ち溢れた空間」を実現し、“自分の大切な人<br class="About__br">だったら”という視点で、お一人おひとりに向き合います。</p>
-                                        <a class="About__btn" href="#">「当院の理念・特徴」詳しくはこちら</a>
+                                        <a class="About__btn" href="#"><span class="About__btn-text"><span class="About__btn-line">「当院の理念・特徴」</span><span class="About__btn-line">詳しくはこちら</span></span></a>
                                 </div>
                         </div>
                 </div>
@@ -689,20 +689,23 @@ $mv_slides = array(
                    ※ 右の写真は PC では右側に重ねて、タブレット（〜1179px）では一覧の下に並べます
                    ※ SP（〜768px）では右の写真は出さず、Reason-bg.webp（img フォルダ）を背景に敷きます
                    ※ 'title' の「|」はSPだけの改行位置です（PC・タブレットでは改行されません）
+                   ※ 'text_sp' を書くと、SP（〜768px）ではその文に切り替わります（書かなければPCと同じ文）
                 ---------------------------------------- */
                 $reason_dir    = get_template_directory_uri() . '/img/';
                 $reason_points = array(
                         array(
                                 'title' => '専門医による、確かな技術',
                                 'text'  => '日本口腔インプラント学会 認定専門医・歯学博士（東京医科歯科大学出身）が診療。予防から専門治療まで幅広く対応。',
+                                'text_sp' => '予防から専門治療まで幅広く対応',
                         ),
                         array(
                                 'title' => 'こだわりの自費補綴で、|美しく長持ち',
-                                'text'  => 'セラミックなど自費の補綴物は、審美専門の歯科技工士が立会いのもとで製作。',
+                                'text'  => 'セラミックなど自費の補綴物は、審美専門の歯科技工士が立会いのもと製作。',
                         ),
                         array(
                                 'title' => '完全個室で、|プライバシーに配慮',
                                 'text'  => 'カウンセリング専用の個室を3室完備。周囲を気にせず、じっくり相談・治療を受けられます。',
+                                'text_sp' => 'カウンセリング専用の個室を3室完備',
                         ),
                         array(
                                 'title' => '審美治療は、|完全デジタル（DX）化',
@@ -741,7 +744,13 @@ $mv_slides = array(
                                                     <span class="Reason__bar" aria-hidden="true"></span>
                                                     <div class="Reason__item-body">
                                                             <h3 class="Reason__item-title"><?php echo implode('<br class="Reason__sp-br">', array_map('esc_html', explode('|', $point['title']))); ?></h3>
-                                                            <p class="Reason__item-text"><?php echo esc_html($point['text']); ?></p>
+                                                            <p class="Reason__item-text">
+                                                                    <?php if (!empty($point['text_sp'])) : ?>
+                                                                            <span class="Reason__text-pc"><?php echo esc_html($point['text']); ?></span><span class="Reason__text-sp"><?php echo esc_html($point['text_sp']); ?></span>
+                                                                    <?php else : ?>
+                                                                            <?php echo esc_html($point['text']); ?>
+                                                                    <?php endif; ?>
+                                                            </p>
                                                     </div>
                                             </li>
                                     <?php endforeach; ?>
@@ -927,7 +936,7 @@ $mv_slides = array(
                                         <span class="Greeting__line" aria-hidden="true"></span>
                                 </header>
 
-                                <p class="Greeting__catch">患者様の一生に、<br class="Greeting__sp-br">寄り添うために。</p>
+                                <p class="Greeting__catch">患者様の一生に、寄り添うために。</p>
                                 <p class="Greeting__text">「関わるすべての人と、深いつながりを」。私たちは、痛みに配慮し、できるだけ歯を残す治療を大切にしています。予防から審美、インプラント、そして訪問診療まで、地域のかかりつけとして生涯にわたり伴走します。</p>
 
                                 <div class="Greeting__name">
@@ -941,7 +950,12 @@ $mv_slides = array(
                                                 <div class="Greeting__block-head">
                                                         <h3 class="Greeting__block-title">略歴</h3>
                                                         <p class="Greeting__block-en">CAREER</p>
+                                                        <button type="button" class="Greeting__toggle" aria-expanded="false" aria-controls="greeting-career" aria-label="略歴を開閉する">
+                                                                <span class="Greeting__icon" aria-hidden="true"></span>
+                                                        </button>
                                                 </div>
+                                                <div class="Greeting__collapse" id="greeting-career">
+                                                <div class="Greeting__collapse-inner">
                                                 <ol class="Greeting__career">
                                                         <?php foreach ($greeting_career as $row) : ?>
                                                                 <li class="Greeting__career-item">
@@ -952,13 +966,20 @@ $mv_slides = array(
                                                                 </li>
                                                         <?php endforeach; ?>
                                                 </ol>
+                                                </div>
+                                                </div>
                                         </div>
 
                                         <div class="Greeting__block">
                                                 <div class="Greeting__block-head">
                                                         <h3 class="Greeting__block-title">所属・資格</h3>
                                                         <p class="Greeting__block-en">MEMBERSHIP</p>
+                                                        <button type="button" class="Greeting__toggle" aria-expanded="false" aria-controls="greeting-member" aria-label="所属・資格を開閉する">
+                                                                <span class="Greeting__icon" aria-hidden="true"></span>
+                                                        </button>
                                                 </div>
+                                                <div class="Greeting__collapse" id="greeting-member">
+                                                <div class="Greeting__collapse-inner">
                                                 <ul class="Greeting__member">
                                                         <?php foreach ($greeting_member as $row) : ?>
                                                                 <li class="Greeting__member-item">
@@ -968,6 +989,8 @@ $mv_slides = array(
                                                                 </li>
                                                         <?php endforeach; ?>
                                                 </ul>
+                                                </div>
+                                                </div>
                                         </div>
                                 </div>
 

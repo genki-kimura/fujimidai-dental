@@ -1,4 +1,5 @@
 @use "setting" as *;
+@use "sass:math";
 
 /* ----------------------------------------
 About
@@ -11,6 +12,13 @@ $about-btn: #7f6ba6;  // ボタンの縁・矢印
 $about-bg-top: 14vw;  // 背景画像（上）の高さの目安
 $about-serif: "Shippori Mincho", serif;
 $about-en: "Jost", sans-serif;
+
+// タブレット幅（768〜1119px）用：PCデザイン（内側の幅1080px）の px を、
+// 「いまの内側の幅（About__inner）に対する割合」に変える（1080px のとき、元の px と同じ値になる）
+// ※ About__inner を container にしているので、cqw = 内側の幅の 1/100
+@function about-cq($px) {
+  @return math.div($px, 10.8) * 1cqw;
+}
 
 .About {
   position: relative;
@@ -304,6 +312,112 @@ $about-en: "Jost", sans-serif;
     }
   }
 
+  // ボタンの文字：「」までと「詳しくはこちら」の間で改行する
+  // （幅が足りるときは1行のまま。足りないときだけ、この間で折り返す）
+  &__btn-text {
+    min-width: 0;
+  }
+
+  &__btn-line {
+    display: inline-block;
+  }
+
+  /* タブレット（768〜1119px）----------------
+     PCは内側の幅1080pxを前提に、px で並べているため、画面が狭いとはみ出す。
+     この幅だけ、位置・大きさ・文字を「内側の幅」に合わせて比例して縮める（1120px以上は元のデザインのまま）。
+     文字は小さくなりすぎないよう、下限（clamp の左の値）を決めている */
+  @media (min-width: 768px) and (max-width: 1119px) {
+    &__inner {
+      container-type: inline-size;
+    }
+
+    // 健康 × 美
+    &__venn {
+      height: max(#{about-cq(310)}, 290px); // 文字が折り返しても、下のカードと重ならないように下限をつける
+    }
+
+    &__flower {
+      top: #{about-cq(-90)};
+      width: #{about-cq(400)};
+    }
+
+    &__col {
+      top: #{about-cq(36)};
+      width: #{about-cq(255)};
+
+      &--health {
+        left: #{about-cq(70)};
+      }
+
+      // 右側は left ではなく right で置く（元の left:752px、幅255px → 右から73px）
+      &--beauty {
+        left: auto;
+        right: #{about-cq(73)};
+      }
+    }
+
+    &__col-title {
+      font-size: clamp(20px, #{about-cq(26)}, 26px);
+
+      span {
+        font-size: clamp(11px, #{about-cq(14)}, 14px);
+      }
+    }
+
+    &__list li {
+      gap: clamp(10px, #{about-cq(16)}, 16px);
+      font-size: clamp(11px, #{about-cq(14)}, 14px);
+      letter-spacing: 0.1em; // 元: 1.4px（14pxの0.1倍）
+    }
+
+    // すべての、大切な人へ。
+    &__card {
+      height: auto;
+      min-height: #{about-cq(232)};
+    }
+
+    &__card-img {
+      width: #{about-cq(700)};
+      // 元の px の位置（200 / 400 / 500 / 600 / 700px）を、700px に対する割合で書いたもの
+      -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.69) 28.57%, rgba(0, 0, 0, 0.4) 57.14%, rgba(0, 0, 0, 0.27) 71.43%, rgba(0, 0, 0, 0.13) 85.71%, rgba(0, 0, 0, 0) 100%);
+      mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.69) 28.57%, rgba(0, 0, 0, 0.4) 57.14%, rgba(0, 0, 0, 0.27) 71.43%, rgba(0, 0, 0, 0.13) 85.71%, rgba(0, 0, 0, 0) 100%);
+
+      img {
+        top: #{about-cq(-88)};
+        left: #{about-cq(-95)};
+        width: #{about-cq(792)};
+      }
+    }
+
+    &__card-body {
+      padding: max(#{about-cq(24)}, 16px) #{about-cq(40)} max(#{about-cq(18)}, 14px) #{about-cq(501)};
+    }
+
+    &__card-title {
+      font-size: clamp(18px, #{about-cq(24)}, 24px);
+    }
+
+    &__card-text {
+      font-size: clamp(12px, #{about-cq(15)}, 15px);
+    }
+
+    &__btn {
+      max-width: 100%; // 372px が入りきらないときは、カードの幅に合わせる
+      font-size: clamp(12px, #{about-cq(15)}, 15px);
+    }
+  }
+
+  // さらに狭い（768〜919px）：文字が小さくなりきるので、<br> での固定をやめて、幅に合わせて折り返す
+  @media (min-width: 768px) and (max-width: 919px) {
+    &__card-text {
+      white-space: normal;
+    }
+
+    &__br {
+      display: none;
+    }
+  }
+
   /* SP（スマホ：縦に並べるレイアウト） ----------------
      ・文字や余白は、幅375pxの画面をもとにした数値です（文字は画面幅に合わせて少し伸び縮みします）
      ・背景は About-bg-sp.webp を、セクション全体に敷いています */
@@ -342,7 +456,7 @@ $about-en: "Jost", sans-serif;
     }
 
     &__catch {
-      margin-top: 34px;
+      margin-top: 15px;
       font-size: clamp(19px, 6.4vw, 30px);
       letter-spacing: 0.067em;
     }
@@ -350,17 +464,18 @@ $about-en: "Jost", sans-serif;
     &__lead {
       position: relative; // うしろの花より前に出す
       z-index: 1;
-      margin-top: 21px;
-      font-size: clamp(13px, 4.27vw, 19px);
-      line-height: 1.75;
-      letter-spacing: 0.17em;
+      margin-top: 10px;
+      font-size: clamp(13px, 5vw, 19px);
+      line-height: 1.3;
+      letter-spacing: 0;
     }
 
     /* 健康 × 美：円と文字は画像（About-img01.webp）に入っています ---------------- */
     &__venn {
       width: min(100%, 300px);
       height: auto;
-      margin: -60px auto 0; // うしろの花が、文章の下にすこし重なる
+      margin: -120px auto -80px; // うしろの花が、文章の下にすこし重なる
+      opacity: 0.8;
     }
 
     &__flower {
@@ -385,9 +500,11 @@ $about-en: "Jost", sans-serif;
 
     /* すべての、大切な人へ。 ---------------- */
     &__card {
+      max-width: 380px;
       height: auto;
       margin-top: 0;
       border-radius: 12px;
+      margin:0 auto;
     }
 
     // 写真は、下をぼかさずに、すっきり切る
@@ -395,7 +512,7 @@ $about-en: "Jost", sans-serif;
       position: relative;
       inset: auto;
       width: 100%;
-      height: 200px;
+      height: 150px;
       -webkit-mask-image: none;
       mask-image: none;
 
@@ -409,20 +526,22 @@ $about-en: "Jost", sans-serif;
     }
 
     &__card-body {
-      padding: 28px 21px 28px;
+      padding: 15px 21px;
     }
 
     &__card-title {
+      text-align: center;
       font-size: clamp(17px, 5.33vw, 24px);
       letter-spacing: 0.07em;
     }
 
     &__card-text {
       max-width: 280px;
-      margin-top: 13px;
+      margin: 5px auto 0; // 左右を auto にして、文章のかたまりを中央に置く
+      text-align: center;
       white-space: normal;
       font-size: clamp(12px, 3.73vw, 15px);
-      line-height: 2.1;
+      line-height: 1.3;
       letter-spacing: 0.07em;
     }
 
@@ -443,6 +562,12 @@ $about-en: "Jost", sans-serif;
       &::after {
         margin-left: auto;
       }
+    }
+
+    // ボタンの文字は、矢印を除いた幅の中で中央ぞろえ
+    &__btn-text {
+      flex: 1;
+      text-align: center;
     }
   }
 }

@@ -12,10 +12,30 @@ content-width
 header pc
 ---------------------------------------- */
 .header {
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   z-index: 100;
   background: #fff;
   font-family: "Noto Sans JP", sans-serif;
+}
+.admin-bar .header {
+  top: 32px;
+}
+@media (max-width: 782px) {
+  .admin-bar .header {
+    top: 46px;
+  }
+}
+.header.is-fixed {
+  background: transparent;
+}
+.header.is-fixed .header__inner {
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  -webkit-box-shadow: 0 2px 12px rgba(46, 42, 51, 0.08);
+          box-shadow: 0 2px 12px rgba(46, 42, 51, 0.08);
 }
 .header__inner {
   position: relative;
@@ -34,6 +54,10 @@ header pc
           justify-content: space-between;
   padding: 16px clamp(24px, 3.34vw, 48px);
   background: #fff;
+  -webkit-transition: background-color 0.3s, -webkit-box-shadow 0.3s;
+  transition: background-color 0.3s, -webkit-box-shadow 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s, -webkit-box-shadow 0.3s;
 }
 .header__brand {
   display: -webkit-box;
@@ -237,8 +261,12 @@ header sp（ハンバーガーメニュー）
     -webkit-transform: translateY(-7px) rotate(-45deg);
             transform: translateY(-7px) rotate(-45deg);
   }
-  body.is-menu-open .header__inner {
+  body.is-menu-open .header .header__inner {
     background: #f7f4fc;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
   .header__menu {
     position: fixed;
@@ -518,7 +546,7 @@ header sp（ハンバーガーメニュー）
     color: #7a6c9a;
     text-decoration: none;
   }
-  body.is-menu-open {
+  html.is-menu-open {
     overflow: hidden;
   }
 }
@@ -1179,6 +1207,10 @@ About
   /* 笑顔 ＝ 健康 × 美 ---------------- */
   /* 健康 × 美 ---------------- */
   /* すべての、大切な人へ。 ---------------- */
+  /* タブレット（768〜1119px）----------------
+     PCは内側の幅1080pxを前提に、px で並べているため、画面が狭いとはみ出す。
+     この幅だけ、位置・大きさ・文字を「内側の幅」に合わせて比例して縮める（1120px以上は元のデザインのまま）。
+     文字は小さくなりすぎないよう、下限（clamp の左の値）を決めている */
   /* SP（スマホ：縦に並べるレイアウト） ----------------
      ・文字や余白は、幅375pxの画面をもとにした数値です（文字は画面幅に合わせて少し伸び縮みします）
      ・背景は About-bg-sp.webp を、セクション全体に敷いています */
@@ -1456,6 +1488,83 @@ About
   outline: 3px solid #8b7bc8;
   outline-offset: 3px;
 }
+.About__btn-text {
+  min-width: 0;
+}
+.About__btn-line {
+  display: inline-block;
+}
+@media (min-width: 768px) and (max-width: 1119px) {
+  .About__inner {
+    container-type: inline-size;
+  }
+  .About__venn {
+    height: max(28.7037037037cqw, 290px);
+  }
+  .About__flower {
+    top: -8.3333333333cqw;
+    width: 37.037037037cqw;
+  }
+  .About__col {
+    top: 3.3333333333cqw;
+    width: 23.6111111111cqw;
+  }
+  .About__col--health {
+    left: 6.4814814815cqw;
+  }
+  .About__col--beauty {
+    left: auto;
+    right: 6.7592592593cqw;
+  }
+  .About__col-title {
+    font-size: clamp(20px, 2.4074074074cqw, 26px);
+  }
+  .About__col-title span {
+    font-size: clamp(11px, 1.2962962963cqw, 14px);
+  }
+  .About__list li {
+    gap: clamp(10px, 1.4814814815cqw, 16px);
+    font-size: clamp(11px, 1.2962962963cqw, 14px);
+    letter-spacing: 0.1em;
+  }
+  .About__card {
+    height: auto;
+    min-height: 21.4814814815cqw;
+  }
+  .About__card-img {
+    width: 64.8148148148cqw;
+    -webkit-mask-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgb(0, 0, 0)), color-stop(28.57%, rgba(0, 0, 0, 0.69)), color-stop(57.14%, rgba(0, 0, 0, 0.4)), color-stop(71.43%, rgba(0, 0, 0, 0.27)), color-stop(85.71%, rgba(0, 0, 0, 0.13)), to(rgba(0, 0, 0, 0)));
+    -webkit-mask-image: linear-gradient(to right, rgb(0, 0, 0) 0, rgba(0, 0, 0, 0.69) 28.57%, rgba(0, 0, 0, 0.4) 57.14%, rgba(0, 0, 0, 0.27) 71.43%, rgba(0, 0, 0, 0.13) 85.71%, rgba(0, 0, 0, 0) 100%);
+    mask-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgb(0, 0, 0)), color-stop(28.57%, rgba(0, 0, 0, 0.69)), color-stop(57.14%, rgba(0, 0, 0, 0.4)), color-stop(71.43%, rgba(0, 0, 0, 0.27)), color-stop(85.71%, rgba(0, 0, 0, 0.13)), to(rgba(0, 0, 0, 0)));
+    mask-image: linear-gradient(to right, rgb(0, 0, 0) 0, rgba(0, 0, 0, 0.69) 28.57%, rgba(0, 0, 0, 0.4) 57.14%, rgba(0, 0, 0, 0.27) 71.43%, rgba(0, 0, 0, 0.13) 85.71%, rgba(0, 0, 0, 0) 100%);
+  }
+  .About__card-img img {
+    top: -8.1481481481cqw;
+    left: -8.7962962963cqw;
+    width: 73.3333333333cqw;
+  }
+  .About__card-body {
+    padding: max(2.2222222222cqw, 16px) 3.7037037037cqw max(1.6666666667cqw, 14px) 46.3888888889cqw;
+  }
+  .About__card-title {
+    font-size: clamp(18px, 2.2222222222cqw, 24px);
+  }
+  .About__card-text {
+    font-size: clamp(12px, 1.3888888889cqw, 15px);
+  }
+  .About__btn {
+    max-width: 100%;
+    font-size: clamp(12px, 1.3888888889cqw, 15px);
+  }
+}
+@media (min-width: 768px) and (max-width: 919px) {
+  .About__card-text {
+    white-space: normal;
+  }
+  .About__br {
+    display: none;
+  }
+}
 @media (max-width: 767px) {
   .About {
     padding: 54px 0 66px;
@@ -1486,22 +1595,23 @@ About
     margin-right: 12px;
   }
   .About__catch {
-    margin-top: 34px;
+    margin-top: 15px;
     font-size: clamp(19px, 6.4vw, 30px);
     letter-spacing: 0.067em;
   }
   .About__lead {
     position: relative;
     z-index: 1;
-    margin-top: 21px;
-    font-size: clamp(13px, 4.27vw, 19px);
-    line-height: 1.75;
-    letter-spacing: 0.17em;
+    margin-top: 10px;
+    font-size: clamp(13px, 5vw, 19px);
+    line-height: 1.3;
+    letter-spacing: 0;
   }
   .About__venn {
     width: min(100%, 300px);
     height: auto;
-    margin: -60px auto 0;
+    margin: -120px auto -80px;
+    opacity: 0.8;
   }
   .About__flower {
     position: static;
@@ -1522,15 +1632,17 @@ About
     white-space: nowrap;
   }
   .About__card {
+    max-width: 380px;
     height: auto;
     margin-top: 0;
     border-radius: 12px;
+    margin: 0 auto;
   }
   .About__card-img {
     position: relative;
     inset: auto;
     width: 100%;
-    height: 200px;
+    height: 150px;
     -webkit-mask-image: none;
     mask-image: none;
   }
@@ -1544,18 +1656,20 @@ About
        object-position: left top;
   }
   .About__card-body {
-    padding: 28px 21px 28px;
+    padding: 15px 21px;
   }
   .About__card-title {
+    text-align: center;
     font-size: clamp(17px, 5.33vw, 24px);
     letter-spacing: 0.07em;
   }
   .About__card-text {
     max-width: 280px;
-    margin-top: 13px;
+    margin: 5px auto 0;
+    text-align: center;
     white-space: normal;
     font-size: clamp(12px, 3.73vw, 15px);
-    line-height: 2.1;
+    line-height: 1.3;
     letter-spacing: 0.07em;
   }
   .About__br {
@@ -1572,6 +1686,13 @@ About
   }
   .About__btn::after {
     margin-left: auto;
+  }
+  .About__btn-text {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    text-align: center;
   }
 }
 
@@ -2904,11 +3025,6 @@ Information
       -ms-user-select: none;
           user-select: none;
 }
-@media (min-width: 1001px) {
-  .Whitening__logo {
-    display: none;
-  }
-}
 @media (max-width: 1366px) {
   .Whitening {
     overflow-x: clip;
@@ -3229,11 +3345,6 @@ Information
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-}
-@media (min-width: 1001px) {
-  .Dental-esthetics__logo {
-    display: none;
-  }
 }
 .Dental-esthetics__inner {
   max-width: 1080px;
@@ -3585,7 +3696,7 @@ Information
   overflow: hidden;
   background: radial-gradient(circle 360px at min(86%, 50% + 492px) 98%, #e6dcf1 0%, rgba(240, 232, 246, 0.7) 50%, rgba(252, 244, 246, 0) 100%), radial-gradient(circle 520px at max(8%, 50% - 574px) 9%, #f8e6ed 0%, rgba(250, 238, 243, 0) 100%), linear-gradient(100deg, #faf0f3 0%, #fcf4f6 40%, #fdf6f7 70%, #fbf2f5 100%);
 }
-.Reason__bg, .Reason__sp-br {
+.Reason__bg, .Reason__sp-br, .Reason__text-sp {
   display: none;
 }
 .Reason__frame {
@@ -3910,6 +4021,9 @@ Information
   }
 }
 @media (max-width: 768px) {
+  .Reason__list {
+    margin: 10px auto 0;
+  }
   .Reason__frame {
     padding: 56px 24px 64px;
   }
@@ -3935,8 +4049,14 @@ Information
   .Reason__sp-br {
     display: inline;
   }
+  .Reason__text-pc {
+    display: none;
+  }
+  .Reason__text-sp {
+    display: inline;
+  }
   .Reason__item {
-    padding: 14px 16px 12px 12px;
+    padding: 10px 16px 8px 12px;
   }
   .Reason__badge {
     width: 52px;
@@ -3951,11 +4071,13 @@ Information
   }
   .Reason__item-title {
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.4;
   }
   .Reason__item-text {
     font-size: 14px;
     letter-spacing: 0;
+    line-height: 1.3;
+    padding-top: 2px;
   }
 }
 
@@ -4464,6 +4586,12 @@ Greeting（院長挨拶）
           align-items: baseline;
   gap: 10px;
 }
+.Greeting__toggle {
+  display: none;
+}
+.Greeting__collapse, .Greeting__collapse-inner {
+  display: block;
+}
 .Greeting__block-title {
   margin: 0;
   font-family: "Shippori Mincho", serif;
@@ -4606,7 +4734,7 @@ Greeting SP（見出し → 写真 → 文章の順）
 ---------------------------------------- */
 @media (max-width: 599px) {
   .Greeting {
-    padding: 56px 0 56px;
+    padding: 65px 0 56px;
     background: -webkit-gradient(linear, left top, left bottom, from(#f8f4fb), color-stop(55%, #f4effa), to(#f6f2fb));
     background: linear-gradient(to bottom, #f8f4fb 0%, #f4effa 55%, #f6f2fb 100%);
   }
@@ -4658,14 +4786,14 @@ Greeting SP（見出し → 写真 → 文章の順）
     display: inline;
   }
   .Greeting__catch {
-    margin-top: 32px;
+    margin-top: 20px;
     font-size: 20px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0;
   }
   .Greeting__text {
-    margin-top: 26px;
+    margin-top: 10px;
     font-size: 14px;
-    line-height: 26px;
+    line-height: 18px;
     background: none;
   }
   .Greeting__name-role, .Greeting__name-note {
@@ -4676,29 +4804,139 @@ Greeting SP（見出し → 写真 → 文章の順）
   }
   .Greeting__profile {
     grid-template-columns: 1fr;
-    row-gap: 32px;
-    margin-top: 40px;
+    row-gap: 5px;
+    margin-top: 20px;
   }
+  .Greeting__block-head {
+    position: relative;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    min-height: 44px;
+  }
+  .Greeting__toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    width: 100%;
+    margin: 0;
+    padding: 0 4px 0 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+  }
+  .Greeting__toggle:focus-visible {
+    outline: 2px solid #8b7bc7;
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+  .Greeting__icon {
+    position: relative;
+    -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+  .Greeting__icon::before, .Greeting__icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 1.5px;
+    background: #8b7bc7;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    -webkit-transition: -webkit-transform 0.3s ease;
+    transition: -webkit-transform 0.3s ease;
+    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  }
+  .Greeting__icon::after {
+    -webkit-transform: translate(-50%, -50%) rotate(90deg);
+            transform: translate(-50%, -50%) rotate(90deg);
+  }
+  .Greeting__toggle[aria-expanded=true] .Greeting__icon::after {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  .Greeting__collapse {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    -webkit-transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+    transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+    transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s, -ms-grid-rows 0.35s ease;
+  }
+  .Greeting__collapse.is-open {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    -webkit-transition: grid-template-rows 0.35s ease, visibility 0s;
+    transition: grid-template-rows 0.35s ease, visibility 0s;
+    transition: grid-template-rows 0.35s ease, visibility 0s, -ms-grid-rows 0.35s ease;
+  }
+  .Greeting__collapse-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+@media (max-width: 599px) and (prefers-reduced-motion: reduce) {
+  .Greeting__collapse, .Greeting__collapse.is-open, .Greeting__icon::before, .Greeting__icon::after {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+@media (max-width: 599px) {
   .Greeting__block-title {
     font-size: 14px;
   }
+}
+@media (max-width: 599px) {
   .Greeting__career {
     margin-top: 10px;
   }
+}
+@media (max-width: 599px) {
   .Greeting__career-item + .Greeting__career-item {
     margin-top: 16px;
   }
+}
+@media (max-width: 599px) {
   .Greeting__career-line, .Greeting__member-line {
     line-height: 23px;
   }
+}
+@media (max-width: 599px) {
   .Greeting__career-line {
     max-width: 19em;
   }
+}
+@media (max-width: 599px) {
   .Greeting__member {
     margin-top: 12px;
   }
+}
+@media (max-width: 599px) {
   .Greeting__btn {
     justify-self: start;
+    margin-top: 10px;
   }
 }
 /* ----------------------------------------
@@ -5241,7 +5479,7 @@ FAQ（よくあるご質問）
 }
 @media (max-width: 767px) {
   .FAQ {
-    padding: 72px 16px;
+    padding: 50px 16px;
   }
 }
 .FAQ__inner {
@@ -5254,7 +5492,7 @@ FAQ（よくあるご質問）
 }
 @media (max-width: 767px) {
   .FAQ__head {
-    margin-bottom: 48px;
+    margin-bottom: 20px;
   }
 }
 .FAQ__en {
@@ -5304,6 +5542,11 @@ FAQ（よくあるご質問）
   padding: 0;
   list-style: none;
 }
+@media (max-width: 767px) {
+  .FAQ__list {
+    gap: 8px;
+  }
+}
 .FAQ__item {
   border: 1px solid #8f7fd0;
   border-radius: 16px;
@@ -5339,7 +5582,7 @@ FAQ（よくあるご質問）
   .FAQ__q {
     gap: 12px;
     min-height: 60px;
-    padding: 14px 16px;
+    padding: 3px 16px;
   }
 }
 .FAQ__mark {
@@ -5364,7 +5607,7 @@ FAQ（よくあるご質問）
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0.04em;
-  line-height: 1.6;
+  line-height: 1.3;
 }
 .FAQ__icon {
   position: relative;
@@ -5432,7 +5675,7 @@ FAQ（よくあるご質問）
 @media (max-width: 767px) {
   .FAQ__a-body {
     gap: 12px;
-    padding: 4px 16px 22px;
+    padding: 0 16px 14px;
   }
 }
 .FAQ__a-text {
@@ -5444,7 +5687,7 @@ FAQ（よくあるご質問）
   font-family: "Noto Sans JP", sans-serif;
   font-size: 14px;
   letter-spacing: 0.04em;
-  line-height: 1.9;
+  line-height: 1.3;
   color: #6a6a78;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -5565,7 +5808,19 @@ Access（医院情報・アクセス）
 .Access__tel-type::after {
   content: "）";
 }
+.Access__tel-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.Access__tel-item {
+  display: inline-block;
+  white-space: nowrap;
+}
 .Access__tel {
+  position: relative;
+  padding-left: 2.4em;
+  text-align: left;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -5933,7 +6188,7 @@ Access（医院情報・アクセス）
 }
 @media (max-width: 767px) {
   .Access {
-    padding: 88px 20px 48px;
+    padding: 72px 20px 40px;
     /* 診療時間 */
     /* 医院情報（アイコン付きカード） */
     /* 決済方法 */
@@ -5941,7 +6196,7 @@ Access（医院情報・アクセス）
     /* 地図（カードの文字はモックアップどおり小さめです） */
   }
   .Access__inner {
-    row-gap: 32px;
+    row-gap: 20px;
   }
   .Access__main {
     display: -webkit-box;
@@ -5958,21 +6213,25 @@ Access（医院情報・アクセス）
     font-size: 12px;
   }
   .Access__name {
-    margin-top: 24px;
+    margin-top: 16px;
     font-size: 22.5px;
+  }
+  .Access__line {
+    margin-top: 12px;
   }
   .Access__sub {
     font-size: 16.5px;
+    line-height: 1.3;
   }
   .Access__hours {
     -webkit-box-ordinal-group: 2;
     -webkit-order: 1;
         -ms-flex-order: 1;
             order: 1;
-    margin-top: 36px;
+    margin-top: 22px;
   }
   .Access__table-wrap {
-    margin-top: 11px;
+    margin-top: 8px;
   }
   .Access .Access__table th,
   .Access .Access__table td {
@@ -5982,7 +6241,7 @@ Access（医院情報・アクセス）
     width: 22%;
   }
   .Access .Access__table thead th {
-    height: 33px;
+    height: 30px;
   }
   .Access .Access__table tbody th {
     padding: 0 10px;
@@ -5991,14 +6250,14 @@ Access（医院情報・アクセス）
     white-space: normal;
   }
   .Access .Access__table tbody td {
-    height: 49px;
+    height: 42px;
   }
   .Access__mark {
     width: 20px;
     height: 20px;
   }
   .Access__note {
-    margin-top: 12px;
+    margin-top: 8px;
     font-size: 13px;
     letter-spacing: 0.04em;
     line-height: 1.23;
@@ -6008,11 +6267,11 @@ Access（医院情報・アクセス）
     -webkit-order: 2;
         -ms-flex-order: 2;
             order: 2;
-    margin-top: 24px;
-    padding: 4px 16px;
+    margin-top: 16px;
+    padding: 3px 16px;
     border-radius: 12px;
     font-size: 14px;
-    line-height: 1.65;
+    line-height: 1.5;
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) content-box, -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.6)), to(rgba(255, 255, 255, 0.6))) border-box;
     background: linear-gradient(#fff, #fff) content-box, linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)) border-box;
   }
@@ -6022,7 +6281,7 @@ Access（医院情報・アクセス）
     -webkit-column-gap: 12px;
        -moz-column-gap: 12px;
             column-gap: 12px;
-    padding: 12px 0;
+    padding: 8px 0;
     border-bottom: 1px solid #e3e0ee;
   }
   .Access__info-row:last-child {
@@ -6062,8 +6321,9 @@ Access（医院情報・アクセス）
     grid-column: 2;
   }
   .Access__tel {
+    padding-left: 0;
     font-size: 14px;
-    line-height: 23px;
+    line-height: 21px;
     letter-spacing: 0;
   }
   .Access__tel-title, .Access__tel-sep {
@@ -6090,15 +6350,17 @@ Access（医院情報・アクセス）
     -webkit-order: 3;
         -ms-flex-order: 3;
             order: 3;
-    margin-top: 26px;
+    margin-top: 18px;
   }
   .Access__pay-head {
     display: block;
   }
   .Access__pay-text {
-    margin-top: 9px;
+    margin-top: 4px;
+    line-height: 1.5;
   }
   .Access__pay-img {
+    margin-top: 8px;
     background: transparent;
   }
   .Access__pay-img--pc {
@@ -6120,14 +6382,25 @@ Access（医院情報・アクセス）
     gap: 12px;
   }
   .Access__btn {
-    min-height: 72px;
-    padding: 0 63px 0 18px;
+    min-height: 64px;
+    padding: 0 40px 0 58px;
+  }
+  .Access__btn-text {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-left: 0;
+    text-align: center;
   }
   .Access__btn-sub {
     font-size: 11px;
   }
   .Access__btn-main {
-    padding-left: 43px;
     font-size: 15px;
   }
   .Access__banner {

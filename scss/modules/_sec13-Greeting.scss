@@ -209,6 +209,16 @@ Greeting（院長挨拶）
     gap: 10px;
   }
 
+  // 開閉ボタン・ラッパー（PC・タブレットでは使わない。SPのブロックで有効にします）
+  &__toggle {
+    display: none;
+  }
+
+  &__collapse,
+  &__collapse-inner {
+    display: block;
+  }
+
   &__block-title {
     margin: 0;
     font-family: "Shippori Mincho", serif;
@@ -365,7 +375,9 @@ Greeting SP（見出し → 写真 → 文章の順）
 ---------------------------------------- */
 @media (max-width: 599px) {
   .Greeting {
-    padding: 56px 0 56px;
+    $purple: #8b7bc7; // PC側の $purple と同じ色（＋／－・フォーカス枠用）
+
+    padding: 65px 0 56px;
     // 背景画像（上の波＋ピンクの光）を敷くので、PC用のピンクの光は外し、ラベンダーのグラデーションだけにする
     background: linear-gradient(to bottom, #f8f4fb 0%, #f4effa 55%, #f6f2fb 100%);
 
@@ -427,15 +439,15 @@ Greeting SP（見出し → 写真 → 文章の順）
     }
 
     &__catch {
-      margin-top: 32px;
+      margin-top: 20px;
       font-size: 20px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0;
     }
 
     &__text {
-      margin-top: 26px;
+      margin-top: 10px;
       font-size: 14px;
-      line-height: 26px;
+      line-height: 18px;
       background: none; // 本文の下のうっすらした横線を消す
     }
 
@@ -450,8 +462,97 @@ Greeting SP（見出し → 写真 → 文章の順）
 
     &__profile {
       grid-template-columns: 1fr;
-      row-gap: 32px;
-      margin-top: 40px;
+      row-gap: 5px;
+      margin-top: 20px;
+    }
+
+    // 見出しの行いっぱいを押せるようにして、右端に＋／－を置く
+    &__block-head {
+      position: relative;
+      align-items: center;
+      min-height: 44px;
+    }
+
+    &__toggle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+      margin: 0;
+      padding: 0 4px 0 0;
+      border: 0;
+      background: none;
+      font: inherit;
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: 2px solid $purple;
+        outline-offset: 2px;
+        border-radius: 8px;
+      }
+    }
+
+    // ＋／－ アイコン（_sec16-FAQ.scss の FAQ__icon と同じ）
+    &__icon {
+      position: relative;
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 14px;
+        height: 1.5px;
+        background: $purple;
+        transform: translate(-50%, -50%);
+        transition: transform 0.3s ease;
+      }
+
+      // たて棒：開いたら横に寝かせて「－」にする
+      &::after {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+
+    &__toggle[aria-expanded='true'] &__icon::after {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    // 開閉する部分（grid の 0fr → 1fr で高さを滑らかに変える）
+    &__collapse {
+      display: grid;
+      grid-template-rows: 0fr;
+      visibility: hidden;
+      transition: grid-template-rows 0.35s ease, visibility 0s linear 0.35s;
+
+      &.is-open {
+        grid-template-rows: 1fr;
+        visibility: visible;
+        transition: grid-template-rows 0.35s ease, visibility 0s;
+      }
+    }
+
+    &__collapse-inner {
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &__collapse,
+      &__collapse.is-open,
+      &__icon::before,
+      &__icon::after {
+        transition: none;
+      }
     }
 
     &__block-title {
@@ -483,6 +584,7 @@ Greeting SP（見出し → 写真 → 文章の順）
     // ボタンは幅いっぱいにせず、左寄せのまま（PCと同じ形）
     &__btn {
       justify-self: start;
+      margin-top: 10px;
     }
   }
 }

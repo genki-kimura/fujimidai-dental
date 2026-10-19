@@ -237,6 +237,20 @@ h1.wp-block-post-title::after {
   padding-bottom: 4rem;
 }
 
+@media (max-width: 900px) {
+  .page-common-content .page-common-content__inner {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .page-common-content .page-common-content__inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
 .is-root-container > .wp-block {
   max-width: 860px;
   margin-left: auto !important;
@@ -1295,7 +1309,8 @@ h1.wp-block-post-title::after {
 @media (max-width: 767px) {
   .page-common-content .case-box .case-box-images,
   .is-root-container .case-box .case-box-images {
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 20px;
     margin-bottom: 28px;
   }
   .page-common-content .case-box .case-box-image-label,
@@ -3436,6 +3451,1128 @@ h1.wp-block-post-title::after {
   .is-root-container .supervisor-box .supervisor-box-a-body p {
     font-size: 14px;
     line-height: 1.9;
+  }
+}
+.page-common-content .profile-box,
+.is-root-container .profile-box {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 40px 0;
+  padding: 40px 44px 44px;
+  border-radius: 20px;
+  background: linear-gradient(100deg, #f8f6fd 0%, #f9f4f9 60%, #fcf0f5 100%);
+}
+.page-common-content .profile-box .profile-box-title,
+.is-root-container .profile-box .profile-box-title {
+  position: static;
+  margin: 0 0 28px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #2b2b33;
+}
+.page-common-content .profile-box .profile-box-title::before, .page-common-content .profile-box .profile-box-title::after,
+.is-root-container .profile-box .profile-box-title::before,
+.is-root-container .profile-box .profile-box-title::after {
+  content: none;
+  display: none;
+}
+.page-common-content .profile-box .profile-box-inner,
+.is-root-container .profile-box .profile-box-inner {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  -webkit-column-gap: 36px;
+     -moz-column-gap: 36px;
+          column-gap: 36px;
+  -webkit-box-align: start;
+  -webkit-align-items: start;
+      -ms-flex-align: start;
+          align-items: start;
+}
+.page-common-content .profile-box .profile-box-photo,
+.is-root-container .profile-box .profile-box-photo {
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #e2e2e2;
+}
+.page-common-content .profile-box .profile-box-photo-img,
+.is-root-container .profile-box .profile-box-photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-common-content .profile-box .profile-box-body,
+.is-root-container .profile-box .profile-box-body {
+  min-width: 0;
+}
+.page-common-content .profile-box .profile-box-body > *:first-child,
+.is-root-container .profile-box .profile-box-body > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .profile-box .profile-box-dental,
+.is-root-container .profile-box .profile-box-dental {
+  margin: 0 0 12px;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: #6e6e73;
+}
+.page-common-content .profile-box .profile-box-person,
+.is-root-container .profile-box .profile-box-person {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  gap: 0 12px;
+  margin: 0 0 16px;
+  text-align: left;
+}
+.page-common-content .profile-box .profile-box-position,
+.is-root-container .profile-box .profile-box-position {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #2b2b33;
+}
+.page-common-content .profile-box .profile-box-name,
+.is-root-container .profile-box .profile-box-name {
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #2b2b33;
+}
+.page-common-content .profile-box .profile-box-text > *:first-child,
+.is-root-container .profile-box .profile-box-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .profile-box .profile-box-text > *:last-child,
+.is-root-container .profile-box .profile-box-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .profile-box .profile-box-text p,
+.is-root-container .profile-box .profile-box-text p {
+  margin: 0 0 1em;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.65;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #2b2b33;
+}
+.page-common-content .profile-box .profile-box-btn,
+.is-root-container .profile-box .profile-box-btn {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: #7e69a9;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+.page-common-content .profile-box .profile-box-btn:hover,
+.is-root-container .profile-box .profile-box-btn:hover {
+  opacity: 0.7;
+}
+.page-common-content .profile-box .profile-box-btn-icon,
+.is-root-container .profile-box .profile-box-btn-icon {
+  position: relative;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #7e69a9;
+}
+.page-common-content .profile-box .profile-box-btn-icon::after,
+.is-root-container .profile-box .profile-box-btn-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-top: 1.5px solid #fff;
+  border-right: 1.5px solid #fff;
+  -webkit-transform: translate(-65%, -50%) rotate(45deg);
+          transform: translate(-65%, -50%) rotate(45deg);
+}
+
+@media (max-width: 767px) {
+  .page-common-content .profile-box,
+  .is-root-container .profile-box {
+    margin: 32px 0;
+    padding: 28px 20px 30px;
+    border-radius: 16px;
+  }
+  .page-common-content .profile-box .profile-box-title,
+  .is-root-container .profile-box .profile-box-title {
+    margin-bottom: 20px;
+    font-size: 17px;
+  }
+  .page-common-content .profile-box .profile-box-inner,
+  .is-root-container .profile-box .profile-box-inner {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+  .page-common-content .profile-box .profile-box-photo,
+  .is-root-container .profile-box .profile-box-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+  .page-common-content .profile-box .profile-box-name,
+  .is-root-container .profile-box .profile-box-name {
+    font-size: 24px;
+  }
+  .page-common-content .profile-box .profile-box-text p,
+  .is-root-container .profile-box .profile-box-text p {
+    font-size: 14px;
+  }
+  .page-common-content .profile-box .profile-box-btn,
+  .is-root-container .profile-box .profile-box-btn {
+    margin-top: 16px;
+  }
+}
+.page-common-content .related-articles,
+.is-root-container .related-articles {
+  margin: 40px 0;
+}
+.page-common-content .related-articles .related-articles-label,
+.is-root-container .related-articles .related-articles-label {
+  position: static;
+  display: block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 8px 22px;
+  border: 0;
+  border-radius: 14px 14px 0 0;
+  background: #7e69a9;
+  text-align: left;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+.page-common-content .related-articles .related-articles-label::before, .page-common-content .related-articles .related-articles-label::after,
+.is-root-container .related-articles .related-articles-label::before,
+.is-root-container .related-articles .related-articles-label::after {
+  content: none;
+  display: none;
+}
+.page-common-content .related-articles .related-articles-box,
+.is-root-container .related-articles .related-articles-box {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  -webkit-column-gap: 26px;
+     -moz-column-gap: 26px;
+          column-gap: 26px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 20px 32px 20px 20px;
+  border: 1.5px solid #cdc4e8;
+  border-radius: 18px;
+  background: #faf8fd;
+}
+.page-common-content .related-articles .related-articles-box.is-no-photo,
+.is-root-container .related-articles .related-articles-box.is-no-photo {
+  grid-template-columns: 1fr;
+  padding: 28px 32px;
+}
+.page-common-content .related-articles.has-label .related-articles-box,
+.is-root-container .related-articles.has-label .related-articles-box {
+  border-top-left-radius: 0;
+}
+.page-common-content .related-articles .related-articles-photo,
+.is-root-container .related-articles .related-articles-photo {
+  width: 220px;
+  height: 152px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.page-common-content .related-articles .related-articles-photo-img,
+.is-root-container .related-articles .related-articles-photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-common-content .related-articles .related-articles-body,
+.is-root-container .related-articles .related-articles-body {
+  min-width: 0;
+}
+.page-common-content .related-articles .related-articles-title,
+.is-root-container .related-articles .related-articles-title {
+  margin: 0 0 6px;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.8;
+  letter-spacing: 0.12em;
+  text-align: left;
+  color: #2b2b33;
+}
+.page-common-content .related-articles .related-articles-text > *:first-child,
+.is-root-container .related-articles .related-articles-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .related-articles .related-articles-text > *:last-child,
+.is-root-container .related-articles .related-articles-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .related-articles .related-articles-text p,
+.is-root-container .related-articles .related-articles-text p {
+  margin: 0;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  text-align: left;
+  color: #6e6e73;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .related-articles,
+  .is-root-container .related-articles {
+    margin: 32px 0;
+  }
+  .page-common-content .related-articles .related-articles-label,
+  .is-root-container .related-articles .related-articles-label {
+    padding: 5px 18px;
+    border-radius: 12px 12px 0 0;
+    font-size: 13px;
+  }
+  .page-common-content .related-articles .related-articles-box,
+  .is-root-container .related-articles .related-articles-box {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    padding: 16px;
+    border-radius: 14px;
+  }
+  .page-common-content .related-articles .related-articles-box.is-no-photo,
+  .is-root-container .related-articles .related-articles-box.is-no-photo {
+    padding: 18px 16px;
+  }
+  .page-common-content .related-articles.has-label .related-articles-box,
+  .is-root-container .related-articles.has-label .related-articles-box {
+    border-top-left-radius: 0;
+  }
+  .page-common-content .related-articles .related-articles-photo,
+  .is-root-container .related-articles .related-articles-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/2;
+  }
+  .page-common-content .related-articles .related-articles-title,
+  .is-root-container .related-articles .related-articles-title {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .page-common-content .related-articles .related-articles-text p,
+  .is-root-container .related-articles .related-articles-text p {
+    font-size: 13px;
+  }
+}
+.page-common-content .related-articles-02,
+.is-root-container .related-articles-02 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  max-width: 272px;
+  max-height: 260px;
+  margin: 40px 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  background: #fff;
+  -webkit-box-shadow: 0 18px 40px rgba(180, 150, 180, 0.14);
+          box-shadow: 0 18px 40px rgba(180, 150, 180, 0.14);
+  text-decoration: none;
+  color: inherit;
+  -webkit-transition: -webkit-transform 0.3s, -webkit-box-shadow 0.3s;
+  transition: -webkit-transform 0.3s, -webkit-box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, -webkit-transform 0.3s, -webkit-box-shadow 0.3s;
+}
+.page-common-content .related-articles-02:is(a),
+.is-root-container .related-articles-02:is(a) {
+  cursor: pointer;
+}
+.page-common-content .related-articles-02:is(a):hover,
+.is-root-container .related-articles-02:is(a):hover {
+  -webkit-transform: translateY(-4px);
+          transform: translateY(-4px);
+  -webkit-box-shadow: 0 24px 48px rgba(180, 150, 180, 0.22);
+          box-shadow: 0 24px 48px rgba(180, 150, 180, 0.22);
+}
+.page-common-content .related-articles-02:is(a):focus-visible,
+.is-root-container .related-articles-02:is(a):focus-visible {
+  outline: 3px solid #7e69a9;
+  outline-offset: 3px;
+}
+.page-common-content .related-articles-02 .related-articles-02-thumb,
+.is-root-container .related-articles-02 .related-articles-02-thumb {
+  display: block;
+  aspect-ratio: 1.8052631579;
+  min-height: 0;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+  overflow: hidden;
+  background: #e2e2e2;
+}
+.page-common-content .related-articles-02 .related-articles-02-img,
+.is-root-container .related-articles-02 .related-articles-02-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+.page-common-content .related-articles-02:is(a):hover .related-articles-02-img,
+.is-root-container .related-articles-02:is(a):hover .related-articles-02-img {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+.page-common-content .related-articles-02 .related-articles-02-body,
+.is-root-container .related-articles-02 .related-articles-02-body {
+  display: block;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  padding: 20px 24px 24px;
+}
+.page-common-content .related-articles-02 .related-articles-02-title,
+.is-root-container .related-articles-02 .related-articles-02-title {
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 180%;
+  letter-spacing: 0.05em;
+  color: #2b2b33;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+.page-common-content .related-articles-02 .related-articles-02-title::before, .page-common-content .related-articles-02 .related-articles-02-title::after,
+.is-root-container .related-articles-02 .related-articles-02-title::before,
+.is-root-container .related-articles-02 .related-articles-02-title::after {
+  content: none;
+  display: none;
+}
+.page-common-content .related-articles-02:is(a):hover .related-articles-02-title,
+.is-root-container .related-articles-02:is(a):hover .related-articles-02-title {
+  color: #7e69a9;
+}
+
+.wp-block-column:has(> .related-articles-02) {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.wp-block-column:has(> .related-articles-02) > .related-articles-02 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.is-root-container a.related-articles-02 {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-common-content .related-articles-02,
+  .page-common-content .related-articles-02 .related-articles-02-img,
+  .page-common-content .related-articles-02 .related-articles-02-title,
+  .is-root-container .related-articles-02,
+  .is-root-container .related-articles-02 .related-articles-02-img,
+  .is-root-container .related-articles-02 .related-articles-02-title {
+    -webkit-transition: none;
+    transition: none;
+  }
+  .page-common-content .related-articles-02:is(a):hover, .page-common-content .related-articles-02:is(a):hover .related-articles-02-img,
+  .is-root-container .related-articles-02:is(a):hover,
+  .is-root-container .related-articles-02:is(a):hover .related-articles-02-img {
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+@media (max-width: 767px) {
+  .page-common-content .related-articles-02,
+  .is-root-container .related-articles-02 {
+    margin: 32px 0;
+    border-radius: 16px;
+  }
+  .page-common-content .related-articles-02 .related-articles-02-body,
+  .is-root-container .related-articles-02 .related-articles-02-body {
+    padding: 18px 20px 20px;
+  }
+  .page-common-content .related-articles-02 .related-articles-02-title,
+  .is-root-container .related-articles-02 .related-articles-02-title {
+    font-size: 13.5px;
+  }
+}
+.page-common-content .feature-list,
+.is-root-container .feature-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 22px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-height: 80px;
+  margin: 0 0 14px;
+  padding: 14px 38px 14px 19px;
+  border-radius: 20px;
+  background: #fff;
+  -webkit-box-shadow: 0 6px 20px rgba(80, 60, 110, 0.06);
+          box-shadow: 0 6px 20px rgba(80, 60, 110, 0.06);
+}
+.page-common-content .feature-list .feature-list-icon,
+.is-root-container .feature-list .feature-list-icon {
+  position: relative;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  width: 46px;
+  height: 46px;
+}
+.page-common-content .feature-list .feature-list-icon::before,
+.is-root-container .feature-list .feature-list-icon::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9d0ff 0%, #e2d3ff 42%, #ffcadd 100%);
+  opacity: 0.8;
+  -webkit-filter: blur(4px);
+          filter: blur(4px);
+}
+.page-common-content .feature-list .feature-list-icon-frame,
+.is-root-container .feature-list .feature-list-icon-frame {
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #fff;
+}
+.page-common-content .feature-list .feature-list-icon-img,
+.is-root-container .feature-list .feature-list-icon-img {
+  display: block;
+  width: 75%;
+  height: 75%;
+  margin: 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.page-common-content .feature-list .feature-list-text,
+.is-root-container .feature-list .feature-list-text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-width: 0;
+}
+.page-common-content .feature-list .feature-list-text > *:first-child,
+.is-root-container .feature-list .feature-list-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .feature-list .feature-list-text > *:last-child,
+.is-root-container .feature-list .feature-list-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .feature-list .feature-list-text p,
+.is-root-container .feature-list .feature-list-text p {
+  margin: 0;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.8;
+  letter-spacing: 0.06em;
+  text-align: left;
+  color: #2b2b33;
+}
+
+.page-common-content .feature-list:not(:has(.feature-list-icon)),
+.is-root-container .feature-list:not(:has(.feature-list-icon)) {
+  padding-left: 38px;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .feature-list,
+  .is-root-container .feature-list {
+    gap: 14px;
+    min-height: 0;
+    padding: 14px 16px 14px 14px;
+    border-radius: 16px;
+  }
+  .page-common-content .feature-list .feature-list-icon,
+  .is-root-container .feature-list .feature-list-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .page-common-content .feature-list .feature-list-text p,
+  .is-root-container .feature-list .feature-list-text p {
+    font-size: 14px;
+    letter-spacing: 0.04em;
+  }
+}
+.page-common-content .feature,
+.is-root-container .feature {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 40px 0;
+  padding: 56px 72px;
+  border-radius: 24px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fdf9f9), color-stop(30%, #fbf1f5), color-stop(58%, #f7eef4), to(#faf5f8));
+  background: linear-gradient(180deg, #fdf9f9 0%, #fbf1f5 30%, #f7eef4 58%, #faf5f8 100%);
+}
+.page-common-content .feature .feature-logo,
+.is-root-container .feature .feature-logo {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 8px;
+  margin: 0 0 22px;
+}
+.page-common-content .feature .feature-logo-img,
+.is-root-container .feature .feature-logo-img {
+  display: block;
+  width: auto;
+  height: 52px;
+  margin: 0;
+}
+.page-common-content .feature .feature-logo-no,
+.is-root-container .feature .feature-logo-no {
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1;
+  color: #7e69a9;
+  position: relative;
+}
+.page-common-content .feature .feature-title,
+.is-root-container .feature .feature-title {
+  position: static;
+  margin: 0 0 30px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: center;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  color: #2b2b33;
+}
+.page-common-content .feature .feature-title::before, .page-common-content .feature .feature-title::after,
+.is-root-container .feature .feature-title::before,
+.is-root-container .feature .feature-title::after {
+  content: none;
+  display: none;
+}
+.page-common-content .feature .feature-title span,
+.is-root-container .feature .feature-title span {
+  font-family: inherit;
+}
+.page-common-content .feature .feature-text > *:first-child,
+.is-root-container .feature .feature-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .feature .feature-text > *:last-child,
+.is-root-container .feature .feature-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .feature .feature-text .feature-list,
+.is-root-container .feature .feature-text .feature-list {
+  margin: 0 0 14px;
+}
+.page-common-content .feature .feature-text .feature-list:last-child,
+.is-root-container .feature .feature-text .feature-list:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .feature,
+  .is-root-container .feature {
+    margin: 32px 0;
+    padding: 36px 16px 28px;
+    border-radius: 18px;
+  }
+  .page-common-content .feature .feature-logo,
+  .is-root-container .feature .feature-logo {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .page-common-content .feature .feature-logo-img,
+  .is-root-container .feature .feature-logo-img {
+    height: 40px;
+  }
+  .page-common-content .feature .feature-logo-no,
+  .is-root-container .feature .feature-logo-no {
+    font-size: 15px;
+  }
+  .page-common-content .feature .feature-title,
+  .is-root-container .feature .feature-title {
+    margin-bottom: 22px;
+    font-size: 24px;
+    letter-spacing: 0.08em;
+  }
+}
+.page-common-content .strengths-cta,
+.is-root-container .strengths-cta {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 40px 0;
+  padding: 56px 15px 52px;
+  border-radius: 24px;
+  background: linear-gradient(120deg, #e6dcf4 0%, #f0eaf8 40%, #f7f4fb 75%, #f5f2fa 100%);
+}
+.page-common-content .strengths-cta .strengths-cta-logo,
+.is-root-container .strengths-cta .strengths-cta-logo {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 8px;
+  margin: 0 0 28px;
+}
+.page-common-content .strengths-cta .strengths-cta-logo-img,
+.is-root-container .strengths-cta .strengths-cta-logo-img {
+  display: block;
+  width: auto;
+  height: 52px;
+  margin: 0;
+}
+.page-common-content .strengths-cta .strengths-cta-logo-no,
+.is-root-container .strengths-cta .strengths-cta-logo-no {
+  position: relative;
+  top: 2px;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1;
+  color: #7e69a9;
+}
+.page-common-content .strengths-cta .strengths-cta-title,
+.is-root-container .strengths-cta .strengths-cta-title {
+  position: static;
+  margin: 0 0 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: center;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  color: #2b2b33;
+}
+.page-common-content .strengths-cta .strengths-cta-title::before, .page-common-content .strengths-cta .strengths-cta-title::after,
+.is-root-container .strengths-cta .strengths-cta-title::before,
+.is-root-container .strengths-cta .strengths-cta-title::after {
+  content: none;
+  display: none;
+}
+.page-common-content .strengths-cta .strengths-cta-title span,
+.is-root-container .strengths-cta .strengths-cta-title span {
+  font-family: inherit;
+}
+.page-common-content .strengths-cta .strengths-cta-main,
+.is-root-container .strengths-cta .strengths-cta-main {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  -webkit-column-gap: 36px;
+     -moz-column-gap: 36px;
+          column-gap: 36px;
+  -webkit-box-align: start;
+  -webkit-align-items: start;
+      -ms-flex-align: start;
+          align-items: start;
+  margin: 0 0 24px;
+  padding: 0 41px;
+}
+.page-common-content .strengths-cta .strengths-cta-photo,
+.is-root-container .strengths-cta .strengths-cta-photo {
+  overflow: hidden;
+  border-radius: 18px;
+  background: #e2e2e2;
+  aspect-ratio: 0.9655172414;
+}
+.page-common-content .strengths-cta .strengths-cta-photo-img,
+.is-root-container .strengths-cta .strengths-cta-photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-common-content .strengths-cta .strengths-cta-info,
+.is-root-container .strengths-cta .strengths-cta-info {
+  min-width: 0;
+}
+.page-common-content .strengths-cta .strengths-cta-catch,
+.is-root-container .strengths-cta .strengths-cta-catch {
+  margin: 0 0 22px;
+  padding-top: 3px;
+  text-align: center;
+  font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: 0.2em;
+  color: #2b2b33;
+}
+.page-common-content .strengths-cta .strengths-cta-points,
+.is-root-container .strengths-cta .strengths-cta-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 -14px 16px;
+  padding: 0;
+  list-style: none;
+}
+.page-common-content .strengths-cta .strengths-cta-point,
+.is-root-container .strengths-cta .strengths-cta-point {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.page-common-content .strengths-cta .strengths-cta-point::marker,
+.is-root-container .strengths-cta .strengths-cta-point::marker {
+  content: none;
+}
+.page-common-content .strengths-cta .strengths-cta-point-icon,
+.is-root-container .strengths-cta .strengths-cta-point-icon {
+  position: relative;
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+.page-common-content .strengths-cta .strengths-cta-point-icon::before,
+.is-root-container .strengths-cta .strengths-cta-point-icon::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9d0ff 0%, #e2d3ff 42%, #ffcadd 100%);
+  opacity: 0.75;
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+}
+.page-common-content .strengths-cta .strengths-cta-point-icon-frame,
+.is-root-container .strengths-cta .strengths-cta-point-icon-frame {
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #fff;
+}
+.page-common-content .strengths-cta .strengths-cta-point-icon-img,
+.is-root-container .strengths-cta .strengths-cta-point-icon-img {
+  display: block;
+  width: 78%;
+  height: 78%;
+  margin: 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.page-common-content .strengths-cta .strengths-cta-point-label,
+.is-root-container .strengths-cta .strengths-cta-point-label {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  text-align: center;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  color: #2b2b33;
+}
+.page-common-content .strengths-cta .strengths-cta-attention,
+.is-root-container .strengths-cta .strengths-cta-attention {
+  margin: 0 0 18px;
+  padding: 0 0 9px;
+  border-bottom: 1px solid #cbc3e6;
+  text-align: left;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: 0.05em;
+  color: #4b4660;
+}
+.page-common-content .strengths-cta .strengths-cta-text > *:first-child,
+.is-root-container .strengths-cta .strengths-cta-text > *:first-child {
+  margin-top: 0;
+}
+.page-common-content .strengths-cta .strengths-cta-text > *:last-child,
+.is-root-container .strengths-cta .strengths-cta-text > *:last-child {
+  margin-bottom: 0;
+}
+.page-common-content .strengths-cta .strengths-cta-text p,
+.is-root-container .strengths-cta .strengths-cta-text p {
+  margin: 0;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: #2b2b33;
+}
+.page-common-content .strengths-cta .strengths-cta-buttons.wp-block-buttons,
+.is-root-container .strengths-cta .strengths-cta-buttons.wp-block-buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 10px;
+  margin: 0;
+}
+.page-common-content .strengths-cta .strengths-cta-buttons.wp-block-buttons .wp-block-button,
+.is-root-container .strengths-cta .strengths-cta-buttons.wp-block-buttons .wp-block-button {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 1 calc((100% - 20px) / 3);
+      -ms-flex: 0 1 calc((100% - 20px) / 3);
+          flex: 0 1 calc((100% - 20px) / 3);
+  min-width: 0;
+  width: auto;
+}
+
+@media (max-width: 767px) {
+  .page-common-content .strengths-cta,
+  .is-root-container .strengths-cta {
+    margin: 32px 0;
+    padding: 36px 16px 28px;
+    border-radius: 18px;
+  }
+  .page-common-content .strengths-cta .strengths-cta-logo,
+  .is-root-container .strengths-cta .strengths-cta-logo {
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .page-common-content .strengths-cta .strengths-cta-logo-img,
+  .is-root-container .strengths-cta .strengths-cta-logo-img {
+    height: 40px;
+  }
+  .page-common-content .strengths-cta .strengths-cta-logo-no,
+  .is-root-container .strengths-cta .strengths-cta-logo-no {
+    font-size: 15px;
+  }
+  .page-common-content .strengths-cta .strengths-cta-title,
+  .is-root-container .strengths-cta .strengths-cta-title {
+    margin-bottom: 24px;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+  }
+  .page-common-content .strengths-cta .strengths-cta-main,
+  .is-root-container .strengths-cta .strengths-cta-main {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+    margin-bottom: 24px;
+    padding: 0;
+  }
+  .page-common-content .strengths-cta .strengths-cta-photo,
+  .is-root-container .strengths-cta .strengths-cta-photo {
+    width: 100%;
+    aspect-ratio: 16/10;
+  }
+  .page-common-content .strengths-cta .strengths-cta-catch,
+  .is-root-container .strengths-cta .strengths-cta-catch {
+    font-size: 16px;
+    letter-spacing: 0.12em;
+  }
+  .page-common-content .strengths-cta .strengths-cta-points,
+  .is-root-container .strengths-cta .strengths-cta-points {
+    margin: 0 -6px 16px;
+  }
+  .page-common-content .strengths-cta .strengths-cta-point-icon,
+  .is-root-container .strengths-cta .strengths-cta-point-icon {
+    width: 56px;
+    height: 56px;
+  }
+  .page-common-content .strengths-cta .strengths-cta-point-label,
+  .is-root-container .strengths-cta .strengths-cta-point-label {
+    font-size: 11px;
+  }
+  .page-common-content .strengths-cta .strengths-cta-buttons.wp-block-buttons,
+  .is-root-container .strengths-cta .strengths-cta-buttons.wp-block-buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 8px;
+  }
+  .page-common-content .strengths-cta .strengths-cta-buttons.wp-block-buttons .wp-block-button,
+  .is-root-container .strengths-cta .strengths-cta-buttons.wp-block-buttons .wp-block-button {
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+        -ms-flex: none;
+            flex: none;
+    width: 100%;
   }
 }
 /*# sourceMappingURL=block.css.map */

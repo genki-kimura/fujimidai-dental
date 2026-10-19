@@ -137,7 +137,24 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
     }
   }
 
+  // 「TEL」は左端に置く（番号は上の padding-left の位置から始まる）
+  &__tel-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  // 電話番号は「番号＋（外来／訪問）」を1かたまりにして、折り返すときはかたまりごと次の行へ送る
+  // （「／」は1つ目のかたまりの末尾に入れてあるので、行頭には来ない）
+  &__tel-item {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
   &__tel {
+    position: relative;
+    padding-left: 2.4em; // 「TEL」の幅ぶんあけて、番号の開始位置を何行目でもそろえる
+    text-align: left; // 両端ぞろえ（justify）だと、折り返した行で「TEL」と番号の間が広がるため
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.02em;
@@ -528,10 +545,10 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
      診療時間 → 医院情報 → 決済方法 → 予約ボタン → バナー → 地図 の順に縦に並べる
      表やマークの数値は _sec05-Information.scss のSPと同じです */
   @media (max-width: $access-sp) {
-    padding: 88px 20px 48px; // 上は波(32px)＋余白
+    padding: 72px 20px 40px; // 上は波(32px)＋余白（元: 88px 20px 48px）
 
     &__inner {
-      row-gap: 32px;
+      row-gap: 20px; // 元: 32px
     }
 
     // 左カラムは中身を並べ替えるため縦並びのflexにする
@@ -545,22 +562,27 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
     }
 
     &__name {
-      margin-top: 24px;
+      margin-top: 16px; // 元: 24px
       font-size: 22.5px;
+    }
+
+    &__line {
+      margin-top: 12px; // 元: 18px
     }
 
     &__sub {
       font-size: 16.5px;
+      line-height: 1.3;
     }
 
     /* 診療時間 */
     &__hours {
       order: 1;
-      margin-top: 36px;
+      margin-top: 22px; // 元: 36px
     }
 
     &__table-wrap {
-      margin-top: 11px;
+      margin-top: 8px; // 元: 11px
     }
 
     & &__table {
@@ -574,7 +596,7 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
       }
 
       thead th {
-        height: 33px;
+        height: 30px; // 元: 33px
       }
 
       // 時間は「9:00–」「12:00」のように2行に折り返す
@@ -586,7 +608,7 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
       }
 
       tbody td {
-        height: 49px;
+        height: 42px; // 元: 49px
       }
     }
 
@@ -596,7 +618,7 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
     }
 
     &__note {
-      margin-top: 12px;
+      margin-top: 8px; // 元: 12px
       font-size: 13px;
       letter-spacing: 0.04em;
       line-height: 1.23;
@@ -605,11 +627,11 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
     /* 医院情報（アイコン付きカード） */
     &__info {
       order: 2;
-      margin-top: 24px;
-      padding: 4px 16px;
+      margin-top: 16px; // 元: 24px
+      padding: 3px 16px; // 元: 4px 16px
       border-radius: 12px;
       font-size: 14px;
-      line-height: 1.65;
+      line-height: 1.5; // 元: 1.65
       // 外側は少し透けた白、中の行は白
       background:
         linear-gradient(#fff, #fff) content-box,
@@ -620,7 +642,7 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
       display: grid;
       grid-template-columns: 28px minmax(0, 1fr);
       column-gap: 12px;
-      padding: 12px 0;
+      padding: 8px 0; // 元: 12px 0
       border-bottom: 1px solid $access-border;
 
       &:last-child {
@@ -672,8 +694,9 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
 
     // 電話：「外来　03-…」「訪問　03-…」を1件ずつ改行
     &__tel {
+      padding-left: 0; // PC用の「TEL」の幅ぶんの余白は不要
       font-size: 14px;
-      line-height: 23px;
+      line-height: 21px; // 元: 23px
       letter-spacing: 0;
     }
 
@@ -699,7 +722,7 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
     /* 決済方法 */
     &__pay {
       order: 3;
-      margin-top: 26px;
+      margin-top: 18px; // 元: 26px
     }
 
     &__pay-head {
@@ -707,10 +730,12 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
     }
 
     &__pay-text {
-      margin-top: 9px;
+      margin-top: 4px; // 元: 9px
+      line-height: 1.5; // 元: 1.7
     }
 
     &__pay-img {
+      margin-top: 8px; // 元: 10px
       background: transparent; // 画像自体が白地なので、枠は透明
 
       &--pc {
@@ -740,8 +765,16 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
     }
 
     &__btn {
-      min-height: 72px;
-      padding: 0 63px 0 18px;
+      min-height: 64px; // 元: 72px
+      padding: 0 40px 0 58px;
+    }
+
+    // ボタンの文字は、矢印を除いた幅の中で中央ぞろえ（小さい文字も大きい文字も）
+    &__btn-text {
+      flex: 1;
+      align-items: center;
+      padding-left: 0; // 元: 6px
+      text-align: center;
     }
 
     &__btn-sub {
@@ -749,8 +782,7 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
     }
 
     &__btn-main {
-      padding-left: 43px;
-      font-size: 15px;
+      font-size: 15px; // 元: padding-left: 43px（左寄せの位置合わせ用だったので外しました）
     }
 
     &__banner {

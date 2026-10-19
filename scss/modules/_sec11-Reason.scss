@@ -31,7 +31,8 @@ $re-sp: 768px;
 
   // SPだけ使う背景写真・改行（PC・タブレットでは非表示。SPのブロックで表示します）
   &__bg,
-  &__sp-br {
+  &__sp-br,
+  &__text-sp {
     display: none;
   }
 
@@ -356,6 +357,10 @@ $re-sp: 768px;
 
   // ---------- SP ----------
   @media (max-width: $re-sp) {
+    &__list {
+      margin: 10px auto 0;
+    }
+
     &__frame {
       padding: 56px 24px 64px;
     }
@@ -387,8 +392,17 @@ $re-sp: 768px;
       display: inline;
     }
 
+    // 説明文：SPだけ短い文に切り替える（'text_sp' を設定した項目のみ）
+    &__text-pc {
+      display: none;
+    }
+
+    &__text-sp {
+      display: inline;
+    }
+
     &__item {
-      padding: 14px 16px 12px 12px;
+      padding: 10px 16px 8px 12px;
     }
 
     &__badge {
@@ -407,12 +421,14 @@ $re-sp: 768px;
 
     &__item-title {
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.4;
     }
 
     &__item-text {
       font-size: 14px;
       letter-spacing: 0;
+      line-height: 1.3;
+      padding-top: 2px;
     }
 
   }

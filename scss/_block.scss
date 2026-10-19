@@ -298,6 +298,26 @@ $bc-font:   "Jost", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sa
   padding-bottom: 4rem; // 下層ページの本文の下余白は4rem
 }
 
+// 画面幅が「本文幅(860px)+左右の余白」より狭くなったら、左右に余白をつくる
+//   ・860px + 20px × 2 = 900px を境目にする(これより広い画面では見た目は変わらない)
+//   ・全ブロック(見出し・リスト・ボタン・CTA・特徴 など)は、この枠の中に入っているので一括で効く
+//   ・box-sizing: border-box で、余白を含めても幅は画面内(100%)に収まる
+@media (max-width: 900px) {
+  .page-common-content .page-common-content__inner {
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+// スマホは少しだけ狭く
+@media (max-width: 767px) {
+  .page-common-content .page-common-content__inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 // ブロックエディタ(編集画面)でも本文幅を860pxに揃える
 // ※ .is-root-container はエディタ内の本文領域。フロントには存在しないので影響なし
 // ※ 各ブロックの margin 指定(リスト・グループ等)で左右の auto が消えて
@@ -1485,8 +1505,10 @@ $case-info-sub:     #6e6e73;      // 項目名のグレー
 @media (max-width: 767px) {
   .page-common-content .case-box,
   .is-root-container .case-box {
+    // BEFORE / AFTER は縦並び(BEFORE が上、AFTER が下)
     .case-box-images {
-      gap: 12px;
+      grid-template-columns: 1fr;
+      gap: 20px;
       margin-bottom: 28px;
     }
 
@@ -3586,6 +3608,1132 @@ $supervisor-box-photo-sp: 56px;     // スマホの丸い画像
       p {
         font-size: 14px;
         line-height: 1.9;
+      }
+    }
+  }
+}
+
+
+// ==========================================================
+// プロフィールブロック(Genesis Custom Blocks: block-profile)
+//   薄いラベンダー→ピンクのグラデ角丸カード
+//   見出し(明朝)/ 左:角丸の画像 / 右:歯科名・肩書き+名前・文章・「詳しくはこちら」
+//   ※ _block.scss の末尾に貼り付けてください(変数は既存のものを再利用)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$profile-bg:        linear-gradient(100deg, #f8f6fd 0%, #f9f4f9 60%, #fcf0f5 100%);
+$profile-radius:    20px;
+$profile-photo:     220px;   // 画像の大きさ(正方形)
+$profile-photo-sp:  100%;    // スマホの画像幅
+$profile-gap:       36px;    // 画像と文章の間
+$profile-sub:       $case-info-sub;  // 歯科名・肩書きのグレー
+$profile-accent:    $list-accent;    // 「詳しくはこちら」の紫
+
+.page-common-content .profile-box,
+.is-root-container .profile-box {
+  box-sizing: border-box;
+  margin: 40px 0;
+  padding: 40px 44px 44px;
+  border-radius: $profile-radius;
+  background: $profile-bg;
+
+  // ---------- 見出し(h2〜h5 / p どれでも装飾なしの明朝) ----------
+  .profile-box-title {
+    position: static;
+    margin: 0 0 28px;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: left;
+    font-family: $h2-font;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    color: $h2-text;
+
+    // h2 / h3 / h4 の装飾(下線・縦バー・ドット)を消す
+    &::before,
+    &::after {
+      content: none;
+      display: none;
+    }
+  }
+
+  // ---------- 画像 + 文章 ----------
+  .profile-box-inner {
+    display: grid;
+    grid-template-columns: $profile-photo 1fr;
+    column-gap: $profile-gap;
+    align-items: start;
+  }
+
+  .profile-box-photo {
+    width: $profile-photo;
+    height: $profile-photo;
+    overflow: hidden;
+    border-radius: 12px;
+    background: $case-img-bg; // 画像未設定時のグレー
+  }
+
+  .profile-box-photo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+
+  .profile-box-body {
+    min-width: 0;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+  }
+
+  // 歯科名
+  .profile-box-dental {
+    margin: 0 0 12px;
+    font-family: $text-font;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    text-align: left;
+    color: $profile-sub;
+  }
+
+  // 肩書き(小)+ 名前(大)を同じ行のベースラインに
+  .profile-box-person {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0 12px;
+    margin: 0 0 16px;
+    text-align: left;
+  }
+
+  .profile-box-position {
+    font-family: $text-font;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    color: $text-color;
+  }
+
+  .profile-box-name {
+    font-family: $h2-font;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    color: $h2-text;
+  }
+
+  // 文章(Inner Blocks)
+  .profile-box-text {
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 0 1em;
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.65;
+      letter-spacing: 0.5px;
+      text-align: left; // body の justify を打ち消す
+      color: $text-color;
+    }
+  }
+
+  // 「詳しくはこちら」(丸い矢印 + 太い紫の文字)
+  .profile-box-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: $profile-accent;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .profile-box-btn-icon {
+    position: relative;
+    flex: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: $profile-accent;
+
+    // 白い › (回転させた四角の2辺)
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      border-top: 1.5px solid #fff;
+      border-right: 1.5px solid #fff;
+      transform: translate(-65%, -50%) rotate(45deg);
+    }
+  }
+}
+
+// --- スマホ(上:画像 / 下:文章) ---------------------------
+@media (max-width: 767px) {
+  .page-common-content .profile-box,
+  .is-root-container .profile-box {
+    margin: 32px 0;
+    padding: 28px 20px 30px;
+    border-radius: 16px;
+
+    .profile-box-title {
+      margin-bottom: 20px;
+      font-size: 17px;
+    }
+
+    .profile-box-inner {
+      grid-template-columns: 1fr;
+      row-gap: 20px;
+    }
+
+    .profile-box-photo {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      max-width: 240px; // 大きくなりすぎないように
+      margin: 0 auto;
+    }
+
+    .profile-box-name {
+      font-size: 24px;
+    }
+
+    .profile-box-text p {
+      font-size: 14px;
+    }
+
+    .profile-box-btn {
+      margin-top: 16px;
+    }
+  }
+}
+
+
+// ==========================================================
+// あわせて読みたいブロック(Genesis Custom Blocks: block-related-articles)
+//   左上に紫のタブ(見出し)+ ラベンダー枠の角丸カード
+//   左:角丸の画像(未設定なら非表示)/ 右:明朝のタイトル + グレーの文章(Inner Blocks)
+//   ※ _block.scss の末尾に貼り付けてください(変数は既存のものを再利用)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$related-accent:  $list-accent;           // タブの紫
+$related-border:  $supervisor-box-border; // 枠線(淡いラベンダー)
+$related-bg:      #faf8fd;                // カードの背景
+$related-radius:  18px;
+$related-photo-w: 220px;                  // 画像の幅
+$related-photo-h: 152px;                  // 画像の高さ
+$related-gap:     26px;                   // 画像と文章の間
+$related-sub:     $case-info-sub;         // 文章のグレー
+
+.page-common-content .related-articles,
+.is-root-container .related-articles {
+  margin: 40px 0;
+
+  // ---------- 左上のタブ(見出しタグ h2〜h5 / p どれでも同じ見た目) ----------
+  .related-articles-label {
+    position: static;
+    display: block;
+    box-sizing: border-box;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 8px 22px;
+    border: 0;
+    border-radius: 14px 14px 0 0;
+    background: $related-accent;
+    text-align: left;
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    color: #fff;
+
+    // h2 / h3 / h4 の装飾(下線・縦バー・ドット)を消す
+    &::before,
+    &::after {
+      content: none;
+      display: none;
+    }
+  }
+
+  // ---------- カード ----------
+  .related-articles-box {
+    display: grid;
+    grid-template-columns: $related-photo-w 1fr;
+    column-gap: $related-gap;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px 32px 20px 20px;
+    border: 1.5px solid $related-border;
+    border-radius: $related-radius;
+    background: $related-bg;
+
+    // 画像なし:文章だけ
+    &.is-no-photo {
+      grid-template-columns: 1fr;
+      padding: 28px 32px;
+    }
+  }
+
+  // タブがあるときは、左上の角をなくしてタブとつなぐ
+  &.has-label .related-articles-box {
+    border-top-left-radius: 0;
+  }
+
+  .related-articles-photo {
+    width: $related-photo-w;
+    height: $related-photo-h;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .related-articles-photo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+
+  .related-articles-body {
+    min-width: 0;
+  }
+
+  // タイトル(明朝)
+  .related-articles-title {
+    margin: 0 0 6px;
+    font-family: $h2-font;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.8;
+    letter-spacing: 0.12em;
+    text-align: left;
+    color: $h2-text;
+  }
+
+  // 文章(Inner Blocks)
+  .related-articles-text {
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0;
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.7;
+      letter-spacing: 0.08em;
+      text-align: left; // body の justify を打ち消す
+      color: $related-sub;
+    }
+  }
+}
+
+// --- スマホ(上:画像 / 下:文章) ---------------------------
+@media (max-width: 767px) {
+  .page-common-content .related-articles,
+  .is-root-container .related-articles {
+    margin: 32px 0;
+
+    .related-articles-label {
+      padding: 5px 18px;
+      border-radius: 12px 12px 0 0;
+      font-size: 13px;
+    }
+
+    .related-articles-box {
+      grid-template-columns: 1fr;
+      row-gap: 16px;
+      padding: 16px;
+      border-radius: 14px;
+
+      &.is-no-photo {
+        padding: 18px 16px;
+      }
+    }
+
+    &.has-label .related-articles-box {
+      border-top-left-radius: 0;
+    }
+
+    .related-articles-photo {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 2;
+    }
+
+    .related-articles-title {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .related-articles-text p {
+      font-size: 13px;
+    }
+  }
+}
+
+
+// ==========================================================
+// 関連記事の紹介ブロック(Genesis Custom Blocks: block-related-articles-02)
+//   上:画像(未設定ならグレーの背景)/ 下:文章。カード全体がリンク
+//   動きは _sec15-Sakura-mag.scss の __card(ボタン)に合わせる
+//     ホバー:少し浮く + 影が濃くなる + 画像がゆっくり拡大 + 文字が紫に
+//   ※ _block.scss の末尾に貼り付けてください(変数は既存のものを再利用)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$related02-max:    272px;             // カードの横幅
+$related02-max-h:  260px;             // カードの最大の高さ
+$related02-radius: 20px;
+$related02-ratio:  343 / 190;         // 画像の縦横比
+$related02-hover:  $list-accent;      // ホバー時の文字色(紫)
+
+.page-common-content .related-articles-02,
+.is-root-container .related-articles-02 {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: $related02-max;
+  max-height: $related02-max-h;
+  margin: 40px 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: $related02-radius;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(180, 150, 180, 0.14);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  // リンクのとき:押せる見た目に
+  &:is(a) {
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 48px rgba(180, 150, 180, 0.22);
+    }
+
+    &:focus-visible {
+      outline: 3px solid $related02-hover;
+      outline-offset: 3px;
+    }
+  }
+
+  // ---------- 画像 ----------
+  .related-articles-02-thumb {
+    display: block;
+    aspect-ratio: $related02-ratio;
+    min-height: 0;     // 文章が長いとき、最大の高さに収まるよう画像側を縮める
+    flex: 0 1 auto;
+    overflow: hidden;
+    background: $case-img-bg; // 画像未設定のときのグレー
+  }
+
+  .related-articles-02-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  &:is(a):hover .related-articles-02-img {
+    transform: scale(1.05);
+  }
+
+  // ---------- 文章 ----------
+  .related-articles-02-body {
+    display: block;
+    flex: 1 0 auto; // カードが縦に伸びたとき、余白は文章エリア(白)が受け持つ
+    padding: 20px 24px 24px;
+  }
+
+  // 見出しタグ(h2〜h5 / p どれでも同じ見た目)
+  .related-articles-02-title {
+    position: static;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: left;
+    font-family: $text-font;
+    font-weight: 400;
+    font-size: 13.5px;
+    line-height: 180%;
+    letter-spacing: 0.05em;
+    color: $h2-text;
+    transition: color 0.3s;
+
+    // h2 / h3 / h4 の装飾(下線・縦バー・ドット)を消す
+    &::before,
+    &::after {
+      content: none;
+      display: none;
+    }
+  }
+
+  &:is(a):hover .related-articles-02-title {
+    color: $related02-hover;
+  }
+}
+
+// 横に並べたとき(カラムブロック)、カードの高さを一番高いものに揃える
+//   カラムは標準で同じ高さに伸びるので、中のカードもカラムいっぱいに伸ばす
+.wp-block-column:has(> .related-articles-02) {
+  display: flex;
+  flex-direction: column;
+
+  > .related-articles-02 {
+    flex: 1 1 auto;
+  }
+}
+
+// エディタ(編集画面)ではリンクとして動かさない
+.is-root-container a.related-articles-02 {
+  pointer-events: none;
+}
+
+// 動きを減らす設定の人にはアニメーションなし
+@media (prefers-reduced-motion: reduce) {
+  .page-common-content .related-articles-02,
+  .is-root-container .related-articles-02 {
+    &,
+    .related-articles-02-img,
+    .related-articles-02-title {
+      transition: none;
+    }
+
+    &:is(a):hover,
+    &:is(a):hover .related-articles-02-img {
+      transform: none;
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .related-articles-02,
+  .is-root-container .related-articles-02 {
+    margin: 32px 0;
+    border-radius: 16px;
+
+    .related-articles-02-body {
+      padding: 18px 20px 20px;
+    }
+
+    .related-articles-02-title {
+      font-size: 13.5px;
+    }
+  }
+}
+
+
+// ==========================================================
+// 特徴リストブロック(Genesis Custom Blocks: block-feature-list)
+//   白い角丸カード(やわらかい影)
+//   左:丸いロゴ(まわりに青紫→ピンクの光)/ 右:明朝の特徴テキスト(Inner Blocks)
+//   ※ _block.scss の末尾に貼り付けてください(変数は既存のものを再利用)
+//   ※ $speech-bubble-glow は「吹き出しブロック」で定義済み
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$feature-list-radius:  20px;
+$feature-list-icon:    46px;   // 丸(白い枠を含む)
+$feature-list-icon-sp: 40px;
+$feature-list-gap:     22px;   // 丸と文章の間
+
+.page-common-content .feature-list,
+.is-root-container .feature-list {
+  display: flex;
+  align-items: center;
+  gap: $feature-list-gap;
+  box-sizing: border-box;
+  min-height: 80px;
+  margin: 0 0 14px;
+  padding: 14px 38px 14px 19px;
+  border-radius: $feature-list-radius;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(80, 60, 110, 0.06);
+
+  // ---------- 左:丸いロゴ ----------
+  .feature-list-icon {
+    position: relative;
+    flex: none;
+    width: $feature-list-icon;
+    height: $feature-list-icon;
+
+    // 光(青紫 → ピンク)
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: $speech-bubble-glow;
+      opacity: 0.8;
+      filter: blur(4px);
+    }
+  }
+
+  .feature-list-icon-frame {
+    position: relative; // 光より前面に
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  // ロゴは丸の約75%
+  .feature-list-icon-img {
+    display: block;
+    width: 75%;
+    height: 75%;
+    margin: 0;
+    object-fit: contain;
+  }
+
+  // ---------- 右:文章(Inner Blocks) ----------
+  .feature-list-text {
+    flex: 1;
+    min-width: 0;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0;
+      font-family: $h2-font; // 明朝
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: 0.06em;
+      text-align: left; // body の justify を打ち消す
+      color: $h2-text;
+    }
+  }
+}
+
+// アイコン未設定のときは文章だけ
+.page-common-content .feature-list:not(:has(.feature-list-icon)),
+.is-root-container .feature-list:not(:has(.feature-list-icon)) {
+  padding-left: 38px;
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .feature-list,
+  .is-root-container .feature-list {
+    gap: 14px;
+    min-height: 0;
+    padding: 14px 16px 14px 14px;
+    border-radius: 16px;
+
+    .feature-list-icon {
+      width: $feature-list-icon-sp;
+      height: $feature-list-icon-sp;
+    }
+
+    .feature-list-text p {
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+  }
+}
+
+
+// ==========================================================
+// 特徴ブロック(Genesis Custom Blocks: block-feature)
+//   ロゴ+「の」/ 見出し(明朝・中央)/ 特徴リストを縦に並べる
+//   背景は 白 → 淡いピンク → 淡いラベンダー のやわらかいグラデの角丸ボックス
+//   ※ 中身(特徴リスト)は feature-list-snippet.scss 側。両方を _block.scss の末尾に貼る
+//   ※ 「特徴リスト」より前に置いてOK(このブロックは余白だけ上書きする)
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$feature-bg:      linear-gradient(180deg, #fdf9f9 0%, #fbf1f5 30%, #f7eef4 58%, #faf5f8 100%);
+$feature-radius:  24px;
+$feature-logo-h:  52px;    // ロゴ画像の高さ(幅は自動)
+$feature-gap:     14px;    // 特徴リストどうしの間隔
+
+.page-common-content .feature,
+.is-root-container .feature {
+  box-sizing: border-box;
+  margin: 40px 0;
+  padding: 56px 72px;
+  border-radius: $feature-radius;
+  background: $feature-bg;
+
+  // ---------- ロゴ + 「の」 ----------
+  .feature-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 0 22px;
+  }
+
+  .feature-logo-img {
+    display: block;
+    width: auto;
+    height: $feature-logo-h;
+    margin: 0;
+  }
+
+  // 「の」(ロゴの文字と同じ紫)
+  .feature-logo-no {
+    font-family: $h2-font;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1;
+    color: $list-accent;
+    // ロゴの文字のベースラインに合わせて少し下げる
+    position: relative;
+  }
+
+  // ---------- 見出し(h2〜h5 / p / div どれでも同じ見た目) ----------
+  .feature-title {
+    position: static;
+    margin: 0 0 30px;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: center; // h2〜h5 の text-align: left を打ち消す
+    font-family: $h2-font;
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    color: $h2-text;
+
+    // h2 の下線 / h3 の縦バー / h4 のドットを消す
+    &::before,
+    &::after {
+      content: none;
+      display: none;
+    }
+
+    // <span id="..."> で包まれてもフォントを引き継ぐ
+    span {
+      font-family: inherit;
+    }
+  }
+
+  // ---------- 中身(特徴リストを縦に並べる) ----------
+  .feature-text {
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    // 特徴リストの間隔はここで管理
+    .feature-list {
+      margin: 0 0 $feature-gap;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// --- スマホ -----------------------------------------------
+@media (max-width: 767px) {
+  .page-common-content .feature,
+  .is-root-container .feature {
+    margin: 32px 0;
+    padding: 36px 16px 28px;
+    border-radius: 18px;
+
+    .feature-logo {
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .feature-logo-img {
+      height: 40px;
+    }
+
+    .feature-logo-no {
+      font-size: 15px;
+    }
+
+    .feature-title {
+      margin-bottom: 22px;
+      font-size: 24px;
+      letter-spacing: 0.08em;
+    }
+  }
+}
+
+
+// ==========================================================
+// 強みCTAブロック(Genesis Custom Blocks: block-strengths-cta)
+//   ロゴ+「の」/ 見出し / 左:画像(なければグレーの四角)+ 右:キャッチ・ポイント3つ・注意・内容
+//   → 下にCTAボタン3つ。背景はラベンダーのグラデの角丸ボックス
+//   ※ ボタン本体の見た目は「CTAボタン」セクション、丸いロゴの光は $speech-bubble-glow を再利用
+//   ※ _block.scss の末尾に貼り付けてください
+// ==========================================================
+
+// --- 変数 -------------------------------------------------
+$sc-bg:         linear-gradient(120deg, #e6dcf4 0%, #f0eaf8 40%, #f7f4fb 75%, #f5f2fa 100%);
+$sc-radius:     24px;
+$sc-logo-h:     52px;    // ロゴ画像の高さ
+$sc-photo-w:    280px;   // 画像の幅
+$sc-photo-ratio: 28 / 29;
+$sc-gap:        36px;    // 画像と右カラムの間
+$sc-icon:       64px;    // ポイントの丸
+$sc-divider:    $lb-border;  // 注意の下の線(淡いラベンダー)
+$sc-attention:  #4b4660;     // 注意のグレー紫
+
+.page-common-content .strengths-cta,
+.is-root-container .strengths-cta {
+  box-sizing: border-box;
+  margin: 40px 0;
+  padding: 56px 15px 52px; // 左右15pxは、ボタンの端(CTAブロックと同じ)
+  border-radius: $sc-radius;
+  background: $sc-bg;
+
+  // ---------- ロゴ + 「の」 ----------
+  .strengths-cta-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 0 28px;
+  }
+
+  .strengths-cta-logo-img {
+    display: block;
+    width: auto;
+    height: $sc-logo-h;
+    margin: 0;
+  }
+
+  .strengths-cta-logo-no {
+    position: relative;
+    top: 2px;
+    font-family: $h2-font;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1;
+    color: $list-accent;
+  }
+
+  // ---------- 見出し(h2〜h5 / p / div どれでも同じ見た目) ----------
+  .strengths-cta-title {
+    position: static;
+    margin: 0 0 32px;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: center;
+    font-family: $h2-font;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    color: $h2-text;
+
+    // h2 の下線 / h3 の縦バー / h4 のドットを消す
+    &::before,
+    &::after {
+      content: none;
+      display: none;
+    }
+
+    span {
+      font-family: inherit;
+    }
+  }
+
+  // ---------- 画像 + 右カラム ----------
+  .strengths-cta-main {
+    display: grid;
+    grid-template-columns: $sc-photo-w 1fr;
+    column-gap: $sc-gap;
+    align-items: start;
+    margin: 0 0 24px;
+    padding: 0 41px; // 外側15px + 41px = 56px
+  }
+
+  // 画像(未設定ならグレーの四角)
+  .strengths-cta-photo {
+    overflow: hidden;
+    border-radius: 18px;
+    background: $case-img-bg;
+    aspect-ratio: $sc-photo-ratio;
+  }
+
+  .strengths-cta-photo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+
+  .strengths-cta-info {
+    min-width: 0;
+  }
+
+  // キャッチコピー(明朝・中央)
+  .strengths-cta-catch {
+    margin: 0 0 22px;
+    padding-top: 3px;
+    text-align: center;
+    font-family: $h2-font;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.6;
+    letter-spacing: 0.2em;
+    color: $h2-text;
+  }
+
+  // ---------- ポイント3つ(丸いアイコン + ゴシック太字2行) ----------
+  .strengths-cta-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 -14px 16px; // 3つを少し外側へ広げて、デザインの間隔に合わせる
+    padding: 0;
+    list-style: none;
+  }
+
+  .strengths-cta-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    &::marker {
+      content: none;
+    }
+  }
+
+  // 丸 + まわりの光(特徴リストと同じ)
+  .strengths-cta-point-icon {
+    position: relative;
+    display: block;
+    width: $sc-icon;
+    height: $sc-icon;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: $speech-bubble-glow;
+      opacity: 0.75;
+      filter: blur(5px);
+    }
+  }
+
+  .strengths-cta-point-icon-frame {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .strengths-cta-point-icon-img {
+    display: block;
+    width: 78%;
+    height: 78%;
+    margin: 0;
+    object-fit: contain;
+  }
+
+  .strengths-cta-point-label {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    text-align: center; // 親(li)から引き継がず、ここで直接指定(テーマ側の左揃えに負けないように)
+    font-family: $text-font;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    color: $text-color;
+  }
+
+  // ---------- 注意 + 区切り線 ----------
+  .strengths-cta-attention {
+    margin: 0 0 18px;
+    padding: 0 0 9px;
+    border-bottom: 1px solid $sc-divider;
+    text-align: left;
+    font-family: $text-font;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+    color: $sc-attention;
+  }
+
+  // ---------- 内容(Inner Blocks) ----------
+  .strengths-cta-text {
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0;
+      font-family: $text-font;
+      font-weight: 400;
+      font-size: 13.5px;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+      text-align: left; // body の justify を打ち消す
+      color: $text-color;
+    }
+  }
+
+  // ---------- ボタン3つ(「CTAブロック」と同じ並び) ----------
+  .strengths-cta-buttons.wp-block-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+
+    .wp-block-button {
+      flex: 0 1 calc((100% - 20px) / 3);
+      min-width: 0;
+      width: auto;
+    }
+  }
+}
+
+// --- スマホ(画像 → 右カラムの縦並び / ボタンは縦1列) ------
+@media (max-width: 767px) {
+  .page-common-content .strengths-cta,
+  .is-root-container .strengths-cta {
+    margin: 32px 0;
+    padding: 36px 16px 28px;
+    border-radius: 18px;
+
+    .strengths-cta-logo {
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .strengths-cta-logo-img {
+      height: 40px;
+    }
+
+    .strengths-cta-logo-no {
+      font-size: 15px;
+    }
+
+    .strengths-cta-title {
+      margin-bottom: 24px;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+    }
+
+    .strengths-cta-main {
+      grid-template-columns: 1fr;
+      row-gap: 24px;
+      margin-bottom: 24px;
+      padding: 0;
+    }
+
+    .strengths-cta-photo {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+    }
+
+    .strengths-cta-catch {
+      font-size: 16px;
+      letter-spacing: 0.12em;
+    }
+
+    .strengths-cta-points {
+      margin: 0 -6px 16px;
+    }
+
+    .strengths-cta-point-icon {
+      width: 56px;
+      height: 56px;
+    }
+
+    .strengths-cta-point-label {
+      font-size: 11px;
+    }
+
+    .strengths-cta-buttons.wp-block-buttons {
+      flex-direction: column;
+      gap: 8px;
+
+      .wp-block-button {
+        flex: none;
+        width: 100%;
       }
     }
   }
