@@ -3,7 +3,7 @@ smooth scroll
 ---------------------------------------- */
 // #で始まるリンクを取得
 const jsSmoothScroll = document.querySelectorAll('a[href^="#"]');
-
+ 
 // forで回してaddEventListenerする
 for (let i = 0; i < jsSmoothScroll.length; i++){
   jsSmoothScroll[i].addEventListener('click', (e) => {
@@ -23,7 +23,7 @@ for (let i = 0; i < jsSmoothScroll.length; i++){
     });
   });
 }
-
+ 
 // ハンバーガーメニューの開閉
 (function () {
   var toggle = document.querySelector('.header__toggle');
@@ -38,6 +38,9 @@ for (let i = 0; i < jsSmoothScroll.length; i++){
     toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
     nav.classList.toggle('is-open', open);
     document.body.classList.toggle('is-menu-open', open);
+    document.documentElement.classList.toggle('is-menu-open', open); // スクロール停止は html に付ける（CSS 参照）
+    // メニューを開閉したら、ヘッダーの .is-fixed を付け外しする（下の「ヘッダーの固定」が判定する）
+    window.dispatchEvent(new Event('scroll'));
   }
  
   toggle.addEventListener('click', function () {
@@ -59,23 +62,46 @@ for (let i = 0; i < jsSmoothScroll.length; i++){
     if (e.matches) setOpen(false);
   });
 })();
-
+ 
+/* ----------------------------------------
+ヘッダーの固定
+・位置の固定は CSS（_sec00-Header.scss の position: sticky）
+・少しスクロールしたら .is-fixed を付けて、背景を半透明にする
+・ただしハンバーガーメニューを開いている間は付けない
+---------------------------------------- */
+(function () {
+  var header = document.querySelector('.header');
+  if (!header) return;
+ 
+  var THRESHOLD = 10; // これ以上スクロールしたら半透明にする（px）
+ 
+  function update() {
+    // ハンバーガーメニューを開いている間は .is-fixed を付けない
+    // （ページの一番上で開いたときと、同じ見た目にするため）
+    var menuOpen = document.body.classList.contains('is-menu-open');
+    header.classList.toggle('is-fixed', !menuOpen && window.pageYOffset > THRESHOLD);
+  }
+ 
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+ 
 /* ----------------------------------------
 MV 写真の自動切り替え
 ---------------------------------------- */
 (function () {
   var mv = document.querySelector('.Mv');
   if (!mv) return;
-
+ 
   var photos = mv.querySelectorAll('.Mv__photo');
   var thumbs = mv.querySelectorAll('.Mv__thumb');
   if (photos.length < 2 || photos.length !== thumbs.length) return;
-
+ 
   var INTERVAL = 5000; // 切り替わるまでの時間（ミリ秒）
   var current = 0;
   var timer = null;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
+ 
   // index 番目の写真を表示し、対応する小さい写真だけ暗くする（is-active）
   function show(index) {
     current = index;
@@ -88,25 +114,25 @@ MV 写真の自動切り替え
       thumb.setAttribute('aria-current', i === index ? 'true' : 'false');
     });
   }
-
+ 
   function next() {
     show((current + 1) % photos.length);
   }
-
+ 
   function stop() {
     if (timer) {
       clearInterval(timer);
       timer = null;
     }
   }
-
+ 
   function start() {
     stop();
     // 動きを減らす設定の人・タブが裏に隠れている間は自動で切り替えない
     if (reduceMotion.matches || document.hidden) return;
     timer = setInterval(next, INTERVAL);
   }
-
+ 
   // 小さい写真をクリックしたら、その写真に切り替えて、時間を数え直す
   thumbs.forEach(function (thumb, i) {
     thumb.addEventListener('click', function () {
@@ -114,7 +140,7 @@ MV 写真の自動切り替え
       start();
     });
   });
-
+ 
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
       stop();
@@ -122,11 +148,11 @@ MV 写真の自動切り替え
       start();
     }
   });
-
+ 
   show(0);
   start();
 })();
-
+ 
 /* ----------------------------------------
 Post（Instagram 新着投稿）のスライダー
 ・次の投稿が真ん中にくるように、ぐるぐる回り続けます（最後の次は最初に戻る）
@@ -135,7 +161,7 @@ Post（Instagram 新着投稿）のスライダー
 (function () {
   var root = document.querySelector('.Post');
   if (!root) return;
-
+ 
   var slider = root.querySelector('.Post__slider');
   var viewport = root.querySelector('.Post__viewport');
   var list = root.querySelector('.Post__list');
@@ -145,11 +171,11 @@ Post（Instagram 新着投稿）のスライダー
   var dots = root.querySelectorAll('.Post__dot');
   var total = originals.length;
   if (!slider || !viewport || !list || total < 2) return;
-
+ 
   var INTERVAL = 4000; // 自動で切り替わるまでの時間（ミリ秒）
   var START = 0;       // 最初に真ん中に来る投稿（0 = 1枚目）
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
+ 
   // 左右に同じカードを増やして、端が見えても途切れないようにする
   var sets = Math.ceil(5 / total);
   function makeClone(item) {
@@ -169,7 +195,7 @@ Post（Instagram 新着投稿）のスライダー
   list.insertBefore(before, originals[0]);
   list.appendChild(after);
   list.querySelectorAll('img').forEach(function (img) { img.loading = 'eager'; });
-
+ 
   var items = list.querySelectorAll('.Post__item');
   var base = sets * total;     // 本物の1枚目の番号
   var index = base + START;    // いま真ん中にあるカードの番号
@@ -177,7 +203,7 @@ Post（Instagram 新着投稿）のスライダー
   var timer = null;
   var autoTimer = null;
   var fallbackTimer = null;
-
+ 
   // index 番目のカードが、見える範囲の真ん中にくる位置
   function setPosition(animate) {
     var el = items[index];
@@ -189,11 +215,11 @@ Post（Instagram 新着投稿）のスライダー
       list.style.transition = '';
     }
   }
-
+ 
   function currentDot() {
     return (((index - base) % total) + total) % total;
   }
-
+ 
   function updateDots() {
     var active = currentDot();
     dots.forEach(function (dot, i) {
@@ -205,7 +231,7 @@ Post（Instagram 新着投稿）のスライダー
       }
     });
   }
-
+ 
   // 増やしたカードのところまで動いたら、動きなしで本物の位置へ戻す
   function finish() {
     clearTimeout(fallbackTimer);
@@ -214,7 +240,7 @@ Post（Instagram 新着投稿）のスライダー
     setPosition(false);
     moving = false;
   }
-
+ 
   function go(target) {
     if (moving) return;
     moving = true;
@@ -228,28 +254,28 @@ Post（Instagram 新着投稿）のスライダー
     setPosition(true);
     fallbackTimer = setTimeout(finish, 800); // transitionend が来なかったとき用
   }
-
+ 
   list.addEventListener('transitionend', function (e) {
     if (e.target === list && e.propertyName === 'transform') finish();
   });
-
+ 
   function stopAuto() {
     if (autoTimer) {
       clearInterval(autoTimer);
       autoTimer = null;
     }
   }
-
+ 
   function startAuto() {
     stopAuto();
     // 動きを減らす設定の人・タブが裏に隠れている間は自動で切り替えない
     if (reduceMotion.matches || document.hidden) return;
     autoTimer = setInterval(function () { go(index + 1); }, INTERVAL);
   }
-
+ 
   if (next) next.addEventListener('click', function () { go(index + 1); startAuto(); });
   if (prev) prev.addEventListener('click', function () { go(index - 1); startAuto(); });
-
+ 
   // 丸い点：近い方向に回って、その投稿を真ん中へ
   dots.forEach(function (dot, i) {
     dot.addEventListener('click', function () {
@@ -260,7 +286,7 @@ Post（Instagram 新着投稿）のスライダー
       startAuto();
     });
   });
-
+ 
   // 横スワイプ
   var touchX = null;
   viewport.addEventListener('touchstart', function (e) {
@@ -274,7 +300,7 @@ Post（Instagram 新着投稿）のスライダー
     go(index + (dx < 0 ? 1 : -1));
     startAuto();
   }, { passive: true });
-
+ 
   // マウスを乗せている間・キーボードで操作している間は止める
   slider.addEventListener('pointerenter', function (e) {
     if (e.pointerType === 'mouse') stopAuto();
@@ -284,7 +310,7 @@ Post（Instagram 新着投稿）のスライダー
   });
   slider.addEventListener('focusin', stopAuto);
   slider.addEventListener('focusout', startAuto);
-
+ 
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
       stopAuto();
@@ -292,16 +318,16 @@ Post（Instagram 新着投稿）のスライダー
       startAuto();
     }
   });
-
+ 
   window.addEventListener('resize', function () { setPosition(false); });
   window.addEventListener('load', function () { setPosition(false); });
-
+ 
   slider.classList.add('is-ready');
   setPosition(false);
   updateDots();
   startAuto();
 })();
-
+ 
 /* ----------------------------------------
 FAQ（よくあるご質問）の開閉
 ・質問をクリックすると、＋ → － に変わって答えが開く
@@ -310,11 +336,11 @@ FAQ（よくあるご質問）の開閉
 (function () {
   var root = document.querySelector('.FAQ');
   if (!root) return;
-
+ 
   root.querySelectorAll('.FAQ__q').forEach(function (button) {
     var answer = document.getElementById(button.getAttribute('aria-controls'));
     if (!answer) return;
-
+ 
     button.addEventListener('click', function () {
       var open = button.getAttribute('aria-expanded') !== 'true';
       button.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -323,7 +349,7 @@ FAQ（よくあるご質問）の開閉
   });
 })();
  
-
+ 
 /* ----------------------------------------
 FAQブロック（blocks/block-faq.php）の開閉
 ・質問をクリックすると、＋ → － に変わって答えが開く
@@ -334,13 +360,40 @@ FAQブロック（blocks/block-faq.php）の開閉
   document.addEventListener('click', function (e) {
     var button = e.target.closest ? e.target.closest('.faq-box-q, .supervisor-box-q') : null;
     if (!button) return;
-
+ 
     var answer = document.getElementById(button.getAttribute('aria-controls'));
     if (!answer) return;
-
+ 
     var open = button.getAttribute('aria-expanded') !== 'true';
     button.setAttribute('aria-expanded', open ? 'true' : 'false');
     answer.classList.toggle('is-open', open);
+  });
+})();
+ 
+/* ----------------------------------------
+Greeting（院長挨拶）の「略歴」「所属・資格」の開閉
+・SP（599px以下）だけ、右の＋を押すと開閉する（＋ → －）
+・PC・タブレットでは、ボタンは CSS で非表示（常に全部表示）
+・イベントを1か所で受ける方式。ボタンの近くにある開閉部分を探して動かすので、
+  id が重複していても、このスクリプトが二重に読み込まれても、正しく動く
+---------------------------------------- */
+(function () {
+  if (window.__greetingToggleReady) return;
+  window.__greetingToggleReady = true;
+ 
+  document.addEventListener('click', function (e) {
+    var button = e.target.closest ? e.target.closest('.Greeting__toggle') : null;
+    if (!button) return;
+ 
+    var block = button.closest('.Greeting__block');
+    var panel = block ? block.querySelector('.Greeting__collapse') : null;
+    if (!panel) return;
+ 
+    var open = !panel.classList.contains('is-open');
+    panel.classList.toggle('is-open', open);
+    block.querySelectorAll('.Greeting__toggle').forEach(function (b) {
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   });
 })();
  

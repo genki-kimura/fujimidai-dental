@@ -7,16 +7,42 @@ $header-bp: 1200px;
 $header-height-sp: 64px;
 
 $header-color-bg: #fff;
+$header-color-bg-fixed: rgba(255, 255, 255, 0.8); // スクロールして固定されているときの半透明の背景色（0.8 を小さくするともっと透ける）
+$header-blur: 8px; // 固定中の背景のぼかし（0px でぼかしなし）
 $header-color-nav: #313131;
 $header-color-text: #737373;
 $header-color-catch: #6e6875;
 $header-color-line: #d1d1d1;
 
 .header {
-  position: relative;
+  // 上部に固定して、スクロールしてもついてくる
+  position: sticky;
+  top: 0;
   z-index: 100;
   background: $header-color-bg;
   font-family: "Noto Sans JP", sans-serif;
+  // ※ .header 自体に backdrop-filter / transform を付けないこと（スマホのメニュー position: fixed がずれるため）
+
+  // ログイン中の管理バーの下に固定する
+  .admin-bar & {
+    top: 32px;
+
+    @media (max-width: 782px) {
+      top: 46px;
+    }
+  }
+
+  // スクロールしてついてきているとき（script.js が .is-fixed を付けます）：半透明にする
+  &.is-fixed {
+    background: transparent;
+  }
+
+  &.is-fixed &__inner {
+    background: $header-color-bg-fixed;
+    -webkit-backdrop-filter: blur($header-blur);
+    backdrop-filter: blur($header-blur);
+    box-shadow: 0 2px 12px rgba(46, 42, 51, 0.08);
+  }
 
   &__inner {
     position: relative;
@@ -26,6 +52,7 @@ $header-color-line: #d1d1d1;
     justify-content: space-between;
     padding: 16px clamp(24px, 3.34vw, 48px); // デザイン: 上下16px / 左右48px
     background: $header-color-bg;
+    transition: background-color 0.3s, box-shadow 0.3s;
   }
 
   // ロゴ + 区切り線 + 医院情報
@@ -223,8 +250,12 @@ $header-menu-line: #ddd7ea;
 
   // メニューを開いている間は、バーの背景をメニューと同じ色にする
   // （中身がスクロールしても、ロゴやボタンと重ならない）
-  body.is-menu-open .header__inner {
+  // （固定中の半透明より優先させるため、セレクタを長くしています）
+  body.is-menu-open .header .header__inner {
     background: $header-menu-bg-top;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
   }
 
   .header {
@@ -498,7 +529,11 @@ $header-menu-line: #ddd7ea;
   }
 
   // メニューを開いている間は背面のスクロールを止める
-  body.is-menu-open {
+  // ※ body ではなく html に付けること。
+  //   html に overflow-x: hidden などがあると、body の overflow: hidden が画面全体に効かず、
+  //   body が独立したスクロール枠になって、position: sticky のヘッダーが画面の外へ出てしまう
+  //   （少しスクロールした状態でメニューを開くと、ロゴと×ボタンが消える原因）
+  html.is-menu-open {
     overflow: hidden;
   }
 }

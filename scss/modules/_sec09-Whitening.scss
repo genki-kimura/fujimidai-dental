@@ -13,7 +13,6 @@ $wh-note: #737373;
 $wh-serif: "Shippori Mincho", "Noto Serif JP", "Yu Mincho", "游明朝", serif;
 $wh-en: "Jost", "Helvetica Neue", Arial, sans-serif;
 $wh-gap: 80px; // 画像と文字の間の余白（最大値。狭い画面では自動で縮みます）
-$wh-logo-hide-from: 1001px; // この画面幅以上では、背景の透かしロゴを非表示にする（1000px以下のSPレイアウトでだけ表示）
 
 .Whitening {
   // 左の画像の幅：_sec08-Implant.scss の画像と同じ（画面幅の41%・最大560px・狭い画面では縮む）
@@ -31,7 +30,7 @@ $wh-logo-hide-from: 1001px; // この画面幅以上では、背景の透かし�
   // ※ overflow: hidden は付けない（画面が1366pxより広いとき、ロゴが右の余白にはみ出して全体が見えるようにするため）
 
   // 右上の透かしロゴ（_sec08-Implant.scss の左右反転。画像が左なので、ロゴは右側に置く）
-  // 画面が1001px以上：非表示 ／ 1000px以下：SPレイアウトで左上に表示
+  // 全画面幅で表示（SPでは小さくして左上へ）
   &__logo {
     position: absolute;
     top: 10px;
@@ -41,11 +40,6 @@ $wh-logo-hide-from: 1001px; // この画面幅以上では、背景の透かし�
     height: auto;
     pointer-events: none;
     user-select: none;
-
-    // 画面が広いときは非表示（小さい画面だけ表示）
-    @media (min-width: $wh-logo-hide-from) {
-      display: none;
-    }
   }
 
   // 画面が1366px以下では、はみ出したロゴで横スクロールが出ないよう右側を切る
