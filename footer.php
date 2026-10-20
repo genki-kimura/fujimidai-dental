@@ -81,6 +81,8 @@ $cta_white_url = $footer_field('cta_white_url', '#');
 $cta_tel       = $footer_field('cta_tel', '03-5848-9373');
 $cta_tel_hours = $footer_field('cta_tel_hours', '受付 月〜土 9:00-12:00 / 13:00-18:00');
 $cta_tel_href  = 'tel:' . preg_replace('/[^0-9+]/', '', $cta_tel);
+// 追従ボタンのアイコン（img フォルダ内）
+$cta_icon_dir  = get_template_directory_uri() . '/img/';
 ?>
     <footer class="footer">
         <div class="footer__inner">
@@ -127,18 +129,27 @@ $cta_tel_href  = 'tel:' . preg_replace('/[^0-9+]/', '', $cta_tel);
 
     <!-- 画面右側に追従するボタン（スマホでは画面下部のバーになり、文言が短くなります） -->
     <aside class="floating-cta" aria-label="ご予約・お問い合わせ">
-        <a class="floating-cta__btn floating-cta__btn--web" href="<?php echo esc_url($footer_url($cta_web_url)); ?>">
-            <span class="floating-cta__label">24時間受付中</span>
-            <span class="floating-cta__main"><span class="floating-cta__pc">WEB予約する</span><span class="floating-cta__sp">WEB予約</span></span>
+        <a class="floating-cta__btn floating-cta__btn--web" href="<?php echo esc_url($footer_url($cta_web_url)); ?>" style="--cta-icon: url('<?php echo esc_url($cta_icon_dir . 'cta-icon03.webp'); ?>')">
+            <span class="floating-cta__icon" aria-hidden="true"></span>
+            <span class="floating-cta__text">
+                <span class="floating-cta__label">24時間受付中</span>
+                <span class="floating-cta__main"><span class="floating-cta__pc">WEB予約する</span><span class="floating-cta__sp">WEB予約</span></span>
+            </span>
         </a>
-        <a class="floating-cta__btn floating-cta__btn--white" href="<?php echo esc_url($footer_url($cta_white_url)); ?>">
-            <span class="floating-cta__label"><span class="floating-cta__pc">ホワイトエッセンス加盟店</span><span class="floating-cta__sp">ホワイトエッセンス</span></span>
-            <span class="floating-cta__main"><span class="floating-cta__pc">ホワイトニングを予約</span><span class="floating-cta__sp">ホワイトニング</span></span>
+        <a class="floating-cta__btn floating-cta__btn--white" href="<?php echo esc_url($footer_url($cta_white_url)); ?>" style="--cta-icon: url('<?php echo esc_url($cta_icon_dir . 'cta-icon02.webp'); ?>')">
+            <span class="floating-cta__icon" aria-hidden="true"></span>
+            <span class="floating-cta__text">
+                <span class="floating-cta__label"><span class="floating-cta__pc">ホワイトエッセンス加盟店</span><span class="floating-cta__sp">ホワイトエッセンス</span></span>
+                <span class="floating-cta__main"><span class="floating-cta__pc">ホワイトニングを予約</span><span class="floating-cta__sp">ホワイトニング</span></span>
+            </span>
         </a>
         <address class="floating-cta__address">
-            <a class="floating-cta__btn floating-cta__btn--tel" href="<?php echo esc_attr($cta_tel_href); ?>">
-                <span class="floating-cta__label"><span class="floating-cta__pc"><?php echo esc_html($cta_tel_hours); ?></span><span class="floating-cta__sp"><?php echo esc_html($cta_tel); ?></span></span>
-                <span class="floating-cta__main"><span class="floating-cta__pc">TEL <?php echo esc_html($cta_tel); ?></span><span class="floating-cta__sp">電話する</span></span>
+            <a class="floating-cta__btn floating-cta__btn--tel" href="<?php echo esc_attr($cta_tel_href); ?>" style="--cta-icon: url('<?php echo esc_url($cta_icon_dir . 'cta-icon01.webp'); ?>')">
+                <span class="floating-cta__icon" aria-hidden="true"></span>
+                <span class="floating-cta__text">
+                    <span class="floating-cta__label"><span class="floating-cta__pc"><?php echo esc_html($cta_tel_hours); ?></span><span class="floating-cta__sp"><?php echo esc_html($cta_tel); ?></span></span>
+                    <span class="floating-cta__main"><span class="floating-cta__pc">TEL <?php echo esc_html($cta_tel); ?></span><span class="floating-cta__sp">電話する</span></span>
+                </span>
             </a>
         </address>
     </aside>

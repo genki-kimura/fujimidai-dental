@@ -58,6 +58,7 @@ header pc
   transition: background-color 0.3s, -webkit-box-shadow 0.3s;
   transition: background-color 0.3s, box-shadow 0.3s;
   transition: background-color 0.3s, box-shadow 0.3s, -webkit-box-shadow 0.3s;
+  gap: 10px;
 }
 .header__brand {
   display: -webkit-box;
@@ -111,7 +112,7 @@ header pc
 }
 .header__catch {
   margin: 0;
-  font-size: 9px;
+  font-size: 11px;
   line-height: normal;
   letter-spacing: 0.2px;
   color: #6e6875;
@@ -1604,8 +1605,8 @@ About
     z-index: 1;
     margin-top: 10px;
     font-size: clamp(13px, 5vw, 19px);
-    line-height: 1.3;
-    letter-spacing: 0;
+    line-height: 1.5;
+    letter-spacing: 0.07em;
   }
   .About__venn {
     width: min(100%, 300px);
@@ -1656,7 +1657,7 @@ About
        object-position: left top;
   }
   .About__card-body {
-    padding: 15px 21px;
+    padding: 15px;
   }
   .About__card-title {
     text-align: center;
@@ -1664,13 +1665,13 @@ About
     letter-spacing: 0.07em;
   }
   .About__card-text {
-    max-width: 280px;
+    max-width: 305px;
     margin: 5px auto 0;
     text-align: center;
     white-space: normal;
     font-size: clamp(12px, 3.73vw, 15px);
-    line-height: 1.3;
-    letter-spacing: 0.07em;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
   }
   .About__br {
     display: none;
@@ -1679,7 +1680,7 @@ About
     width: 100%;
     height: 55px;
     margin-top: 20px;
-    padding: 0 19px 0 21px;
+    padding: 0 19px 0 24px;
     border-radius: 999px;
     font-size: clamp(12px, 3.47vw, 15px);
     letter-spacing: 0.6px;
@@ -6564,7 +6565,7 @@ Floating CTA（画面右側に追従）
 ---------------------------------------- */
 .floating-cta {
   position: fixed;
-  top: 35%;
+  top: 50%;
   right: 0;
   z-index: 90;
   display: -webkit-box;
@@ -6580,7 +6581,7 @@ Floating CTA（画面右側に追従）
   -webkit-align-items: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
-  gap: 8px;
+  gap: 14px;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -6595,13 +6596,11 @@ Floating CTA（画面右側に追従）
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 2px;
-  padding: 13px 15px 13px 22px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 22px 10px 26px;
   border-radius: 999px 0 0 999px;
   text-decoration: none;
   -webkit-transition: background-color 0.25s ease, border-color 0.25s ease;
@@ -6651,7 +6650,7 @@ Floating CTA（画面右側に追従）
   border-color: #7f6ba6;
 }
 .floating-cta__btn--tel .floating-cta__label {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.2px;
 }
 .floating-cta__address {
@@ -6668,11 +6667,35 @@ Floating CTA（画面右側に追従）
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
 }
+.floating-cta__icon {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background-color: var(--cta-main);
+  -webkit-mask: var(--cta-icon) center/contain no-repeat;
+  mask: var(--cta-icon) center/contain no-repeat;
+  -webkit-transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease;
+}
+.floating-cta__text {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 14px;
+}
 .floating-cta__sp {
   display: none;
 }
 .floating-cta__label {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.4px;
   color: var(--cta-label);
@@ -6680,7 +6703,7 @@ Floating CTA（画面右側に追従）
   transition: color 0.25s ease;
 }
 .floating-cta__main {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.4px;
   color: var(--cta-main);
@@ -6688,6 +6711,30 @@ Floating CTA（画面右側に追従）
   transition: color 0.25s ease;
 }
 
+/* ----------------------------------------
+Floating CTA pc：スクロール中はアイコンのみ、止まったら全体表示
+・script.js がスクロール中だけ .is-scrolling を付けます
+・マウスを乗せている（キーボードで選択している）ボタンは、スクロール中でも開いたままです
+---------------------------------------- */
+@media (min-width: 769px) {
+  .floating-cta__text {
+    max-width: 280px;
+    overflow: hidden;
+    -webkit-transition: max-width 0.35s ease, margin-left 0.35s ease, opacity 0.25s ease;
+    transition: max-width 0.35s ease, margin-left 0.35s ease, opacity 0.25s ease;
+  }
+  .floating-cta.is-scrolling .floating-cta__btn:not(:hover):not(:focus-visible) .floating-cta__text {
+    max-width: 0;
+    margin-left: 0;
+    opacity: 0;
+  }
+}
+@media (min-width: 769px) and (prefers-reduced-motion: reduce) {
+  .floating-cta__text {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
 /* ----------------------------------------
 Footer / Floating CTA sp
 ---------------------------------------- */
@@ -6777,11 +6824,22 @@ Footer / Floating CTA sp
   .floating-cta .floating-cta__sp {
     display: inline;
   }
+  .floating-cta .floating-cta__icon {
+    display: none;
+  }
+  .floating-cta .floating-cta__text {
+    display: contents;
+  }
   .floating-cta .floating-cta__btn {
     -webkit-box-flex: 1;
     -webkit-flex: 1 1 0;
         -ms-flex: 1 1 0px;
             flex: 1 1 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
     -webkit-box-align: center;
     -webkit-align-items: center;
         -ms-flex-align: center;

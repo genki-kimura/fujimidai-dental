@@ -466,8 +466,8 @@ $about-en: "Jost", sans-serif;
       z-index: 1;
       margin-top: 10px;
       font-size: clamp(13px, 5vw, 19px);
-      line-height: 1.3;
-      letter-spacing: 0;
+      line-height: 1.5;
+      letter-spacing: 0.07em;
     }
 
     /* 健康 × 美：円と文字は画像（About-img01.webp）に入っています ---------------- */
@@ -526,7 +526,7 @@ $about-en: "Jost", sans-serif;
     }
 
     &__card-body {
-      padding: 15px 21px;
+      padding: 15px;
     }
 
     &__card-title {
@@ -536,13 +536,13 @@ $about-en: "Jost", sans-serif;
     }
 
     &__card-text {
-      max-width: 280px;
+      max-width: 305px;
       margin: 5px auto 0; // 左右を auto にして、文章のかたまりを中央に置く
       text-align: center;
       white-space: normal;
       font-size: clamp(12px, 3.73vw, 15px);
-      line-height: 1.3;
-      letter-spacing: 0.07em;
+      line-height: 1.5;
+      letter-spacing: 0.1em;
     }
 
     // PC用の改行はSPでは使わない
@@ -554,7 +554,7 @@ $about-en: "Jost", sans-serif;
       width: 100%;
       height: 55px;
       margin-top: 20px;
-      padding: 0 19px 0 21px;
+      padding: 0 19px 0 24px;
       border-radius: 999px;
       font-size: clamp(12px, 3.47vw, 15px);
       letter-spacing: 0.6px;

@@ -161,13 +161,13 @@ Floating CTA（画面右側に追従）
 ---------------------------------------- */
 .floating-cta {
   position: fixed;
-  top: 35%;
+  top: 50%;
   right: 0;
   z-index: 90;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 8px;
+  gap: 14px;
   width: max-content;
   transform: translateY(-50%);
   font-family: "Noto Sans JP", sans-serif;
@@ -176,9 +176,8 @@ Floating CTA（画面右側に追従）
 
   &__btn {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 13px 15px 13px 22px;
+    align-items: center;
+    padding: 10px 22px 10px 26px; // 左右の余白（アイコンのみの状態でもこの余白で表示されます）
     // 高さに関係なく左端が真円（半円）になるよう、十分大きな値を指定
     border-radius: 999px 0 0 999px;
     text-decoration: none;
@@ -234,7 +233,7 @@ Floating CTA（画面右側に追従）
       }
 
       .floating-cta__label {
-        font-size: 9px;
+        font-size: 11px;
         letter-spacing: 0.2px;
       }
     }
@@ -251,13 +250,31 @@ Floating CTA（画面右側に追従）
     }
   }
 
+  // アイコン（img/cta-icon01〜03.webp を型抜きにして、文字色と同じ色で表示。ホバーの色反転にも追従）
+  &__icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background-color: var(--cta-main);
+    -webkit-mask: var(--cta-icon) center / contain no-repeat;
+    mask: var(--cta-icon) center / contain no-repeat;
+    transition: background-color 0.25s ease;
+  }
+
+  // 文字部分（スクロール中はここが閉じて、アイコンだけになる）
+  &__text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 14px;
+  }
+
   // 文言の出し分け（PC用は長い文言、スマホ用は短い文言）
   &__sp {
     display: none;
   }
 
   &__label {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.4px;
     color: var(--cta-label);
@@ -265,11 +282,36 @@ Floating CTA（画面右側に追従）
   }
 
   &__main {
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 700;
     letter-spacing: 0.4px;
     color: var(--cta-main);
     transition: color 0.25s ease;
+  }
+}
+
+/* ----------------------------------------
+Floating CTA pc：スクロール中はアイコンのみ、止まったら全体表示
+・script.js がスクロール中だけ .is-scrolling を付けます
+・マウスを乗せている（キーボードで選択している）ボタンは、スクロール中でも開いたままです
+---------------------------------------- */
+@media (min-width: #{$footer-bp + 1px}) {
+  .floating-cta__text {
+    max-width: 280px; // 開いたときの上限（文字がこれより長い場合は大きくしてください）
+    overflow: hidden;
+    transition: max-width 0.35s ease, margin-left 0.35s ease, opacity 0.25s ease;
+  }
+
+  .floating-cta.is-scrolling .floating-cta__btn:not(:hover):not(:focus-visible) .floating-cta__text {
+    max-width: 0;
+    margin-left: 0;
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-cta__text {
+      transition: none;
+    }
   }
 }
 
@@ -373,8 +415,18 @@ Footer / Floating CTA sp
       display: inline;
     }
 
+    // スマホではアイコンは出さず、文字部分は従来どおり縦に並べる
+    .floating-cta__icon {
+      display: none;
+    }
+
+    .floating-cta__text {
+      display: contents;
+    }
+
     .floating-cta__btn {
       flex: 1 1 0;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 2px;

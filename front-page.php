@@ -198,7 +198,7 @@ $mv_slides = array(
                                 <div class="About__card-body">
                                         <p class="About__card-title">すべての、大切な人へ。</p>
                                         <p class="About__card-text">歯科医療を通じて、皆さまの心と体の健康、そして幸福な人生へ。<br class="About__br">「愛と信頼、安らぎに満ち溢れた空間」を実現し、“自分の大切な人<br class="About__br">だったら”という視点で、お一人おひとりに向き合います。</p>
-                                        <a class="About__btn" href="#"><span class="About__btn-text"><span class="About__btn-line">「当院の理念・特徴」</span><span class="About__btn-line">詳しくはこちら</span></span></a>
+                                        <a class="About__btn" href="#"><span class="About__btn-text"><span class="About__btn-line">「当院の理念」</span><span class="About__btn-line">詳しくはこちら</span></span></a>
                                 </div>
                         </div>
                 </div>
@@ -696,7 +696,7 @@ $mv_slides = array(
                         array(
                                 'title' => '専門医による、確かな技術',
                                 'text'  => '日本口腔インプラント学会 認定専門医・歯学博士（東京医科歯科大学出身）が診療。予防から専門治療まで幅広く対応。',
-                                'text_sp' => '予防から専門治療まで幅広く対応',
+                                'text_sp' => '日本口腔インプラント学会 認定専門医・歯学博士（東京医科歯科大学出身）が診療。',
                         ),
                         array(
                                 'title' => 'こだわりの自費補綴で、|美しく長持ち',
@@ -705,7 +705,7 @@ $mv_slides = array(
                         array(
                                 'title' => '完全個室で、|プライバシーに配慮',
                                 'text'  => 'カウンセリング専用の個室を3室完備。周囲を気にせず、じっくり相談・治療を受けられます。',
-                                'text_sp' => 'カウンセリング専用の個室を3室完備',
+                                'text_sp' => '周囲を気にせず、じっくり相談・治療を受けられます。',
                         ),
                         array(
                                 'title' => '審美治療は、|完全デジタル（DX）化',
