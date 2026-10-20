@@ -29,8 +29,6 @@ $header_field = function ($name, $default = '') {
 
 $header_catch   = $header_field('header_catch', '富士見台駅の歯医者｜富士見台さくら歯科 中野区上鷺宮のインプラント・ホワイトニング');
 $header_address = $header_field('header_address', '東京都中野区上鷺宮3丁目１６−９');
-$header_hours   = $header_field('header_hours', '月〜土 9:00–12:00 / 13:00–18:00');
-$header_closed  = $header_field('header_closed', '休診：日曜・祝日（木曜午後は祝日のある週のみ診療）');
 
 // ナビゲーション（リンク先は仮のURLです。ACFで設定するか、ここを書き換えてください）
 $header_nav = $header_field('header_nav', array(
@@ -119,10 +117,8 @@ $menu_sub = array(
                 <div class="header__info">
                     <h1 class="header__catch"><?php echo esc_html($header_catch); ?></h1>
                     <div class="header__text">
-                        <address><?php echo esc_html($header_address); ?></address>
-                        <p><?php echo esc_html($header_hours); ?></p>
+                        <address>〒165-0031 <?php echo esc_html($header_address); ?></address>
                     </div>
-                    <p class="header__text"><?php echo esc_html($header_closed); ?></p>
                 </div>
             </div>
 

@@ -396,4 +396,30 @@ Greeting（院長挨拶）の「略歴」「所属・資格」の開閉
     });
   });
 })();
+
+/* ----------------------------------------
+追従ボタン（.floating-cta）
+・スクロール中は .is-scrolling を付けて、アイコンだけにする（CSS: _sec99-Footer.scss）
+・スクロールが止まって少しすると外して、全体を表示する
+---------------------------------------- */
+(function () {
+  var cta = document.querySelector('.floating-cta');
+  if (!cta) return;
+
+  var STOP_DELAY = 500; // スクロールが止まってから、全体が表示されるまでの時間（ミリ秒）
+  var timer = null;
+  var lastY = window.pageYOffset;
+
+  window.addEventListener('scroll', function () {
+    // 位置が動いていないとき（メニュー開閉時の疑似スクロールなど）は何もしない
+    if (window.pageYOffset === lastY) return;
+    lastY = window.pageYOffset;
+
+    cta.classList.add('is-scrolling');
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      cta.classList.remove('is-scrolling');
+    }, STOP_DELAY);
+  }, { passive: true });
+})();
  
