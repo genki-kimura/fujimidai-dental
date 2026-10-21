@@ -9,11 +9,15 @@ $head-purple-mid:   #b9aed6; // 中間
 $head-logo:         "../img/Logo02.webp"; // ← コンパイル後のCSSからの相対パスに合わせる
 $head-font:         "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
 
+$head-fixed-w: 1366px; // この幅より広い画面では、題名・円・ロゴの位置をこの幅の中に固定する
+$head-fixed-h: 300px;  // 高さ
+
 // --- セクション本体 ---------------------------------------
 .page-common-head {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 2732 / 640; // モックアップの比率
+  aspect-ratio: 1366 / 300; // $head-fixed-w : $head-fixed-h と同じ比率
+  max-height: $head-fixed-h;
   display: flex;
   align-items: center;
   background:
@@ -99,6 +103,41 @@ $head-font:         "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", 
       height: 1px;
       margin-top: 0.55em;
       background: #fff;
+    }
+  }
+}
+
+// --- 広い画面（$head-fixed-w より大きいとき）--------------
+// 題名・円の線・右端のロゴは $head-fixed-w の枠の中に固定して中央に置き、
+// 枠の外側は 左＝紫 / 右＝白 で塗りつぶす
+@media (min-width: #{$head-fixed-w + 1px}) {
+  .page-common-head {
+    --head-side: calc((100% - #{$head-fixed-w}) / 2); // 枠の左右の余白
+    height: $head-fixed-h;
+    aspect-ratio: auto;
+    padding-inline: var(--head-side);
+    box-sizing: border-box;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    //        ① ロゴ          ② 左上の光          ③ 紫→白          ④ 枠の外側（左=紫 / 右=白）
+    background-image:
+      url($head-logo),
+      radial-gradient(circle 390px at 0 0, $head-purple-light 0%, rgba($head-purple-light, 0) 100%),
+      linear-gradient(100deg, $head-purple 0%, $head-purple 18%, $head-purple-mid 48%, #fff 72%, #fff 100%),
+      linear-gradient(90deg, $head-purple 50%, #fff 50%);
+    background-origin: content-box, border-box, content-box, border-box;
+    background-position: calc(100% + 4%) 50%, 0 0, 0 0, 0 0;
+    background-size: auto 118%, 100% 100%, 100% 100%, 100% 100%;
+
+    // 円の線も枠の左端を基準にする（px指定。値は $head-fixed-w=1366px の時の 41.4% / -12.5% など）
+    &::before {
+      left: calc(var(--head-side) - 170px);
+      width: 566px;
+    }
+
+    &::after {
+      left: calc(var(--head-side) + 57px);
+      width: 391px;
     }
   }
 }
