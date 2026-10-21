@@ -167,7 +167,7 @@ Floating CTA（画面右側に追従）
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 14px;
+  gap: 10px;
   width: max-content;
   transform: translateY(-50%);
   font-family: "Noto Sans JP", sans-serif;
@@ -177,7 +177,9 @@ Floating CTA（画面右側に追従）
   &__btn {
     display: flex;
     align-items: center;
-    padding: 10px 22px 10px 26px; // 左右の余白（アイコンのみの状態でもこの余白で表示されます）
+    box-sizing: border-box;
+    height: 60px; // 3つのボタンの高さを揃える（変えたいときはここだけ）
+    padding: 0 12px 0 20px; // 左右の余白（右を小さくして短くしています）
     // 高さに関係なく左端が真円（半円）になるよう、十分大きな値を指定
     border-radius: 999px 0 0 999px;
     text-decoration: none;
@@ -253,8 +255,8 @@ Floating CTA（画面右側に追従）
   // アイコン（img/cta-icon01〜03.webp を型抜きにして、文字色と同じ色で表示。ホバーの色反転にも追従）
   &__icon {
     flex-shrink: 0;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     background-color: var(--cta-main);
     -webkit-mask: var(--cta-icon) center / contain no-repeat;
     mask: var(--cta-icon) center / contain no-repeat;
@@ -265,7 +267,7 @@ Floating CTA（画面右側に追従）
   &__text {
     display: flex;
     flex-direction: column;
-    margin-left: 14px;
+    margin-left: 10px;
   }
 
   // 文言の出し分け（PC用は長い文言、スマホ用は短い文言）
@@ -431,6 +433,7 @@ Footer / Floating CTA sp
       justify-content: center;
       gap: 2px;
       min-width: 0;
+      height: auto; // PCで固定した高さを解除
       min-height: clamp(54px, 11.6vw, 92px);
       padding: 8px 4px;
       border: 0;

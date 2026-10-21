@@ -112,13 +112,13 @@ header pc
 }
 .header__catch {
   margin: 0;
-  font-size: 11px;
+  font-size: 8px;
   line-height: normal;
   letter-spacing: 0.2px;
   color: #6e6875;
 }
 .header__text {
-  font-size: 12px;
+  font-size: 8px;
   line-height: normal;
   color: #737373;
 }
@@ -6582,7 +6582,7 @@ Floating CTA（画面右側に追従）
   -webkit-align-items: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
-  gap: 14px;
+  gap: 10px;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -6601,7 +6601,10 @@ Floating CTA（画面右側に追従）
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 22px 10px 26px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 60px;
+  padding: 0 12px 0 20px;
   border-radius: 999px 0 0 999px;
   text-decoration: none;
   -webkit-transition: background-color 0.25s ease, border-color 0.25s ease;
@@ -6672,8 +6675,8 @@ Floating CTA（画面右側に追従）
   -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
           flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   background-color: var(--cta-main);
   -webkit-mask: var(--cta-icon) center/contain no-repeat;
   mask: var(--cta-icon) center/contain no-repeat;
@@ -6690,7 +6693,7 @@ Floating CTA（画面右側に追従）
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-left: 14px;
+  margin-left: 10px;
 }
 .floating-cta__sp {
   display: none;
@@ -6851,6 +6854,7 @@ Footer / Floating CTA sp
             justify-content: center;
     gap: 2px;
     min-width: 0;
+    height: auto;
     min-height: clamp(54px, 11.6vw, 92px);
     padding: 8px 4px;
     border: 0;

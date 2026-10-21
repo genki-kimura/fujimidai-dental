@@ -147,7 +147,7 @@ $cta_icon_dir  = get_template_directory_uri() . '/img/';
             <a class="floating-cta__btn floating-cta__btn--tel" href="<?php echo esc_attr($cta_tel_href); ?>" style="--cta-icon: url('<?php echo esc_url($cta_icon_dir . 'cta-icon01.webp'); ?>')">
                 <span class="floating-cta__icon" aria-hidden="true"></span>
                 <span class="floating-cta__text">
-                    <span class="floating-cta__label"><span class="floating-cta__pc"><?php echo esc_html($cta_tel_hours); ?></span><span class="floating-cta__sp"><?php echo esc_html($cta_tel); ?></span></span>
+                    <span class="floating-cta__label"><span class="floating-cta__sp"><?php echo esc_html($cta_tel); ?></span></span>
                     <span class="floating-cta__main"><span class="floating-cta__pc">TEL <?php echo esc_html($cta_tel); ?></span><span class="floating-cta__sp">電話する</span></span>
                 </span>
             </a>

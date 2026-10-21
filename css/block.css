@@ -2,7 +2,8 @@
 .page-common-head {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 2732/640;
+  aspect-ratio: 1366/300;
+  max-height: 300px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -73,6 +74,30 @@
   background: #fff;
 }
 
+@media (min-width: 1367px) {
+  .page-common-head {
+    --head-side: calc((100% - 1366px) / 2);
+    height: 300px;
+    aspect-ratio: auto;
+    padding-inline: var(--head-side);
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-image: url("../img/Logo02.webp"), radial-gradient(circle 390px at 0 0, #d2b6ee 0%, rgba(210, 182, 238, 0) 100%), linear-gradient(100deg, #8e80b7 0%, #8e80b7 18%, #b9aed6 48%, #fff 72%, #fff 100%), linear-gradient(90deg, #8e80b7 50%, #fff 50%);
+    background-origin: content-box, border-box, content-box, border-box;
+    background-position: 104% 50%, 0 0, 0 0, 0 0;
+    background-size: auto 118%, 100% 100%, 100% 100%, 100% 100%;
+  }
+  .page-common-head::before {
+    left: calc(var(--head-side) - 170px);
+    width: 566px;
+  }
+  .page-common-head::after {
+    left: calc(var(--head-side) + 57px);
+    width: 391px;
+  }
+}
 @media (max-width: 767px) {
   .page-common-head {
     aspect-ratio: auto;
