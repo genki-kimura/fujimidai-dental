@@ -10,13 +10,13 @@ $head-logo:         "../img/Logo02.webp"; // ← コンパイル後のCSSから�
 $head-font:         "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
 
 $head-fixed-w: 1366px; // この幅より広い画面では、題名・円・ロゴの位置をこの幅の中に固定する
-$head-fixed-h: 280px;  // 高さ
+$head-fixed-h: 230px;  // 高さ
 
 // --- セクション本体 ---------------------------------------
 .page-common-head {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1366 / 300; // $head-fixed-w : $head-fixed-h と同じ比率
+  aspect-ratio: 1366 / 230; // $head-fixed-w : $head-fixed-h と同じ比率
   max-height: $head-fixed-h;
   display: flex;
   align-items: center;
@@ -85,7 +85,7 @@ $head-fixed-h: 280px;  // 高さ
     background: none;
     font-family: $head-font;
     font-weight: 500;
-    font-size: clamp(24px, 3.3vw, 48px);
+    font-size: clamp(22px, 2.25vw, 35px);
     line-height: 1.4;
     letter-spacing: 0.08em;
     color: #fff;
@@ -168,7 +168,7 @@ $head-fixed-h: 280px;  // 高さ
     }
 
     &__title {
-      font-size: clamp(22px, 6vw, 28px);
+      font-size: clamp(22px, 5vw, 28px);
     }
   }
 }
@@ -313,6 +313,16 @@ $bc-font:   "Jost", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sa
   // 現在ページ(リンクなし・グレー)
   .breadcrumb_last {
     color: $bc-gray;
+  }
+}
+
+// --- 広い画面（$head-fixed-w より大きいとき）--------------
+// ヘッドは $head-fixed-w の枠を中央に置き、枠の左端から 17.5% の位置に題名を置いている。
+// パンくずも同じ基準（枠の左右の余白 + 枠幅の 17.5%）にそろえて、題名の左端と一致させる。
+@media (min-width: #{$head-fixed-w + 1px}) {
+  #breadcrumbs {
+    padding-left: calc((100% - #{$head-fixed-w}) / 2 + #{$head-fixed-w * 0.175});
+    padding-right: calc((100% - #{$head-fixed-w}) / 2 + #{$head-fixed-w * 0.175});
   }
 }
 

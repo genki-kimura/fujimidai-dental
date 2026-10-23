@@ -2,8 +2,8 @@
 .page-common-head {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1366/300;
-  max-height: 280px;
+  aspect-ratio: 1366/230;
+  max-height: 230px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -56,7 +56,7 @@
   background: none;
   font-family: "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
   font-weight: 500;
-  font-size: clamp(24px, 3.3vw, 48px);
+  font-size: clamp(22px, 2.25vw, 35px);
   line-height: 1.4;
   letter-spacing: 0.08em;
   color: #fff;
@@ -77,7 +77,7 @@
 @media (min-width: 1367px) {
   .page-common-head {
     --head-side: calc((100% - 1366px) / 2);
-    height: 280px;
+    height: 230px;
     aspect-ratio: auto;
     padding-inline: var(--head-side);
     -webkit-box-sizing: border-box;
@@ -117,7 +117,7 @@
     padding: 0 6%;
   }
   .page-common-head__title {
-    font-size: clamp(22px, 6vw, 28px);
+    font-size: clamp(22px, 5vw, 28px);
   }
 }
 h1.editor-post-title__input,
@@ -247,6 +247,12 @@ h1.wp-block-post-title::after {
   color: #6e6e73;
 }
 
+@media (min-width: 1367px) {
+  #breadcrumbs {
+    padding-left: calc((100% - 1366px) / 2 + 239.05px);
+    padding-right: calc((100% - 1366px) / 2 + 239.05px);
+  }
+}
 @media (max-width: 767px) {
   #breadcrumbs {
     padding: 1rem 6%;
