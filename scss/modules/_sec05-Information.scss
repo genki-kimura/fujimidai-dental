@@ -147,6 +147,21 @@ Information
       tbody th {
         font-size: 13px;
       }
+
+      // PC：項目の間に線を引く（縦線：列の間／横線：見出し行と各行の間）
+      th,
+      td {
+        border-left: 1px solid $border;
+      }
+
+      tr > :first-child {
+        border-left: 0;
+      }
+
+      tbody th,
+      tbody td {
+        border-top: 1px solid $border;
+      }
     }
   }
 

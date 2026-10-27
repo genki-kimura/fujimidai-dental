@@ -12,7 +12,7 @@ $mv_field = function ($name, $default = '') {
 $mv_en     = $mv_field('mv_en', 'Smiles, in bloom.');
 $mv_lead   = $mv_field('mv_lead', '生涯、自分の歯で笑うために。');
 $mv_badges = $mv_field('mv_badges', array(
-    array('text' => "富士見台駅\n徒歩3分\n土曜も診療"),
+    array('text' => "富士見台駅\n徒歩3分\n土曜も診療", 'text_sp' => '富士見台駅 徒歩3分・土曜も診療'),
     array('text' => "認定専門医による\nインプラント治療"),
     array('text' => "予防から審美・\n訪問診療まで対応"),
 ));
@@ -23,6 +23,15 @@ $mv_slides = array(
     array('name' => 'Mv01', 'alt' => 'モニターを使って説明する歯科医師'),
     array('name' => 'Mv02', 'alt' => '資料を見せながら説明するスタッフ'),
     array('name' => 'Mv03', 'alt' => '受付と待合室'),
+);
+
+// SP用：丸く切り取った写真4つ（PCでは非表示。img フォルダの Mv04.webp = 受付、Mv05.webp = 診療室、Mv01-s / Mv02-s は小さい写真と同じ画像）
+//   'pos' は丸の中で見せる位置（object-position）。写真の被写体が切れる場合はここで調整します
+$mv_circles = array(
+    array('key' => 'a', 'file' => 'Mv04.webp',          'alt' => '受付と待合室',                   'w' => 3000, 'h' => 2001, 'pos' => '38% 50%', 'lazy' => true),
+    array('key' => 'b', 'file' => 'Mv01-s.webp',        'alt' => 'モニターを使って説明する歯科医師', 'w' => 3000, 'h' => 2001, 'pos' => '42% 50%', 'lazy' => false),
+    array('key' => 'c', 'file' => 'Mv02-s.webp',        'alt' => '資料を見せながら説明するスタッフ', 'w' => 3000, 'h' => 2001, 'pos' => '62% 50%', 'lazy' => false),
+    array('key' => 'd', 'file' => 'Mv05.webp',          'alt' => '診療室',                         'w' => 3000, 'h' => 2001, 'pos' => '58% 60%', 'lazy' => true),
 );
 ?>
 
@@ -40,6 +49,15 @@ $mv_slides = array(
                     <?php endforeach; ?>
                 </div>
 
+                <!-- SP用：丸く切り取った写真（ゆっくり浮かぶように動きます） -->
+                <div class="Mv__circles">
+                    <?php foreach ($mv_circles as $circle) : ?>
+                        <div class="Mv__circle Mv__circle--<?php echo esc_attr($circle['key']); ?>">
+                            <img src="<?php echo esc_url($mv_dir . $circle['file']); ?>" alt="<?php echo esc_attr($circle['alt']); ?>" width="<?php echo (int) $circle['w']; ?>" height="<?php echo (int) $circle['h']; ?>" style="--pos: <?php echo esc_attr($circle['pos']); ?>;"<?php echo $circle['lazy'] ? ' loading="lazy"' : ''; ?>>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
                 <div class="Mv__body">
                     <p class="Mv__en"><?php echo esc_html($mv_en); ?></p>
                     <p class="Mv__title"><span>笑顔</span><span class="Mv__title-comma">、</span><span class="Mv__title-tail">めぐる。</span></p>
@@ -48,9 +66,13 @@ $mv_slides = array(
                     <?php if (is_array($mv_badges)) : ?>
                         <ul class="Mv__badges">
                             <?php foreach (array_slice($mv_badges, 0, 3) as $badge) : ?>
-                                <?php if (empty($badge['text'])) { continue; } ?>
+                                <?php
+                                if (empty($badge['text'])) { continue; }
+                                // SP用の文言（1行で表示）。未入力の場合は、PCの文言から改行を取って1行にします
+                                $badge_sp = !empty($badge['text_sp']) ? $badge['text_sp'] : str_replace(array("\r\n", "\r", "\n"), '', $badge['text']);
+                                ?>
                                 <li class="Mv__badge">
-                                    <span class="Mv__badge-ring"><span class="Mv__badge-text"><?php echo nl2br(esc_html($badge['text'])); ?></span></span>
+                                    <span class="Mv__badge-ring"><span class="Mv__badge-text"><span class="Mv__badge-pc"><?php echo nl2br(esc_html($badge['text'])); ?></span><span class="Mv__badge-sp"><?php echo esc_html($badge_sp); ?></span></span></span>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -70,10 +92,10 @@ $mv_slides = array(
 
         <section class="Banner">
                 <div class="Banner-wrap">
-                        <a href="" class="Banner-btn">
+                        <a href="<?php echo esc_url(home_url('/treatment/implant/')); ?>" class="Banner-btn">
                                 <img src="<?php echo esc_url(get_template_directory_uri() . '/img/Implant.webp'); ?>" alt="インプラントはこちら" />
                         </a>
-                        <a href="" class="Banner-btn">
+                        <a href="<?php echo esc_url(home_url('/treatment/whitening/')); ?>" class="Banner-btn">
                                 <img src="<?php echo esc_url(get_template_directory_uri() . '/img/Whitening.webp'); ?>" alt="ホワイトニングはこちら" />
                         </a>
                 </div>
@@ -198,7 +220,7 @@ $mv_slides = array(
                                 <div class="About__card-body">
                                         <p class="About__card-title">すべての、大切な人へ。</p>
                                         <p class="About__card-text">歯科医療を通じて、皆さまの心と体の健康、そして幸福な人生へ。<br class="About__br">「愛と信頼、安らぎに満ち溢れた空間」を実現し、“自分の大切な人<br class="About__br">だったら”という視点で、お一人おひとりに向き合います。</p>
-                                        <a class="About__btn" href="#"><span class="About__btn-text"><span class="About__btn-line">「当院の理念」</span><span class="About__btn-line">詳しくはこちら</span></span></a>
+                                        <a class="About__btn" href="<?php echo esc_url(home_url('/philosophy/')); ?>"><span class="About__btn-text"><span class="About__btn-line">「当院の理念」</span><span class="About__btn-line">詳しくはこちら</span></span></a>
                                 </div>
                         </div>
                 </div>
@@ -276,7 +298,7 @@ $mv_slides = array(
                                         <figure class="Information__map">
                                                 <img src="<?php echo esc_url(get_template_directory_uri() . '/img/map.webp'); ?>" alt="富士見台駅から徒歩3分。千川通り沿いの富士見台さくら歯科への地図" width="1006" height="460" loading="lazy">
                                         </figure>
-                                        <a href="#" class="Information__banner">
+                                        <a href="<?php echo esc_url(home_url('/treatment/home-visit/')); ?>" class="Information__banner">
                                                 <picture>
                                                         <source media="(max-width: 767px)" srcset="<?php echo esc_url(get_template_directory_uri() . '/img/house-call-medical-services-sp.webp'); ?>" width="670" height="250">
                                                         <img src="<?php echo esc_url(get_template_directory_uri() . '/img/house-call-medical-services.webp'); ?>" alt="訪問歯科診療 訪問診療専用 03-5848-8484 通えなくなっても、生涯このまちで 詳しくはこちら" width="1006" height="340" loading="lazy">
@@ -286,7 +308,7 @@ $mv_slides = array(
                         </div>
 
                         <div class="Information__more">
-                                <a href="#" class="Information__btn">「アクセス」詳しくはこちら<span aria-hidden="true">→</span></a>
+                                <a href="<?php echo esc_url(home_url('/access/')); ?>" class="Information__btn">「アクセス」詳しくはこちら<span aria-hidden="true">→</span></a>
                         </div>
                 </div>
         </section>
@@ -367,7 +389,7 @@ $mv_slides = array(
                                 'title' => 'インプラント',
                                 'sub'   => '',
                                 'text'  => '認定専門医による、確かなインプラント',
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/implant/'),
                                 'file'  => 'Recommend01.webp',
                                 'alt'   => 'インプラントの模型イメージ',
                                 'w'     => 4096,
@@ -382,7 +404,7 @@ $mv_slides = array(
                                 'title' => 'ホワイトニング',
                                 'sub'   => '',
                                 'text'  => '削らず、清潔感のある白い歯へ',
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/whitening/'),
                                 'file'  => 'Recommend02.webp',
                                 'alt'   => '白い歯で微笑む女性の口元',
                                 'w'     => 4096,
@@ -397,7 +419,7 @@ $mv_slides = array(
                                 'title' => 'デンタルエステ',
                                 'sub'   => '（口腔内クリーニング、マッサージ）',
                                 'text'  => '通うほど美しく、健康な口元に',
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/dental-esthetic/'),
                                 'file'  => 'Recommend03.webp',
                                 'alt'   => 'クリーニングを行う歯科衛生士',
                                 'w'     => 3000,
@@ -466,12 +488,12 @@ $mv_slides = array(
                 $implant_cases = array(
                         array(
                                 'label' => 'BEFORE',
-                                'file'  => '',
+                                'file'  => 'Implant01.webp',
                                 'alt'   => 'インプラント治療前の口腔内',
                         ),
                         array(
                                 'label' => 'AFTER',
-                                'file'  => '',
+                                'file'  => 'Implant02.webp',
                                 'alt'   => 'インプラント治療後の口腔内',
                         ),
                 );
@@ -492,7 +514,7 @@ $mv_slides = array(
                                         <p class="Implant__lead">失った歯を、根から取り戻す。</p>
                                         <p class="Implant__text">日本口腔インプラント学会の認定専門医が、診断から埋入・メンテナンスまで一貫して担当。噛む機能と自然な見た目を回復します。</p>
 
-                                        <a class="Implant__btn" href="#">
+                                        <a class="Implant__btn" href="<?php echo esc_url(home_url('/treatment/implant/')); ?>">
                                                 <span>詳しくはこちら</span>
                                                 <svg viewBox="0 0 22 10" fill="none" stroke-width="1" aria-hidden="true"><path d="M0 5h21M17 1l4 4-4 4"/></svg>
                                         </a>
@@ -525,7 +547,7 @@ $mv_slides = array(
 
                                         <div class="Implant__notes">
                                                 <p>※ 自由診療（保険適用外）の治療例です。効果には個人差があります。</p>
-                                                <p><span>治療期間・回数の目安：約3〜6か月／5〜8回</span>治療費（税込）：1歯 〇〇〇,〇〇〇円〜（別途、精密検査料・上部構造費）</p>
+                                                <p><span>治療期間：約9ヶ月</span><br>治療費：抜歯代8,000円　インプラント埋入代260,000円　ガイドサージェリー代50,000円　上部構造代160,000円　(いずれも別途消費税がかかります)</p>
                                                 <p>主なリスク・副作用：外科処置に伴う腫れ・痛み・内出血が生じることがあります。骨量が不足する場合は骨造成が必要となる、または適応外となることがあります。術後のメンテナンスを怠るとインプラント周囲炎により脱落する可能性があります。</p>
                                         </div>
                                 </div>
@@ -571,7 +593,7 @@ $mv_slides = array(
                                         <p class="Whitening__lead">削らずに、清潔感のある白い歯へ。</p>
                                         <p class="Whitening__text">全国で展開するホワイトニング専門ブランド「ホワイトエッセンス」の加盟店。確かな技術と品質で、歯を削らずに清潔感のある白い歯へ。オフィス・ホーム・デュアルから選べます。</p>
 
-                                        <a class="Whitening__btn" href="#">
+                                        <a class="Whitening__btn" href="<?php echo esc_url(home_url('/treatment/whitening/')); ?>">
                                                 <span>詳しくはこちら</span>
                                                 <svg viewBox="0 0 22 10" fill="none" stroke-width="1" aria-hidden="true"><path d="M0 5h21M17 1l4 4-4 4"/></svg>
                                         </a>
@@ -649,7 +671,7 @@ $mv_slides = array(
                                         <p class="Dental-esthetics__lead">通うほど美しく、健康な口元へ。</p>
                                         <p class="Dental-esthetics__text">歯だけでなく、歯ぐきや口元全体を整えるトータルケアです。クリーニング（PMTC）やガムピーリングによる歯ぐきの黒ずみケア、口元・リップのお手入れまで、美容感覚で通える完全個室で受けられます。</p>
 
-                                        <a class="Dental-esthetics__btn" href="#">
+                                        <a class="Dental-esthetics__btn" href="<?php echo esc_url(home_url('/treatment/dental-esthetic/')); ?>">
                                                 <span>詳しくはこちら</span>
                                                 <svg viewBox="0 0 22 10" fill="none" stroke-width="1" aria-hidden="true"><path d="M0 5h21M17 1l4 4-4 4"/></svg>
                                         </a>
@@ -756,7 +778,7 @@ $mv_slides = array(
                                     <?php endforeach; ?>
                             </ol>
 
-                            <a class="Reason__btn" href="#">はじめての方へ<span aria-hidden="true">→</span></a>
+                            <a class="Reason__btn" href="<?php echo esc_url(home_url('/first/')); ?>">はじめての方へ<span aria-hidden="true">→</span></a>
                     </div>
 
                     <div class="Reason__visual">
@@ -782,85 +804,85 @@ $mv_slides = array(
                         array(
                                 'title' => 'インプラント',
                                 'icon'  => 'Menu01.webp', 'w' => 27, 'h' => 41,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/implant/'),
                                 'items' => array('歯を失ってしまった', '入れ歯に違和感がある', '自然な見た目にしたい'),
                         ),
                         array(
                                 'title' => 'ホワイトニング',
                                 'icon'  => 'Menu02.webp', 'w' => 53, 'h' => 45,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/whitening/'),
                                 'items' => array('歯の黄ばみが気になる', '大事なイベントを控えている', '笑顔に自信を持ちたい'),
                         ),
                         array(
                                 'title' => 'デンタルエステ',
                                 'icon'  => 'Menu03.webp', 'w' => 44, 'h' => 40,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/dental-esthetic/'),
                                 'items' => array('歯のクリーニングでスッキリしたい', '大切な予定の前に口元を整えたい', 'リラックスしながらお口をケアしたい'),
                         ),
                         array(
                                 'title' => '一般歯科|（むし歯治療）',
                                 'icon'  => 'Menu04.webp', 'w' => 34, 'h' => 41,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/general/'),
                                 'items' => array('歯がしみる・痛む', '黒い穴・欠けが気になる', '詰め物・被せ物が取れた'),
                         ),
                         array(
                                 'title' => '根管治療',
                                 'icon'  => 'Menu04.webp', 'w' => 34, 'h' => 41,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/root-canal/'),
                                 'items' => array('ズキズキと痛みが続く', '以前治療した歯が痛む', 'できるだけ歯を残したい'),
                         ),
                         array(
                                 'title' => '予防歯科',
                                 'icon'  => 'Menu05.webp', 'w' => 33, 'h' => 44,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/prevention/'),
                                 'items' => array('むし歯になりたくない', '歯石を取りたい', '健康な歯を保ちたい'),
                         ),
                         array(
                                 'title' => '審美歯科',
                                 'icon'  => 'Menu06.webp', 'w' => 41, 'h' => 41,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/esthetic/'),
                                 'items' => array('銀歯を白くしたい', '見た目を重視したい', '金属アレルギーが心配'),
                         ),
                         array(
                                 'title' => '歯周病',
                                 'icon'  => 'Menu07.webp', 'w' => 44, 'h' => 39,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/periodontal/'),
                                 'items' => array('歯ぐきの腫れ・出血', '口臭が気になる', '歯がぐらつく'),
                         ),
                         array(
                                 'title' => '小児歯科',
                                 'icon'  => 'Menu08.webp', 'w' => 36, 'h' => 43,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/pediatric/'),
                                 'items' => array('お子さまに虫歯がある', '歯並びが気になる', '虫歯を予防したい'),
                         ),
                         array(
                                 'title' => '矯正歯科治療',
                                 'icon'  => 'Menu09.webp', 'w' => 48, 'h' => 44,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/orthodontics/'),
                                 'items' => array('歯並びを整えたい', '噛み合わせが気になる', '目立たず矯正したい'),
                         ),
                         array(
                                 'title' => '訪問歯科診療',
                                 'icon'  => 'Menu10.webp', 'w' => 48, 'h' => 41,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/home-visit/'),
                                 'items' => array('通院が難しい', '自宅・施設で診てほしい', '口腔ケアをしたい'),
                         ),
                         array(
                                 'title' => '入れ歯・義歯',
                                 'icon'  => 'Menu11.webp', 'w' => 43, 'h' => 41,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/denture/'),
                                 'items' => array('入れ歯が合わない', '硬い物が噛みにくい', '目立たない入れ歯にしたい'),
                         ),
                         array(
                                 'title' => '睡眠時無呼吸症候群',
                                 'icon'  => 'Menu12.webp', 'w' => 48, 'h' => 44,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/sleep-apnea/'),
                                 'items' => array('口が開きにくい', '顎が鳴る', '食いしばりが気になる'),
                         ),
                         array(
                                 'title' => '口腔外科|（親知らず）',
                                 'icon'  => 'Menu13.webp', 'w' => 40, 'h' => 44,
-                                'url'   => '#',
+                                'url'   => home_url('/treatment/oral-surgery/'),
                                 'items' => array('親知らずが痛む', '顎が痛い・腫れる', '抜歯を相談したい'),
                         ),
                 );
@@ -994,7 +1016,7 @@ $mv_slides = array(
                                         </div>
                                 </div>
 
-                                <a class="Greeting__btn" href="#">スタッフ紹介詳しくはこちら<span aria-hidden="true">→</span></a>
+                                <a class="Greeting__btn" href="<?php echo esc_url(home_url('/staff/')); ?>">スタッフ紹介詳しくはこちら<span aria-hidden="true">→</span></a>
                         </div>
                 </div>
         </section>
@@ -1299,7 +1321,7 @@ $mv_slides = array(
                                         </a>
                                 </div>
 
-                                <a href="#" class="Access__banner">
+                                <a href="<?php echo esc_url(home_url('/treatment/home-visit/')); ?>" class="Access__banner">
                                         <picture>
                                                 <source media="(max-width: 767px)" srcset="<?php echo esc_url($access_dir . 'house-call-medical-services-sp.webp'); ?>" width="670" height="250">
                                                 <img src="<?php echo esc_url($access_dir . 'house-call-medical-services.webp'); ?>" alt="訪問歯科診療 訪問診療専用 03-5848-8484 通えなくなっても、生涯このまちで 詳しくはこちら" width="1005" height="340" loading="lazy">
