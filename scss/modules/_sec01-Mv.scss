@@ -9,6 +9,12 @@ Mv
   @return calc(#{$px} * var(--mv-u));
 }
 
+// ▼ スマホ用：デザインカンプ(750px)を基準に、画面幅に合わせて縮小します（750px以上は実寸のまま）
+//   s(100) は「750px幅のときの100px」という意味です
+@function s($px) {
+  @return calc(#{$px} * var(--mv-sp));
+}
+
 // ▼ スマホ用レイアウトに切り替える画面幅
 $mv-bp: 1024px;
 
@@ -224,6 +230,12 @@ $mv-bp: 1024px;
     color: #45356a;
   }
 
+  // SP専用の要素（PCでは非表示。SPの指定は、ファイル下部の「Mv sp」を参照）
+  &__circles,
+  &__badge-sp {
+    display: none;
+  }
+
   // 小さい写真（クリックで切り替え）
   &__thumbs {
     position: absolute;
@@ -271,64 +283,162 @@ $mv-bp: 1024px;
   .Mv__thumb img {
     transition: none;
   }
+
+  // SPの背景・丸写真の動きも止める
+  .Mv__bg::before,
+  .Mv__bg::after,
+  .Mv__circle,
+  .Mv__circle img {
+    animation: none !important;
+  }
 }
 
 /* ----------------------------------------
-Mv sp（上に写真、その下に文字とバッジを縦に並べるレイアウト）
-・写真の下の端は、紫の背景にとけるようにぼかします
-・小さい写真（サムネイル）はスマホでは表示しません
-  （大きい写真は、PCと同じように時間で自動的に切り替わります）
-・文字やバッジの大きさ・余白は、画面幅（vw）に合わせて変わります
-・デザインカンプ（幅750px）を基準にしています。 1vw = 7.5px
+Mv sp（丸く切り取った写真4つを、文字とバッジのまわりに散らして置くレイアウト）
+・デザインカンプ（幅750px × 高さ1134px）をそのまま縮小して表示します（750px以上は実寸のまま中央寄せ）
+・背景：やわらかい色のかたまりが、ふわふわとゆっくり動きます
+・丸い写真：それぞれ違う速さで、ゆっくり浮かぶように動きます（中の写真もほんの少しズームします）
+・小さい写真（サムネイル）と、PC用の大きい写真はスマホでは表示しません
+・動きは「視差効果を減らす」設定の人には止まります（上の prefers-reduced-motion を参照）
+・動きの大きさは、下の --dx / --dy（カンプ上のpx）、速さは --dur、ずらしは --delay で調整できます
 ---------------------------------------- */
 @media (max-width: #{$mv-bp - 1px}) {
   .Mv {
-    --mv-badge: min(31vw, 200px);
+    --mv-sp: calc(min(100vw, 750px) / 750);
     height: auto;
-    background: none;
+    background: #f4f1fb;
 
+    // 文字・バッジ・丸い写真は、幅750pxの枠の中央に置く。
+    // 枠の外へはみ出した部分は、外側の .Mv の overflow: hidden で切る
+    // （枠で切らないので、丸い写真は枠の外側でも途切れず、背景は画面の端までつながる）
     &__frame {
-      display: flex;
-      flex-direction: column;
+      max-width: 750px;
       height: auto;
+      aspect-ratio: 750 / 1134;
+      isolation: isolate;
     }
 
-    // 背景：写真の下から、うえ→したに向かって、濃い紫 → うすいラベンダー
+    // 背景：うすいラベンダーの上に、紫とピンクのやわらかい光を2層重ねて、それぞれゆっくり動かす
+    //   （::before と ::after は、枠より一回り大きくして、動いても端が見えないようにしています）
+    //   （750pxより広い画面では、背景だけ画面幅いっぱいに広げて、左右の端まで動く背景を見せる）
     &__bg {
-      background: linear-gradient(to bottom, #988ac4 0, #988ac4 43%, #a698cd 70%, #c8bede 100%);
-    }
+      inset: 0 auto 0 50%;
+      width: 100vw;
+      transform: translateX(-50%);
+      overflow: hidden;
+      background: linear-gradient(165deg, #f7f4fc 0%, #efeaf9 48%, #f7eff8 100%);
 
-    // 写真：いちばん上に横いっぱい。下のほうを紫の背景にとかす
-    //   （以前より少し横長にして、文字エリアを上に寄せています）
-    &__photos {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 750 / 540;
-      -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 66%, transparent 100%);
-      mask-image: linear-gradient(to bottom, #000 0, #000 66%, transparent 100%);
-    }
-
-    // 文字とバッジ
-    &__body {
-      position: relative;
-      inset: auto;
-      padding: 2vw clamp(20px, 5.3vw, 56px) 6vw;
-
-      // うすい白い円の線（背景の飾り）
-      &::before {
+      &::before,
+      &::after {
         content: "";
         position: absolute;
-        z-index: -1;
-        top: min(6vw, 40px);
-        left: calc(min(106vw, 640px) / -2);
-        width: min(106vw, 640px);
-        aspect-ratio: 1;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        border-radius: 50%;
+        inset: -25%;
         pointer-events: none;
+        will-change: transform;
       }
+
+      // 左の濃いめの紫 + 右下のピンク
+      &::before {
+        background:
+          radial-gradient(circle at 20% 42%, rgba(160, 140, 215, 0.55) 0, rgba(160, 140, 215, 0) 34%),
+          radial-gradient(circle at 78% 66%, rgba(246, 172, 214, 0.5) 0, rgba(246, 172, 214, 0) 30%);
+        animation: mv-bg-a 18s ease-in-out infinite alternate;
+      }
+
+      // 右上のうすい紫 + 左下のラベンダー
+      &::after {
+        background:
+          radial-gradient(circle at 70% 24%, rgba(205, 195, 247, 0.65) 0, rgba(205, 195, 247, 0) 32%),
+          radial-gradient(circle at 26% 76%, rgba(188, 172, 236, 0.5) 0, rgba(188, 172, 236, 0) 32%);
+        animation: mv-bg-b 24s ease-in-out infinite alternate;
+      }
+    }
+
+    // PC用の大きい写真は出さない
+    &__photos {
+      display: none;
+    }
+
+    // 丸い写真
+    &__circles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: block;
+      pointer-events: none;
+    }
+
+    &__circle {
+      position: absolute;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border: s(7) solid #fff;
+      border-radius: 50%;
+      background: #fff;
+      // 外側のやわらかい白いふち + 紫のうすい影
+      box-shadow:
+        0 0 0 s(9) rgba(255, 255, 255, 0.45),
+        0 s(6) s(40) rgba(150, 128, 200, 0.28);
+      will-change: transform;
+      animation: mv-float var(--dur, 12s) ease-in-out var(--delay, 0s) infinite alternate;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: var(--pos, 50% 50%);
+        animation: mv-zoom 16s ease-in-out var(--delay, 0s) infinite alternate;
+      }
+
+      // 左上（受付）
+      &--a {
+        --dx: 10;
+        --dy: 14;
+        --dur: 11s;
+        --delay: 0s;
+        top: s(65);
+        left: s(-78);
+        width: s(300);
+      }
+
+      // 右上（院長・いちばん大きい丸）
+      &--b {
+        --dx: -8;
+        --dy: 12;
+        --dur: 13s;
+        --delay: -3s;
+        top: s(45);
+        left: s(325);
+        width: s(425);
+      }
+
+      // 右下（スタッフ）
+      &--c {
+        --dx: -12;
+        --dy: -10;
+        --dur: 12s;
+        --delay: -6s;
+        top: s(838);
+        left: s(553);
+        width: s(250);
+      }
+
+      // 左下（診療室）
+      &--d {
+        --dx: 10;
+        --dy: -12;
+        --dur: 14s;
+        --delay: -2s;
+        top: s(893);
+        left: s(-65);
+        width: s(262);
+      }
+    }
+
+    // 文字とバッジ（丸い写真より前に出す）
+    &__body {
+      z-index: 2;
     }
 
     &__en,
@@ -336,72 +446,179 @@ Mv sp（上に写真、その下に文字とバッジを縦に並べるレイア
     &__line,
     &__lead,
     &__badges {
-      position: static;
+      left: s(48);
     }
 
     &__en {
-      font-size: clamp(13px, 3.6vw, 24px);
-      line-height: 1.6;
-      letter-spacing: 0.32em;
+      top: s(452);
+      font-size: max(11px, #{s(25)});
+      line-height: 1.4;
+      letter-spacing: 0.16em;
+      color: #6a5a9c;
     }
 
-    // タイトル：文字を小さく、英語コピーとの間もつめる
+    // タイトル：「、」のあとに少し間をあけて、「めぐる。」はゆったり
     &__title {
-      margin-top: 3.7vw;
-      font-size: clamp(38px, 10vw, 90px);
-      line-height: 1.22;
+      top: s(508);
+      font-size: max(36px, #{s(60)}); // 小さいスマホは36px。画面幅が広がると、他の文字と同じ比率で大きくなる（750pxで60px）
+      line-height: 1.2;
+      letter-spacing: 0.1em;
+      color: #5b4a93;
+      text-shadow: none;
     }
 
-    // 線：タイトルのすぐ下に置く
+    &__title-comma {
+      letter-spacing: 0.1em;
+    }
+
+    &__title-tail {
+      letter-spacing: 0.1em;
+    }
+
     &__line {
-      width: clamp(64px, 17vw, 140px);
+      top: s(622);
+      width: s(112);
       height: 2px;
-      margin: 2.2vw 0 3.5vw;
+      background: #a89bd1;
     }
 
     &__lead {
-      font-size: clamp(14px, 4vw, 26px);
-      line-height: 1.6;
-      letter-spacing: 0.15em;
+      top: s(650);
+      font-size: max(12px, #{s(26)});
+      line-height: 1.4;
+      letter-spacing: 0.12em;
+      color: #5f4f93;
     }
 
+    // ポイント（横長のカプセル3つ・縦に並べる）
     &__badges {
-      margin-top: 4.7vw;
+      top: s(740);
+      left: s(118);
+      flex-direction: column;
       counter-reset: mv-badge;
     }
 
     &__badge {
-      width: var(--mv-badge);
-      height: var(--mv-badge);
+      width: s(514);
+      height: s(88);
       counter-increment: mv-badge;
 
       & + & {
-        margin-left: calc(var(--mv-badge) * -0.077);
+        margin-left: 0;
+        margin-top: s(20);
+      }
+
+      // まわりのやわらかい光
+      &::before {
+        inset: s(-2) s(-4);
+        border-radius: 999px;
+        background: rgba(188, 170, 236, 0.4);
+        filter: blur(#{s(10)});
+        opacity: 1;
+      }
+
+      // 白いカプセル
+      &::after {
+        inset: 0;
+        border: s(5) solid #fff;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: inset 0 0 s(14) rgba(255, 255, 255, 0.8);
+        backdrop-filter: none;
+      }
+    }
+
+    // 内側の細い線 + 左上の「POINT 01」タグ
+    &__badge-ring {
+      inset: s(10);
+      border: 1px solid rgba(150, 126, 190, 0.45);
+      border-radius: 999px;
+
+      &::before {
+        content: "POINT " counter(mv-badge, decimal-leading-zero);
+        position: absolute;
+        top: s(-26);
+        left: s(14);
+        width: s(130);
+        height: s(40);
+        border-radius: 999px;
+        background: linear-gradient(to right, #ee9fc9, #7f6cb8);
+        font-family: "Jost", sans-serif;
+        font-size: max(9px, #{s(21)});
+        font-weight: 400;
+        line-height: s(40);
+        letter-spacing: 0.08em;
+        text-align: center;
+        color: #fff;
       }
     }
 
     &__badge-text {
-      font-size: clamp(9px, 2.9vw, 17px);
-      line-height: 1.45;
-      letter-spacing: -0.06em;
-
-      // 「01」「02」「03」の番号（HTMLの変更は不要です）
-      &::before {
-        content: counter(mv-badge, decimal-leading-zero);
-        display: block;
-        margin-bottom: 0.4em;
-        font-family: "Jost", sans-serif;
-        font-size: 1.2em;
-        font-weight: 400;
-        line-height: 1.2;
-        letter-spacing: 0.04em;
-        color: #8f7fc0;
-      }
+      font-size: max(11px, #{s(25)});
+      line-height: 1.4;
+      letter-spacing: 0.04em;
     }
 
-    // 小さい写真はスマホでは見せない（表示しないだけで、切り替えの動きには影響しません）
+    // バッジの文言：PC用（改行あり）は隠して、SP用（1行）を出す
+    &__badge-pc {
+      display: none;
+    }
+
+    &__badge-sp {
+      display: inline;
+    }
+
+    // 小さい写真はスマホでは見せない
     &__thumbs {
       display: none;
     }
+  }
+}
+
+// ▼ SPの背景のゆらぎ（大きなかたまりが、ゆっくり漂う）
+@keyframes mv-bg-a {
+  0% {
+    transform: translate3d(-4%, -3%, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(5%, 4%, 0) scale(1.08) rotate(4deg);
+  }
+  100% {
+    transform: translate3d(-2%, 7%, 0) scale(1.03) rotate(-2deg);
+  }
+}
+
+@keyframes mv-bg-b {
+  0% {
+    transform: translate3d(5%, 4%, 0) scale(1.05) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-4%, 6%, 0) scale(1) rotate(-4deg);
+  }
+  100% {
+    transform: translate3d(-5%, -5%, 0) scale(1.08) rotate(3deg);
+  }
+}
+
+// ▼ SPの丸い写真の浮遊（--dx / --dy はカンプ上のpx。行って、少し戻る動き）
+@keyframes mv-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(calc(var(--dx, 0) * var(--mv-sp)), calc(var(--dy, 0) * var(--mv-sp)), 0);
+  }
+  100% {
+    transform: translate3d(calc(var(--dx, 0) * -0.4 * var(--mv-sp)), calc(var(--dy, 0) * -0.8 * var(--mv-sp)), 0);
+  }
+}
+
+// ▼ 丸の中の写真が、ほんの少しだけゆっくりズーム
+@keyframes mv-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
   }
 }

@@ -615,6 +615,13 @@ add_action('acf/init', function () {
                         'type'  => 'textarea',
                         'rows'  => 3,
                     ),
+                    array(
+                        'key'          => 'field_mv_badges_text_sp',
+                        'label'        => 'SP用の文言（1行）',
+                        'name'         => 'text_sp',
+                        'type'         => 'text',
+                        'instructions' => '空欄の場合は、左の文言の改行を取って1行にします（例：富士見台駅 徒歩3分・土曜も診療）',
+                    ),
                 ),
             ),
         ),

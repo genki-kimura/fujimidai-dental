@@ -408,6 +408,20 @@ Footer / Floating CTA sp
       min-width: 0;
     }
 
+    // スマホの並び順：左＝ホワイトニング／中央＝電話／右＝WEB予約
+    // （HTMLの順番はそのまま。PCの縦並びの順は変わりません）
+    .floating-cta__btn--white {
+      order: 1;
+    }
+
+    .floating-cta__address {
+      order: 2;
+    }
+
+    .floating-cta__btn--web {
+      order: 3;
+    }
+
     // 短い文言に切り替える
     .floating-cta__pc {
       display: none;
@@ -458,6 +472,17 @@ Footer / Floating CTA sp
     .floating-cta__btn--white {
       border: clamp(2px, 0.35vw, 3px) solid #7f6ba6;
       box-shadow: 0 6px 14px rgba(46, 42, 51, 0.08);
+    }
+
+    // ホワイトニング：「ホワイトエッセンス」(上)と「ホワイトニング予約」(下)を折り返さず1行で表示
+    // 下の文字は、ボタンの内側の幅（バー全体の幅からすき間・余白・枠を引いて3等分）に9文字が収まる大きさに自動調整
+    .floating-cta__btn--white .floating-cta__label,
+    .floating-cta__btn--white .floating-cta__main {
+      white-space: nowrap;
+    }
+
+    .floating-cta__btn--white .floating-cta__main {
+      font-size: calc(((100vw - 2 * var(--cta-pad) - 2 * var(--cta-gap)) / 3 - 8px - 2 * clamp(2px, 0.35vw, 3px)) / 9.3);
     }
 
     // 電話：白地にうすい紫の枠

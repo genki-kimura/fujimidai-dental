@@ -12,6 +12,7 @@
  *   comparison-card-fee        料金     例)◯◯,◯◯◯円〜 / 保険適用
  *   comparison-card-guarantee  料金の補足(料金ボックスの右側の文字。入力した文字がそのまま出る)
  *   comparison-card-text       概要(Inner Blocks)
+ *   comparison-card-change-02  切り替え(Select)評価(星)の 表示 / 非表示
  *   comparison-card-change     切り替え(Select)デザインを切り替える
  *                              ジルコニアインレー / 保険のクリーニング / オフィスホワイトニング
  *
@@ -23,7 +24,8 @@
  * あとから追加できるフィールド(任意。追加しなければデザインごとの既定値で表示)
  *   comparison-card-badge        ピルの文字(Text)
  *   comparison-card-en           英字の小見出し(Text)
- *   comparison-card-star-1 〜 -4 星の数 0〜5(Number)  評価の左から1〜4番目
+ *   comparison-card-star-1 〜 star-4  星の数 0〜5(Number)  評価の左から1〜4番目
+ *                                入力した数だけ濃い星になる。未入力のときはデザインごとの既定値
  *   comparison-card-recommend / -merit / -demerit
  *                                箇条書き(Textarea・1行1項目)
  */
@@ -50,6 +52,10 @@ $cc_get = static function ( $name, $default = '' ) {
 	return $default;
 };
 
+// 評価(星)の表示切り替え(comparison-card-change-02:表示 / 非表示)
+// 未選択のときは従来どおり表示
+$show_ratings = ( '非表示' !== trim( (string) $cc_get( 'comparison-card-change-02', '' ) ) );
+
 // 概要(Inner Blocks)の HTML
 $content = '';
 if ( function_exists( 'block_field' ) ) {
@@ -75,6 +81,10 @@ $cc_lines = static function ( $value, $default ) {
 	if ( is_array( $value ) ) {
 		$lines = $value;
 	} elseif ( is_string( $value ) && '' !== trim( $value ) ) {
+		// Textarea は <p> や <br> 付きで返ることがあるので、先に改行へ変換してからタグを除く
+		$value = preg_replace( '#<br\s*/?>|</p>\s*<p[^>]*>#i', "\n", $value );
+		$value = wp_strip_all_tags( $value );
+		$value = html_entity_decode( $value, ENT_QUOTES, 'UTF-8' );
 		$lines = preg_split( '/\r\n|\r|\n/', $value );
 	} else {
 		return $default;
@@ -121,10 +131,10 @@ $cc_presets = array(
 		'badge'     => 'クリーニング',
 		'en'        => '',
 		'ratings'   => array(
-			array( '歯石除去',     '', 4 ),
+			array( '通院回数の少なさ', '', 4 ),
 			array( '着色除去',     '', 2 ),
 			array( 'つるつる感',   '', 2 ),
-			array( '所要時間の短さ', '', 4 ),
+			array( '刺激の少なさ', '', 4 ),
 		),
 		'recommend' => array( '歯石が気になる方', '歯ぐきから出血がある方', '定期検診を受けたい方' ),
 		'merit'     => array( '保険適用で受けられる', '歯周病の予防・治療につながる' ),
@@ -173,13 +183,16 @@ if ( '' === $img_alt ) {
 }
 $has_img = ( $img_id || $img_url );
 
-// 評価(4項目)。星の数は comparison-card-star-1〜4 で上書きできる
+// 評価(4項目)。星の数は comparison-card-star-1〜star-4(Number:0〜5)で指定する
+// 入力した数だけ濃い星になる。未入力のときは既定値
 $ratings = array();
 foreach ( $preset['ratings'] as $i => $rating ) {
+	$star = $cc_get( 'comparison-card-star-' . ( $i + 1 ), $rating[2] );
+	$star = is_numeric( $star ) ? (int) $star : (int) $rating[2];
 	$ratings[] = array(
 		$rating[0],
 		$rating[1],
-		$cc_get( 'comparison-card-star-' . ( $i + 1 ), $rating[2] ),
+		$star,
 	);
 }
 
@@ -226,7 +239,6 @@ $lists = array(
 			<?php endif; ?>
 
 			<div class="comparison-card-heading">
-				<span class="comparison-card-number" aria-hidden="true"></span>
 				<div class="comparison-card-title"><?php echo esc_html( $title ); ?></div>
 			</div>
 
@@ -246,6 +258,7 @@ $lists = array(
 	</div>
 
 	<?php /* ===== 評価(星) ===== */ ?>
+	<?php if ( $show_ratings ) : ?>
 	<ul class="comparison-card-ratings">
 		<?php foreach ( $ratings as $rating ) : ?>
 			<li class="comparison-card-rating">
@@ -257,6 +270,7 @@ $lists = array(
 			</li>
 		<?php endforeach; ?>
 	</ul>
+	<?php endif; ?>
 
 	<?php /* ===== 概要(Inner Blocks) ===== */ ?>
 	<div class="comparison-card-summary">

@@ -58,30 +58,30 @@ $menu_about = array(
     array('label' => 'スタッフ紹介',     'url' => '/staff/'),
     array('label' => 'クリニック紹介',   'url' => '/clinic/'),
     array('label' => '料金表',           'url' => '/price/'),
-    array('label' => '症例紹介',         'url' => '/case/'),
+    // array('label' => '症例紹介',         'url' => '/case/'), // 非表示中（再表示する場合は先頭の // を外す）
     array('label' => 'コラム',           'url' => '/column/'),
     array('label' => 'アクセス案内',     'url' => '/access/'),
 );
 
 // 写真つきの3つ（写真は img フォルダ内）
 $menu_feature = array(
-    array('label' => 'インプラント',   'url' => '/implant/',         'img' => 'Recommend01.webp'),
-    array('label' => 'ホワイトニング', 'url' => '/whitening/',       'img' => 'Recommend02.webp'),
-    array('label' => 'デンタルエステ', 'url' => '/dental-esthetic/', 'img' => 'Recommend03.webp'),
+    array('label' => 'インプラント',   'url' => '/treatment/implant/',         'img' => 'Recommend01.webp'),
+    array('label' => 'ホワイトニング', 'url' => '/treatment/whitening/',       'img' => 'Recommend02.webp'),
+    array('label' => 'デンタルエステ', 'url' => '/treatment/dental-esthetic/', 'img' => 'Recommend03.webp'),
 );
 
 $menu_treatment = array(
-    array('label' => '一般歯科（むし歯治療）', 'url' => '/general/'),
-    array('label' => '予防歯科',               'url' => '/prevention/'),
-    array('label' => '歯周病',                 'url' => '/periodontal/'),
-    array('label' => '根管治療',               'url' => '/root-canal/'),
-    array('label' => '審美歯科',               'url' => '/esthetic/'),
-    array('label' => '口腔外科（親知らず）',   'url' => '/oral-surgery/'),
-    array('label' => '矯正歯科治療',           'url' => '/orthodontics/'),
-    array('label' => '小児歯科',               'url' => '/pediatric/'),
-    array('label' => '入れ歯・義歯',           'url' => '/denture/'),
-    array('label' => '訪問歯科診療',           'url' => '/home-visit/'),
-    array('label' => '睡眠時無呼吸症候群',     'url' => '/sleep-apnea/'),
+    array('label' => '一般歯科（むし歯治療）', 'url' => '/treatment/general/'),
+    array('label' => '予防歯科',               'url' => '/treatment/prevention/'),
+    array('label' => '歯周病',                 'url' => '/treatment/periodontal/'),
+    array('label' => '根管治療',               'url' => '/treatment/root-canal/'),
+    array('label' => '審美歯科',               'url' => '/treatment/esthetic/'),
+    array('label' => '口腔外科（親知らず）',   'url' => '/treatment/oral-surgery/'),
+    array('label' => '矯正歯科治療',           'url' => '/treatment/orthodontics/'),
+    array('label' => '小児歯科',               'url' => '/treatment/pediatric/'),
+    array('label' => '入れ歯・義歯',           'url' => '/treatment/denture/'),
+    array('label' => '訪問歯科診療',           'url' => '/treatment/home-visit/'),
+    array('label' => '睡眠時無呼吸症候群',     'url' => '/treatment/sleep-apnea/'),
 );
 
 // 予約ボタン・電話（予約リンクと外来の電話番号は「フッター設定」の値を使います）
@@ -99,6 +99,24 @@ $menu_info = array(
     '休診日：日祝　※木曜午後は祝日のある週のみ診療',
     '〒165-0031 東京都中野区上鷺宮3-16-9',
     '西武池袋線「富士見台駅」より徒歩3分',
+);
+
+// PCのナビ「診療案内一覧」にマウスを乗せると出るプルダウン（リンク先は仮のURLです）
+$header_dropdown = array(
+    array('label' => '一般歯科（むし歯治療）', 'url' => '/treatment/general/'),
+    array('label' => '根管治療',               'url' => '/treatment/root-canal/'),
+    array('label' => '予防歯科',               'url' => '/treatment/prevention/'),
+    array('label' => '歯周病',                 'url' => '/treatment/periodontal/'),
+    array('label' => '小児歯科',               'url' => '/treatment/pediatric/'),
+    array('label' => '矯正歯科治療',           'url' => '/treatment/orthodontics/'),
+    array('label' => '睡眠時無呼吸症候群',     'url' => '/treatment/sleep-apnea/'),
+    array('label' => '審美歯科',               'url' => '/treatment/esthetic/'),
+    array('label' => '入れ歯・義歯',           'url' => '/treatment/denture/'),
+    array('label' => '口腔外科（親知らず）',   'url' => '/treatment/oral-surgery/'),
+    array('label' => 'デンタルエステ',         'url' => '/treatment/dental-esthetic/'),
+    array('label' => '訪問歯科診療',           'url' => '/treatment/home-visit/'),
+    array('label' => 'ホワイトニング',         'url' => '/treatment/whitening/'),
+    array('label' => 'インプラント',           'url' => '/treatment/implant/'),
 );
 
 $menu_sub = array(
@@ -126,6 +144,7 @@ $menu_sub = array(
                 <span class="header__toggle-bar"></span>
                 <span class="header__toggle-bar"></span>
                 <span class="header__toggle-bar"></span>
+                <span class="header__toggle-label" aria-hidden="true">メニュー</span>
             </button>
 
             <nav class="header__nav" id="header-nav" aria-label="メインメニュー">
@@ -136,8 +155,18 @@ $menu_sub = array(
                         $url = isset($item['url']) ? $item['url'] : '';
                         $url = (strpos($url, '/') === 0) ? home_url($url) : $url;
                         ?>
-                        <li class="header__nav-item">
-                            <a class="header__nav-link" href="<?php echo esc_url($url); ?>"><?php echo esc_html($item['label']); ?></a>
+                        <?php $has_dropdown = ($item['label'] === '診療案内一覧'); // プルダウンを付ける項目 ?>
+                        <li class="header__nav-item<?php echo $has_dropdown ? ' has-dropdown' : ''; ?>">
+                            <a class="header__nav-link" href="<?php echo esc_url($url); ?>"><?php echo esc_html($item['label']); ?><?php echo $has_dropdown ? '<span class="header__nav-arrow" aria-hidden="true"></span>' : ''; ?></a>
+                            <?php if ($has_dropdown) : ?>
+                                <div class="header__dropdown">
+                                    <ul class="header__dropdown-list">
+                                        <?php foreach ($header_dropdown as $sub) : ?>
+                                            <li><a class="header__dropdown-link" href="<?php echo esc_url($header_url($sub['url'])); ?>"><?php echo esc_html($sub['label']); ?></a></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>

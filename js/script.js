@@ -36,6 +36,8 @@ for (let i = 0; i < jsSmoothScroll.length; i++){
   function setOpen(open) {
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    var label = toggle.querySelector('.header__toggle-label');
+    if (label) label.textContent = open ? 'とじる' : 'メニュー';
     nav.classList.toggle('is-open', open);
     document.body.classList.toggle('is-menu-open', open);
     document.documentElement.classList.toggle('is-menu-open', open); // スクロール停止は html に付ける（CSS 参照）

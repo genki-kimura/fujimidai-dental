@@ -45,27 +45,28 @@ $footer_menu_about = $footer_field('footer_menu_about', array(
 
 // 診療案内は「左の列 → 右の列」の順に、半分ずつ2列で表示されます
 $footer_menu_treatment = $footer_field('footer_menu_treatment', array(
-    array('label' => 'インプラント',           'url' => '/implant/'),
-    array('label' => 'ホワイトニング',         'url' => '/whitening/'),
-    array('label' => 'デンタルエステ',         'url' => '/dental-esthetic/'),
-    array('label' => '一般歯科（むし歯治療）', 'url' => '/general/'),
-    array('label' => '根管治療',               'url' => '/root-canal/'),
-    array('label' => '予防歯科',               'url' => '/prevention/'),
-    array('label' => '訪問歯科診療',           'url' => '/home-visit/'),
-    array('label' => '審美歯科',               'url' => '/esthetic/'),
-    array('label' => '歯周病',                 'url' => '/periodontal/'),
-    array('label' => '口腔外科（親知らず）',   'url' => '/oral-surgery/'),
-    array('label' => '矯正歯科治療',           'url' => '/orthodontics/'),
-    array('label' => '小児歯科',               'url' => '/pediatric/'),
-    array('label' => '睡眠時無呼吸症候群',     'url' => '/sleep-apnea/'),
-    array('label' => '入れ歯・義歯',           'url' => '/denture/'),
+    array('label' => 'インプラント',           'url' => '/treatment/implant/'),
+    array('label' => 'ホワイトニング',         'url' => '/treatment/whitening/'),
+    array('label' => 'デンタルエステ',         'url' => '/treatment/dental-esthetic/'),
+    array('label' => '一般歯科（むし歯治療）', 'url' => '/treatment/general/'),
+    array('label' => '根管治療',               'url' => '/treatment/root-canal/'),
+    array('label' => '予防歯科',               'url' => '/treatment/prevention/'),
+    array('label' => '訪問歯科診療',           'url' => '/treatment/home-visit/'),
+    array('label' => '審美歯科',               'url' => '/treatment/esthetic/'),
+    array('label' => '歯周病',                 'url' => '/treatment/periodontal/'),
+    array('label' => '口腔外科（親知らず）',   'url' => '/treatment/oral-surgery/'),
+    array('label' => '矯正歯科治療',           'url' => '/treatment/orthodontics/'),
+    array('label' => '小児歯科',               'url' => '/treatment/pediatric/'),
+    array('label' => '睡眠時無呼吸症候群',     'url' => '/treatment/sleep-apnea/'),
+    array('label' => '入れ歯・義歯',           'url' => '/treatment/denture/'),
 ));
 $footer_treatment_rows = is_array($footer_menu_treatment) ? (int) ceil(count($footer_menu_treatment) / 2) : 7;
 
 $footer_menu_other = $footer_field('footer_menu_other', array(
-    array('label' => '症例紹介',           'url' => '/case/'),
+    // array('label' => '症例紹介',           'url' => '/case/'), // 非表示中（再表示する場合は先頭の // を外す）
     array('label' => 'プライバシーポリシー', 'url' => '/privacy-policy/'),
-    array('label' => 'サイトマップ',       'url' => '/sitemap/'),
+    array('label' => 'サイトマップ',         'url' => '/sitemap/'),
+    array('label' => '医療広告ガイドライン', 'url' => '/guidelines/'),
 ));
 
 $footer_guideline_text = $footer_field('footer_guideline_text', '当院は2018年6月に施行された改正医療法を遵守し、医療機関としての適切な情報を元に当Webサイトを運営しております。');
@@ -140,7 +141,7 @@ $cta_icon_dir  = get_template_directory_uri() . '/img/';
             <span class="floating-cta__icon" aria-hidden="true"></span>
             <span class="floating-cta__text">
                 <span class="floating-cta__label"><span class="floating-cta__pc">ホワイトエッセンス加盟店</span><span class="floating-cta__sp">ホワイトエッセンス</span></span>
-                <span class="floating-cta__main"><span class="floating-cta__pc">ホワイトニングを予約</span><span class="floating-cta__sp">ホワイトニング</span></span>
+                <span class="floating-cta__main"><span class="floating-cta__pc">ホワイトニングを予約</span><span class="floating-cta__sp">ホワイトニング予約</span></span>
             </span>
         </a>
         <address class="floating-cta__address">

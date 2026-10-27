@@ -831,7 +831,7 @@ $btn-icon-external-purple: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 .page-common-content .wp-block-buttons,
 .is-root-container .wp-block-buttons {
   gap: 16px 20px;
-  margin: 0 0 2em;
+  margin: 0.5em 0;
 
   .wp-block-button {
     margin: 0;
@@ -1126,8 +1126,8 @@ $point-bg:     #f9f7fd;  // 背景(淡いラベンダー)
 .page-common-content .point-heading-box,
 .is-root-container .point-heading-box {
   position: relative;
-  margin: 2.4em 0 2em;   // ピルが上にはみ出す分の余白
-  padding: 20px 0;       // 全体の上下の空白
+  margin: 2em 0 2em;   // ピルが上にはみ出す分の余白
+  padding: 15px 0 5px;       // 全体の上下の空白
   border: 1px solid $point-border;
   border-radius: 16px;
   background: $point-bg;
@@ -1178,7 +1178,7 @@ $point-bg:     #f9f7fd;  // 背景(淡いラベンダー)
     }
 
     p {
-      margin: 0 0 1.5em;
+      margin: 0 0 0.5em;
       font-size: 13.5px;
       text-align: left;
     }
@@ -1260,7 +1260,7 @@ $heading-box-border: $h2-line;      // 枠(淡いラベンダー)
     }
 
     p {
-      margin: 0 0 1.5em;
+      margin: 0 0 0.5em;
       font-size: 13.5px;
       text-align: left;
     }
@@ -2573,16 +2573,8 @@ $comparison-card-img-bg:    #e2e2e2;  // 画像未設定時の背景
 $comparison-card-img-w:     260px;    // 画像の幅
 $comparison-card-img-ratio: 13 / 9;   // 画像の比率
 
-// 番号(01, 02 …)の自動採番
-//   本文エリア(エディタ内も含む)でカウンターをリセットし、ブロックごとに +1
-.page-common-content,
-.is-root-container {
-  counter-reset: comparison-card-num;
-}
-
 .page-common-content .comparison-card,
 .is-root-container .comparison-card {
-  counter-increment: comparison-card-num;
   box-sizing: border-box;
   margin: 0 0 2em;
   padding: 36px;
@@ -2639,35 +2631,9 @@ $comparison-card-img-ratio: 13 / 9;   // 画像の比率
     color: #fff;
   }
 
-  // 番号 + 見出し
+  // 見出し
   .comparison-card-heading {
-    display: flex;
-    align-items: center;
-    gap: 14px;
     margin: 0 0 14px;
-  }
-
-  .comparison-card-number {
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: $comparison-card-purple;
-    font-family: $list-num-font;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    color: #fff;
-
-    &::before {
-      content: counter(comparison-card-num, decimal-leading-zero);
-      position: relative;
-      top: 1px; // 数字を少し下げて円の中心に合わせる
-    }
   }
 
   // div なので h2 / h3 の装飾は付かない
@@ -4785,5 +4751,56 @@ $sc-attention:  #4b4660;     // 注意のグレー紫
         width: 100%;
       }
     }
+  }
+}
+
+// ==========================================================
+// テキストリンク(全ブロック共通)
+//   本文内の「リンクが付いた文字」を 紫 + 下線 にする
+//   ・class の付いていない <a> だけが対象
+//     (ボタン / カード / 目次など、class でデザインしているリンクには影響しない)
+//   ・フォント・大きさなどは触らず、リンクを入れたブロックの指定をそのまま使う
+//   ・エディタ内(.is-root-container)にも同じ見た目を適用
+// ==========================================================
+
+$text-link-color: $list-accent; // 紫(リスト・ボタンと共通の #7e69a9)
+
+.page-common-content a:not([class]),
+.is-root-container a:not([class]) {
+  // 文字のフォント・大きさ・太さなどは、リンクを入れたブロック(親)の指定に従う
+  font: inherit;
+  letter-spacing: inherit;
+  color: $text-link-color;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+// ==========================================================
+// ボタンを入れたカラムの余白
+//   WordPress 標準の .wp-block-columns は、下に 1.75em の余白と、
+//   カラム同士の間(gap)が付くため、ボタン(.wp-block-buttons)を含む
+//   カラムだけ小さくする
+//   ・スマホで縦に積まれたときの、ボタン同士の間隔は $buttons-columns-row-gap で調整
+//   ・カラムの下の余白は $buttons-columns-mb で調整
+// ==========================================================
+
+$buttons-columns-mb:      0.5em; // カラムの下の余白(0 にすると詰まる)
+$buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタン同士の間隔(横並びのときは影響しない)
+
+.page-common-content .wp-block-columns:has(.wp-block-buttons),
+.is-root-container .wp-block-columns:has(.wp-block-buttons) {
+  margin-bottom: $buttons-columns-mb;
+  row-gap: $buttons-columns-row-gap;
+
+  // ボタン自身の上下余白は 0 にして、間隔は上の gap だけで決める
+  .wp-block-buttons {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }

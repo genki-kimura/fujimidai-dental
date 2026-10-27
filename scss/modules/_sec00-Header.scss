@@ -13,6 +13,8 @@ $header-color-nav: #313131;
 $header-color-text: #737373;
 $header-color-catch: #6e6875;
 $header-color-line: #d1d1d1;
+$header-color-hover: #f9f8fc; // プルダウンにカーソルが乗ったときの薄紫（診療時間の表の見出し行と同じ色）
+$header-color-dropdown-line: #e3e0ee;
 
 .header {
   // 上部に固定して、スクロールしてもついてくる
@@ -156,6 +158,93 @@ $header-color-line: #d1d1d1;
     }
   }
 
+  // プルダウン（「診療案内一覧」）
+  &__nav-item.has-dropdown {
+    position: relative;
+  }
+
+  &__nav-arrow {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 0 6px 7px;
+    border-right: 1.4px solid currentColor;
+    border-bottom: 1.4px solid currentColor;
+    vertical-align: middle;
+    transform: rotate(45deg);
+  }
+
+  // 外側の余白（padding-top）で、リンクとメニューの間をマウスが通っても閉じないようにしている
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 10;
+    min-width: 260px;
+    padding-top: 35px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 6px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  }
+
+  &__dropdown-list {
+    margin: 0;
+    padding: 0;
+    max-height: calc(100vh - 140px); // 画面が低いときは中でスクロール
+    overflow-y: auto;
+    border: 1px solid $header-color-dropdown-line;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(46, 42, 51, 0.12);
+    list-style: none;
+
+    li + li {
+      border-top: 1px solid $header-color-dropdown-line;
+    }
+  }
+
+  &__dropdown-link {
+    display: block;
+    padding: 11px 24px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: $header-color-nav;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+
+    &:hover,
+    &:focus-visible {
+      background: $header-color-hover;
+    }
+  }
+
+  // 開く（マウスを乗せる／キーボードでフォーカスする）
+  &__nav-item.has-dropdown:focus-within &__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+  }
+
+  &__nav-item.has-dropdown:focus-within > &__nav-link::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (hover: hover) {
+    &__nav-item.has-dropdown:hover &__dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
+
+    &__nav-item.has-dropdown:hover > &__nav-link::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   // PCでは非表示にするもの（スマホ用のボタンとメニュー）
   &__toggle,
   &__menu {
@@ -205,8 +294,8 @@ $header-menu-line: #ddd7ea;
       position: relative;
       display: block;
       flex-shrink: 0;
-      width: 44px;
-      height: 44px;
+      width: 58px;
+      height: 58px;
       margin: 0;
       padding: 0;
       border: 0;
@@ -223,27 +312,42 @@ $header-menu-line: #ddd7ea;
 
     &__toggle-bar {
       position: absolute;
-      left: 10px;
-      width: 24px;
+      left: 18px;
+      width: 22px;
       height: 2px;
       border-radius: 2px;
       background: #fff;
       transition: transform 0.3s, opacity 0.3s;
 
-      &:nth-child(1) { top: 14px; }
+      &:nth-child(1) { top: 15px; }
       &:nth-child(2) { top: 21px; }
-      &:nth-child(3) { top: 28px; }
+      &:nth-child(3) { top: 27px; }
+    }
+
+    // 丸の下側に入る「メニュー」の文字（開いているときは JS で「とじる」に変わります）
+    &__toggle-label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 14px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-align: center;
+      color: #fff;
+      white-space: nowrap;
     }
 
     &__toggle[aria-expanded="true"] {
       .header__toggle-bar:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
+        transform: translateY(6px) rotate(45deg);
       }
       .header__toggle-bar:nth-child(2) {
         opacity: 0;
       }
       .header__toggle-bar:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
+        transform: translateY(-6px) rotate(-45deg);
       }
     }
 
