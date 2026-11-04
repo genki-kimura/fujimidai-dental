@@ -1776,7 +1776,7 @@ $wl-about-bg-side: #eef2fb; // 左右の水色
 .wl-sim {
   position: relative;
   overflow: hidden;
-  padding: calc(3.85 * var(--wl-vw)) 0 calc(3.8 * var(--wl-vw));
+  padding: calc(3.85 * var(--wl-vw)) 0 calc(2.8 * var(--wl-vw));
   background: linear-gradient(180deg, #fff 0%, #fbfcff 55%, #f6f8fe 100%);
   font-family: $wl-font-sans;
   color: $wl-ink;
@@ -1889,8 +1889,8 @@ $wl-about-bg-side: #eef2fb; // 左右の水色
   &__compare {
     display: grid;
     grid-template-columns: 638fr 192fr 638fr;
-    align-items: center;
-    margin-top: calc(2.2 * var(--wl-vw));
+    align-items: start;
+    margin-top: calc(1.5 * var(--wl-vw));
   }
 
   &__item {
@@ -1915,6 +1915,7 @@ $wl-about-bg-side: #eef2fb; // 左右の水色
 
   &__item--before &__photo {
     aspect-ratio: 638 / 316;
+    margin: calc(100% * 28.5 / 638) 0;
   }
 
   &__item--after &__photo {
@@ -1998,6 +1999,7 @@ $wl-about-bg-side: #eef2fb; // 左右の水色
     align-items: center;
     justify-content: center;
     justify-self: center;
+    align-self: center;
     width: calc(4.1 * var(--wl-vw));
     aspect-ratio: 1;
     border-radius: 50%;
@@ -2014,12 +2016,12 @@ $wl-about-bg-side: #eef2fb; // 左右の水色
   // ---------- 白さの目安バー ----------
   &__shade {
     box-sizing: border-box;
-    margin-top: calc(2.2 * var(--wl-vw));
+    margin-top: calc(1.2 * var(--wl-vw));
     padding: calc(1.35 * var(--wl-vw)) calc(3.55 * var(--wl-vw)) calc(1.35 * var(--wl-vw));
     border: 1px solid #e3e8f7;
     border-radius: calc(2.25 * var(--wl-vw));
     background: #fff;
-    box-shadow: 0 calc(1 * var(--wl-vw)) calc(3 * var(--wl-vw)) rgba(96, 110, 210, 0.16);
+    box-shadow: 0 calc(1 * var(--wl-vw)) calc(2 * var(--wl-vw)) rgba(96, 110, 210, 0.16);
   }
 
   &__shade-head {
@@ -2211,6 +2213,7 @@ $wl-about-bg-side: #eef2fb; // 左右の水色
     &__item--before &__photo,
     &__item--after &__photo {
       aspect-ratio: 324 / 435;
+      margin: 0;
     }
 
     // 縦長の枠いっぱいに写真を敷く（口元の位置は object-position で調整）
@@ -2309,7 +2312,6 @@ $wl-about-bg-side: #eef2fb; // 左右の水色
   }
 }
 
-
 // ==========================================================================
 // ⑤ 結果（.wl-result）
 // ※PCの寸法は、見本（幅2576px）を測って vw に直した値です
@@ -2317,7 +2319,7 @@ $wl-about-bg-side: #eef2fb; // 左右の水色
 // ==========================================================================
 .wl-result {
   position: relative;
-  padding: calc(3.5 * var(--wl-vw)) 0 calc(5.4 * var(--wl-vw));
+  padding: calc(1.5 * var(--wl-vw)) 0 calc(5.4 * var(--wl-vw));
   background: linear-gradient(180deg, #f6f8fe 0%, #fff calc(7 * var(--wl-vw)));
   font-family: $wl-font-sans;
   color: $wl-ink;
@@ -9725,7 +9727,7 @@ $wl-doctor-text: #3a3650;
     margin: calc(1.6 * var(--wl-vw)) 0 0;
     padding: calc(0.3 * var(--wl-vw)) calc(1.5 * var(--wl-vw));
     border: 1px solid #dde4f5;
-    border-radius: 999px;
+    border-radius: 14px;
     background: #fff;
     list-style: none;
   }
@@ -11632,7 +11634,7 @@ $wl-cta-sub: #6a6a80;
   }
 
   &__btn-label {
-    font-size: clamp(14px, calc(1.55 * var(--wl-vw)), 34px);
+    font-size: clamp(11px, 1.3 * var(--wl-vw), 24px);
     font-weight: 700;
     line-height: 1.4;
     letter-spacing: 0.1em;
@@ -11666,7 +11668,7 @@ $wl-cta-sub: #6a6a80;
   }
 
   &__tel-num {
-    font-size: clamp(14px, calc(1.7 * var(--wl-vw)), 38px);
+    font-size: clamp(14px, calc(1.46 * var(--wl-vw)), 38px);
     font-weight: 700;
     line-height: 1.4;
     letter-spacing: 0.03em;
