@@ -6,6 +6,7 @@
   "scripts": {
     "css": "gulp css",
     "watch:css": "gulp watch:css",
+    "watch:whitening-lp": "gulp watch:whitening-lp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "chichiyasu",

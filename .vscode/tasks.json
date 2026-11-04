@@ -2,9 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "SCSS: Watch and compile",
+      "label": "SCSS: Watch whitening LP",
       "type": "npm",
-      "script": "watch:css",
+      "script": "watch:whitening-lp",
       "isBackground": true,
       "problemMatcher": {
         "owner": "scss-watch",
@@ -13,8 +13,8 @@
         },
         "background": {
           "activeOnStart": true,
-          "beginsPattern": "Starting 'watch:css'\\.\\.\\.",
-          "endsPattern": "Starting 'watchSass'\\.\\.\\."
+          "beginsPattern": "Starting 'watch:whitening-lp'\\.\\.\\.",
+          "endsPattern": "Starting 'watchWhiteningLp'\\.\\.\\."
         }
       },
       "runOptions": {
