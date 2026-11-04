@@ -430,7 +430,7 @@ add_action('acf/init', function () {
 // ※すでにstyle.cssなどで読み込んでいる場合は、この処理は削除してください
 ---------------------------------------- */
 function theme_google_fonts_url() {
-    return 'https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;500;600&display=swap';
+    return 'https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap';
 }
 
 add_action('wp_enqueue_scripts', function () {

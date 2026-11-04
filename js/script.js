@@ -401,16 +401,28 @@ Greeting（院長挨拶）の「略歴」「所属・資格」の開閉
 
 /* ----------------------------------------
 追従ボタン（.floating-cta）
-・スクロール中は .is-scrolling を付けて、アイコンだけにする（CSS: _sec99-Footer.scss）
-・スクロールが止まって少しすると外して、全体を表示する
+・FV（ページの一番上付近）にいる間は、アイコンだけの閉じた状態にする
+  （ページを開いた直後は footer.php の .is-scrolling で閉じておく。FVに戻ってきたときも同じ）
+・FVを離れてスクロールしている間はアイコンだけ、止まって少しすると全体が開く
+・最初からスクロール位置が下がっている場合（再読み込み・ページ内リンクなど）は、最初から開いた状態にする
 ---------------------------------------- */
 (function () {
   var cta = document.querySelector('.floating-cta');
   if (!cta) return;
 
-  var STOP_DELAY = 500; // スクロールが止まってから、全体が表示されるまでの時間（ミリ秒）
+  var STOP_DELAY = 500;  // スクロールが止まってから、全体が表示されるまでの時間（ミリ秒）
+  var FV_RANGE = 200;     // ページの一番上からこの距離（px）以内なら「FV表示中」とみなして閉じておく
   var timer = null;
   var lastY = window.pageYOffset;
+
+  function inFv() {
+    return window.pageYOffset <= FV_RANGE;
+  }
+
+  // 最初からページの途中にいる場合は、閉じた状態で始めない
+  if (!inFv()) {
+    cta.classList.remove('is-scrolling');
+  }
 
   window.addEventListener('scroll', function () {
     // 位置が動いていないとき（メニュー開閉時の疑似スクロールなど）は何もしない
@@ -419,9 +431,50 @@ Greeting（院長挨拶）の「略歴」「所属・資格」の開閉
 
     cta.classList.add('is-scrolling');
     clearTimeout(timer);
+
+    // FVに戻ってきたら、閉じたままにする（開くタイマーは動かさない）
+    if (inFv()) return;
+
     timer = setTimeout(function () {
       cta.classList.remove('is-scrolling');
     }, STOP_DELAY);
   }, { passive: true });
 })();
- 
+
+/* ----------------------------------------
+TOPへ戻るボタン（.page-top）
+・少しスクロールしたら .is-show を付けて表示する
+・押すとページの一番上へ戻る（動きを減らす設定の人はスムーズにせず即移動）
+・スマホ：追従バー（.floating-cta）の高さを --cta-bar-h に入れて、その真上に置く
+---------------------------------------- */
+(function () {
+  var btn = document.querySelector('.page-top');
+  if (!btn) return;
+
+  var cta = document.querySelector('.floating-cta');
+  var SHOW_FROM = 300; // これ以上スクロールしたら表示する（px）
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function update() {
+    btn.classList.toggle('is-show', window.pageYOffset > SHOW_FROM);
+  }
+
+  function setBarHeight() {
+    if (!cta) return;
+    document.documentElement.style.setProperty('--cta-bar-h', cta.offsetHeight + 'px');
+  }
+
+  btn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  });
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', setBarHeight);
+  window.addEventListener('load', setBarHeight);
+  if (window.ResizeObserver && cta) {
+    new ResizeObserver(setBarHeight).observe(cta);
+  }
+
+  setBarHeight();
+  update();
+})();

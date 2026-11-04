@@ -1,4 +1,9 @@
 @charset "UTF-8";
+.page-common-content strong,
+.page-common-content b {
+  font-family: inherit;
+}
+
 .page-common-head {
   position: relative;
   overflow: hidden;
@@ -4077,6 +4082,13 @@ h1.wp-block-post-title::after {
   letter-spacing: 0.06em;
   text-align: left;
   color: #2b2b33;
+}
+.page-common-content .feature-list .feature-list-text p strong,
+.page-common-content .feature-list .feature-list-text p b,
+.is-root-container .feature-list .feature-list-text p strong,
+.is-root-container .feature-list .feature-list-text p b {
+  font-family: inherit;
+  font-weight: 700;
 }
 
 .page-common-content .feature-list:not(:has(.feature-list-icon)),

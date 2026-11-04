@@ -281,7 +281,7 @@ $cta_icon_dir  = get_template_directory_uri() . '/img/';
     </footer>
 
     <!-- 画面右側に追従するボタン（スマホでは画面下部のバーになり、文言が短くなります） -->
-    <aside class="floating-cta" aria-label="ご予約・お問い合わせ">
+    <aside class="floating-cta is-scrolling" aria-label="ご予約・お問い合わせ">
         <a class="floating-cta__btn floating-cta__btn--web" href="<?php echo esc_url($footer_url($cta_web_url)); ?>" style="--cta-icon: url('<?php echo esc_url($cta_icon_dir . 'cta-icon01.webp'); ?>')">
             <span class="floating-cta__icon" aria-hidden="true"></span>
             <span class="floating-cta__text">
@@ -307,6 +307,12 @@ $cta_icon_dir  = get_template_directory_uri() . '/img/';
             </a>
         </address>
     </aside>
+
+    <!-- ページ上部へ戻るボタン（スクロールすると表示。スマホでは追従バーの右上に小さく表示） -->
+    <button type="button" class="page-top" aria-label="ページの先頭へ戻る" style="--page-top-flower: url('<?php echo esc_url(get_template_directory_uri() . '/img/Logo02-flower.webp'); ?>')">
+        <span class="page-top__arrow" aria-hidden="true"></span>
+        <span class="page-top__text">TOPへ戻る</span>
+    </button>
 
     <?php wp_footer(); ?>
 </body>

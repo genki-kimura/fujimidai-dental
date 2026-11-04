@@ -12,6 +12,11 @@ $head-font:         "Shippori Mincho", "Noto Serif JP", "Hiragino Mincho ProN", 
 $head-fixed-w: 1366px; // この幅より広い画面では、題名・円・ロゴの位置をこの幅の中に固定する
 $head-fixed-h: 230px;  // 高さ
 
+.page-common-content strong,
+.page-common-content b {
+  font-family: inherit;
+}
+
 // --- セクション本体 ---------------------------------------
 .page-common-head {
   position: relative;
@@ -4275,6 +4280,12 @@ $feature-list-gap:     22px;   // 丸と文章の間
       letter-spacing: 0.06em;
       text-align: left; // body の justify を打ち消す
       color: $h2-text;
+
+      strong,
+      b {
+        font-family: inherit;
+        font-weight: 700;
+      }
     }
   }
 }
