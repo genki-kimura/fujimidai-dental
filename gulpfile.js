@@ -41,6 +41,7 @@ const imageminOption = [
 const srcPath = {
   css: 'scss/style.scss',
   block: 'scss/block.scss',
+  whiteningLp: 'scss/page/_page50-whitening-lp.scss',
 }
 
 // 吐き出し先（なければ生成される）
@@ -72,7 +73,6 @@ const cssSass = () => compileSass(srcPath.css);
 const blockSass = () => compileSass(srcPath.block);
 const cssAll = parallel(cssSass, blockSass);
 const sassWatchOptions = { usePolling: true, interval: 500 };
-
 // watchFile
 const watchFiles = (done) => {
   watch('./*.php', browserReload);
@@ -81,7 +81,11 @@ const watchFiles = (done) => {
   done();
 };
 
-const watchSass = () => watch('./scss/**/*.scss', sassWatchOptions, cssAll);
+const watchWhiteningLp = () => watch(
+  './scss/**/*.scss',
+  sassWatchOptions,
+  series(cssSass, browserReload)
+);
 
 // buildServer
 const buildServer = (done) => {
@@ -111,5 +115,6 @@ const imageMin = (done) => {
 
 exports.imagemin = imageMin;
 exports.css = cssAll;
-exports['watch:css'] = series(cssAll, watchSass);
+exports['watch:css'] = series(cssAll, watchFiles);
+exports['watch:whitening-lp'] = series(parallel(cssSass, buildServer), watchWhiteningLp);
 exports.default = series(parallel(cssAll, buildServer, watchFiles));

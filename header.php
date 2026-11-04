@@ -133,7 +133,9 @@ $menu_sub = array(
                 </a>
                 <span class="header__divider" aria-hidden="true"></span>
                 <div class="header__info">
-                    <h1 class="header__catch"><?php echo esc_html($header_catch); ?></h1>
+                    <?php /* ホワイトニングLPは、本文側（FV）の h1 だけにするため、ヘッダーのキャッチは <p> にする */ ?>
+                    <?php $header_catch_tag = is_page_template('whitening-lp.php') ? 'p' : 'h1'; ?>
+                    <<?php echo $header_catch_tag; ?> class="header__catch"><?php echo esc_html($header_catch); ?></<?php echo $header_catch_tag; ?>>
                     <div class="header__text">
                         <address>〒165-0031 <?php echo esc_html($header_address); ?></address>
                     </div>

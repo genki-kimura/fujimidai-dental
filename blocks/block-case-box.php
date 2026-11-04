@@ -1,16 +1,31 @@
+<?php
+// 画像フィールドは block_field() だと URL の文字がそのまま出力されるため、
+// block_value() で値(画像ID)を取得して <img> タグで出力する
+$case_img = function ( $name ) {
+    $value = block_value( $name );
+    if ( ! $value ) {
+        return; // 未設定ならグレーの枠だけ表示
+    }
+    if ( is_numeric( $value ) ) {
+        echo wp_get_attachment_image( (int) $value, 'large', false, array( 'loading' => 'lazy' ) );
+    } else {
+        echo '<img src="' . esc_url( $value ) . '" alt="" loading="lazy">';
+    }
+};
+?>
 <div class="case-box">
 
     <div class="case-box-images">
         <div class="case-box-image">
             <p class="case-box-image-label">BEFORE</p>
             <div class="case-box-image-frame">
-                <?php block_field( 'case-before' ); ?>
+                <?php $case_img( 'case-before' ); ?>
             </div>
         </div>
         <div class="case-box-image">
             <p class="case-box-image-label case-box-image-label--after">AFTER</p>
             <div class="case-box-image-frame">
-                <?php block_field( 'case-after' ); ?>
+                <?php $case_img( 'case-after' ); ?>
             </div>
         </div>
     </div>

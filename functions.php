@@ -42,6 +42,20 @@ function my_script_init()
 add_action('wp_enqueue_scripts', 'my_script_init');
 
 /* ----------------------------------------
+// ホワイトニングLP専用のJS（テンプレート「ホワイトニングLP」のページだけ読み込み）
+---------------------------------------- */
+function whitening_lp_scripts()
+{
+  if (!is_page_template('whitening-lp.php')) {
+    return;
+  }
+  $path = get_theme_file_path('/js/whitening-lp.js');
+  $ver  = file_exists($path) ? md5_file($path) : '1.0.0';
+  wp_enqueue_script('whitening-lp', get_template_directory_uri() . '/js/whitening-lp.js', array(), $ver, true);
+}
+add_action('wp_enqueue_scripts', 'whitening_lp_scripts');
+
+/* ----------------------------------------
 // 基本の投稿を任意の名前に変更
 ---------------------------------------- */
 function post_has_archive( $args, $post_type ) {
@@ -416,7 +430,7 @@ add_action('acf/init', function () {
 // ※すでにstyle.cssなどで読み込んでいる場合は、この処理は削除してください
 ---------------------------------------- */
 function theme_google_fonts_url() {
-    return 'https://fonts.googleapis.com/css2?family=Jost:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;500&display=swap';
+    return 'https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;500;600&display=swap';
 }
 
 add_action('wp_enqueue_scripts', function () {

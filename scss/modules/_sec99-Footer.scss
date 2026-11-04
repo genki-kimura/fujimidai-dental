@@ -299,15 +299,20 @@ Floating CTA pc：スクロール中はアイコンのみ、止まったら全�
 ---------------------------------------- */
 @media (min-width: #{$footer-bp + 1px}) {
   .floating-cta__text {
-    max-width: 280px; // 開いたときの上限（文字がこれより長い場合は大きくしてください）
+    // 開いたときの上限。実際の文字の幅より少しだけ大きくする（大きすぎると動きの最後がもたついて見える）
+    // 文字が欠けるときは、ここを大きくしてください
+    max-width: 210px;
     overflow: hidden;
-    transition: max-width 0.35s ease, margin-left 0.35s ease, opacity 0.25s ease;
+    // 開くとき（スクロールが止まったとき）：幅・余白・文字の濃さを同じ時間で、同時に終わらせる
+    transition: max-width 0.9s ease-in-out, margin-left 0.9s ease-in-out, opacity 0.9s ease-in-out;
   }
 
   .floating-cta.is-scrolling .floating-cta__btn:not(:hover):not(:focus-visible) .floating-cta__text {
     max-width: 0;
     margin-left: 0;
     opacity: 0;
+    // 閉じるとき（スクロール開始時）：少しゆっくり
+    transition: max-width 0.6s ease-in-out, margin-left 0.6s ease-in-out, opacity 0.6s ease-in-out;
   }
 
   @media (prefers-reduced-motion: reduce) {
