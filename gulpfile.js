@@ -81,7 +81,7 @@ const watchFiles = (done) => {
   done();
 };
 
-const watchWhiteningLp = () => watch(
+const watchLp = () => watch(
   './scss/**/*.scss',
   sassWatchOptions,
   series(cssAll, browserReload)
@@ -116,5 +116,6 @@ const imageMin = (done) => {
 exports.imagemin = imageMin;
 exports.css = cssAll;
 exports['watch:css'] = series(cssAll, watchFiles);
-exports['watch:whitening-lp'] = series(parallel(cssAll, buildServer), watchWhiteningLp);
+exports['watch:whitening-lp'] = series(parallel(cssAll, buildServer), watchLp);
+exports['watch:implant-lp'] = series(parallel(cssAll, buildServer), watchLp);
 exports.default = series(parallel(cssAll, buildServer, watchFiles));
