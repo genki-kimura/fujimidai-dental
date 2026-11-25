@@ -650,3 +650,41 @@ $page-top-layers: 6; // 花を重ねる枚数（濃くしたいときは増や�
     }
   }
 }
+
+/* ----------------------------------------
+Floating CTA pc：画面右下（TOPへ戻るボタンの左）に横並びで表示
+---------------------------------------- */
+@media (min-width: #{$footer-bp + 1px}) {
+  .floating-cta {
+    top: auto;
+    right: 126px; // TOPへ戻る（右24px＋幅86px）＋すき間16px
+    bottom: 36px; // TOPへ戻る（高さ84px）と上下中央をそろえる
+    flex-direction: row;
+    align-items: center;
+    transform: none;
+  }
+  .floating-cta .floating-cta__btn {
+    padding: 0 20px;
+    border-radius: 999px;
+  }
+  .floating-cta .floating-cta__btn--web,
+  .floating-cta .floating-cta__btn--white {
+    border-right: 1.5px solid #7f6ba6;
+    box-shadow: 0 4px 14px rgba(127, 107, 166, 0.3);
+  }
+  .floating-cta .floating-cta__btn--tel {
+    border-right: 1.5px solid #c9bfe8;
+    box-shadow: 0 4px 14px rgba(46, 42, 51, 0.1);
+    &:hover {
+      border-color: #7f6ba6;
+    }
+  }
+  // スクロール中も引っ込めず、常に文字まで表示
+  .floating-cta .floating-cta__text,
+  .floating-cta.is-scrolling .floating-cta__btn:not(:hover):not(:focus-visible) .floating-cta__text {
+    max-width: none;
+    margin-left: 10px;
+    opacity: 1;
+    transition: none;
+  }
+}

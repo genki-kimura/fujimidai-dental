@@ -4815,3 +4815,17 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
     margin-bottom: 0;
   }
 }
+
+/* 強みCTA：ポイント2（インプラント専門医）の文言が長いため、中央の列を広げる。
+   狭い画面では <wbr> の位置（インプラント｜学会認定 など）でだけ折り返す */
+.page-common-content .strengths-cta .strengths-cta-points {
+  grid-template-columns: 1fr 1.3fr 1fr;
+}
+.page-common-content .strengths-cta .strengths-cta-point-label:has(wbr) {
+  word-break: keep-all;
+}
+@media (max-width: 767px) {
+  .page-common-content .strengths-cta .strengths-cta-points {
+    grid-template-columns: 1fr 1.2fr 1fr;
+  }
+}

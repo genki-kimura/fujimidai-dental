@@ -77,8 +77,8 @@ $footer_guideline_links = $footer_field('footer_guideline_links', array(
 $footer_copyright = $footer_field('footer_copyright', '© ' . wp_date('Y') . ' 富士見台さくら歯科 / 医療法人社団 以和貴会');
 
 // 追従ボタン
-$cta_web_url   = $footer_field('cta_web_url', '#');
-$cta_white_url = $footer_field('cta_white_url', '#');
+$cta_web_url   = $footer_field('cta_web_url', 'https://sakura-dc.reserve.ne.jp/sp/index.php?');
+$cta_white_url = $footer_field('cta_white_url', 'https://whiteessence.resv.jp/reserve/calendar.php?_gl=1%2A1noyu9q%2A_gcl_au%2AOTk2MzI4MDgxLjE3OTQ0NjE1ODA.%2A_ga%2AMzAyODE3NjMzLjE3ODkwMTY0NjQ.%2A_ga_3LL4QF1Q3N%2AczE3OTQ0NjE1ODEkbzkkZzEkdDE3OTQ0NjE1ODEkajYwJGwwJGgw&_rb_uid=608ee08355bc340a45a883b2edc23d161785999482658&_rb_sid=67511789016467601&hc_uus=fe5c5ce0b55cc9f550f5976a45949983&matid#_rb_uid=608ee08355bc340a45a883b2edc23d161785999482658&_rb_sid=67511789016467601&hc_uus=fe5c5ce0b55cc9f550f5976a45949983&matid');
 $cta_tel       = $footer_field('cta_tel', '03-5848-9373');
 $cta_tel_hours = $footer_field('cta_tel_hours', '受付 月〜土 9:00-12:00 / 13:00-18:00');
 $cta_tel_href  = 'tel:' . preg_replace('/[^0-9+]/', '', $cta_tel);
@@ -100,8 +100,8 @@ $is_implant_lp = is_page_template('implant-lp.php');
                 $access_dir     = get_template_directory_uri() . '/img/';
                 $access_web_url = function_exists('get_field') ? get_field('cta_web_url', 'option') : '';
                 $access_wht_url = function_exists('get_field') ? get_field('cta_white_url', 'option') : '';
-                $access_web_url = $access_web_url ? $access_web_url : '#';
-                $access_wht_url = $access_wht_url ? $access_wht_url : '#';
+                $access_web_url = $access_web_url ? $access_web_url : $cta_web_url;
+                $access_wht_url = $access_wht_url ? $access_wht_url : $cta_white_url;
                 // 決済方法の画像（img フォルダ内。大文字・小文字の違いでも見つかるようにしています）
                 $access_pay_file = 'Payment-method.webp';
                 foreach (array('Payment-method.webp', 'payment-method.webp', 'Payment-Method.webp', 'payment.webp') as $access_pay_candidate) {
@@ -208,7 +208,7 @@ $is_implant_lp = is_page_template('implant-lp.php');
                                         <a href="<?php echo esc_url($access_wht_url); ?>" class="Access__btn Access__btn--outline">
                                                 <span class="Access__btn-text">
                                                         <span class="Access__btn-sub">ホワイトエッセンス加盟店</span>
-                                                        <span class="Access__btn-main">ホワイトニングを予約</span>
+                                                        <span class="Access__btn-main">ホワイトニング予約</span>
                                                 </span>
                                                 <span class="Access__btn-arrow" aria-hidden="true">→</span>
                                         </a>
@@ -297,14 +297,14 @@ $is_implant_lp = is_page_template('implant-lp.php');
             <span class="floating-cta__icon" aria-hidden="true"></span>
             <span class="floating-cta__text">
                 <span class="floating-cta__label"><span class="floating-cta__pc">ホワイトエッセンス加盟店</span><span class="floating-cta__sp">ホワイトエッセンス</span></span>
-                <span class="floating-cta__main"><span class="floating-cta__pc">ホワイトニングを予約</span><span class="floating-cta__sp">ホワイトニング予約</span></span>
+                <span class="floating-cta__main"><span class="floating-cta__pc">ホワイトニング予約</span><span class="floating-cta__sp">ホワイトニング予約</span></span>
             </span>
         </a>
         <address class="floating-cta__address">
             <a class="floating-cta__btn floating-cta__btn--tel" href="<?php echo esc_attr($cta_tel_href); ?>" style="--cta-icon: url('<?php echo esc_url($cta_icon_dir . 'cta-icon03.webp'); ?>')">
                 <span class="floating-cta__icon" aria-hidden="true"></span>
                 <span class="floating-cta__text">
-                    <span class="floating-cta__label"><span class="floating-cta__pc">月〜土 9:00-12:00 / 13:00-18:00</span><span class="floating-cta__sp"></span></span>
+                    <span class="floating-cta__label"><span class="floating-cta__pc">9:00-12:00 / 13:00-18:00</span><span class="floating-cta__sp"></span></span>
                     <span class="floating-cta__label"><span class="floating-cta__sp"><?php echo esc_html($cta_tel); ?></span></span>
                     <span class="floating-cta__main"><span class="floating-cta__pc"><?php echo esc_html($cta_tel); ?></span><span class="floating-cta__sp">電話する</span></span>
                 </span>

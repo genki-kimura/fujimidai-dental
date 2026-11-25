@@ -13,7 +13,7 @@ $mv_en     = $mv_field('mv_en', 'Smiles, in bloom.');
 $mv_lead   = $mv_field('mv_lead', '生涯、自分の歯で笑うために。');
 $mv_badges = $mv_field('mv_badges', array(
     array('text' => "富士見台駅\n徒歩3分\n土曜も診療", 'text_sp' => '富士見台駅 徒歩3分・土曜も診療'),
-    array('text' => "認定専門医による\nインプラント治療"),
+    array('text' => "日本口腔インプラント\n学会認定\n口腔インプラント\n専門医在籍", 'text_sp' => "日本口腔インプラント学会認定\n口腔インプラント専門医在籍"),
     array('text' => "予防から審美・\n訪問診療まで対応"),
 ));
 
@@ -301,7 +301,7 @@ $mv_circles = array(
                                         <a href="<?php echo esc_url(home_url('/treatment/home-visit/')); ?>" class="Information__banner">
                                                 <picture>
                                                         <source media="(max-width: 767px)" srcset="<?php echo esc_url(get_template_directory_uri() . '/img/house-call-medical-services-sp.webp'); ?>" width="670" height="250">
-                                                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/house-call-medical-services.webp'); ?>" alt="訪問歯科診療 訪問診療専用 03-5848-8484 通えなくなっても、生涯このまちで 詳しくはこちら" width="1006" height="340" loading="lazy">
+                                                        <img src="<?php echo esc_url(get_template_directory_uri() . '/img/house-call-medical-services.webp'); ?>" alt="訪問歯科診療 通えなくなっても、生涯このまちで 詳しくはこちら" width="1006" height="340" loading="lazy">
                                                 </picture>
                                         </a>
                                 </div>
@@ -388,7 +388,7 @@ $mv_circles = array(
                                 'en'    => 'IMPLANT',
                                 'title' => 'インプラント',
                                 'sub'   => '',
-                                'text'  => '認定専門医による、確かなインプラント',
+                                'text'  => '日本口腔インプラント学会認定　口腔インプラント専門医による、確かなインプラント',
                                 'url'   => home_url('/treatment/implant/'),
                                 'file'  => 'Recommend01.webp',
                                 'alt'   => 'インプラントの模型イメージ',
@@ -512,7 +512,7 @@ $mv_circles = array(
                                         <p class="Implant__en">IMPLANT</p>
                                         <h3 class="Implant__title">インプラント</h3>
                                         <p class="Implant__lead">失った歯を、根から取り戻す。</p>
-                                        <p class="Implant__text">日本口腔インプラント学会の認定専門医が、診断から埋入・メンテナンスまで一貫して担当。噛む機能と自然な見た目を回復します。</p>
+                                        <p class="Implant__text">日本口腔インプラント学会認定　口腔インプラント専門医が、診断から埋入・メンテナンスまで一貫して担当。噛む機能と自然な見た目を回復します。</p>
 
                                         <a class="Implant__btn" href="<?php echo esc_url(home_url('/treatment/implant/')); ?>">
                                                 <span>詳しくはこちら</span>
@@ -717,8 +717,8 @@ $mv_circles = array(
                 $reason_points = array(
                         array(
                                 'title' => '専門医による、確かな技術',
-                                'text'  => '日本口腔インプラント学会 認定専門医・歯学博士（東京医科歯科大学出身）が診療。予防から専門治療まで幅広く対応。',
-                                'text_sp' => '日本口腔インプラント学会 認定専門医・歯学博士（東京医科歯科大学出身）が診療。',
+                                'text'  => '日本口腔インプラント学会認定　口腔インプラント専門医・歯学博士（東京医科歯科大学出身）が診療。予防から専門治療まで幅広く対応。',
+                                'text_sp' => '日本口腔インプラント学会認定　口腔インプラント専門医・歯学博士（東京医科歯科大学出身）が診療。',
                         ),
                         array(
                                 'title' => 'こだわりの自費補綴で、|美しく長持ち',
@@ -964,7 +964,7 @@ $mv_circles = array(
                                 <div class="Greeting__name">
                                         <span class="Greeting__name-role">院長</span>
                                         <strong class="Greeting__name-main">芳賀 浩昭</strong>
-                                        <span class="Greeting__name-note">日本口腔インプラント学会 認定専門医</span>
+                                        <span class="Greeting__name-note">日本口腔インプラント学会認定　口腔インプラント専門医</span>
                                 </div>
 
                                 <div class="Greeting__profile">

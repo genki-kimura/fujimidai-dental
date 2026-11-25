@@ -88,8 +88,8 @@ $menu_treatment = array(
 );
 
 // 予約ボタン・電話（予約リンクと外来の電話番号は「フッター設定」の値を使います）
-$menu_web_url   = $header_field('cta_web_url', '#');
-$menu_white_url = $header_field('cta_white_url', '#');
+$menu_web_url   = $header_field('cta_web_url', 'https://sakura-dc.reserve.ne.jp/sp/index.php?');
+$menu_white_url = $header_field('cta_white_url', 'https://whiteessence.resv.jp/reserve/calendar.php?_gl=1%2A1noyu9q%2A_gcl_au%2AOTk2MzI4MDgxLjE3OTQ0NjE1ODA.%2A_ga%2AMzAyODE3NjMzLjE3ODkwMTY0NjQ.%2A_ga_3LL4QF1Q3N%2AczE3OTQ0NjE1ODEkbzkkZzEkdDE3OTQ0NjE1ODEkajYwJGwwJGgw&_rb_uid=608ee08355bc340a45a883b2edc23d161785999482658&_rb_sid=67511789016467601&hc_uus=fe5c5ce0b55cc9f550f5976a45949983&matid#_rb_uid=608ee08355bc340a45a883b2edc23d161785999482658&_rb_sid=67511789016467601&hc_uus=fe5c5ce0b55cc9f550f5976a45949983&matid');
 $menu_tel_out   = $header_field('cta_tel', '03-5848-9373');
 $menu_tel_visit = '03-5848-8484';
 $menu_tel_href  = function ($tel) {
@@ -238,7 +238,7 @@ $menu_sub = array(
                     <a class="header__menu-btn header__menu-btn--outline" href="<?php echo esc_url($header_url($menu_white_url)); ?>">
                         <span class="header__menu-btn-text">
                             <span class="header__menu-btn-sub">ホワイトエッセンス加盟店</span>
-                            <span class="header__menu-btn-main">ホワイトニングを予約</span>
+                            <span class="header__menu-btn-main">ホワイトニング予約</span>
                         </span>
                         <span class="header__menu-btn-arrow" aria-hidden="true">→</span>
                     </a>

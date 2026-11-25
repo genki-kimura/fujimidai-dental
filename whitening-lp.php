@@ -19,7 +19,7 @@ $wl_mv = array(
     'brand'      => 'WHITE ESSENCE',
     'partner'    => 'ホワイトエッセンス提携医院',
     'label'      => 'WHITENING',
-    'lead'       => array('富士見台・中野区の', 'ホワイトニング'), // スマホでは、この位置で改行（PC・h1の文章は1行でつながります）
+    'lead'       => array('富士見台・中野区・練馬区の', 'ホワイトニング'), // スマホでは、この位置で改行（PC・h1の文章は1行でつながります）
     'clinic'     => '富士見台さくら歯科',
     'guarantee'  => array('白さに、', '結果保証'),
     'badges'     => array(
@@ -27,8 +27,9 @@ $wl_mv = array(
         array('全額', '返金'),
         array('中途', '解約'),
     ),
-    // 医療広告GLの必須注記（<small>で常時表示・削除不可）。文言は見本から転記 → TODO：実際の条件文言と合っているか確認
-    'guarantee_note' => '※他院での施術を含め、ホワイトニングが初めての方が対象です。ホワイトエッセンスコースをご利用のうえ、所定の通院回数・期間などの条件を満たした場合に限ります。',
+    // 医療広告GLの必須注記（<small>で常時表示・削除不可）
+    // 2026-11-19 保証ごとに対象を分けて記載（現行サイト tretment/whitening.html の記載に合わせる）
+    'guarantee_note' => '※全額返金保証は、オフィスホワイトニング プロ／プロプラス（単品プラン）が対象です。他院での施術を含め、ホワイトニングが初めての方に限ります。追加無料は、ホワイトエッセンスコースをご利用のうえ、所定の通院回数・期間などの条件を満たした場合に限ります。',
     'result_label'   => '施術実績',
     'result_number'  => '471',
     'result_unit'    => '万件',
@@ -584,7 +585,7 @@ $wl_guarantee = array(
     ),
     'notes'  => array(
         '※1 ホワイトエッセンスコースをご利用の方が対象です。所定の通院回数・期間などの条件を満たした場合に限ります。',
-        '※2 他院での施術を含め、ホワイトニングが初めての方に限ります。',
+        '※2 オフィスホワイトニング プロ／プロプラス（単品プラン）が対象です。他院での施術を含め、ホワイトニングが初めての方に限ります。',
     ),
 );
 
@@ -617,6 +618,17 @@ $wl_price = array(
         array('ホームホワイトニング スターターキット',                       '¥19,900'),
     ),
     'note'       => '※ 表示は税込。デュアル・パーソナルチケット等の詳細は料金表をご覧ください。',
+    // 医療広告ガイドライン：未承認医薬品等を用いる自由診療の必須記載事項（現行サイトから移植）
+    // 文言を変えるときは、必ず医院に確認してから書き換えてください
+    'law'        => array(
+        'title' => '医薬品医療機器等法（薬機法）に関する記載事項',
+        'items' => array(
+            'ホワイトエッセンス加盟院取り扱いのホームホワイトニング薬剤は国内未承認です。',
+            '当院で個人輸入し、ご提供しています。',
+            '国内には認可品の薬剤も存在します。',
+            '生産国アメリカの法律上で国の認可が必要のない成分を使用しています。現在までに重大な副作用等の報告はありません。',
+        ),
+    ),
     'side_title' => 'お支払い・解約について',
     // array(見出し, 説明, 例（なければ空）)
     'cards'      => array(
@@ -784,7 +796,7 @@ $wl_doctor = array(
     'sub'         => '東京医科歯科大学出身の歯学博士',
     'name'        => array('院長', '芳賀 浩昭', '（はが ひろあき）'),
     'text'        => '「自分の笑顔で、多くの人を幸せにする」──これが私のビジョンです。ホワイトエッセンスの理念『笑顔創造産業』に共感し、当院を開業しました。統一された品質の施術はもちろん、接遇・ホスピタリティ・感染防止・滅菌体制を高いレベルで徹底。スタッフ一同、患者様をファミリーのようにお迎えし、ご自宅でくつろぐような感覚で受けていただけるよう努めています。',
-    'credentials' => array('歯学博士', '日本口腔インプラント学会 認定専門医', '東京医科歯科大学出身'),
+    'credentials' => array('歯学博士', '日本口腔インプラント学会認定　口腔インプラント専門医', '東京医科歯科大学出身'),
     'image'       => array('whitening-lp-doctor01.webp', 'モニターを見ながら説明する院長', 1400, 933, '10% 50%'),
 );
 
@@ -934,7 +946,7 @@ $wl_cta = array(
                 <span class="wl-mv__eyebrow-en wl-mv__eyebrow-en--wide"><?php echo esc_html($wl_mv['label']); ?></span>
             </p>
 
-            <!-- h1：富士見台・中野区のホワイトニング｜富士見台さくら歯科（「｜」は読み上げ用） -->
+            <!-- h1：富士見台・中野区・練馬区のホワイトニング｜富士見台さくら歯科（「｜」は読み上げ用） -->
             <h1 class="wl-mv__lead wl-anim" style="--d: .1s">
                 <span class="wl-mv__lead-main"><?php foreach ((array) $wl_mv['lead'] as $lead_line) : ?><span class="wl-mv__lead-line"><?php echo esc_html($lead_line); ?></span><?php endforeach; ?></span>
                 <span class="wl-mv__sr">｜</span>
@@ -951,9 +963,14 @@ $wl_cta = array(
                 <p class="wl-mv__guarantee-label"><?php echo $wl_br($wl_mv['guarantee']); ?></p>
                 <ul class="wl-mv__badges">
                     <?php foreach ($wl_mv['badges'] as $badge) : ?>
+                        <?php
+                        // 1行目（追加／全額／中途）だけ別のspanで包み、その右上に「※」を肩付きで置く
+                        $wl_badge_rest = array_values((array) $badge);
+                        $wl_badge_head = array_shift($wl_badge_rest);
+                        ?>
                         <li class="wl-mv__badge">
                             <img class="wl-mv__badge-bg" src="<?php echo esc_url($wl_img_dir . 'whitening-lp-mv03.webp'); ?>" alt="" width="304" height="304" decoding="async" aria-hidden="true">
-                            <span><?php echo $wl_br($badge); ?></span>
+                            <span><span class="wl-mv__badge-line"><?php echo esc_html($wl_badge_head); ?><span class="wl-mv__badge-mark" aria-hidden="true">※</span></span><?php if ($wl_badge_rest) : ?><br><?php echo $wl_br($wl_badge_rest); ?><?php endif; ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -1602,6 +1619,17 @@ $wl_cta = array(
                 </div>
                 <?php if (!empty($wl_price['note'])) : ?>
                     <small class="wl-price__note"><?php echo esc_html($wl_price['note']); ?></small>
+                <?php endif; ?>
+
+                <?php if (!empty($wl_price['law']['items'])) : ?>
+                    <div class="wl-price__law">
+                        <p class="wl-price__law-title"><?php echo esc_html($wl_price['law']['title']); ?></p>
+                        <ul class="wl-price__law-list">
+                            <?php foreach ($wl_price['law']['items'] as $wl_law_item) : ?>
+                                <li><?php echo esc_html($wl_law_item); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                 <?php endif; ?>
             </div>
 
