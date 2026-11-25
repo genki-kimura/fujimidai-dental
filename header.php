@@ -27,6 +27,9 @@ $header_field = function ($name, $default = '') {
     return $value ? $value : $default;
 };
 
+// インプラントLPのページかどうか（SPのヘッダーの見た目を変えるため）
+$is_implant_lp = is_page_template('implant-lp.php');
+
 $header_catch   = $header_field('header_catch', '富士見台駅の歯医者｜富士見台さくら歯科 中野区上鷺宮のインプラント・ホワイトニング');
 $header_address = $header_field('header_address', '東京都中野区上鷺宮3丁目１６−９');
 
@@ -125,7 +128,7 @@ $menu_sub = array(
     array('label' => 'Instagram',            'url' => '#',                'blank' => true), // ← InstagramのURLに書き換え
 );
 ?>
-    <header class="header">
+    <header class="header<?php echo $is_implant_lp ? ' header--implant-lp' : ''; ?>">
         <div class="header__inner">
             <div class="header__brand">
                 <a class="header__logo" href="<?php echo esc_url(home_url('/')); ?>">
@@ -133,20 +136,38 @@ $menu_sub = array(
                 </a>
                 <span class="header__divider" aria-hidden="true"></span>
                 <div class="header__info">
-                    <?php /* ホワイトニングLPは、本文側（FV）の h1 だけにするため、ヘッダーのキャッチは <p> にする */ ?>
-                    <?php $header_catch_tag = is_page_template('whitening-lp.php') ? 'p' : 'h1'; ?>
+                    <?php /* ホワイトニングLP・インプラントLPは、本文側（FV）の h1 だけにするため、ヘッダーのキャッチは <p> にする */ ?>
+                    <?php $header_catch_tag = is_page_template(array('whitening-lp.php', 'implant-lp.php')) ? 'p' : 'h1'; ?>
                     <<?php echo $header_catch_tag; ?> class="header__catch"><?php echo esc_html($header_catch); ?></<?php echo $header_catch_tag; ?>>
                     <div class="header__text">
-                        <address>〒165-0031 <?php echo esc_html($header_address); ?></address>
+                        <?php if ($is_implant_lp) : ?>
+                            <?php /* インプラントLPだけ：住所（〒なし）＋診療時間＋休診日の3行 */ ?>
+                            <address><?php echo esc_html($header_address); ?></address>
+                            <p class="header__lp-info"><?php echo esc_html($header_field('header_hours', '月〜土 9:00–12:00 / 13:00–18:00')); ?></p>
+                            <p class="header__lp-info"><?php echo esc_html($header_field('header_closed', '休診：日曜・祝日（木曜午後は祝日のある週のみ診療）')); ?></p>
+                        <?php else : ?>
+                            <address>〒165-0031 <?php echo esc_html($header_address); ?></address>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
+
+            <?php if ($is_implant_lp) : ?>
+                <?php /* インプラントLPだけ：SPのヘッダーに TEL／WEB予約 ボタンを表示（PCでは非表示） */ ?>
+                <div class="header__lp-btns">
+                    <a class="header__lp-tel" href="<?php echo esc_attr($menu_tel_href($menu_tel_out)); ?>" aria-label="電話する（<?php echo esc_attr($menu_tel_out); ?>）">
+                        <img src="<?php echo esc_url($header_img_dir . 'implant-lp-header-tel.webp'); ?>" alt="" width="17" height="17">
+                        <span>TEL</span>
+                    </a>
+                    <a class="header__lp-web" href="<?php echo esc_url($header_url($menu_web_url)); ?>">WEB<br>予約</a>
+                </div>
+            <?php endif; ?>
 
             <button class="header__toggle" type="button" aria-controls="header-menu" aria-expanded="false" aria-label="メニューを開く">
                 <span class="header__toggle-bar"></span>
                 <span class="header__toggle-bar"></span>
                 <span class="header__toggle-bar"></span>
-                <span class="header__toggle-label" aria-hidden="true">メニュー</span>
+                <span class="header__toggle-label" aria-hidden="true"><?php echo $is_implant_lp ? 'MENU' : 'メニュー'; ?></span>
             </button>
 
             <nav class="header__nav" id="header-nav" aria-label="メインメニュー">

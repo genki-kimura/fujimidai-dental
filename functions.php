@@ -56,6 +56,20 @@ function whitening_lp_scripts()
 add_action('wp_enqueue_scripts', 'whitening_lp_scripts');
 
 /* ----------------------------------------
+// インプラントLP専用のJS（テンプレート「インプラントLP」のページだけ読み込み）
+---------------------------------------- */
+function implant_lp_scripts()
+{
+  if (!is_page_template('implant-lp.php')) {
+    return;
+  }
+  $path = get_theme_file_path('/js/implant-lp.js');
+  $ver  = file_exists($path) ? md5_file($path) : '1.0.0';
+  wp_enqueue_script('implant-lp', get_template_directory_uri() . '/js/implant-lp.js', array(), $ver, true);
+}
+add_action('wp_enqueue_scripts', 'implant_lp_scripts');
+
+/* ----------------------------------------
 // 基本の投稿を任意の名前に変更
 ---------------------------------------- */
 function post_has_archive( $args, $post_type ) {
@@ -430,7 +444,9 @@ add_action('acf/init', function () {
 // ※すでにstyle.cssなどで読み込んでいる場合は、この処理は削除してください
 ---------------------------------------- */
 function theme_google_fonts_url() {
-    return 'https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap';
+    // Cormorant Garamond（英字）・Noto Serif JP（明朝の見出し）はインプラントLPで使用
+    // ※実際に文字で使われたフォントだけがダウンロードされるので、他のページが重くなることはありません
+    return 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600;700&display=swap';
 }
 
 add_action('wp_enqueue_scripts', function () {
