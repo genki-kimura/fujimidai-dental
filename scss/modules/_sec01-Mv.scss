@@ -622,3 +622,23 @@ Mv sp（丸く切り取った写真4つを、文字とバッジのまわりに�
     transform: scale(1.1);
   }
 }
+
+/* MVバッジ2（インプラント）：文言が長いため、改行と文字サイズを個別に調整 */
+.Mv__badge:nth-child(2) .Mv__badge-text {
+  font-size: calc(11.5 * var(--mv-u));
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+@media (max-width: 1023px) {
+  .Mv__badge:nth-child(2) {
+    height: calc(110 * var(--mv-sp));
+  }
+  .Mv__badge:nth-child(2) .Mv__badge-text {
+    font-size: max(10px, calc(22 * var(--mv-sp)));
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+  }
+  .Mv__badge:nth-child(2) .Mv__badge-sp {
+    white-space: pre-line;
+  }
+}

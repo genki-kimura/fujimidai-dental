@@ -1239,6 +1239,26 @@ Mv sp（丸く切り取った写真4つを、文字とバッジのまわりに�
             transform: scale(1.1);
   }
 }
+/* MVバッジ2（インプラント）：文言が長いため、改行と文字サイズを個別に調整 */
+.Mv__badge:nth-child(2) .Mv__badge-text {
+  font-size: calc(11.5 * var(--mv-u));
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+@media (max-width: 1023px) {
+  .Mv__badge:nth-child(2) {
+    height: calc(110 * var(--mv-sp));
+  }
+  .Mv__badge:nth-child(2) .Mv__badge-text {
+    font-size: max(10px, 22 * var(--mv-sp));
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+  }
+  .Mv__badge:nth-child(2) .Mv__badge-sp {
+    white-space: pre-line;
+  }
+}
 /* ----------------------------------------
 Banner
 ---------------------------------------- */
@@ -7398,6 +7418,53 @@ Page Top（TOPへ戻るボタン）
     letter-spacing: 0.2px;
   }
 }
+/* ----------------------------------------
+Floating CTA pc：画面右下（TOPへ戻るボタンの左）に横並びで表示
+---------------------------------------- */
+@media (min-width: 769px) {
+  .floating-cta {
+    top: auto;
+    right: 126px;
+    bottom: 36px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transform: none;
+            transform: none;
+  }
+  .floating-cta .floating-cta__btn {
+    padding: 0 20px;
+    border-radius: 999px;
+  }
+  .floating-cta .floating-cta__btn--web,
+  .floating-cta .floating-cta__btn--white {
+    border-right: 1.5px solid #7f6ba6;
+    -webkit-box-shadow: 0 4px 14px rgba(127, 107, 166, 0.3);
+            box-shadow: 0 4px 14px rgba(127, 107, 166, 0.3);
+  }
+  .floating-cta .floating-cta__btn--tel {
+    border-right: 1.5px solid #c9bfe8;
+    -webkit-box-shadow: 0 4px 14px rgba(46, 42, 51, 0.1);
+            box-shadow: 0 4px 14px rgba(46, 42, 51, 0.1);
+  }
+  .floating-cta .floating-cta__btn--tel:hover {
+    border-color: #7f6ba6;
+  }
+  .floating-cta .floating-cta__text,
+  .floating-cta.is-scrolling .floating-cta__btn:not(:hover):not(:focus-visible) .floating-cta__text {
+    max-width: none;
+    margin-left: 10px;
+    opacity: 1;
+    -webkit-transition: none;
+    transition: none;
+  }
+}
 html,
 body {
   overflow-x: hidden;
@@ -8411,6 +8478,19 @@ message mv
   letter-spacing: 0.08em;
   color: #4a5cb0;
 }
+.wl-mv__badge > span .wl-mv__badge-line {
+  position: relative;
+  display: inline-block;
+}
+.wl-mv__badge > span .wl-mv__badge-mark {
+  position: absolute;
+  top: 11.5%;
+  left: 100%;
+  z-index: 1;
+  font-size: clamp(7px, 0.62 * var(--wl-vw), 8.5px);
+  line-height: 1;
+  letter-spacing: 0;
+}
 .wl-mv__note {
   display: block;
   margin: 18px 0 clamp(14px, 1.6 * var(--wl-vw), 22px);
@@ -8750,6 +8830,9 @@ message mv
   }
   .wl-mv__badge > span {
     font-size: 4vw;
+  }
+  .wl-mv__badge > span .wl-mv__badge-mark {
+    font-size: 1.7vw;
   }
   .wl-mv__note {
     margin: 2.2vw 0 2vw;
@@ -15545,6 +15628,41 @@ message mv
   text-align: left;
   color: #8a8494;
 }
+.wl-price__law {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: calc(1.6 * var(--wl-vw)) 0 0;
+  padding: calc(1.3 * var(--wl-vw)) calc(1.5 * var(--wl-vw));
+  border: 1px solid #e4e4ea;
+  border-radius: calc(1.2 * var(--wl-vw));
+  background: #fafafb;
+}
+.wl-price__law-title {
+  margin: 0;
+  font-size: clamp(11px, 1 * var(--wl-vw), 19px);
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #4b4555;
+}
+.wl-price__law-list {
+  margin: calc(0.7 * var(--wl-vw)) 0 0;
+  padding: 0 0 0 1.3em;
+  list-style: disc;
+}
+.wl-price__law-list li {
+  margin: 0;
+  font-size: clamp(10px, 0.93 * var(--wl-vw), 18px);
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: #6f6878;
+  list-style: disc;
+}
+.wl-price__law-list li + li {
+  margin-top: 0.3em;
+}
 .wl-price__side-title {
   margin: 0;
   font-family: "Shippori Mincho", "Noto Serif JP", "Yu Mincho", serif;
@@ -15768,6 +15886,23 @@ message mv
   }
   .wl-price__note {
     margin-top: calc(28 * var(--wl-p-u));
+    font-size: calc(21 * var(--wl-p-u));
+    line-height: 1.62;
+    letter-spacing: 0;
+  }
+  .wl-price__law {
+    margin-top: calc(32 * var(--wl-p-u));
+    padding: calc(26 * var(--wl-p-u)) calc(28 * var(--wl-p-u));
+    border-radius: calc(16 * var(--wl-p-u));
+  }
+  .wl-price__law-title {
+    font-size: calc(23 * var(--wl-p-u));
+    letter-spacing: 0;
+  }
+  .wl-price__law-list {
+    margin-top: calc(14 * var(--wl-p-u));
+  }
+  .wl-price__law-list li {
     font-size: calc(21 * var(--wl-p-u));
     line-height: 1.62;
     letter-spacing: 0;

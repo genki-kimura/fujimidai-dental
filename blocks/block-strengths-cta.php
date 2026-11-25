@@ -46,12 +46,12 @@ $img_html = $img_id
 	: '';
 
 // ---- キャッチコピー・ポイント(固定の文言。ここを編集) --------------------
-$catch = 'キャッチコピー';
+$catch = $title ? $title : 'キャッチコピー'; // 見出しをキャッチコピーとして表示
 
-// ポイント3つ(\n で2行に改行)
+// ポイント3つ(\n で2行に改行。| は狭い画面で折り返してよい位置)
 $points = array(
-	"富士見台駅\n徒歩3分・土曜も診療",
-	"認定専門医による\nインプラント治療",
+	"富士見台駅\n徒歩3分・|土曜も診療",
+	"日本口腔インプラント|学会認定\n口腔インプラント|専門医在籍",
 	"予防から審美・\n訪問診療まで対応",
 );
 
@@ -76,7 +76,7 @@ $class       = 'strengths-cta' . ( $extra_class ? ' ' . esc_attr( $extra_class )
 		</div>
 	<?php endif; ?>
 
-	<?php if ( $title ) : ?>
+	<?php if ( false && $title ) : // 見出しはキャッチコピー位置に表示するため非表示 ?>
 		<<?php echo $title_tag; ?> class="strengths-cta-title"><?php echo esc_html( $title ); ?></<?php echo $title_tag; ?>>
 	<?php endif; ?>
 
@@ -102,7 +102,7 @@ $class       = 'strengths-cta' . ( $extra_class ? ' ' . esc_attr( $extra_class )
 								</span>
 							</span>
 						<?php endif; ?>
-						<span class="strengths-cta-point-label"><?php echo nl2br( esc_html( $point ) ); ?></span>
+						<span class="strengths-cta-point-label"><?php echo str_replace( '|', '<wbr>', nl2br( esc_html( $point ) ) ); ?></span>
 					</li>
 				<?php endforeach; ?>
 			</ul>
