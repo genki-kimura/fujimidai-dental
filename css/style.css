@@ -31849,22 +31849,13 @@ html:has(.implant-lp) {
 
 /* ========================================
    インプラントLP：ヘッダー（このページだけ・PC）
-   ・header.php で、インプラントLPのときだけ 住所（〒なし）＋診療時間＋休診日 の3行を出しています
+   ・ロゴ横の情報（キャッチ＋住所）は他のページと同じ（2026-11-26 そろえた）
    ・ヘッダーの下に金の線
 ======================================== */
 @media screen and (min-width: 1024px) {
   .header.header--implant-lp {
     border-bottom: 2px solid #D9C08A;
   }
-}
-.header.header--implant-lp .header__text address,
-.header.header--implant-lp .header__text .header__lp-info {
-  margin: 0;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 1.4;
-  letter-spacing: 0.02em;
-  color: #5A5568;
 }
 
 /* ----------------------------------------
