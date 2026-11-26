@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <?php
+    // Googleタグマネージャー（GTM-NZZ5CRC：GA4 G-P5NCWRV8BE）
+    // テスト環境のアクセスをGA4に計測しないよう、本番ドメインのときだけ出力します
+    $fdc_gtm_id = in_array(strtolower(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : ''), array('www.fujimidai-dental.com', 'fujimidai-dental.com'), true) ? 'GTM-NZZ5CRC' : '';
+    ?>
+    <?php if ($fdc_gtm_id) : ?>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','<?php echo esc_js($fdc_gtm_id); ?>');</script>
+    <!-- End Google Tag Manager -->
+    <?php endif; ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +31,12 @@
     <?php if(is_single()){get_template_part('/json/json-column');}; ?>
 </head>
 <body>
+<?php if ($fdc_gtm_id) : ?>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo esc_attr($fdc_gtm_id); ?>"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<?php endif; ?>
 <?php
 /* ----------------------------------------
    ヘッダー用の値（ACFオプションページ「ヘッダー設定」から取得）
