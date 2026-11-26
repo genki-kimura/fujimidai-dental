@@ -15,7 +15,7 @@ $ca_title = is_category() ? single_cat_title('', false) : 'コラム一覧';
 ?>
 <main>
     <!-- タイトル部分（既存：.page-common-head） -->
-    <section class="page-common-head">
+    <section class="page-common-head page-common-head--solid">
         <div class="page-common-head__inner">
             <h1 class="page-common-head__title"><?php echo esc_html($ca_title); ?></h1>
         </div>
