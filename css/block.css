@@ -4610,4 +4610,22 @@ h1.wp-block-post-title::after {
     grid-template-columns: 1fr 1.2fr 1fr;
   }
 }
+.page-common-head.page-common-head--solid {
+  height: auto;
+  max-height: none;
+  min-height: 0;
+  aspect-ratio: auto;
+  padding-block: 36px;
+  background: #988ebc;
+  background-image: none;
+}
+.page-common-head.page-common-head--solid .page-common-head__title {
+  text-shadow: none;
+}
+
+@media (max-width: 767px) {
+  .page-common-head.page-common-head--solid {
+    padding-block: 24px;
+  }
+}
 /*# sourceMappingURL=block.css.map */

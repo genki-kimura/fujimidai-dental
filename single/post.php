@@ -32,7 +32,7 @@ $cs_list_url = $cs_page_id ? get_permalink($cs_page_id) : home_url('/column/');
         <?php while (have_posts()) : the_post(); ?>
 
             <!-- タイトル部分（既存：.page-common-head） -->
-            <section class="page-common-head">
+            <section class="page-common-head page-common-head--solid">
                 <div class="page-common-head__inner">
                     <h1 class="page-common-head__title"><?php the_title(); ?></h1>
                 </div>

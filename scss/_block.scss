@@ -4829,3 +4829,25 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
     grid-template-columns: 1fr 1.2fr 1fr;
   }
 }
+
+// --- コラム・お知らせの記事ページ：見出しの背景を紫一色にして、上下の余白を詰める（2026-11-26）
+// 　　記事タイトルが長く、右側の白いグラデーションで文字が読みにくかったため
+.page-common-head.page-common-head--solid {
+  height: auto;
+  max-height: none;
+  min-height: 0;
+  aspect-ratio: auto;
+  padding-block: 36px;
+  background: #988ebc;
+  background-image: none;
+
+  .page-common-head__title {
+    text-shadow: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-common-head.page-common-head--solid {
+    padding-block: 24px;
+  }
+}
