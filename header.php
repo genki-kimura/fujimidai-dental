@@ -125,7 +125,7 @@ $header_dropdown = array(
 $menu_sub = array(
     array('label' => 'プライバシーポリシー', 'url' => '/privacy-policy/', 'blank' => false),
     array('label' => 'サイトマップ',         'url' => '/sitemap/',        'blank' => false),
-    array('label' => 'Instagram',            'url' => '#',                'blank' => true), // ← InstagramのURLに書き換え
+    array('label' => 'Instagram',            'url' => 'https://www.instagram.com/sakura0828we/', 'blank' => true),
 );
 ?>
     <header class="header<?php echo $is_implant_lp ? ' header--implant-lp' : ''; ?>">
