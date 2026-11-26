@@ -26012,7 +26012,7 @@ html:has(.implant-lp) {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1060/236;
+  aspect-ratio: 1060/400;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -26560,7 +26560,7 @@ html:has(.implant-lp) {
     display: none;
   }
   .implant-consult__method-img {
-    aspect-ratio: 345/92;
+    aspect-ratio: 345/130;
   }
   .implant-consult__method-body {
     padding: 16px 16px 18px;

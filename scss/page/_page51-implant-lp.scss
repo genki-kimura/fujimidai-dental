@@ -6700,7 +6700,7 @@ html:has(.implant-lp) {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 1060 / 236;
+    aspect-ratio: 1060 / 400; // 2026-11-26 写真が切れすぎるため縦幅を広げた（元 1060 / 236）
     object-fit: cover;
   }
 
@@ -7226,7 +7226,7 @@ html:has(.implant-lp) {
     }
 
     &__method-img {
-      aspect-ratio: 345 / 92;
+      aspect-ratio: 345 / 130; // PCと同じく縦幅を広げた（元 345 / 92）
     }
 
     &__method-body {
