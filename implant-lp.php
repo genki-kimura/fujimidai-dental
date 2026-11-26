@@ -1030,13 +1030,13 @@ get_header();
                     <p class="implant-consult__school"><img src="<?php echo esc_url($ilp_img_dir . 'implant-lp-consult-icon-school.webp'); ?>" alt="" width="20" height="20" loading="lazy">東京医科歯科大学 出身</p>
                     <p class="implant-consult__name">院長 芳賀 浩昭<span class="implant-consult__kana">（はが ひろあき）</span></p>
                     <p class="implant-consult__cred">歯学博士 / 日本口腔インプラント学会認定 口腔インプラント専門医</p>
-                    <p class="implant-consult__doctor-catch">「医科歯科連携」で、全身疾患のある方も安心。</p>
-                    <p class="implant-consult__doctor-text">東京医科歯科大学で研鑽を積み、医科（内科・外科）と歯科をまたいだ視点を持つ院長が担当します。高血圧・糖尿病など全身疾患をお持ちの方も、必要に応じて主治医や医科と連携しながら、お身体の状態に配慮して安全にインプラント治療を進められるのが当院の強みです。</p>
+                    <p class="implant-consult__doctor-catch">「医科歯科連携」で、全身疾患のある方もご相談ください。</p>
+                    <p class="implant-consult__doctor-text">東京医科歯科大学で研鑽を積み、医科（内科・外科）と歯科をまたいだ視点を持つ院長が担当します。高血圧・糖尿病など全身疾患をお持ちの方も、必要に応じて主治医や医科と連携しながら、お身体の状態に配慮しながらインプラント治療を進められるのが当院の強みです。</p>
                     <div class="implant-consult__partner">
                         <span class="implant-consult__partner-icon"><img src="<?php echo esc_url($ilp_img_dir . 'implant-lp-consult-icon-hospital.webp'); ?>" alt="" width="22" height="22" loading="lazy"></span>
                         <div>
                             <p class="implant-consult__partner-title">連携医療機関</p>
-                            <p class="implant-consult__partner-text">東京医科歯科大学・慶應義塾大学・神奈川歯科大学 等と連携（本院ではなく連携医療機関）。必要に応じて専門機関をご紹介し、安全に治療を進めます。</p>
+                            <p class="implant-consult__partner-text">東京医科歯科大学・慶應義塾大学・神奈川歯科大学 等と連携（本院ではなく連携医療機関）。必要に応じて専門機関をご紹介し、お身体の状態に配慮しながら治療を進めます。</p>
                         </div>
                     </div>
                 </div>
@@ -1151,7 +1151,7 @@ get_header();
         array('img' => 'implant-lp-reason01.webp', 'alt' => '院長が歯科衛生士とともに治療している様子',     'badge' => '',               'title' => '口腔インプラント専門医が“一貫”で担当', 'text' => '診断からインプラント埋入手術、その後のメンテナンスまで。経験豊富な口腔インプラント専門医が、途中で担当を変えることなく一貫してあなたを担当します。'),
         array('img' => 'implant-lp-reason02.webp', 'alt' => 'ベッドの上で口腔ケアを受ける高齢の女性',       'badge' => '当院の最大の特長', 'title' => '訪問診療で“入れた先”まで<br>生涯サポート', 'text' => '通院が難しくなっても、訪問診療で口腔ケアを継続。寝たきりになっても、インプラントの状態まで最期まで診続けられるのが当院の最大の強みです。'),
         array('img' => 'implant-lp-reason03.webp', 'alt' => '口腔内スキャナーでデジタルの歯型をとっている様子', 'badge' => '',               'title' => '審美治療のDX化で、<br class="implant-reason__br-sp">美しく精密に',           'text' => '口腔内スキャナーによるデジタル歯型とりと、審美専門の歯科技工士の立ち会いにより、歯の色や形を確認しながら製作。より自然で美しい被せ物に仕上げます。'),
-        array('img' => 'implant-lp-reason04.webp', 'alt' => '院長がレントゲン画像を見せながら説明している様子', 'badge' => '',               'title' => '医科歯科連携で全身疾患も安心',             'text' => '東京医科歯科大学出身の院長が、医科と歯科をまたいだ視点で対応。高血圧・糖尿病など全身疾患をお持ちの方も、連携のうえ安全に治療を進められます。'),
+        array('img' => 'implant-lp-reason04.webp', 'alt' => '院長がレントゲン画像を見せながら説明している様子', 'badge' => '',               'title' => '医科歯科連携で全身疾患にも配慮',             'text' => '東京医科歯科大学出身の院長が、医科と歯科をまたいだ視点で対応。高血圧・糖尿病など全身疾患をお持ちの方も、主治医と連携しながら、お身体の状態に配慮して治療を進めます。'),
         array('img' => 'implant-lp-reason05.webp', 'alt' => '拡大鏡を使って治療している院長',                 'badge' => '',               'title' => '難症例にも対応できる技術力',               'text' => '骨が足りない・他院で断られた方にも、骨造成など幅広い選択肢をご用意。「難しい」と言われた方こそ、一度ご相談ください。'),
     );
     ?>
@@ -1381,7 +1381,7 @@ get_header();
 
             <!-- 保証システム -->
             <h3 class="implant-price__h3">保証システム（最長10年）</h3>
-            <p class="implant-price__h3-sub">治療後も長く安心してお使いいただけるよう、保証制度を設けています。</p>
+            <p class="implant-price__h3-sub">治療後も長くお使いいただけるよう、保証制度を設けています。</p>
             <div class="implant-price__guarantee">
                 <div class="implant-price__guarantee-main">
                     <img class="implant-price__guarantee-img" src="<?php echo esc_url($ilp_img_dir . 'implant-lp-price-guarantee.webp'); ?>" alt="インプラントの構造：上部構造、アバットメント（連結部）、歯ぐき、インプラント体、あごの骨" width="800" height="600" loading="lazy">
