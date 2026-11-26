@@ -4847,9 +4847,11 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
     content: none;
   }
 
-  // 右側にも余白（長いタイトルが画面の端まで伸びないように）
+  // タイトルの幅は本文（.page-common-content__inner：最大860px・中央）と同じにそろえる
   .page-common-head__inner {
-    padding-right: 17.5%;
+    max-width: calc(860px + 32px);
+    margin: 0 auto;
+    padding: 0 16px;
   }
 
   .page-common-head__title {
@@ -4860,9 +4862,5 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
 @media (max-width: 767px) {
   .page-common-head.page-common-head--solid {
     padding-block: 24px;
-
-    .page-common-head__inner {
-      padding-right: 6%; // SPは左右とも 6%（通常の見出しと同じ）
-    }
   }
 }

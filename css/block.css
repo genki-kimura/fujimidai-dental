@@ -4623,7 +4623,9 @@ h1.wp-block-post-title::after {
   content: none;
 }
 .page-common-head.page-common-head--solid .page-common-head__inner {
-  padding-right: 17.5%;
+  max-width: 892px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 .page-common-head.page-common-head--solid .page-common-head__title {
   text-shadow: none;
@@ -4632,9 +4634,6 @@ h1.wp-block-post-title::after {
 @media (max-width: 767px) {
   .page-common-head.page-common-head--solid {
     padding-block: 24px;
-  }
-  .page-common-head.page-common-head--solid .page-common-head__inner {
-    padding-right: 6%;
   }
 }
 /*# sourceMappingURL=block.css.map */
