@@ -569,12 +569,12 @@ $mv_circles = array(
                 $whitening_cases = array(
                         array(
                                 'label' => 'BEFORE',
-                                'file'  => '',
+                                'file'  => 'whitening-case01-before.webp',
                                 'alt'   => 'ホワイトニング施術前の歯',
                         ),
                         array(
                                 'label' => 'AFTER',
-                                'file'  => '',
+                                'file'  => 'whitening-case01-after.webp',
                                 'alt'   => 'ホワイトニング施術後の歯',
                         ),
                 );
@@ -628,7 +628,7 @@ $mv_circles = array(
 
                                         <div class="Whitening__notes">
                                                 <p>※ 自由診療（保険適用外）の治療例です。効果には個人差があります。</p>
-                                                <p><span>治療期間・回数の目安：オフィス 1〜3回／ホーム 約2週間〜</span>治療費（税込）：〇〇,〇〇〇円〜</p>
+                                                <p><span>治療内容：ホワイトエッセンスコース（オフィス3回＋ホーム＋クリーニング）</span><br><span>治療期間・回数：オフィス 3回／ホーム 約2週間〜</span>治療費（税込）：118,800円</p>
                                                 <p>主なリスク・副作用：施術中から施術後にかけて一時的な知覚過敏やしみる症状が出ることがあります。詰め物・被せ物は白くなりません。時間の経過とともに色調が戻るため、定期的な再施術が必要です。</p>
                                         </div>
                                 </div>

@@ -48,16 +48,15 @@ $wl_case = array(
     'lead'     => '中央のボタンを左右にスライドして、施術前後を見比べられます。',
     'note'     => '※ 施術前後の画像は、一切の加工・修正を行っておりません。',
     'items'    => array(
-        array('before' => 'whitening-case01-before.webp', 'after' => 'whitening-case01-after.webp', 'alt' => '症例1'),
-        array('before' => 'whitening-case02-before.webp', 'after' => 'whitening-case02-after.webp', 'alt' => '症例2'),
-        array('before' => 'whitening-case03-before.webp', 'after' => 'whitening-case03-after.webp', 'alt' => '症例3'),
+        array('before' => 'whitening-case01-before.webp', 'after' => 'whitening-case01-after.webp', 'alt' => 'ホワイトニング症例1'),
+        array('before' => 'whitening-case02-before.webp', 'after' => 'whitening-case02-after.webp', 'alt' => 'ホワイトニング症例2'),
     ),
     // array(見出し, 内容, 太字にするか)
     'info'     => array(
-        array('内容',           'ホワイトニング材とホワイトニング専用照射器を併用して歯を白くします', false),
-        array('費用（自費）',   '19,900円（税込）', true),
-        array('期間・回数',     '1回', false),
-        array('副作用・リスク', '個人差がありますが、施術中や薬剤使用後に歯がしみる場合があります。', false),
+        array('内容',           'ホワイトエッセンスコース（オフィス3回＋ホーム＋クリーニング）', false),
+        array('費用（自費）',   '118,800円（税込）', true),
+        array('期間・回数',     'オフィス 3回／ホーム 約2週間〜', false),
+        array('副作用・リスク', '施術中から施術後にかけて一時的な知覚過敏やしみる症状が出ることがあります。詰め物・被せ物は白くなりません。時間の経過とともに色調が戻るため、定期的な再施術が必要です。', false),
         array('所要時間',       '初回90分／2回目以降45分　※初回はカウンセリング込み', false),
     ),
 );
