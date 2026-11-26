@@ -1288,7 +1288,7 @@ get_header();
                 <?php foreach ($ilp_flow_steps as $i => $st) : ?>
                     <li class="implant-flow__step" id="flow-step<?php echo esc_attr($i + 1); ?>">
                         <span class="implant-flow__step-num" aria-hidden="true"><span class="implant-flow__step-en">STEP</span><?php echo esc_html(sprintf('%02d', $i + 1)); ?></span>
-                        <img class="implant-flow__step-img" src="<?php echo esc_url($ilp_img_dir . sprintf('implant-lp-flow%02d.webp', $i + 1)); ?>" alt="" width="600" height="400" loading="lazy">
+                        <img class="implant-flow__step-img" src="<?php echo esc_url($ilp_img(sprintf('implant-lp-flow%02d.webp', $i + 1))); ?>" alt="" width="600" height="400" loading="lazy">
                         <div class="implant-flow__step-body">
                             <h3 class="implant-flow__step-title"><?php echo esc_html($st['title']); ?></h3>
                             <p class="implant-flow__time"><img class="implant-flow__clock" src="<?php echo esc_url($ilp_img_dir . 'implant-lp-flow-clock.webp'); ?>" alt="" width="14" height="14" loading="lazy"><?php echo esc_html($st['time']); ?></p>
