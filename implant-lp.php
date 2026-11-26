@@ -995,7 +995,7 @@ get_header();
             <ul class="implant-consult__methods">
                 <?php foreach ($ilp_consult_methods as $m) : ?>
                     <li class="implant-consult__method">
-                        <img class="implant-consult__method-img" src="<?php echo esc_url($ilp_img($m['img'])); ?>" alt="" width="1060" height="236" loading="lazy">
+                        <img class="implant-consult__method-img" src="<?php echo esc_url($ilp_img($m['img'])); ?>" alt="" width="1060" height="400" loading="lazy">
                         <div class="implant-consult__method-body">
                             <p class="implant-consult__for"><span class="implant-consult__for-tag">こんな方へ</span><?php echo esc_html($m['for']); ?></p>
                             <h4 class="implant-consult__method-title"><?php echo esc_html($m['title']); ?></h4>
