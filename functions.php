@@ -176,11 +176,15 @@ function custom_mime_types( $mimes ) {
 //----------------------------------------------------
 
 // タイトル設定
+// ・コラム一覧：「新着コラム一覧 | 富士見台さくら歯科」
+// ・コラム／お知らせの個別ページ：「記事タイトル | 富士見台さくら歯科」（タイトルに医院名が入っている記事は、そのまま）
 function custom_wpseo_title($title){ 
+  $clinic = '富士見台さくら歯科';
   if ( is_post_type_archive( 'post' ) ) {
-    $title = '新着コラム一覧 | レディースクリニックなみなみ【東京都目黒区】';
+    $title = '新着コラム一覧 | ' . $clinic;
   }elseif( is_single() ){
-    $title = get_the_title().' | レディースクリニックなみなみ【東京都目黒区】';
+    $post_title = get_the_title();
+    $title = ( mb_strpos( $post_title, $clinic ) !== false ) ? $post_title : $post_title . ' | ' . $clinic;
   }
   
   // 
