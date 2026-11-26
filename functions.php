@@ -90,19 +90,9 @@ add_filter( 'post_type_archive_link', function( $link, $post_type ) {
   }
   return $link;
  }, 10, 2 );
- function add_article_post_permalink( $permalink ) {
- $permalink = '/column' . $permalink; //「blog」は任意のものに変えて下さい。
-  return $permalink;
- }
- add_filter( 'pre_post_link', 'add_article_post_permalink' );
- function add_article_post_rewrite_rules( $post_rewrite ) {
-  $return_rule = array();
-  foreach ( $post_rewrite as $regex => $rewrite ) {
-  $return_rule['column/' . $regex] = $rewrite; //「blog」は任意のものに変えて下さい。
-  }
- return $return_rule;
- }
- add_filter( 'post_rewrite_rules', 'add_article_post_rewrite_rules' );
+ // コラム（投稿）の個別ページURLは、旧サイトと同じ /記事スラッグ/ にする（2026-11-26）
+ // 設定 > パーマリンク は「投稿名（/%postname%/）」。一覧ページは上の has_archive で /column/ のまま
+ // （以前は /column/ を先頭に付けるフィルターを入れていたが、旧サイトのURLに合わせるため外した）
 
 /* ----------------------------------------
 // cf7の自動挿入タグを無効
