@@ -4847,6 +4847,11 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
     content: none;
   }
 
+  // 右側にも余白（長いタイトルが画面の端まで伸びないように）
+  .page-common-head__inner {
+    padding-right: 17.5%;
+  }
+
   .page-common-head__title {
     text-shadow: none;
   }
@@ -4855,5 +4860,9 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
 @media (max-width: 767px) {
   .page-common-head.page-common-head--solid {
     padding-block: 24px;
+
+    .page-common-head__inner {
+      padding-right: 6%; // SPは左右とも 6%（通常の見出しと同じ）
+    }
   }
 }
