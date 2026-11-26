@@ -5,7 +5,7 @@ $news_object = get_post_type_object( 'news' );
 $news_title  = $news_object ? $news_object->labels->name : 'お知らせ';
 ?>
 
-<section class="page-common-head">
+<section class="page-common-head page-common-head--solid">
   <div class="page-common-head__inner">
     <h1 class="page-common-head__title"><?php echo esc_html( $news_title ); ?></h1>
   </div>
