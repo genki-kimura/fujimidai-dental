@@ -53,7 +53,12 @@ $cs_list_url = $cs_page_id ? get_permalink($cs_page_id) : home_url('/column/');
                         <?php endif; ?>
                     </div>
 
-                    <?php if (has_post_thumbnail()) : ?>
+                    <?php
+                    // アイキャッチと同じ画像が本文に入っている記事（旧サイトから移したコラムなど）は、上のアイキャッチを出さない（同じ画像が2回並ぶため）
+                    $cs_thumb_file = has_post_thumbnail() ? preg_replace('/\.[^.]+$/', '', wp_basename((string) wp_get_attachment_url(get_post_thumbnail_id()))) : '';
+                    $cs_show_thumb = $cs_thumb_file !== '' && strpos(get_post_field('post_content', get_the_ID()), $cs_thumb_file) === false;
+                    ?>
+                    <?php if ($cs_show_thumb) : ?>
                         <div class="Column-single__thumb">
                             <?php the_post_thumbnail('large'); ?>
                         </div>
