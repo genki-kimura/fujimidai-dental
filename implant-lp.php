@@ -25,7 +25,21 @@ $ilp_web_url = $ilp_web_url ? $ilp_web_url : '#';
 ---------------------------------------- */
 
 /* ----------------------------------------
-   WHY NOW の動画（YouTube）
+   WHY NOW の動画
+   ・img フォルダに implant-lp-why-video.mp4 があれば、その動画を自動再生・くり返し再生します（音なし）
+     （mp4 があるときは、下の YouTube の設定は使いません）
+   ・mp4 が無いときは YouTube（下の設定）を使います
+---------------------------------------- */
+$ilp_why_mp4     = 'implant-lp-why-video.mp4';
+$ilp_why_mp4_url = file_exists($ilp_img_path . $ilp_why_mp4) ? $ilp_img_dir . $ilp_why_mp4 : '';
+
+// img フォルダに mp4 があれば、そのURLを返す（無ければ空）
+$ilp_mp4_url = function ($file) use ($ilp_img_dir, $ilp_img_path) {
+    return ($file && file_exists($ilp_img_path . $file)) ? $ilp_img_dir . $file : '';
+};
+
+/* ----------------------------------------
+   WHY NOW の動画（YouTube）※ mp4 が無いときだけ使います
    ・URLが支給されたら $ilp_why_youtube に入れてください
      （https://youtu.be/xxxx ／ https://www.youtube.com/watch?v=xxxx のどちらの形でもOK）
    ・URLを入れると、YouTubeのサムネイルが枠に表示され、再生ボタンで動画が流れます
@@ -49,7 +63,14 @@ if (file_exists($ilp_img_path . $ilp_why_thumb)) {
 }
 
 /* ----------------------------------------
-   ABOUT の動画（YouTube）
+   ABOUT の動画
+   ・img フォルダに implant-lp-video-implant.mp4 があれば、自動再生・くり返し再生します（音なし）
+   ・mp4 が無いときは YouTube（下の設定）を使います
+---------------------------------------- */
+$ilp_about_mp4_url = $ilp_mp4_url('implant-lp-video-implant.mp4');
+
+/* ----------------------------------------
+   ABOUT の動画（YouTube）※ mp4 が無いときだけ使います
    ・URLが支給されたら $ilp_about_youtube に入れてください（WHY NOW と同じ使い方）
    ・サムネイルを差し替えたい場合は、img フォルダに implant-lp-about-video.webp を入れてください
 ---------------------------------------- */
@@ -177,29 +198,30 @@ get_header();
     ========================================= -->
     <?php /* 構成メモより：H1 は「中野区・富士見台駅のインプラント治療｜富士見台さくら歯科」。大きなキャッチは装飾として <p> */ ?>
     <section class="implant-fv" id="fv">
-        <!-- 背景の写真と飾り（金の線・波は画像 implant-lp-fv-deco.webp／SPは implant-lp-fv-deco-sp.webp） -->
+        <!-- 背景の写真と飾り（金の線・波は画像 implant-lp-fv-deco.webp／SPは implant-lp-fv-deco-sp.webp）
+             横幅1366pxの枠の中に置くので、大きな画面でも右端に寄らない -->
         <div class="implant-fv__visual" aria-hidden="true">
             <picture>
-                <source media="(max-width: 767px)" srcset="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-photo-sp.webp'); ?>" width="855" height="1140">
+                <source media="(max-width: 1023px)" srcset="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-photo-sp.webp'); ?>" width="855" height="1140">
                 <img class="implant-fv__photo" src="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-photo.webp'); ?>" alt="" width="2203" height="2100" fetchpriority="high">
             </picture>
 
             <!-- 金の線・光の帯・下の波（PC／SPで画像を切り替え） -->
             <picture>
-                <source media="(max-width: 767px)" srcset="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-deco-sp.webp'); ?>" width="1125" height="1815">
+                <source media="(max-width: 1023px)" srcset="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-deco-sp.webp'); ?>" width="1125" height="1815">
                 <img class="implant-fv__deco" src="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-deco.webp'); ?>" alt="" width="4098" height="2100">
             </picture>
 
             <img class="implant-fv__model" src="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-model.webp'); ?>" alt="" width="540" height="799">
         </div>
 
-        <!-- 認定専門医バッジ（丸い背景＋文字の2枚を重ねる） -->
-        <div class="implant-fv__badge" role="img" aria-label="日本口腔インプラント学会認定 口腔インプラント専門医 担当">
-            <img class="implant-fv__badge-bg" src="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-badge-bg.webp'); ?>" alt="" width="732" height="732">
-            <img class="implant-fv__badge-text" src="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-badge-text.webp'); ?>" alt="" width="448" height="448">
-        </div>
-
         <div class="implant-fv__inner">
+            <!-- 認定専門医バッジ（丸い背景＋文字の2枚を重ねる）。横幅1366pxの枠の中に置くので、大きな画面でも右端に寄らない -->
+            <div class="implant-fv__badge" role="img" aria-label="日本口腔インプラント学会認定 口腔インプラント専門医 担当">
+                <img class="implant-fv__badge-bg" src="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-badge-bg.webp'); ?>" alt="" width="732" height="732">
+                <img class="implant-fv__badge-text" src="<?php echo esc_url($ilp_img_dir . 'implant-lp-fv-badge-text.webp'); ?>" alt="" width="448" height="448">
+            </div>
+
             <div class="implant-fv__content">
                 <p class="implant-fv__en" aria-hidden="true"><span class="implant-fv__en-main">IMP<span class="implant-fv__en-gold">LANT</span></span><span class="implant-fv__en-line"></span><span class="implant-fv__en-sub">Treatment</span></p>
                 <h1 class="implant-fv__sub">
@@ -246,6 +268,12 @@ get_header();
                 <div class="implant-why__body">
                     <!-- 動画（URLが入るまでは枠と再生ボタンだけ表示） -->
                     <figure class="implant-why__video">
+                        <?php if ($ilp_why_mp4_url) : ?>
+                        <!-- 動画ファイル（自動再生・くり返し・音なし）。スマホでも自動再生できるよう muted と playsinline を付けています -->
+                        <div class="implant-why__video-frame is-movie">
+                            <video class="implant-why__video-movie" src="<?php echo esc_url($ilp_why_mp4_url); ?>" autoplay muted loop playsinline preload="auto" aria-label="歯が抜けたまま放置すると、まわりの歯が動いていく様子のアニメーション" data-autoplay-video></video>
+                        </div>
+                        <?php else : ?>
                         <div class="implant-why__video-frame<?php echo $ilp_why_thumb_url ? ' has-thumb' : ''; ?>" data-youtube-id="<?php echo esc_attr($ilp_why_video_id); ?>" data-video-title="なぜ歯を抜けた状態にしたらまずいのか（YouTube）">
                             <?php if ($ilp_why_thumb_url) : ?>
                                 <img class="implant-why__video-thumb" src="<?php echo esc_url($ilp_why_thumb_url); ?>" alt="" width="640" height="360" loading="lazy">
@@ -254,8 +282,9 @@ get_header();
                                 <span class="implant-why__video-play-icon" aria-hidden="true"></span>
                             </button>
                         </div>
+                        <?php endif; ?>
                         <figcaption class="implant-why__video-caption">
-                            <span class="implant-why__video-caption-icon" aria-hidden="true"></span>動画：なぜ歯を抜けた状態にしたらまずいのか（YouTube）
+                            <span class="implant-why__video-caption-icon" aria-hidden="true"></span>動画：なぜ歯を抜けた状態にしたらまずいのか<?php echo $ilp_why_mp4_url ? '' : '（YouTube）'; ?>
                         </figcaption>
                     </figure>
 
@@ -486,6 +515,11 @@ get_header();
                 </div>
 
                 <figure class="implant-about__video">
+                    <?php if ($ilp_about_mp4_url) : ?>
+                    <div class="implant-about__video-frame is-movie">
+                        <video class="implant-lp-movie" src="<?php echo esc_url($ilp_about_mp4_url); ?>" autoplay muted loop playsinline preload="auto" aria-label="インプラント治療の流れのアニメーション" data-autoplay-video></video>
+                    </div>
+                    <?php else : ?>
                     <div class="implant-about__video-frame" data-youtube-id="<?php echo esc_attr($ilp_about_video_id); ?>" data-video-title="インプラント治療とは（YouTube）">
                         <?php if ($ilp_about_thumb_url) : ?>
                             <img class="implant-about__video-thumb" src="<?php echo esc_url($ilp_about_thumb_url); ?>" alt="" width="640" height="360" loading="lazy">
@@ -494,7 +528,8 @@ get_header();
                             <span class="implant-about__video-play-icon" aria-hidden="true"></span>
                         </button>
                     </div>
-                    <figcaption class="implant-about__video-caption"><span class="implant-about__video-caption-icon" aria-hidden="true"></span>動画：インプラント治療とは（YouTube）</figcaption>
+                    <?php endif; ?>
+                    <figcaption class="implant-about__video-caption"><span class="implant-about__video-caption-icon" aria-hidden="true"></span>動画：インプラント治療とは<?php echo $ilp_about_mp4_url ? '' : '（YouTube）'; ?></figcaption>
                 </figure>
             </div>
 
@@ -747,7 +782,7 @@ get_header();
         array(
             'before' => 'implant-lp-case01-before.webp',
             'after'  => 'implant-lp-case01-after.webp',
-            'title'  => '症例1：スポーツ外傷で前歯を失ったケース（治療後 約12年経過）',
+            'title'  => '症例：スポーツ外傷で前歯を失ったケース（治療後 約12年経過）',  // 症例が1件だけなので番号なし（2件以上になったら「症例1：」に戻してください）
             'rows'   => array(
                 '主訴'     => '前歯が折れた（30代・男性／スポーツ中の事故で左上前歯1本を破折・抜歯）',
                 '治療内容' => '抜歯→コンピューター上で治療計画立案・ガイド作製→インプラント体の埋入→型取り→上部構造の装着',
@@ -757,8 +792,10 @@ get_header();
             ),
             'note'   => '※ 主なリスク・副作用：術後の疼痛、歯肉の発赤・腫脹、神経損傷。経過には個人差があり、同様の結果を保証するものではありません。自由診療（保険適用外）です。費用は治療当時のもので、現在の料金は料金表をご確認ください。',
         ),
-        // ▼ 仮の症例（実際の症例が届いたら、写真のファイル名と文章を書き換えてください）
-        //   写真が img フォルダに無いあいだは、グレーの仮枠が表示されます
+        // ▼ 仮の症例（非表示中）
+        //   実際の症例が届いたら、下の /* と */ を消して、写真のファイル名と文章を書き換えてください
+        //   （症例が2件以上になると、矢印・ドットが自動で表示されます）
+        /*
         array(
             'before' => 'implant-lp-case02-before.webp',
             'after'  => 'implant-lp-case02-after.webp',
@@ -785,6 +822,7 @@ get_header();
             ),
             'note'   => '※ （仮）主なリスク・副作用が入ります。経過には個人差があり、同様の結果を保証するものではありません。自由診療（保険適用外）です。',
         ),
+        */
     );
 
     $ilp_esthetic_items = array(
@@ -896,16 +934,16 @@ get_header();
                     </div>
                 <?php endforeach; ?>
 
-                <?php /* まとめ：PCは1文の帯／SPは「どこに埋めるか × 何をかぶせるか」の図＋一文 */ ?>
+                <?php /* まとめ：「どこに埋めるか × 何をかぶせるか」の図＋一文（PCは改行なしで横長／SPは改行あり）。上の1文は読み上げ用で見た目は隠す */ ?>
                 <div class="implant-esthetic__summary">
                     <p class="implant-esthetic__summary-pc">「どこに埋めるか」はサージカルガイドで、「何をかぶせるか」は審美のデジタル設計で。“入れた”とわからない仕上がりを目指します。</p>
                     <div class="implant-esthetic__summary-sp" aria-hidden="true">
                         <div class="implant-esthetic__summary-pair">
-                            <p class="implant-esthetic__summary-box"><span>どこに埋めるか</span>サージカル<br>ガイド</p>
+                            <p class="implant-esthetic__summary-box"><span>どこに埋めるか</span>サージカル<br class="implant-esthetic__br-sp">ガイド</p>
                             <span class="implant-esthetic__summary-x">×</span>
-                            <p class="implant-esthetic__summary-box"><span>何をかぶせるか</span>審美の<br>デジタル設計</p>
+                            <p class="implant-esthetic__summary-box"><span>何をかぶせるか</span>審美の<br class="implant-esthetic__br-sp">デジタル設計</p>
                         </div>
-                        <p class="implant-esthetic__summary-text">“入れた”とわからない<br>仕上がりを目指します。</p>
+                        <p class="implant-esthetic__summary-text">“入れた”とわからない<br class="implant-esthetic__br-sp">仕上がりを目指します。</p>
                     </div>
                 </div>
             </div>
@@ -1026,11 +1064,12 @@ get_header();
          ・動画2本（URL が入るまでは枠＋再生ボタンだけ）
     ========================================= -->
     <?php
+    // mp4：img フォルダにこのファイルがあれば、自動再生・くり返し再生（音なし）。無いときは youtube を使います
     // youtube：URLを入れると再生できます／thumb：img フォルダにあればサムネイルに使います（無ければ YouTube の画像）
     // text：PC用／text_sp：SP用の短い文
     $ilp_prevention_items = array(
-        array('youtube' => '', 'thumb' => 'implant-lp-prevention-video01.webp', 'video' => 'ブリッジの治療',       'icon' => 'implant-lp-about-icon-bridge.webp',  'mark' => '×', 'title' => 'ブリッジ',     'text' => '両隣の健康な歯を削って土台にします。3本分の力を2本で支えるため負担が集中し、歯を失う連鎖が起きることがあります。', 'text_sp' => '両隣の健康な歯を削って土台に。負担が集中し、歯を失う連鎖が起きることも。', 'highlight' => false),
-        array('youtube' => '', 'thumb' => 'implant-lp-prevention-video02.webp', 'video' => 'インプラントの治療', 'icon' => 'implant-lp-about-icon-implant.webp', 'mark' => '○', 'title' => 'インプラント', 'text' => '人工歯根が1本で独立して機能します。両隣の歯を削る必要がなく、残っている歯と噛み合わせを守れます。',               'text_sp' => '1本で独立して機能。両隣の歯を削らず、残っている歯と噛み合わせを守れます。', 'highlight' => true),
+        array('mp4' => 'implant-lp-video-bridge.mp4',  'youtube' => '', 'thumb' => 'implant-lp-prevention-video01.webp', 'video' => 'ブリッジの治療',       'icon' => 'implant-lp-about-icon-bridge.webp',  'mark' => '×', 'title' => 'ブリッジ',     'text' => '両隣の健康な歯を削って土台にします。3本分の力を2本で支えるため負担が集中し、歯を失う連鎖が起きることがあります。', 'text_sp' => '両隣の健康な歯を削って土台に。負担が集中し、歯を失う連鎖が起きることも。', 'highlight' => false),
+        array('mp4' => 'implant-lp-video-implant.mp4', 'youtube' => '', 'thumb' => 'implant-lp-prevention-video02.webp', 'video' => 'インプラントの治療', 'icon' => 'implant-lp-about-icon-implant.webp', 'mark' => '○', 'title' => 'インプラント', 'text' => '人工歯根が1本で独立して機能します。両隣の歯を削る必要がなく、残っている歯と噛み合わせを守れます。',               'text_sp' => '1本で独立して機能。両隣の歯を削らず、残っている歯と噛み合わせを守れます。', 'highlight' => true),
     );
     ?>
     <section class="implant-prevention" id="prevention">
@@ -1048,6 +1087,7 @@ get_header();
                 <div class="implant-prevention__compare">
                     <?php foreach ($ilp_prevention_items as $item) : ?>
                         <?php
+                        $mp4   = $ilp_mp4_url($item['mp4']);
                         $vid   = $ilp_youtube_id($item['youtube']);
                         $thumb = '';
                         if (file_exists($ilp_img_path . $item['thumb'])) {
@@ -1058,6 +1098,12 @@ get_header();
                         ?>
                         <figure class="implant-prevention__col<?php echo $item['highlight'] ? ' is-highlight' : ''; ?>">
                             <div class="implant-prevention__video">
+                                <?php if ($mp4) : ?>
+                                <div class="implant-prevention__video-frame is-movie">
+                                    <video class="implant-lp-movie" src="<?php echo esc_url($mp4); ?>" autoplay muted loop playsinline preload="auto" aria-label="<?php echo esc_attr($item['video']); ?>のアニメーション" data-autoplay-video></video>
+                                    <p class="implant-prevention__video-caption"><span class="implant-prevention__video-caption-icon" aria-hidden="true"></span>動画：<?php echo esc_html($item['video']); ?></p>
+                                </div>
+                                <?php else : ?>
                                 <div class="implant-prevention__video-frame" data-youtube-id="<?php echo esc_attr($vid); ?>" data-video-title="<?php echo esc_attr($item['video']); ?>（YouTube）">
                                     <?php if ($thumb) : ?>
                                         <img class="implant-prevention__video-thumb" src="<?php echo esc_url($thumb); ?>" alt="" width="640" height="336" loading="lazy">
@@ -1067,6 +1113,7 @@ get_header();
                                     </button>
                                     <p class="implant-prevention__video-caption"><span class="implant-prevention__video-caption-icon" aria-hidden="true"></span>動画：<?php echo esc_html($item['video']); ?>（YouTube）</p>
                                 </div>
+                                <?php endif; ?>
                             </div>
                             <figcaption class="implant-prevention__col-body">
                                 <span class="implant-prevention__col-title"><img src="<?php echo esc_url($ilp_img_dir . $item['icon']); ?>" alt="" width="24" height="24" loading="lazy"><span class="implant-prevention__mark" aria-hidden="true"><?php echo esc_html($item['mark']); ?></span><?php echo esc_html($item['title']); ?></span>
@@ -1219,6 +1266,8 @@ get_header();
                 </figure>
             </div>
 
+            <?php /* STEP一覧（各STEPへのリンク）は非表示中。出すときは、この行の下の <?php if (false) : ?> と <?php endif; ?> を消してください */ ?>
+            <?php if (false) : ?>
             <!-- STEP一覧（各STEPへのリンク） -->
             <ol class="implant-flow__nav">
                 <?php foreach ($ilp_flow_steps as $i => $st) : ?>
@@ -1230,6 +1279,7 @@ get_header();
                     </li>
                 <?php endforeach; ?>
             </ol>
+            <?php endif; ?>
 
             <!-- STEP 01〜08 -->
             <ol class="implant-flow__steps">
@@ -1239,7 +1289,7 @@ get_header();
                         <img class="implant-flow__step-img" src="<?php echo esc_url($ilp_img_dir . sprintf('implant-lp-flow%02d.webp', $i + 1)); ?>" alt="" width="600" height="400" loading="lazy">
                         <div class="implant-flow__step-body">
                             <h3 class="implant-flow__step-title"><?php echo esc_html($st['title']); ?></h3>
-                            <p class="implant-flow__time"><span class="implant-flow__clock" aria-hidden="true"></span><?php echo esc_html($st['time']); ?></p>
+                            <p class="implant-flow__time"><img class="implant-flow__clock" src="<?php echo esc_url($ilp_img_dir . 'implant-lp-flow-clock.webp'); ?>" alt="" width="14" height="14" loading="lazy"><?php echo esc_html($st['time']); ?></p>
                             <p class="implant-flow__step-text"><?php echo esc_html($st['text']); ?></p>
                             <?php if ($st['point']) : ?>
                                 <p class="implant-flow__point"><span class="implant-flow__point-label" aria-hidden="true">POINT</span><?php echo esc_html($st['point']); ?></p>
@@ -1460,12 +1510,13 @@ get_header();
          ・アコーディオン：最初は1つ目が開いた状態。別の質問を開くと、開いていた質問は閉じます（implant-lp.js）
     ========================================= -->
     <?php
+    // 回答（a）の中の \n の位置で改行します（\n を使うときは " " で囲む）
     $ilp_faqs = array(
         array('q' => 'ブリッジや入れ歯と何が違いますか？',         'a' => '隣の歯を削らず、天然歯に近い噛み心地と自然な見た目を回復できます。'),
-        array('q' => '治療期間はどのくらいかかりますか？',         'a' => 'テキスト'),
-        array('q' => '高齢でも治療は受けられますか？',             'a' => 'テキスト'),
-        array('q' => '手術は痛くありませんか？',                   'a' => 'テキスト'),
-        array('q' => '通えなくなってもメンテナンスできますか？',   'a' => 'テキスト'),
+        array('q' => '治療期間はどのくらいかかりますか？',         'a' => "検査・治療計画のご説明のあと手術を行い、インプラントと骨がしっかり結合するまで3〜6ヶ月ほど待ってから被せ物を装着します。\n当院では抜歯と同時に埋入する「即時埋入」に対応しており、手術を1回にまとめられる場合があります。\n骨造成が必要な場合など、お口の状態によって期間は変わりますので、治療計画のご説明時に目安をお伝えします。"),
+        array('q' => '高齢でも治療は受けられますか？',             'a' => "年齢だけで治療の可否を決めることはありません。お口と骨の状態、全身の健康状態を検査したうえで判断します。\n高血圧や糖尿病などの持病がある方も、必要に応じて主治医と連携しながら進めます。\n将来通院が難しくなった場合のメンテナンスまで含めて、治療方法をご提案します。"),
+        array('q' => '手術は痛くありませんか？',                   'a' => "手術は局所麻酔をしてから行うため、処置中の痛みはできるだけ抑えられます。\n不安の強い方には、うとうとした状態で手術を受けられる静脈内鎮静法（別途費用）もご用意しています。\n術後に数日、痛みや腫れが出ることがありますが、感じ方には個人差があります。気になる症状があれば、遠慮なくご相談ください。"),
+        array('q' => '通えなくなってもメンテナンスできますか？',   'a' => "はい。当院には訪問診療部があり、ご自宅や施設でもメンテナンスを続けられます。\nまた、必要に応じて被せ物を取り外して清掃・点検できる設計（スクリュー固定など）を選んでいるため、訪問先でもケアしやすくしています。\n訪問できる地域は事前にお問い合わせください。"),
     );
     ?>
     <section class="implant-faq" id="faq">
@@ -1493,7 +1544,7 @@ get_header();
                         <div class="implant-faq__a" id="implant-faq-a<?php echo esc_attr($i + 1); ?>" role="region" aria-labelledby="implant-faq-q<?php echo esc_attr($i + 1); ?>"<?php echo $open ? '' : ' hidden'; ?>>
                             <div class="implant-faq__a-inner">
                                 <span class="implant-faq__mark implant-faq__mark--a" aria-hidden="true">A</span>
-                                <p class="implant-faq__a-text"><?php echo esc_html($faq['a']); ?></p>
+                                <p class="implant-faq__a-text"><?php echo nl2br(esc_html($faq['a']), false); // 回答の \n の位置で改行 ?></p>
                             </div>
                         </div>
                     </div>

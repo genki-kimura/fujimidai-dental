@@ -19621,7 +19621,17 @@ html:has(.implant-lp) {
 .implant-fv__visual {
   position: absolute;
   inset: 0;
+  max-width: 1366px;
+  margin: 0 auto;
   pointer-events: none;
+}
+@media screen and (min-width: 1367px) {
+  .implant-fv__visual {
+    -webkit-mask-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(10%, #000), color-stop(90%, #000), to(transparent));
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    mask-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(10%, #000), color-stop(90%, #000), to(transparent));
+    mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  }
 }
 .implant-fv__photo {
   position: absolute;
@@ -19658,8 +19668,8 @@ html:has(.implant-lp) {
 }
 .implant-fv__badge {
   position: absolute;
-  top: 58.9%;
-  right: 4.7%;
+  top: 40%;
+  right: 0.7%;
   z-index: 2;
   width: 17.9%;
   aspect-ratio: 1;
@@ -19704,10 +19714,10 @@ html:has(.implant-lp) {
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.26em;
-  color: #2A2250;
+  color: #C9A764;
 }
 .implant-fv__en-gold {
-  color: #C9A764;
+  color: inherit;
 }
 .implant-fv__en-line {
   -webkit-flex-shrink: 0;
@@ -19869,7 +19879,7 @@ html:has(.implant-lp) {
 }
 .implant-fv__scroll {
   position: absolute;
-  left: 87px;
+  left: 24px;
   bottom: 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -19880,15 +19890,18 @@ html:has(.implant-lp) {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: start;
-  -webkit-align-items: flex-start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  gap: 10px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 12px;
 }
 .implant-fv__scroll-text {
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
   font-family: "Cormorant Garamond", "Times New Roman", serif;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0.4em;
@@ -19898,8 +19911,7 @@ html:has(.implant-lp) {
   position: relative;
   overflow: hidden;
   width: 1px;
-  height: 30px;
-  margin-left: 7px;
+  height: 80px;
   background: rgba(42, 34, 80, 0.25);
 }
 .implant-fv__scroll-line::after {
@@ -19932,14 +19944,23 @@ html:has(.implant-lp) {
     left: 47%;
   }
   .implant-fv__scroll {
-    left: 42px;
+    left: 14px;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-fv {
+    --fv-w: 100vw;
+    --fv-u: 1px;
     height: auto;
-    min-height: 161.3333333333vw;
+    min-height: calc(var(--fv-w) * 605 / 375);
   }
+}
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  .implant-fv {
+    --fv-u: calc(100vw / 375);
+  }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__photo {
     top: 0;
     right: auto;
@@ -19949,96 +19970,136 @@ html:has(.implant-lp) {
     -webkit-mask-image: none;
     mask-image: none;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__deco {
     -o-object-fit: fill;
        object-fit: fill;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__model {
-    top: 23.2vw;
+    top: calc(var(--fv-w) * 87 / 375);
     left: 2.4%;
     width: 23.5%;
     max-width: none;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__badge {
-    top: 48vw;
-    right: 2.9%;
-    width: 28%;
+    top: calc(var(--fv-w) * 118 / 375);
+    right: 1.5%;
+    width: 25%;
     max-width: none;
   }
-  .implant-fv__inner {
-    height: auto;
-    padding: 78.9333333333vw 20px 13px;
+}
+@media screen and (max-width: 1023px) {
+  .implant-fv__visual {
+    max-width: var(--fv-w);
   }
+}
+@media screen and (max-width: 1023px) {
+  .implant-fv__inner {
+    max-width: var(--fv-w);
+    height: auto;
+    padding: calc(var(--fv-w) * 216 / 375) calc(var(--fv-u) * 20) calc(var(--fv-u) * 13);
+  }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__content {
     max-width: none;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__en {
     position: absolute;
-    top: 24px;
-    left: 20px;
+    top: calc(var(--fv-u) * 24);
+    left: calc(var(--fv-u) * 20);
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
-    gap: 10px;
-    width: 170px;
+    gap: calc(var(--fv-u) * 10);
+    width: calc(var(--fv-u) * 170);
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__en-main {
-    font-size: 14px;
+    font-size: calc(var(--fv-u) * 14);
     letter-spacing: 0.24em;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__en-line {
-    width: 26px;
+    width: calc(var(--fv-u) * 26);
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__en-sub {
     -webkit-flex-basis: 100%;
         -ms-flex-preferred-size: 100%;
             flex-basis: 100%;
-    font-size: 13px;
+    font-size: calc(var(--fv-u) * 13);
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__sub {
     margin-top: 0;
-    font-size: 9.3px;
+    font-size: calc(var(--fv-u) * 9.3);
     letter-spacing: 0.045em;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__sub-clinic::before {
     margin: 0 0.7em 0 0.655em;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__title {
     margin-top: 0;
-    font-size: 28.5px;
+    font-size: calc(var(--fv-u) * 28.5);
     line-height: 1.5;
     letter-spacing: 0.03em;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__line {
-    width: 40px;
-    margin-top: 4px;
+    width: calc(var(--fv-u) * 40);
+    margin-top: calc(var(--fv-u) * 4);
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__lead {
-    margin-top: 6px;
-    font-size: 16px;
+    margin-top: calc(var(--fv-u) * 6);
+    font-size: calc(var(--fv-u) * 16);
     letter-spacing: 0.06em;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__note {
-    margin-top: 4px;
-    font-size: 11px;
+    margin-top: calc(var(--fv-u) * 4);
+    font-size: calc(var(--fv-u) * 11);
     line-height: 1.2;
     letter-spacing: 0.02em;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__btn {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
-    height: 58px;
-    margin-top: 25px;
-    font-size: 16px;
+    height: calc(var(--fv-u) * 58);
+    margin-top: calc(var(--fv-u) * 25);
+    font-size: calc(var(--fv-u) * 16);
     letter-spacing: 0.1em;
   }
   .implant-fv__btn:hover {
     -webkit-transform: none;
             transform: none;
   }
+}
+@media screen and (max-width: 1023px) {
   .implant-fv__scroll {
     display: none;
   }
@@ -20251,6 +20312,14 @@ html:has(.implant-lp) {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.implant-why__video-movie {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 .implant-why__video-play {
   position: absolute;
   top: 50%;
@@ -20423,7 +20492,7 @@ html:has(.implant-lp) {
     font-size: 32px;
   }
 }
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1023px) {
   .implant-why__body {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -20434,7 +20503,7 @@ html:has(.implant-lp) {
     margin: 0 auto;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-why {
     padding: 48px 0 32px;
   }
@@ -20579,13 +20648,21 @@ html:has(.implant-lp) {
 .implant-trouble__photo {
   position: absolute;
   top: 0;
-  right: 0;
+  right: max(0px, (100% - 1366px) / 2);
   bottom: 0;
   width: min(900px, 66%);
   -webkit-mask-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(22%, rgba(0, 0, 0, 0.55)), color-stop(48%, #000));
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 22%, #000 48%);
   mask-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(22%, rgba(0, 0, 0, 0.55)), color-stop(48%, #000));
   mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 22%, #000 48%);
+}
+@media screen and (min-width: 1367px) {
+  .implant-trouble__photo {
+    -webkit-mask-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(22%, rgba(0, 0, 0, 0.55)), color-stop(48%, #000), color-stop(68%, #000), to(transparent));
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 22%, #000 48%, #000 68%, transparent 100%);
+    mask-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(22%, rgba(0, 0, 0, 0.55)), color-stop(48%, #000), color-stop(68%, #000), to(transparent));
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 22%, #000 48%, #000 68%, transparent 100%);
+  }
 }
 .implant-trouble__photo img {
   display: block;
@@ -20918,7 +20995,7 @@ html:has(.implant-lp) {
     font-size: 20px;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-trouble {
     padding-bottom: 28px;
   }
@@ -21449,7 +21526,7 @@ html:has(.implant-lp) {
     font-size: 32px;
   }
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1023px) {
   .implant-cta__features, .implant-cta__btns {
     grid-template-columns: 1fr;
   }
@@ -21464,7 +21541,7 @@ html:has(.implant-lp) {
     margin-right: auto;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-cta {
     padding: 52px 0 56px;
   }
@@ -21559,7 +21636,7 @@ html:has(.implant-lp) {
     min-height: 0;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-cta:not(.implant-cta--dark), .implant-cta.implant-cta--sp-dark {
     padding: 38px 0 32px;
   }
@@ -22293,188 +22370,6 @@ html:has(.implant-lp) {
 }
 
 /* ========================================
-   インプラントLP：SPのヘッダー（このページだけ）
-   ・header.php で、インプラントLPのときだけ <header> に .header--implant-lp を付けています
-   ・ロゴ／TEL／WEB予約／MENU の4つを横に並べる
-   ・既存のヘッダーのスタイルを上書きするため、優先度を高めにしています
-======================================== */
-.header--implant-lp .header__lp-btns {
-  display: none;
-}
-
-@media screen and (max-width: 767px) {
-  .header.header--implant-lp {
-    border-bottom: 3px solid #D9C08A;
-  }
-  .header.header--implant-lp .header__inner {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: stretch;
-    -webkit-align-items: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-    gap: 0;
-    width: 100%;
-    max-width: none;
-    height: 60px;
-    margin: 0;
-    padding: 0;
-  }
-  .header.header--implant-lp .header__brand {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    min-width: 0;
-    padding: 0 10px 0 14px;
-  }
-  .header.header--implant-lp .header__logo img {
-    display: block;
-    width: 124px;
-    height: auto;
-  }
-  .header.header--implant-lp .header__divider,
-  .header.header--implant-lp .header__info {
-    display: none;
-  }
-  .header.header--implant-lp .header__lp-btns {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
-            flex-shrink: 0;
-  }
-  .header.header--implant-lp .header__lp-tel,
-  .header.header--implant-lp .header__lp-web {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    height: 60px;
-    font-family: "Noto Sans JP", sans-serif;
-    font-weight: 700;
-    line-height: 1.25;
-    text-align: center;
-    text-decoration: none;
-  }
-  .header.header--implant-lp .header__lp-tel {
-    gap: 4px;
-    width: 44px;
-    border-left: 1px solid #E3D3AE;
-    background: #fff;
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    color: #2A2250;
-  }
-  .header.header--implant-lp .header__lp-tel img {
-    display: block;
-    width: 17px;
-    height: 17px;
-  }
-  .header.header--implant-lp .header__lp-tel span {
-    font-family: inherit;
-  }
-  .header.header--implant-lp .header__lp-web {
-    width: 57px;
-    background: #2A2250;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    color: #fff;
-  }
-  .header.header--implant-lp .header__toggle {
-    position: relative;
-    inset: auto;
-    -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
-            flex-shrink: 0;
-    width: 53px;
-    height: 60px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: #1E1840;
-    -webkit-transform: none;
-            transform: none;
-  }
-  .header.header--implant-lp .header__toggle .header__toggle-bar {
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    width: 26px;
-    height: 1.5px;
-    margin: 0;
-    border-radius: 0;
-    background: #CDAE6E;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-    -webkit-transition: opacity 0.3s, top 0.3s, -webkit-transform 0.3s;
-    transition: opacity 0.3s, top 0.3s, -webkit-transform 0.3s;
-    transition: transform 0.3s, opacity 0.3s, top 0.3s;
-    transition: transform 0.3s, opacity 0.3s, top 0.3s, -webkit-transform 0.3s;
-  }
-  .header.header--implant-lp .header__toggle .header__toggle-bar:nth-child(2) {
-    top: 22px;
-  }
-  .header.header--implant-lp .header__toggle .header__toggle-bar:nth-child(3) {
-    top: 29px;
-  }
-  .header.header--implant-lp .header__toggle .header__toggle-label {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 11px;
-    display: block;
-    margin: 0;
-    font-family: "Cormorant Garamond", "Times New Roman", serif;
-    font-size: 11px;
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: 0.12em;
-    text-align: center;
-    color: #E2CB98;
-  }
-  .header.header--implant-lp .header__toggle[aria-expanded=true] .header__toggle-bar {
-    top: 22px;
-  }
-  .header.header--implant-lp .header__toggle[aria-expanded=true] .header__toggle-bar:nth-child(1) {
-    -webkit-transform: translateX(-50%) rotate(30deg);
-            transform: translateX(-50%) rotate(30deg);
-  }
-  .header.header--implant-lp .header__toggle[aria-expanded=true] .header__toggle-bar:nth-child(2) {
-    opacity: 0;
-  }
-  .header.header--implant-lp .header__toggle[aria-expanded=true] .header__toggle-bar:nth-child(3) {
-    -webkit-transform: translateX(-50%) rotate(-30deg);
-            transform: translateX(-50%) rotate(-30deg);
-  }
-}
-/* ========================================
    インプラントLP：ABOUT（インプラント治療とは｜入れ歯・ブリッジとの違い）
    ・背景：img/implant-lp-about-bg.webp（PHP の style="--about-bg" で指定）
    ・動画は WHY NOW と同じしくみ（URL が入るまでは枠＋再生ボタンだけ）
@@ -22961,11 +22856,11 @@ html:has(.implant-lp) {
   display: grid;
   grid-template-columns: 84px minmax(0, 1fr);
   gap: 16px;
-  -webkit-box-align: start;
-  -webkit-align-items: start;
-      -ms-flex-align: start;
-          align-items: start;
-  padding: 20px 20px 22px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 16px 18px 14px;
   background: #fff;
   -webkit-box-shadow: 0 14px 32px rgba(42, 34, 80, 0.08);
           box-shadow: 0 14px 32px rgba(42, 34, 80, 0.08);
@@ -23715,7 +23610,7 @@ html:has(.implant-lp) {
     display: none;
   }
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1023px) {
   .implant-issue__list {
     grid-template-columns: 1fr;
     max-width: 560px;
@@ -23726,7 +23621,7 @@ html:has(.implant-lp) {
 .implant-issue__br-sp {
   display: none;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-issue {
     padding: 8px 0 0;
   }
@@ -24471,7 +24366,7 @@ html:has(.implant-lp) {
     gap: 32px;
   }
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1023px) {
   .implant-problem__main, .implant-problem__data {
     grid-template-columns: 1fr;
   }
@@ -24490,7 +24385,7 @@ html:has(.implant-lp) {
 .implant-problem__br-sp {
   display: none;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-problem {
     padding: 40px 0 48px;
   }
@@ -24889,7 +24784,7 @@ html:has(.implant-lp) {
     font-size: 15.5px;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-solution {
     padding: 44px 0 40px;
   }
@@ -25549,18 +25444,77 @@ html:has(.implant-lp) {
   color: #4F4A5E;
 }
 .implant-esthetic__summary {
-  margin-top: 26px;
-  padding: 20px 28px;
-  border-radius: 6px;
-  background: #2A2250;
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.75;
-  letter-spacing: 0.06em;
+  position: relative;
+  margin-top: 32px;
+  padding: 30px 40px 32px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3A2F7A), color-stop(50%, #2A2250), to(#1E1840));
+  background: linear-gradient(180deg, #3A2F7A 0%, #2A2250 50%, #1E1840 100%);
+}
+.implant-esthetic__summary::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(194, 160, 97, 0.55);
+  pointer-events: none;
+}
+.implant-esthetic__summary-pc {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.implant-esthetic__summary-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 18px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.implant-esthetic__summary-box {
+  margin: 0;
+  padding: 14px 10px 16px;
+  border: 1px solid rgba(194, 160, 97, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  font-family: "Noto Serif JP", "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.08em;
+  text-align: center;
   color: #fff;
 }
-.implant-esthetic__summary-sp, .implant-esthetic__br-sp {
+.implant-esthetic__summary-box span {
+  display: block;
+  margin-bottom: 6px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: #CDBE97;
+}
+.implant-esthetic__summary-x {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1;
+  color: #C2A061;
+}
+.implant-esthetic__summary-text {
+  margin-top: 20px;
+  font-family: "Noto Serif JP", "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: #fff;
+}
+.implant-esthetic__br-sp {
   display: none;
 }
 @media screen and (max-width: 1100px) {
@@ -25808,77 +25762,25 @@ html:has(.implant-lp) {
     line-height: 1.8;
   }
   .implant-esthetic__summary {
-    position: relative;
-    margin-top: 32px;
     padding: 22px 16px 26px;
-    border-radius: 0;
-    background: -webkit-gradient(linear, left top, left bottom, from(#3A2F7A), color-stop(50%, #2A2250), to(#1E1840));
-    background: linear-gradient(180deg, #3A2F7A 0%, #2A2250 50%, #1E1840 100%);
-  }
-  .implant-esthetic__summary::after {
-    content: "";
-    position: absolute;
-    inset: 8px;
-    border: 1px solid rgba(194, 160, 97, 0.55);
-    pointer-events: none;
-  }
-  .implant-esthetic__summary-pc {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
-  .implant-esthetic__summary-sp {
-    display: block;
   }
   .implant-esthetic__summary-pair {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     gap: 8px;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    max-width: none;
   }
   .implant-esthetic__summary-box {
-    margin: 0;
     padding: 12px 6px 14px;
-    border: 1px solid rgba(194, 160, 97, 0.35);
-    background: rgba(255, 255, 255, 0.04);
-    font-family: "Noto Serif JP", "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
     font-size: 15px;
-    font-weight: 600;
-    line-height: 1.45;
-    letter-spacing: 0.08em;
-    text-align: center;
-    color: #fff;
   }
   .implant-esthetic__summary-box span {
-    display: block;
-    margin-bottom: 6px;
-    font-family: "Noto Sans JP", sans-serif;
     font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    color: #CDBE97;
   }
   .implant-esthetic__summary-x {
     font-size: 20px;
-    font-weight: 300;
-    line-height: 1;
-    color: #C2A061;
   }
   .implant-esthetic__summary-text {
     margin-top: 22px;
-    font-family: "Noto Serif JP", "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
     font-size: 18px;
-    font-weight: 500;
-    line-height: 1.7;
-    letter-spacing: 0.1em;
-    text-align: center;
-    color: #fff;
   }
 }
 
@@ -26956,7 +26858,7 @@ html:has(.implant-lp) {
   -webkit-box-shadow: 0 14px 30px -18px rgba(8, 6, 20, 0.45);
           box-shadow: 0 14px 30px -18px rgba(8, 6, 20, 0.45);
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1023px) {
   .implant-cta--dark .implant-cta__feature {
     padding: 22px 16px;
   }
@@ -26966,7 +26868,7 @@ html:has(.implant-lp) {
     height: 1px;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-cta--dark {
     padding: 48px 0 52px;
   }
@@ -27000,7 +26902,7 @@ html:has(.implant-lp) {
    ・$ilp_cta の 'sp_light' => true で付く .implant-cta--sp-light
    ・中間CTA（CONTACT：その“難しい”、あきらめる前に。）で使用
 ======================================== */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-cta.implant-cta--sp-light {
     padding: 36px 0 32px;
     background: -webkit-gradient(linear, left top, left bottom, from(#F7F3FB), to(#EFE9F7));
@@ -27175,7 +27077,7 @@ html:has(.implant-lp) {
    ・白いCTA（形はSPの白いCTAと同じ）の色だけを紺に変える
    ・CTA（CONSULTATION：入れる時も、その先の人生も。）で使用
 ======================================== */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-cta.implant-cta--sp-dark {
     padding: 36px 0 32px;
     background: -webkit-gradient(linear, left top, left bottom, from(#3A2F7A), color-stop(50%, #2A2250), to(#1E1840));
@@ -27625,7 +27527,7 @@ html:has(.implant-lp) {
     padding: 24px 32px 22px;
   }
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1023px) {
   .implant-prevention__compare {
     grid-template-columns: 1fr;
   }
@@ -27633,7 +27535,7 @@ html:has(.implant-lp) {
     aspect-ratio: 472/233;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-prevention {
     padding: 36px 0 40px;
     background: -webkit-gradient(linear, left top, left bottom, from(#FAF8F3), to(#F5F1E8));
@@ -28298,7 +28200,7 @@ html:has(.implant-lp) {
     font-size: 30px;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-cta--large {
     padding: 52px 0 56px;
   }
@@ -28935,9 +28837,9 @@ html:has(.implant-lp) {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 8px;
+  gap: 5px;
   margin-top: 12px;
-  padding: 3px 12px;
+  padding: 3px 12px 3px 8px;
   background: linear-gradient(155deg, #8E6C33 0%, #C8A563 22%, #F6E7C1 45%, #D9BC7E 65%, #A07E3E 85%, #E3CB93 100%);
   font-family: "Noto Sans JP", sans-serif;
   font-size: 12px;
@@ -28948,20 +28850,13 @@ html:has(.implant-lp) {
 }
 .implant-flow__clock {
   position: relative;
-  width: 11px;
-  height: 11px;
-  border: 1px solid #B8975A;
-  border-radius: 50%;
-}
-.implant-flow__clock::before {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 4px;
-  width: 3px;
-  height: 3px;
-  border-left: 1px solid #B8975A;
-  border-bottom: 1px solid #B8975A;
+  top: 0.5px;
+  display: block;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 16px;
+  height: 16px;
 }
 .implant-flow__step-text {
   margin-top: 14px;
@@ -30614,6 +30509,7 @@ html:has(.implant-lp) {
   font-weight: 400;
   line-height: 1;
   color: #DCC28C;
+  padding-bottom: 0.14em;
 }
 .implant-faq__mark--a {
   background: linear-gradient(135deg, #E2CB98 0%, #C9A764 55%, #B8954F 100%);
@@ -30689,7 +30585,7 @@ html:has(.implant-lp) {
   letter-spacing: 0.04em;
   color: #4F4A5E;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-faq {
     padding: 48px 0 52px;
   }
@@ -31726,7 +31622,7 @@ html:has(.implant-lp) {
     grid-template-columns: 480px minmax(0, 1fr);
   }
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1023px) {
   .implant-access__box {
     grid-template-columns: 1fr;
   }
@@ -31735,7 +31631,7 @@ html:has(.implant-lp) {
     aspect-ratio: 4/3;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-access {
     padding: 48px 0 52px;
   }
@@ -31919,6 +31815,19 @@ html:has(.implant-lp) {
 }
 
 /* ========================================
+   インプラントLP：動画ファイル（共通）
+   ・ABOUT・PREVENTION の mp4（<video class="implant-lp-movie">）を枠いっぱいに表示
+======================================== */
+.implant-lp .implant-lp-movie {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* ========================================
    インプラントLP：英字ラベル（共通）
    ・h2 の外の <p class="implant-〇〇__en"> にしたので、p の下の余白を消す
 ======================================== */
@@ -31929,37 +31838,24 @@ html:has(.implant-lp) {
 /* ========================================
    インプラントLP：フッターの Access（このページだけ）
    ・footer.php で、インプラントLPのときだけ <section class="Access"> に .Access--implant-lp を付けています
-   ・構成メモより：フッター上部の紺色の帯／波形は出力しない
-     （_sec17-Access.scss の ::before の波を、このページだけ消す）
+   ・上のふちの波（_sec17-Access.scss の ::before）は白なので、
+     このページだけ、すぐ上の「リスク・副作用」の背景色（ベージュ）にして、つながって見えるようにする
 ======================================== */
 .Access.Access--implant-lp::before {
-  content: none;
-  display: none;
+  background: #FAF7EF;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M0 0H1440V22C1200 46 920 56 660 50C400 44 160 34 0 44Z'/%3E%3C/svg%3E") no-repeat center top/100% 100%;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M0 0H1440V22C1200 46 920 56 660 50C400 44 160 34 0 44Z'/%3E%3C/svg%3E") no-repeat center top/100% 100%;
 }
 
-/* ========================================
-   インプラントLP：SPの「TOPへ戻る」ボタン（このページだけ）
-   ・このページは画面下の追従バーを出さないので、バーの上に浮いていたボタンを画面の右下へ下げる
-   ・もっと下げる／上げる場合は bottom の数字を変えてください
-======================================== */
-@media screen and (max-width: 767px) {
-  body:has(.implant-lp) .page-top {
-    bottom: 16px;
-  }
-  body:has(.implant-lp) {
-    padding-bottom: 0 !important;
-  }
-  body:has(.implant-lp) .footer {
-    margin-bottom: 0 !important;
-  }
-}
 /* ========================================
    インプラントLP：ヘッダー（このページだけ・PC）
    ・header.php で、インプラントLPのときだけ 住所（〒なし）＋診療時間＋休診日 の3行を出しています
    ・ヘッダーの下に金の線
 ======================================== */
-.header.header--implant-lp {
-  border-bottom: 2px solid #D9C08A;
+@media screen and (min-width: 1024px) {
+  .header.header--implant-lp {
+    border-bottom: 2px solid #D9C08A;
+  }
 }
 .header.header--implant-lp .header__text address,
 .header.header--implant-lp .header__text .header__lp-info {

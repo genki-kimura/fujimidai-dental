@@ -85,7 +85,7 @@ $cta_tel_href  = 'tel:' . preg_replace('/[^0-9+]/', '', $cta_tel);
 // 追従ボタンのアイコン（img フォルダ内）
 $cta_icon_dir  = get_template_directory_uri() . '/img/';
 
-// インプラントLPのページかどうか（Access の背景を紺にする・追従ボタンを出さない）
+// インプラントLPのページかどうか（Access に .Access--implant-lp を付ける）
 $is_implant_lp = is_page_template('implant-lp.php');
 ?>
     <section class="Access<?php echo $is_implant_lp ? ' Access--implant-lp' : ''; ?>">
@@ -284,7 +284,6 @@ $is_implant_lp = is_page_template('implant-lp.php');
     </footer>
 
     <!-- 画面右側に追従するボタン（スマホでは画面下部のバーになり、文言が短くなります） -->
-    <?php if (!$is_implant_lp) : // インプラントLPでは追従ボタンを表示しない ?>
     <aside class="floating-cta is-scrolling" aria-label="ご予約・お問い合わせ">
         <a class="floating-cta__btn floating-cta__btn--web" href="<?php echo esc_url($footer_url($cta_web_url)); ?>" style="--cta-icon: url('<?php echo esc_url($cta_icon_dir . 'cta-icon01.webp'); ?>')">
             <span class="floating-cta__icon" aria-hidden="true"></span>
@@ -311,7 +310,6 @@ $is_implant_lp = is_page_template('implant-lp.php');
             </a>
         </address>
     </aside>
-    <?php endif; ?>
 
     <!-- ページ上部へ戻るボタン（スクロールすると表示。スマホでは追従バーの右上に小さく表示） -->
     <button type="button" class="page-top" aria-label="ページの先頭へ戻る" style="--page-top-flower: url('<?php echo esc_url(get_template_directory_uri() . '/img/Logo02-flower.webp'); ?>')">

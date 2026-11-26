@@ -27,7 +27,7 @@ $header_field = function ($name, $default = '') {
     return $value ? $value : $default;
 };
 
-// インプラントLPのページかどうか（SPのヘッダーの見た目を変えるため）
+// インプラントLPのページかどうか（PCのヘッダーに診療時間・休診日を出すため）
 $is_implant_lp = is_page_template('implant-lp.php');
 
 $header_catch   = $header_field('header_catch', '富士見台駅の歯医者｜富士見台さくら歯科 中野区上鷺宮のインプラント・ホワイトニング');
@@ -152,22 +152,11 @@ $menu_sub = array(
                 </div>
             </div>
 
-            <?php if ($is_implant_lp) : ?>
-                <?php /* インプラントLPだけ：SPのヘッダーに TEL／WEB予約 ボタンを表示（PCでは非表示） */ ?>
-                <div class="header__lp-btns">
-                    <a class="header__lp-tel" href="<?php echo esc_attr($menu_tel_href($menu_tel_out)); ?>" aria-label="電話する（<?php echo esc_attr($menu_tel_out); ?>）">
-                        <img src="<?php echo esc_url($header_img_dir . 'implant-lp-header-tel.webp'); ?>" alt="" width="17" height="17">
-                        <span>TEL</span>
-                    </a>
-                    <a class="header__lp-web" href="<?php echo esc_url($header_url($menu_web_url)); ?>">WEB<br>予約</a>
-                </div>
-            <?php endif; ?>
-
             <button class="header__toggle" type="button" aria-controls="header-menu" aria-expanded="false" aria-label="メニューを開く">
                 <span class="header__toggle-bar"></span>
                 <span class="header__toggle-bar"></span>
                 <span class="header__toggle-bar"></span>
-                <span class="header__toggle-label" aria-hidden="true"><?php echo $is_implant_lp ? 'MENU' : 'メニュー'; ?></span>
+                <span class="header__toggle-label" aria-hidden="true">メニュー</span>
             </button>
 
             <nav class="header__nav" id="header-nav" aria-label="メインメニュー">

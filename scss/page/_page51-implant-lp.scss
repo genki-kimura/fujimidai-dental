@@ -64,10 +64,22 @@ html:has(.implant-lp) {
   color: $ilp-navy;
 
   /* ---------- 背景の飾り・写真 ---------- */
+  // 写真・飾り・模型の枠：横幅は最大1366px で中央に置く
+  // （大きな画面でも、文字と写真の位置関係が 1366px のときと同じになる。背景色だけは画面いっぱい）
   &__visual {
     position: absolute;
     inset: 0;
+    max-width: 1366px;
+    margin: 0 auto;
     pointer-events: none;
+  }
+
+  // 1366px より大きな画面では、枠の左右の端をぼかして背景になじませる
+  @media screen and (min-width: 1367px) {
+    &__visual {
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    }
   }
 
   // 院長の写真：右端にそろえて、高さいっぱいに表示
@@ -107,11 +119,13 @@ html:has(.implant-lp) {
   }
 
   // 認定専門医バッジ（丸い背景の上に文字を重ねる）
-  // 見本：1366px幅で 円の中心が 左1180px・上535px（画像は影の余白込みで幅245px）
+  // ・__inner（最大1366px）の中に置いているので、幅の % は __inner の幅が基準
+  //   → 画面が小さいと小さく、1366px 以上では 245px で止まる
+  // ・右下の追従ボタン（WEB予約など）にかぶらないよう、写真の右側・少し上に配置
   &__badge {
     position: absolute;
-    top: 58.9%;
-    right: 4.7%;
+    top: 40%;
+    right: 0.7%;
     z-index: 2;
     width: 17.9%;
     aspect-ratio: 1;
@@ -146,7 +160,7 @@ html:has(.implant-lp) {
     max-width: 560px;
   }
 
-  // IMPLANT ── Treatment（IMP は紺、LANT は金）
+  // IMPLANT ── Treatment（IMPLANT はすべて金）
   &__en {
     display: flex;
     align-items: center;
@@ -160,11 +174,11 @@ html:has(.implant-lp) {
     font-weight: 600;
     line-height: 1;
     letter-spacing: 0.26em;
-    color: $ilp-navy;
+    color: #C9A764;
   }
 
   &__en-gold {
-    color: #C9A764;
+    color: inherit;
   }
 
   &__en-line {
@@ -332,20 +346,21 @@ html:has(.implant-lp) {
     transform: translateX(4px);
   }
 
-  // SCROLL（左ぞろえ、下に縦線）
+  // SCROLL（画面の左端に縦に配置。文字は横向きのまま90°回転＝首をかしげて読める向き）
   &__scroll {
     position: absolute;
-    left: 87px;
+    left: 24px;
     bottom: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
   }
 
   &__scroll-text {
+    writing-mode: vertical-rl; // 英字は横向きに回転して縦に並ぶ
     font-family: $ilp-en;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
     line-height: 1;
     letter-spacing: 0.4em;
@@ -356,8 +371,7 @@ html:has(.implant-lp) {
     position: relative;
     overflow: hidden;
     width: 1px;
-    height: 30px;
-    margin-left: 7px;
+    height: 80px;
     background: rgba(42, 34, 80, 0.25);
 
     &::after {
@@ -397,15 +411,25 @@ html:has(.implant-lp) {
     }
 
     &__scroll {
-      left: 42px;
+      left: 14px;
     }
   }
 
   /* ---------- SP（見本：375px幅） ---------- */
-  @media screen and (max-width: 767px) {
-    // 見本と同じ比率（375×605）。飾り画像の金の線と写真の位置を合わせるため、高さを画面幅から決める
+  @media screen and (max-width: 1023px) {
+    // SPの形は、横幅 1023px まで使う（タブレットでもPCの形にしない）
+    // --fv-w：FVの横幅（画面いっぱい）
+    // --fv-u：文字などの大きさの単位。スマホは 1px のまま、768px〜1023px では画面幅に合わせて拡大（SPの見た目をそのまま大きくする）
+    --fv-w: 100vw;
+    --fv-u: 1px;
+
+    @media screen and (min-width: 768px) {
+      --fv-u: calc(100vw / 375);
+    }
+
+    // 見本と同じ比率（375×605）。飾り画像の金の線と写真の位置を合わせるため、高さを横幅から決める
     height: auto;
-    min-height: calc(100vw * 605 / 375);
+    min-height: calc(var(--fv-w) * 605 / 375);
 
     // SP用の写真（implant-lp-fv-photo-sp.webp）。左と下はもともと透けているので、そのまま重ねる
     // 写真の左端（斜め）が、飾り画像の太い金の線にぴったり重なる位置（見本375px幅で 左86.8px・幅300px）
@@ -426,23 +450,29 @@ html:has(.implant-lp) {
 
     // 見本：375px幅で 歯の頭が 左31px・上95px・幅53px
     &__model {
-      top: calc(100vw * 87 / 375);
+      top: calc(var(--fv-w) * 87 / 375);
       left: 2.4%;
       width: 23.5%;
       max-width: none;
     }
 
-    // 見本：375px幅で 円の中心が 左312px・上232px・直径96px（画像は影の余白込み）
+    // 画面下の固定CTAにボタンがかぶらないよう、文字を上げた分バッジも上へ
     &__badge {
-      top: calc(100vw * 180 / 375);
-      right: 2.9%;
-      width: 28%;
+      top: calc(var(--fv-w) * 118 / 375);
+      right: 1.5%;
+      width: 25%;
       max-width: none;
     }
 
+    // 文字の開始位置（固定CTAにかぶらないよう、見本より 80px 上げています）
+    &__visual {
+      max-width: var(--fv-w);
+    }
+
     &__inner {
+      max-width: var(--fv-w);
       height: auto;
-      padding: calc(100vw * 296 / 375) 20px 13px;
+      padding: calc(var(--fv-w) * 216 / 375) calc(var(--fv-u) * 20) calc(var(--fv-u) * 13);
     }
 
     &__content {
@@ -452,31 +482,31 @@ html:has(.implant-lp) {
     // IMPLANT／Treatment は写真の左上に
     &__en {
       position: absolute;
-      top: 24px;
-      left: 20px;
+      top: calc(var(--fv-u) * 24);
+      left: calc(var(--fv-u) * 20);
       flex-wrap: wrap;
-      gap: 10px;
-      width: 170px;
+      gap: calc(var(--fv-u) * 10);
+      width: calc(var(--fv-u) * 170);
     }
 
     &__en-main {
-      font-size: 14px;
+      font-size: calc(var(--fv-u) * 14);
       letter-spacing: 0.24em;
     }
 
     &__en-line {
-      width: 26px;
+      width: calc(var(--fv-u) * 26);
     }
 
     &__en-sub {
       flex-basis: 100%;
-      font-size: 13px;
+      font-size: calc(var(--fv-u) * 13);
     }
 
     // 見本：9.29px／文字間隔0.42px で1行
     &__sub {
       margin-top: 0;
-      font-size: 9.3px;
+      font-size: calc(var(--fv-u) * 9.3);
       letter-spacing: 0.045em;
     }
 
@@ -486,26 +516,26 @@ html:has(.implant-lp) {
 
     &__title {
       margin-top: 0;
-      font-size: 28.5px;
+      font-size: calc(var(--fv-u) * 28.5);
       line-height: 1.5;
       letter-spacing: 0.03em;
     }
 
     &__line {
-      width: 40px;
-      margin-top: 4px;
+      width: calc(var(--fv-u) * 40);
+      margin-top: calc(var(--fv-u) * 4);
     }
 
     &__lead {
-      margin-top: 6px;
-      font-size: 16px;
+      margin-top: calc(var(--fv-u) * 6);
+      font-size: calc(var(--fv-u) * 16);
       letter-spacing: 0.06em;
     }
 
     // 見本どおり2行（…ご説明／します。）
     &__note {
-      margin-top: 4px;
-      font-size: 11px;
+      margin-top: calc(var(--fv-u) * 4);
+      font-size: calc(var(--fv-u) * 11);
       line-height: 1.2;
       letter-spacing: 0.02em;
     }
@@ -513,9 +543,9 @@ html:has(.implant-lp) {
     &__btn {
       display: flex;
       width: 100%;
-      height: 58px;
-      margin-top: 25px;
-      font-size: 16px;
+      height: calc(var(--fv-u) * 58);
+      margin-top: calc(var(--fv-u) * 25);
+      font-size: calc(var(--fv-u) * 16);
       letter-spacing: 0.1em;
 
       &:hover {
@@ -722,6 +752,15 @@ html:has(.implant-lp) {
     object-fit: cover;
   }
 
+  // 動画ファイル（implant-lp-why-video.mp4）：枠いっぱいに表示
+  &__video-movie {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   &__video-play {
     position: absolute;
     top: 50%;
@@ -895,7 +934,7 @@ html:has(.implant-lp) {
     }
   }
 
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1023px) {
     &__body {
       grid-template-columns: 1fr;
       gap: 28px;
@@ -909,7 +948,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- SP ---------- */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding: 48px 0 32px;
 
     &__inner {
@@ -1080,16 +1119,23 @@ html:has(.implant-lp) {
   color: #fff;
 
   /* ---------- 右：写真 ---------- */
+  // 1366px より大きな画面では、写真が右端に寄らないよう、横幅1366pxの枠の右端にそろえる
   &__photo {
     position: absolute;
     top: 0;
-    right: 0;
+    right: max(0px, (100% - 1366px) / 2);
     bottom: 0;
     width: min(900px, 66%);
 
     // 写真の左側を透明にして、背景の紺になじませる
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 22%, #000 48%);
     mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 22%, #000 48%);
+
+    // 1366px より大きな画面では、写真の右端もぼかして背景の紺になじませる
+    @media screen and (min-width: 1367px) {
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 22%, #000 48%, #000 68%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 22%, #000 48%, #000 68%, transparent 100%);
+    }
 
     img {
       display: block;
@@ -1417,7 +1463,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- SP ---------- */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding-bottom: 28px;
 
     // 写真は右上に。左と下を背景の紺になじませる
@@ -1952,7 +1998,7 @@ html:has(.implant-lp) {
     }
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1023px) {
     &__features,
     &__btns {
       grid-template-columns: 1fr;
@@ -1972,7 +2018,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- SP ---------- */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding: 52px 0 56px;
 
     &__inner {
@@ -2092,7 +2138,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- SP（白いCTAだけ：見本 2026/11 の形） ---------- */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     // 白いCTA と、SPだけ紺にした紺のCTA（--sp-dark）で同じ形にする
     &:not(&--dark),
     &.implant-cta--sp-dark {
@@ -2884,172 +2930,6 @@ html:has(.implant-lp) {
 }
 
 /* ========================================
-   インプラントLP：SPのヘッダー（このページだけ）
-   ・header.php で、インプラントLPのときだけ <header> に .header--implant-lp を付けています
-   ・ロゴ／TEL／WEB予約／MENU の4つを横に並べる
-   ・既存のヘッダーのスタイルを上書きするため、優先度を高めにしています
-======================================== */
-
-// PCでは TEL／WEB予約 ボタンは出さない
-.header--implant-lp .header__lp-btns {
-  display: none;
-}
-
-@media screen and (max-width: 767px) {
-  .header.header--implant-lp {
-    border-bottom: 3px solid #D9C08A; // 見本の下の金の線
-
-    .header__inner {
-      display: flex;
-      align-items: stretch;
-      gap: 0; // 既存の gap を消して、ボタン同士をすき間なく並べる
-      width: 100%;
-      max-width: none;
-      height: 60px;
-      margin: 0;
-      padding: 0;
-    }
-
-    // ロゴ
-    .header__brand {
-      display: flex;
-      flex: 1;
-      align-items: center;
-      min-width: 0;
-      padding: 0 10px 0 14px;
-    }
-
-    .header__logo img {
-      display: block;
-      width: 124px;
-      height: auto;
-    }
-
-    .header__divider,
-    .header__info {
-      display: none;
-    }
-
-    // TEL／WEB予約
-    .header__lp-btns {
-      display: flex;
-      flex-shrink: 0;
-    }
-
-    .header__lp-tel,
-    .header__lp-web {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 60px;
-      font-family: "Noto Sans JP", sans-serif;
-      font-weight: 700;
-      line-height: 1.25;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    .header__lp-tel {
-      gap: 4px;
-      width: 44px;
-      border-left: 1px solid #E3D3AE;
-      background: #fff;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      color: #2A2250;
-
-      img {
-        display: block;
-        width: 17px;
-        height: 17px;
-      }
-
-      span {
-        font-family: inherit;
-      }
-    }
-
-    .header__lp-web {
-      width: 57px;
-      background: #2A2250;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      color: #fff;
-    }
-
-    // MENU（ハンバーガー）
-    .header__toggle {
-      position: relative;
-      inset: auto;
-      flex-shrink: 0;
-      width: 53px;
-      height: 60px;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: #1E1840;
-      transform: none;
-    }
-
-    .header__toggle .header__toggle-bar {
-      position: absolute;
-      top: 15px;
-      left: 50%;
-      width: 26px;
-      height: 1.5px;
-      margin: 0;
-      border-radius: 0;
-      background: #CDAE6E;
-      transform: translateX(-50%);
-      transition: transform 0.3s, opacity 0.3s, top 0.3s;
-
-      &:nth-child(2) {
-        top: 22px;
-      }
-
-      &:nth-child(3) {
-        top: 29px;
-      }
-    }
-
-    .header__toggle .header__toggle-label {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 11px;
-      display: block;
-      margin: 0;
-      font-family: "Cormorant Garamond", "Times New Roman", serif;
-      font-size: 11px;
-      font-weight: 500;
-      line-height: 1;
-      letter-spacing: 0.12em;
-      text-align: center;
-      color: #E2CB98;
-    }
-
-    // 開いているとき（× にする）
-    .header__toggle[aria-expanded="true"] .header__toggle-bar {
-      top: 22px;
-
-      &:nth-child(1) {
-        transform: translateX(-50%) rotate(30deg);
-      }
-
-      &:nth-child(2) {
-        opacity: 0;
-      }
-
-      &:nth-child(3) {
-        transform: translateX(-50%) rotate(-30deg);
-      }
-    }
-  }
-}
-
-/* ========================================
    インプラントLP：ABOUT（インプラント治療とは｜入れ歯・ブリッジとの違い）
    ・背景：img/implant-lp-about-bg.webp（PHP の style="--about-bg" で指定）
    ・動画は WHY NOW と同じしくみ（URL が入るまでは枠＋再生ボタンだけ）
@@ -3516,8 +3396,8 @@ html:has(.implant-lp) {
     display: grid;
     grid-template-columns: 84px minmax(0, 1fr);
     gap: 16px;
-    align-items: start;
-    padding: 20px 20px 22px;
+    align-items: center; // 中身が少ないカード（アバットメント）も上下の真ん中に
+    padding: 16px 18px 14px;
     background: #fff;
     box-shadow: 0 14px 32px rgba(42, 34, 80, 0.08);
 
@@ -4299,7 +4179,7 @@ html:has(.implant-lp) {
     }
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1023px) {
     &__list {
       grid-template-columns: 1fr;
       max-width: 560px;
@@ -4313,7 +4193,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- SP ---------- */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding: 8px 0 0;
 
     &__inner {
@@ -5056,7 +4936,7 @@ html:has(.implant-lp) {
     }
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1023px) {
     &__main,
     &__data {
       grid-template-columns: 1fr;
@@ -5082,7 +4962,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- SP ---------- */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding: 40px 0 48px;
 
     &__inner {
@@ -5506,7 +5386,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- SP ---------- */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding: 44px 0 40px;
 
     &__inner {
@@ -6186,20 +6066,83 @@ html:has(.implant-lp) {
     color: #4F4A5E;
   }
 
+  // まとめ：紺の箱（金の細い線）に「どこに埋めるか × 何をかぶせるか」（SPと同じデザインを、改行なしで横長に）
   &__summary {
-    margin-top: 26px;
-    padding: 20px 28px;
-    border-radius: 6px;
-    background: $ilp-navy;
-    font-family: $ilp-sans;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.75;
-    letter-spacing: 0.06em;
+    position: relative;
+    margin-top: 32px;
+    padding: 30px 40px 32px;
+    background: linear-gradient(180deg, #3A2F7A 0%, #2A2250 50%, #1E1840 100%);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(194, 160, 97, 0.55);
+      pointer-events: none;
+    }
+  }
+
+  // 図の方を見せる。文は読み上げ用に残す（見た目だけ隠す）
+  &__summary-pc {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  &__summary-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 18px;
+    align-items: center;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  &__summary-box {
+    margin: 0;
+    padding: 14px 10px 16px;
+    border: 1px solid rgba(194, 160, 97, 0.35);
+    background: rgba(255, 255, 255, 0.04);
+    font-family: $ilp-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: 0.08em;
+    text-align: center;
+    color: #fff;
+
+    span {
+      display: block;
+      margin-bottom: 6px;
+      font-family: $ilp-sans;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: #CDBE97;
+    }
+  }
+
+  &__summary-x {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1;
+    color: #C2A061;
+  }
+
+  &__summary-text {
+    margin-top: 20px;
+    font-family: $ilp-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: 0.1em;
+    text-align: center;
     color: #fff;
   }
 
-  &__summary-sp,
   &__br-sp {
     display: none;
   }
@@ -6502,84 +6445,32 @@ html:has(.implant-lp) {
       line-height: 1.8;
     }
 
-    // まとめ：紺の箱（金の細い線）に「どこに埋めるか × 何をかぶせるか」
+    // まとめ：SPは文字を小さく、改行あり
     &__summary {
-      position: relative;
-      margin-top: 32px;
       padding: 22px 16px 26px;
-      border-radius: 0;
-      background: linear-gradient(180deg, #3A2F7A 0%, #2A2250 50%, #1E1840 100%);
-
-      &::after {
-        content: "";
-        position: absolute;
-        inset: 8px;
-        border: 1px solid rgba(194, 160, 97, 0.55);
-        pointer-events: none;
-      }
-    }
-
-    // SPは図の方を見せる。文は読み上げ用に残す（見た目だけ隠す）
-    &__summary-pc {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
-    }
-
-    &__summary-sp {
-      display: block;
     }
 
     &__summary-pair {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
       gap: 8px;
-      align-items: center;
+      max-width: none;
     }
 
     &__summary-box {
-      margin: 0;
       padding: 12px 6px 14px;
-      border: 1px solid rgba(194, 160, 97, 0.35);
-      background: rgba(255, 255, 255, 0.04);
-      font-family: $ilp-serif;
       font-size: 15px;
-      font-weight: 600;
-      line-height: 1.45;
-      letter-spacing: 0.08em;
-      text-align: center;
-      color: #fff;
 
       span {
-        display: block;
-        margin-bottom: 6px;
-        font-family: $ilp-sans;
         font-size: 11px;
-        font-weight: 400;
-        letter-spacing: 0.06em;
-        color: #CDBE97;
       }
     }
 
     &__summary-x {
       font-size: 20px;
-      font-weight: 300;
-      line-height: 1;
-      color: #C2A061;
     }
 
     &__summary-text {
       margin-top: 22px;
-      font-family: $ilp-serif;
       font-size: 18px;
-      font-weight: 500;
-      line-height: 1.7;
-      letter-spacing: 0.1em;
-      text-align: center;
-      color: #fff;
     }
   }
 }
@@ -7702,7 +7593,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- 900px以下（縦並び） ---------- */
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1023px) {
     .implant-cta__feature {
       padding: 22px 16px;
 
@@ -7715,7 +7606,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- SP ---------- */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding: 48px 0 52px;
 
     .implant-cta__title {
@@ -7755,7 +7646,7 @@ html:has(.implant-lp) {
    ・中間CTA（CONTACT：その“難しい”、あきらめる前に。）で使用
 ======================================== */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-cta.implant-cta--sp-light {
     padding: 36px 0 32px;
     background: linear-gradient(180deg, #F7F3FB 0%, #EFE9F7 100%);
@@ -7951,7 +7842,7 @@ html:has(.implant-lp) {
    ・CTA（CONSULTATION：入れる時も、その先の人生も。）で使用
 ======================================== */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .implant-cta.implant-cta--sp-dark {
     padding: 36px 0 32px;
     background: linear-gradient(180deg, #3A2F7A 0%, #2A2250 50%, #1E1840 100%);
@@ -8410,7 +8301,7 @@ html:has(.implant-lp) {
     }
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1023px) {
     &__compare {
       grid-template-columns: 1fr;
     }
@@ -8421,7 +8312,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- SP ---------- */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding: 36px 0 40px;
     background: linear-gradient(180deg, #FAF8F3 0%, #F5F1E8 100%);
 
@@ -9137,7 +9028,7 @@ html:has(.implant-lp) {
     }
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding: 52px 0 56px;
 
     .implant-cta__title {
@@ -9696,9 +9587,9 @@ html:has(.implant-lp) {
   &__time {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px; // 時計と文字のあいだ
     margin-top: 12px;
-    padding: 3px 12px;
+    padding: 3px 12px 3px 8px; // 時計の左を少し詰める
     background: $ilp-gold-shine; // 見本：金のグラデーション
     font-family: $ilp-sans;
     font-size: 12px;
@@ -9709,23 +9600,14 @@ html:has(.implant-lp) {
   }
 
   // 時計のアイコン
+  // 時計のアイコン（画像：implant-lp-flow-clock.webp・紺 #2A2250）
   &__clock {
     position: relative;
-    width: 11px;
-    height: 11px;
-    border: 1px solid #B8975A;
-    border-radius: 50%;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 2px;
-      left: 4px;
-      width: 3px;
-      height: 3px;
-      border-left: 1px solid #B8975A;
-      border-bottom: 1px solid #B8975A;
-    }
+    top: 0.5px; // 文字と高さがそろって見えるよう、少しだけ下げる
+    display: block;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
   }
 
   &__step-text {
@@ -11472,6 +11354,8 @@ html:has(.implant-lp) {
     font-weight: 400;
     line-height: 1;
     color: #DCC28C;
+    // 明朝の Q・A は文字が少し下に寄って見えるので、下に余白を足して真ん中に見えるようにする
+    padding-bottom: 0.14em;
 
     &--a {
       background: linear-gradient(135deg, #E2CB98 0%, #C9A764 55%, #B8954F 100%);
@@ -11540,7 +11424,7 @@ html:has(.implant-lp) {
   }
 
   /* ---------- SP ---------- */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding: 48px 0 52px;
 
     &__inner {
@@ -12617,7 +12501,7 @@ html:has(.implant-lp) {
     }
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1023px) {
     &__box {
       grid-template-columns: 1fr;
     }
@@ -12628,7 +12512,7 @@ html:has(.implant-lp) {
     }
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     padding: 48px 0 52px;
 
     &__inner {
@@ -12826,6 +12710,19 @@ html:has(.implant-lp) {
 }
 
 /* ========================================
+   インプラントLP：動画ファイル（共通）
+   ・ABOUT・PREVENTION の mp4（<video class="implant-lp-movie">）を枠いっぱいに表示
+======================================== */
+
+.implant-lp .implant-lp-movie {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========================================
    インプラントLP：英字ラベル（共通）
    ・h2 の外の <p class="implant-〇〇__en"> にしたので、p の下の余白を消す
 ======================================== */
@@ -12837,35 +12734,17 @@ html:has(.implant-lp) {
 /* ========================================
    インプラントLP：フッターの Access（このページだけ）
    ・footer.php で、インプラントLPのときだけ <section class="Access"> に .Access--implant-lp を付けています
-   ・構成メモより：フッター上部の紺色の帯／波形は出力しない
-     （_sec17-Access.scss の ::before の波を、このページだけ消す）
+   ・上のふちの波（_sec17-Access.scss の ::before）は白なので、
+     このページだけ、すぐ上の「リスク・副作用」の背景色（ベージュ）にして、つながって見えるようにする
 ======================================== */
 
 .Access.Access--implant-lp::before {
-  content: none;
-  display: none;
-}
+  // 波の形はそのまま使い、色だけベージュに（形をマスクにして、色を塗る）
+  $ilp-access-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 56' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M0 0H1440V22C1200 46 920 56 660 50C400 44 160 34 0 44Z'/%3E%3C/svg%3E");
 
-/* ========================================
-   インプラントLP：SPの「TOPへ戻る」ボタン（このページだけ）
-   ・このページは画面下の追従バーを出さないので、バーの上に浮いていたボタンを画面の右下へ下げる
-   ・もっと下げる／上げる場合は bottom の数字を変えてください
-======================================== */
-
-@media screen and (max-width: 767px) {
-  body:has(.implant-lp) .page-top {
-    bottom: 16px;
-  }
-
-  // 追従バー（このページでは出さない）の分の下の余白を消す
-  // （サイト共通のCSSで、SPはバーの高さ分の余白をページの下に入れているため）
-  body:has(.implant-lp) {
-    padding-bottom: 0 !important;
-  }
-
-  body:has(.implant-lp) .footer {
-    margin-bottom: 0 !important;
-  }
+  background: #FAF7EF;
+  -webkit-mask: $ilp-access-wave-mask no-repeat center top / 100% 100%;
+  mask: $ilp-access-wave-mask no-repeat center top / 100% 100%;
 }
 
 /* ========================================
@@ -12875,7 +12754,10 @@ html:has(.implant-lp) {
 ======================================== */
 
 .header.header--implant-lp {
-  border-bottom: 2px solid #D9C08A;
+  // 金の線はPCだけ（SPは他のページと同じヘッダー）
+  @media screen and (min-width: 1024px) {
+    border-bottom: 2px solid #D9C08A;
+  }
 
   .header__text {
     address,
