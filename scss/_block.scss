@@ -4841,6 +4841,12 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
   background: #988ebc;
   background-image: none;
 
+  // 白い円の線（装飾）も出さない
+  &::before,
+  &::after {
+    content: none;
+  }
+
   .page-common-head__title {
     text-shadow: none;
   }

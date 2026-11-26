@@ -4619,6 +4619,9 @@ h1.wp-block-post-title::after {
   background: #988ebc;
   background-image: none;
 }
+.page-common-head.page-common-head--solid::before, .page-common-head.page-common-head--solid::after {
+  content: none;
+}
 .page-common-head.page-common-head--solid .page-common-head__title {
   text-shadow: none;
 }
