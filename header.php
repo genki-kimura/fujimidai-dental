@@ -19,6 +19,9 @@
     <!-- End Google Tag Manager -->
     <?php endforeach; ?>
     <meta charset="UTF-8">
+    <?php if (is_front_page()) : // Googleサーチコンソールの所有権確認（旧サイトのトップページと同じ値） ?>
+    <meta name="google-site-verification" content="0Zfp3YCNPS1cCOz44QtjXIbV_5O14p-4elJRRSlXEvE" />
+    <?php endif; ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php wp_head(); ?>
