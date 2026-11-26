@@ -27,7 +27,7 @@ $header_field = function ($name, $default = '') {
     return $value ? $value : $default;
 };
 
-// インプラントLPのページかどうか（PCのヘッダーに診療時間・休診日を出すため）
+// インプラントLPのページかどうか（PCのヘッダーの下に金の線を付けるため）
 $is_implant_lp = is_page_template('implant-lp.php');
 
 $header_catch   = $header_field('header_catch', '富士見台駅の歯医者｜富士見台さくら歯科 中野区上鷺宮のインプラント・ホワイトニング');
@@ -140,14 +140,7 @@ $menu_sub = array(
                     <?php $header_catch_tag = is_page_template(array('whitening-lp.php', 'implant-lp.php')) ? 'p' : 'h1'; ?>
                     <<?php echo $header_catch_tag; ?> class="header__catch"><?php echo esc_html($header_catch); ?></<?php echo $header_catch_tag; ?>>
                     <div class="header__text">
-                        <?php if ($is_implant_lp) : ?>
-                            <?php /* インプラントLPだけ：住所（〒なし）＋診療時間＋休診日の3行 */ ?>
-                            <address><?php echo esc_html($header_address); ?></address>
-                            <p class="header__lp-info"><?php echo esc_html($header_field('header_hours', '月〜土 9:00–12:00 / 13:00–18:00')); ?></p>
-                            <p class="header__lp-info"><?php echo esc_html($header_field('header_closed', '休診：日曜・祝日（木曜午後は祝日のある週のみ診療）')); ?></p>
-                        <?php else : ?>
-                            <address>〒165-0031 <?php echo esc_html($header_address); ?></address>
-                        <?php endif; ?>
+                        <address>〒165-0031 <?php echo esc_html($header_address); ?></address>
                     </div>
                 </div>
             </div>
