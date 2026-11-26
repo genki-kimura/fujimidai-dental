@@ -8,7 +8,7 @@ while ( have_posts() ) : the_post();
     $terms      = $taxonomies ? get_the_terms( get_the_ID(), $taxonomies[0] ) : false;
 ?>
 
-<section class="page-common-head">
+<section class="page-common-head page-common-head--solid">
   <div class="page-common-head__inner">
     <h1 class="page-common-head__title"><?php the_title(); ?></h1>
   </div>
