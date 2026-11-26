@@ -110,6 +110,7 @@ $mv_circles = array(
         $insta_total = count($insta_posts);
         ?>
 
+        <?php if (false) : // Instagramスライダーは一旦非表示（2026-11-26 指示。表示するときは false を true に） ?>
         <section class="Post">
                 <div class="Post__inner">
                         <div class="Post__slider" role="region" aria-roledescription="carousel" aria-label="Instagramの新着投稿">
@@ -150,6 +151,7 @@ $mv_circles = array(
                         <?php endif; ?>
                 </div>
         </section>
+        <?php endif; ?>
 
         <?php
         /* ----------------------------------------
