@@ -8,6 +8,11 @@ Template Name: インプラントLP
 ---------------------------------------- */
 $ilp_img_dir  = get_template_directory_uri() . '/img/';
 $ilp_img_path = get_template_directory() . '/img/';
+// 画像のURL（ファイルの更新日時を ?ver= に付けるので、画像を差し替えたときにブラウザの古い画像が表示されない）
+$ilp_img = function ($file) use ($ilp_img_dir, $ilp_img_path) {
+    $path = $ilp_img_path . $file;
+    return $ilp_img_dir . $file . (file_exists($path) ? '?ver=' . filemtime($path) : '');
+};
 
 // 予約ボタンのリンク先（管理画面「フッター設定」の WEB予約のリンク先 を使います）
 $ilp_web_url = function_exists('get_field') ? get_field('cta_web_url', 'option') : '';
@@ -550,7 +555,7 @@ get_header();
                 <ul class="implant-about__parts">
                     <?php foreach ($ilp_about_parts as $part) : ?>
                         <li class="implant-about__part">
-                            <img class="implant-about__part-img" src="<?php echo esc_url($ilp_img_dir . $part['img']); ?>" alt="" width="84" height="84" loading="lazy">
+                            <img class="implant-about__part-img" src="<?php echo esc_url($ilp_img($part['img'])); ?>" alt="" width="84" height="84" loading="lazy">
                             <div class="implant-about__part-body">
                                 <?php if ($part['tag']) : ?><span class="implant-about__part-tag"><?php echo esc_html($part['tag']); ?></span><?php endif; ?>
                                 <p class="implant-about__part-title"><?php echo esc_html($part['title']); ?></p>
@@ -619,7 +624,7 @@ get_header();
             <ol class="implant-issue__list">
                 <?php foreach ($ilp_issue_items as $i => $item) : ?>
                     <li class="implant-issue__item">
-                        <span class="implant-issue__icon"><img src="<?php echo esc_url($ilp_img_dir . $item['icon']); ?>" alt="" width="<?php echo (int) $item['w']; ?>" height="<?php echo (int) $item['h']; ?>" loading="lazy"></span>
+                        <span class="implant-issue__icon"><img src="<?php echo esc_url($ilp_img($item['icon'])); ?>" alt="" width="<?php echo (int) $item['w']; ?>" height="<?php echo (int) $item['h']; ?>" loading="lazy"></span>
                         <span class="implant-issue__label">問題<span class="implant-issue__num"><?php echo esc_html(sprintf('%02d', $i + 1)); ?></span></span>
                         <h3 class="implant-issue__item-title"><?php echo esc_html($item['title']); ?></h3>
                         <p class="implant-issue__item-text"><?php echo esc_html($item['text']); ?></p>
@@ -742,7 +747,7 @@ get_header();
             <ol class="implant-solution__list">
                 <?php foreach ($ilp_solution_items as $i => $item) : ?>
                     <li class="implant-solution__item">
-                        <img class="implant-solution__photo" src="<?php echo esc_url($ilp_img_dir . $item['img']); ?>" alt="<?php echo esc_attr($item['alt']); ?>" width="694" height="518" loading="lazy">
+                        <img class="implant-solution__photo" src="<?php echo esc_url($ilp_img($item['img'])); ?>" alt="<?php echo esc_attr($item['alt']); ?>" width="694" height="518" loading="lazy">
                         <div class="implant-solution__card">
                             <p class="implant-solution__label">
                                 <span class="implant-solution__check" aria-hidden="true"></span>
@@ -872,7 +877,7 @@ get_header();
                                     <span class="implant-esthetic__case-tag" aria-hidden="true">BEFORE</span>
                                     <figcaption class="screen-reader-text">治療前</figcaption>
                                     <?php if (file_exists($ilp_img_path . $case['before'])) : ?>
-                                        <img src="<?php echo esc_url($ilp_img_dir . $case['before']); ?>" alt="治療前" width="904" height="436" loading="lazy">
+                                        <img src="<?php echo esc_url($ilp_img($case['before'])); ?>" alt="治療前" width="904" height="436" loading="lazy">
                                     <?php else : ?>
                                         <span class="implant-esthetic__case-placeholder">BEFORE の写真</span>
                                     <?php endif; ?>
@@ -882,7 +887,7 @@ get_header();
                                     <span class="implant-esthetic__case-tag implant-esthetic__case-tag--after" aria-hidden="true">AFTER</span>
                                     <figcaption class="screen-reader-text">治療後</figcaption>
                                     <?php if (file_exists($ilp_img_path . $case['after'])) : ?>
-                                        <img src="<?php echo esc_url($ilp_img_dir . $case['after']); ?>" alt="治療後" width="904" height="436" loading="lazy">
+                                        <img src="<?php echo esc_url($ilp_img($case['after'])); ?>" alt="治療後" width="904" height="436" loading="lazy">
                                     <?php else : ?>
                                         <span class="implant-esthetic__case-placeholder">AFTER の写真</span>
                                     <?php endif; ?>
@@ -917,7 +922,7 @@ get_header();
                 <?php foreach ($ilp_esthetic_items as $i => $item) : ?>
                     <div class="implant-esthetic__feature<?php echo $i % 2 ? ' is-reverse' : ''; ?>">
                         <figure class="implant-esthetic__feature-media">
-                            <img src="<?php echo esc_url($ilp_img_dir . $item['img']); ?>" alt="<?php echo esc_attr($item['alt']); ?>" width="<?php echo esc_attr($item['w']); ?>" height="<?php echo esc_attr($item['h']); ?>" loading="lazy">
+                            <img src="<?php echo esc_url($ilp_img($item['img'])); ?>" alt="<?php echo esc_attr($item['alt']); ?>" width="<?php echo esc_attr($item['w']); ?>" height="<?php echo esc_attr($item['h']); ?>" loading="lazy">
                             <?php if ($item['caption']) : ?>
                                 <figcaption><?php echo esc_html($item['caption']); ?></figcaption>
                             <?php elseif ($item['caption_sp']) : ?>
@@ -991,7 +996,7 @@ get_header();
             <ul class="implant-consult__methods">
                 <?php foreach ($ilp_consult_methods as $m) : ?>
                     <li class="implant-consult__method">
-                        <img class="implant-consult__method-img" src="<?php echo esc_url($ilp_img_dir . $m['img']); ?>" alt="" width="1060" height="236" loading="lazy">
+                        <img class="implant-consult__method-img" src="<?php echo esc_url($ilp_img($m['img'])); ?>" alt="" width="1060" height="236" loading="lazy">
                         <div class="implant-consult__method-body">
                             <p class="implant-consult__for"><span class="implant-consult__for-tag">こんな方へ</span><?php echo esc_html($m['for']); ?></p>
                             <h4 class="implant-consult__method-title"><?php echo esc_html($m['title']); ?></h4>
@@ -1009,7 +1014,7 @@ get_header();
                 <ul class="implant-consult__disease-list">
                     <?php foreach ($ilp_consult_diseases as $d) : ?>
                         <li class="implant-consult__disease-item">
-                            <span class="implant-consult__disease-icon"><img src="<?php echo esc_url($ilp_img_dir . $d['icon']); ?>" alt="" width="26" height="26" loading="lazy"></span>
+                            <span class="implant-consult__disease-icon"><img src="<?php echo esc_url($ilp_img($d['icon'])); ?>" alt="" width="26" height="26" loading="lazy"></span>
                             <span class="implant-consult__disease-label"><?php echo esc_html($d['label']); ?></span>
                         </li>
                     <?php endforeach; ?>
@@ -1114,7 +1119,7 @@ get_header();
                                 <?php endif; ?>
                             </div>
                             <figcaption class="implant-prevention__col-body">
-                                <span class="implant-prevention__col-title"><img src="<?php echo esc_url($ilp_img_dir . $item['icon']); ?>" alt="" width="24" height="24" loading="lazy"><span class="implant-prevention__mark" aria-hidden="true"><?php echo esc_html($item['mark']); ?></span><?php echo esc_html($item['title']); ?></span>
+                                <span class="implant-prevention__col-title"><img src="<?php echo esc_url($ilp_img($item['icon'])); ?>" alt="" width="24" height="24" loading="lazy"><span class="implant-prevention__mark" aria-hidden="true"><?php echo esc_html($item['mark']); ?></span><?php echo esc_html($item['title']); ?></span>
                                 <span class="implant-prevention__col-text">
                                     <span class="implant-prevention__pc"><?php echo esc_html($item['text']); ?></span>
                                     <span class="implant-prevention__sp"><?php echo esc_html($item['text_sp']); ?></span>
@@ -1165,7 +1170,7 @@ get_header();
                 <?php foreach ($ilp_reasons as $i => $r) : ?>
                     <li class="implant-reason__item<?php echo $i % 2 ? ' is-reverse' : ''; ?>">
                         <figure class="implant-reason__media">
-                            <img src="<?php echo esc_url($ilp_img_dir . $r['img']); ?>" alt="<?php echo esc_attr($r['alt']); ?>" width="920" height="580" loading="lazy">
+                            <img src="<?php echo esc_url($ilp_img($r['img'])); ?>" alt="<?php echo esc_attr($r['alt']); ?>" width="920" height="580" loading="lazy">
                         </figure>
                         <div class="implant-reason__body">
                             <p class="implant-reason__label" aria-hidden="true">
