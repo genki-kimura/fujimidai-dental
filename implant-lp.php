@@ -283,9 +283,6 @@ get_header();
                             </button>
                         </div>
                         <?php endif; ?>
-                        <figcaption class="implant-why__video-caption">
-                            <span class="implant-why__video-caption-icon" aria-hidden="true"></span>動画：なぜ歯を抜けた状態にしたらまずいのか<?php echo $ilp_why_mp4_url ? '' : '（YouTube）'; ?>
-                        </figcaption>
                     </figure>
 
                     <ol class="implant-why__list">
