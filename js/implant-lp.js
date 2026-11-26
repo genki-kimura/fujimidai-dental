@@ -13,6 +13,7 @@
     }
 
     initVideos(lp);
+    initAutoplayVideos(lp);
     initCaseSlider(lp);
     initFaq(lp);
   });
@@ -42,6 +43,35 @@
         frame.appendChild(iframe);
         frame.classList.add('is-playing');
       });
+    });
+  }
+
+  /* ----------------------------------------
+     自動再生の動画（WHY NOW の mp4 など）
+     ・video タグの autoplay muted loop で自動再生・くり返し再生します
+     ・念のため、自動で始まらなかったときは JS からも再生をかけます
+     ・「動きを減らす」設定の方には、自動再生しないで止めておきます
+  ---------------------------------------- */
+  function initAutoplayVideos(lp) {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    lp.querySelectorAll('[data-autoplay-video]').forEach(function (video) {
+      video.muted = true; // 音なしでないと自動再生できないブラウザがあるため
+
+      if (reduce) {
+        video.removeAttribute('autoplay');
+        video.pause();
+        video.setAttribute('controls', '');
+        return;
+      }
+
+      var play = video.play();
+      if (play && typeof play.catch === 'function') {
+        play.catch(function () {
+          // 自動再生がブロックされたときは、再生ボタンを出して手動で再生できるようにする
+          video.setAttribute('controls', '');
+        });
+      }
     });
   }
 
