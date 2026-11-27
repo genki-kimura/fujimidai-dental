@@ -743,7 +743,7 @@ $wl_option = array(
         ),
     ),
     'btn_label' => 'デンタルエステを詳しくみる',
-    'btn_url'   => '#', // TODO：デンタルエステのページのURL
+    'btn_url'   => home_url('/treatment/dental-esthetic/'),
 );
 
 // オプションの写真を出す（ファイルがなければグレーの枠）
