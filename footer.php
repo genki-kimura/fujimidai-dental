@@ -127,7 +127,7 @@ $is_implant_lp = is_page_template('implant-lp.php');
                 <div class="Access__inner">
                         <!-- 左：医院情報・診療時間・決済方法 -->
                         <div class="Access__main">
-                                <p class="Access__lead">あなたの笑顔を、お待ちしています。</p>
+                                <p class="Access__lead">医療法人社団以和貴会</p>
                                 <p class="Access__name">富士見台さくら歯科</p>
                                 <span class="Access__line" aria-hidden="true"></span>
 
