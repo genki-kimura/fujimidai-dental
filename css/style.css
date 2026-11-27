@@ -22275,8 +22275,9 @@ html:has(.implant-lp) {
   }
   .implant-doctor__badge-main {
     margin-top: 0;
-    font-size: 15.5px;
-    letter-spacing: 0.12em;
+    font-size: min(15.5px, 3.9vw);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
   }
   .implant-doctor__body {
     padding-top: 0;

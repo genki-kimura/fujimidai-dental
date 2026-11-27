@@ -2808,8 +2808,10 @@ html:has(.implant-lp) {
 
     &__badge-main {
       margin-top: 0;
-      font-size: 15.5px;
-      letter-spacing: 0.12em;
+      // 狭い画面でも「専門医」の「医」だけが改行されないよう、1行に収める
+      font-size: min(15.5px, 3.9vw);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
     }
 
     &__body {
