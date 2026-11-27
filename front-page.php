@@ -298,7 +298,7 @@ $mv_circles = array(
                                 <!-- 右：マップ・訪問歯科診療バナー -->
                                 <div class="Information__side">
                                         <figure class="Information__map">
-                                                <img src="<?php echo esc_url(get_template_directory_uri() . '/img/map.webp'); ?>" alt="富士見台駅から徒歩5分。千川通り沿いの富士見台さくら歯科への地図" width="1006" height="460" loading="lazy">
+                                                <img src="<?php echo esc_url(get_template_directory_uri() . '/img/map-route.webp'); ?>" alt="富士見台駅から徒歩5分。千川通り沿いの富士見台さくら歯科への地図" width="1006" height="460" loading="lazy">
                                         </figure>
                                         <a href="<?php echo esc_url(home_url('/treatment/home-visit/')); ?>" class="Information__banner">
                                                 <picture>
