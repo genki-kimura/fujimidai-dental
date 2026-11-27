@@ -677,7 +677,7 @@ $wl_flow = array(
         array(
             'title' => 'ホワイトニング施術',
             'text'  => '薬剤の塗布と光の照射で歯を白く。',
-            'image' => array('whitening-lp-flow03.webp', 'ホワイトニングの施術を受ける女性', 1536, 1024, '50% 50%'),
+            'image' => array('whitening-lp-solution04.webp', '照射器を使ってホワイトニングを行うスタッフ', 1400, 933, '50% 50%'),
         ),
         array(
             'title' => '仕上げ・確認',
