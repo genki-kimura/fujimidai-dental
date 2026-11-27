@@ -4125,6 +4125,15 @@ h1.wp-block-post-title::after {
   background: -webkit-gradient(linear, left top, left bottom, from(#fdf9f9), color-stop(30%, #fbf1f5), color-stop(58%, #f7eef4), to(#faf5f8));
   background: linear-gradient(180deg, #fdf9f9 0%, #fbf1f5 30%, #f7eef4 58%, #faf5f8 100%);
 }
+.page-common-content .feature .feature-corp,
+.is-root-container .feature .feature-corp {
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: #7e69a9;
+}
 .page-common-content .feature .feature-logo,
 .is-root-container .feature .feature-logo {
   display: -webkit-box;
@@ -4206,6 +4215,11 @@ h1.wp-block-post-title::after {
     margin: 32px 0;
     padding: 36px 16px 28px;
     border-radius: 18px;
+  }
+  .page-common-content .feature .feature-corp,
+  .is-root-container .feature .feature-corp {
+    margin-bottom: 6px;
+    font-size: 11px;
   }
   .page-common-content .feature .feature-logo,
   .is-root-container .feature .feature-logo {

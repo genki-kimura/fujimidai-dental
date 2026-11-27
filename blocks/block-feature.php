@@ -42,6 +42,7 @@ $class       = 'feature' . ( $extra_class ? ' ' . esc_attr( $extra_class ) : '' 
 <section class="<?php echo $class; ?>">
 
 	<?php if ( $logo_url ) : ?>
+		<p class="feature-corp">医療法人社団以和貴会</p>
 		<div class="feature-logo">
 			<img class="feature-logo-img" src="<?php echo esc_url( $logo_url ); ?>" alt="富士見台さくら歯科" width="426" height="101" loading="lazy" decoding="async">
 			<span class="feature-logo-no" aria-hidden="true">の</span>
