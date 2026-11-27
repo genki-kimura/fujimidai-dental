@@ -6976,6 +6976,21 @@ html:has(.implant-lp) {
     }
   }
 
+  // 名前の上の法人名＋医院名（小さく）
+  &__corp {
+    margin-top: 12px;
+    font-family: $ilp-sans;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    color: #6B6880;
+  }
+
+  &__corp + &__name {
+    margin-top: 2px;
+  }
+
   &__name {
     margin-top: 10px;
     font-family: $ilp-serif;
@@ -7367,9 +7382,16 @@ html:has(.implant-lp) {
 
     &__doctor-head,
     &__school,
+    &__corp,
     &__name,
     &__cred {
       grid-column: 2;
+    }
+
+    &__corp {
+      margin-top: 6px;
+      font-size: 10.5px;
+      letter-spacing: 0.02em;
     }
 
     &__school {

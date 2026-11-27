@@ -1028,6 +1028,7 @@ get_header();
                 <div class="implant-consult__doctor-body">
                     <p class="implant-consult__doctor-head"><span class="implant-consult__doctor-label">DOCTOR</span>担当医</p>
                     <p class="implant-consult__school"><img src="<?php echo esc_url($ilp_img_dir . 'implant-lp-consult-icon-school.webp'); ?>" alt="" width="20" height="20" loading="lazy">東京医科歯科大学 出身</p>
+                    <p class="implant-consult__corp">医療法人社団以和貴会 富士見台さくら歯科</p>
                     <p class="implant-consult__name">院長 芳賀 浩昭<span class="implant-consult__kana">（はが ひろあき）</span></p>
                     <p class="implant-consult__cred">歯学博士 / 日本口腔インプラント学会認定 口腔インプラント専門医</p>
                     <p class="implant-consult__doctor-catch">「医科歯科連携」で、全身疾患のある方もご相談ください。</p>
