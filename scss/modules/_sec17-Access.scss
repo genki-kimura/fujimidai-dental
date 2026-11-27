@@ -834,3 +834,25 @@ $access-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
     }
   }
 }
+
+/* ----------------------------------------
+本文に埋め込む診療時間の表（フッターと同じデザイン）
+固定ページで <div class="Access Access--embed"> ～ の形で使います
+---------------------------------------- */
+.Access.Access--embed {
+  margin: 24px 0 32px;
+  padding: 0;
+  background: none;
+
+  &::before {
+    display: none;
+  }
+
+  .Access__table-wrap {
+    margin-top: 0;
+  }
+
+  .Access__note {
+    margin-top: 10px;
+  }
+}
