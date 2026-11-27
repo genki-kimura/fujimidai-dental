@@ -672,7 +672,7 @@ $wl_flow = array(
         array(
             'title' => 'クリーニング',
             'text'  => '着色や汚れを落とし、効果を高めます。',
-            'image' => array('whitening-lp-flow02.webp', '歯科医師とスタッフがクリーニングを行う様子', 1400, 933, '38% 50%'),
+            'image' => array('whitening-lp-flow02-cleaning.webp', '歯科衛生士がクリーニングを行う様子', 800, 500, '35% 50%'),
         ),
         array(
             'title' => 'ホワイトニング施術',
