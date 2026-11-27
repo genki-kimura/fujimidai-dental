@@ -9667,6 +9667,7 @@ message mv
   white-space: normal;
   word-break: keep-all;
   overflow-wrap: anywhere;
+  text-align: left;
   background: #eef2fb;
   font-size: 13px;
   font-weight: 700;
