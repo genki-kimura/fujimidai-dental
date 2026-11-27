@@ -2363,7 +2363,7 @@ $cta-icon-phone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 // --- ② ホワイトニング予約 ----------------------------------
 .wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link {
   &::before {
-    content: "＼ ホワイトエッセンス提携医院 ／";
+    content: "＼ ホワイトエッセンス加盟院 ／";
     grid-row: 1;
   }
 
@@ -4863,4 +4863,9 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
   .page-common-head.page-common-head--solid {
     padding-block: 24px;
   }
+}
+
+// --- CTA（まとめ）の見出し：1文字だけ次の行に落ちないよう、行の長さをそろえて改行（2026-11-27 医院修正依頼）
+.page-common-content .cta-box .cta-box-title {
+  text-wrap: balance;
 }

@@ -145,8 +145,15 @@
       });
     });
 
+    // 症例ごとの説明表（同じセクション内の [data-case-info]）
+    var section = viewer.closest('.wl-case') || document;
+    var infos = section.querySelectorAll('[data-case-info]');
+
     function show(index) {
       current = (index + slides.length) % slides.length;
+      infos.forEach(function (info, i) {
+        if (i === current) { info.removeAttribute('hidden'); } else { info.setAttribute('hidden', ''); }
+      });
       slides.forEach(function (slide, i) {
         var active = i === current;
         slide.classList.toggle('is-active', active);

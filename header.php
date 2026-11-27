@@ -245,7 +245,7 @@ $menu_sub = array(
                     </a>
                     <a class="header__menu-btn header__menu-btn--outline" href="<?php echo esc_url($header_url($menu_white_url)); ?>">
                         <span class="header__menu-btn-text">
-                            <span class="header__menu-btn-sub">ホワイトエッセンス加盟店</span>
+                            <span class="header__menu-btn-sub">ホワイトエッセンス加盟院</span>
                             <span class="header__menu-btn-main">ホワイトニング予約</span>
                         </span>
                         <span class="header__menu-btn-arrow" aria-hidden="true">→</span>

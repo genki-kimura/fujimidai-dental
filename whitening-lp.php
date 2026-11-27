@@ -17,7 +17,7 @@ $wl_br = function ($lines) {
 
 $wl_mv = array(
     'brand'      => 'WHITE ESSENCE',
-    'partner'    => 'ホワイトエッセンス提携医院',
+    'partner'    => 'ホワイトエッセンス加盟院',
     'label'      => 'WHITENING',
     'lead'       => array('富士見台・中野区・練馬区の', 'ホワイトニング'), // スマホでは、この位置で改行（PC・h1の文章は1行でつながります）
     'clinic'     => '富士見台さくら歯科',
@@ -48,16 +48,23 @@ $wl_case = array(
     'lead'     => '中央のボタンを左右にスライドして、施術前後を見比べられます。',
     'note'     => '※ 施術前後の画像は、一切の加工・修正を行っておりません。',
     'items'    => array(
-        array('before' => 'whitening-case01-before.webp', 'after' => 'whitening-case01-after.webp', 'alt' => 'ホワイトニング症例1'),
-        array('before' => 'whitening-case02-before.webp', 'after' => 'whitening-case02-after.webp', 'alt' => 'ホワイトニング症例2'),
-    ),
-    // array(見出し, 内容, 太字にするか)
-    'info'     => array(
-        array('内容',           'ホワイトエッセンスコース（オフィス3回＋ホーム＋クリーニング）', false),
-        array('費用（自費）',   '118,800円（税込）', true),
-        array('期間・回数',     'オフィス 3回／ホーム 約2週間〜', false),
-        array('副作用・リスク', '施術中から施術後にかけて一時的な知覚過敏やしみる症状が出ることがあります。詰め物・被せ物は白くなりません。時間の経過とともに色調が戻るため、定期的な再施術が必要です。', false),
-        array('所要時間',       '初回90分／2回目以降45分　※初回はカウンセリング込み', false),
+        // 'info' は症例ごとの説明（array(見出し, 内容, 太字にするか)）。スライドを切り替えると表も切り替わります
+        array('before' => 'whitening-case01-before.webp', 'after' => 'whitening-case01-after.webp', 'alt' => 'ホワイトニング症例1', 'info' => array(
+            array('年齢',               '24歳', false),
+            array('内容',               'ホワイトエッセンスコース（5回）＋パーソナルチケット4（2〜4回）', false),
+            array('回数',               '10回', false),
+            array('費用（自費）',       '149,600円（税込）', true),
+            array('1回あたりの所要時間', '30分〜75分', false),
+            array('副作用・リスク',     '施術中から施術後にかけて一時的な知覚過敏やしみる症状が出ることがあります。詰め物・被せ物は白くなりません。時間の経過とともに色調が戻るため、定期的な再施術が必要です。', false),
+        )),
+        array('before' => 'whitening-case02-before.webp', 'after' => 'whitening-case02-after.webp', 'alt' => 'ホワイトニング症例2', 'info' => array(
+            array('年齢',               '22歳', false),
+            array('内容',               'ホワイトエッセンスコース（5回）', false),
+            array('回数',               '6回', false),
+            array('費用（自費）',       '118,800円（税込）', true),
+            array('1回あたりの所要時間', '45分〜60分', false),
+            array('副作用・リスク',     '施術中から施術後にかけて一時的な知覚過敏やしみる症状が出ることがあります。詰め物・被せ物は白くなりません。時間の経過とともに色調が戻るため、定期的な再施術が必要です。', false),
+        )),
     ),
 );
 
@@ -81,7 +88,7 @@ $wl_about = array(
     'sub'       => '歯を削らず、内側から白く',
     'catch'     => array('歯の色が変わると、', '笑顔の印象まで|明るくなる。'), // 「|」の位置で、スマホだけ改行
     'texts'     => array(
-        '歯を削らずに、あなたらしい白い歯と、心からの笑顔を。当院はホワイトエッセンス提携医院として、本物のホワイトニングをお届けします。',
+        '歯を削らずに、あなたらしい白い歯と、心からの笑顔を。当院はホワイトエッセンス加盟院として、本物のホワイトニングをお届けします。',
         '薬剤を歯に塗布し、光を照射することで、歯の内部の黄ばみを分解して白くする施術です。表面の着色だけを落とすセルフケアとは異なり、医療用の薬剤で内側から自然な白さを引き出します。',
     ),
     // array(アイコン画像, 見出し（「|」の位置で、スマホだけ改行）, 説明)
@@ -182,7 +189,7 @@ $wl_trouble = array(
 $wl_solution = array(
     'en'    => 'SOLUTION',
     'title' => 'そのお悩み、富士見台さくら歯科にお任せください',
-    'lead'  => 'よくいただく6つのご不安それぞれに、ホワイトエッセンス提携医院としての体制でお応えします。',
+    'lead'  => 'よくいただく6つのご不安それぞれに、ホワイトエッセンス加盟院としての体制でお応えします。',
     'petal' => 'whitening-lp-trouble02.webp', // 右上の花びら（お悩みと共用。なくても表示は崩れません）
     'blocks' => array(
         // ---- 01 ----
@@ -730,11 +737,6 @@ $wl_option = array(
             'image' => array('whitening-lp-option04.webp', '口元のケアを受ける女性', 1448, 1086, '50% 50%'),
         ),
         array(
-            'title' => '歯周病菌DNA検査・むし歯検査',
-            'url'   => '#', // TODO：リンク先URL（5番目）
-            'image' => array('whitening-lp-option05.webp', '歯周病菌DNA検査のキットと検査結果のイメージ', 1448, 1086, '50% 50%'),
-        ),
-        array(
             'title' => 'ホームケア用品（歯磨き粉・歯ブラシ 等）',
             'url'   => '#', // TODO：リンク先URL（6番目）
             'image' => array('whitening-lp-option06.webp', 'ホームケア用の歯ブラシ・歯磨き粉・マウスウォッシュ', 1448, 1086, '50% 50%'),
@@ -896,7 +898,7 @@ $wl_cta = array(
     'title'     => "まずはお気軽に\nご相談ください！",
     'lead'      => 'あなたに合う白さのプランを、カウンセリングでご提案します。',
     'points'    => array(
-        array('ホワイトエッセンス提携医院', '専門ブランドの品質で施術'),
+        array('ホワイトエッセンス加盟院', '専門ブランドの品質で施術'),
         array('白さに、結果保証',           '未達なら追加無料／返金保証'),
         array('豊富なメニューから選べる',   'オフィス・ホーム・デュアル'),
     ),
@@ -1033,14 +1035,17 @@ $wl_cta = array(
             </div>
 
             <!-- 右：施術の内容 -->
-            <dl class="wl-case__info">
-                <?php foreach ($wl_case['info'] as $row) : ?>
+            <?php /* 症例ごとの表。表示中のスライドに合わせて whitening-lp.js が切り替えます */ ?>
+            <?php foreach ($wl_case['items'] as $i => $item) : ?>
+            <dl class="wl-case__info" data-case-info<?php echo $i === 0 ? '' : ' hidden'; ?>>
+                <?php foreach ($item['info'] as $row) : ?>
                     <div class="wl-case__row">
                         <dt><?php echo esc_html($row[0]); ?></dt>
                         <dd<?php echo !empty($row[2]) ? ' class="is-strong"' : ''; ?>><?php echo esc_html($row[1]); ?></dd>
                     </div>
                 <?php endforeach; ?>
             </dl>
+            <?php endforeach; ?>
 
             <!-- 注記：スマホ・タブレットでは画像と表のあいだに表示（CSSの grid-area で並べ替え） -->
             <small class="wl-case__note"><?php echo esc_html($wl_case['note']); ?></small>

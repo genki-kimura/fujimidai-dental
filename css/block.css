@@ -2118,7 +2118,7 @@ h1.wp-block-post-title::after {
 }
 
 .wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link::before {
-  content: "＼ ホワイトエッセンス提携医院 ／";
+  content: "＼ ホワイトエッセンス加盟院 ／";
   grid-row: 1;
 }
 .wp-block-buttons .wp-block-button.whitening-reservation-btn a.wp-block-button__link::after {
@@ -4635,5 +4635,8 @@ h1.wp-block-post-title::after {
   .page-common-head.page-common-head--solid {
     padding-block: 24px;
   }
+}
+.page-common-content .cta-box .cta-box-title {
+  text-wrap: balance;
 }
 /*# sourceMappingURL=block.css.map */
