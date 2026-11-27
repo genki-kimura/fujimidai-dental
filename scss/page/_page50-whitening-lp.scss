@@ -1578,7 +1578,9 @@ $wl-about-bg-side: #eef2fb; // 左右の水色
       font-family: $wl-font-sans;
       padding-right: 0;
       padding-left: 12px;
-      white-space: nowrap;
+      // 長い項目名（1回あたりの所要時間 など）は枠内で折り返す
+      white-space: normal;
+      word-break: break-all;
       background: #eef2fb;
       font-size: 13px;
       font-weight: 700;
