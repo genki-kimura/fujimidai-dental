@@ -102,15 +102,15 @@ $wl_about = array(
 /* ----------------------------------------
    ホワイトニングLP：「シミュレーション（歯の白さで印象が変わる）」用の値
    ・画像は img フォルダに入れます（未設置の間はグレーの枠が表示されます）
-     施術前：whitening-lp-simulation01.webp／施術後：whitening-lp-simulation02.webp
+     施術前：whitening-lp-sim-before.webp／施術後：whitening-lp-sim-after.webp
 ---------------------------------------- */
 $wl_sim = array(
     'en'     => 'SIMULATION',
     'title'  => '歯の白さで、印象はこんなに変わる',
     'lead'   => '歯が白くなるだけで、清潔感や明るさなど、お顔全体の印象が変わります。',
     // array(画像, 英字ラベル, ひとこと, alt)
-    'before' => array('whitening-lp-simulation01.webp', 'BEFORE', '歯の色が気になる印象',   '歯が黄ばんでいる状態のイメージ'),
-    'after'  => array('whitening-lp-simulation02.webp', 'AFTER',  '明るく清潔感のある印象', '歯が白くなった状態のイメージ'),
+    'before' => array('whitening-lp-sim-before.webp', 'BEFORE', '歯の色が気になる印象',   '歯が黄ばんでいる状態のイメージ'),
+    'after'  => array('whitening-lp-sim-after.webp', 'AFTER',  '明るく清潔感のある印象', '歯が白くなった状態のイメージ'),
     // 白さの目安バー（シェードガイド）
     'shade'  => array(
         'left'  => '黄ばみ',
