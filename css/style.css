@@ -9665,7 +9665,8 @@ message mv
   padding-right: 0;
   padding-left: 12px;
   white-space: normal;
-  word-break: break-all;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
   background: #eef2fb;
   font-size: 13px;
   font-weight: 700;
