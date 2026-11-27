@@ -4250,6 +4250,15 @@ h1.wp-block-post-title::after {
   border-radius: 24px;
   background: linear-gradient(120deg, #e6dcf4 0%, #f0eaf8 40%, #f7f4fb 75%, #f5f2fa 100%);
 }
+.page-common-content .strengths-cta .strengths-cta-corp,
+.is-root-container .strengths-cta .strengths-cta-corp {
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: #7e69a9;
+}
 .page-common-content .strengths-cta .strengths-cta-logo,
 .is-root-container .strengths-cta .strengths-cta-logo {
   display: -webkit-box;
@@ -4514,6 +4523,11 @@ h1.wp-block-post-title::after {
     margin: 32px 0;
     padding: 36px 16px 28px;
     border-radius: 18px;
+  }
+  .page-common-content .strengths-cta .strengths-cta-corp,
+  .is-root-container .strengths-cta .strengths-cta-corp {
+    margin-bottom: 6px;
+    font-size: 11px;
   }
   .page-common-content .strengths-cta .strengths-cta-logo,
   .is-root-container .strengths-cta .strengths-cta-logo {

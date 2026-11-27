@@ -4488,6 +4488,16 @@ $sc-attention:  #4b4660;     // 注意のグレー紫
   border-radius: $sc-radius;
   background: $sc-bg;
 
+  // ---------- 法人名(ロゴの上に小さく・特徴ブロックと同じ) ----------
+  .strengths-cta-corp {
+    margin: 0 0 8px;
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: $list-accent;
+  }
+
   // ---------- ロゴ + 「の」 ----------
   .strengths-cta-logo {
     display: flex;
@@ -4718,6 +4728,11 @@ $sc-attention:  #4b4660;     // 注意のグレー紫
     margin: 32px 0;
     padding: 36px 16px 28px;
     border-radius: 18px;
+
+    .strengths-cta-corp {
+      margin-bottom: 6px;
+      font-size: 11px;
+    }
 
     .strengths-cta-logo {
       gap: 6px;
