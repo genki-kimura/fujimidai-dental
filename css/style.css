@@ -19574,6 +19574,10 @@ message mv
     color: #2e2a33;
   }
 }
+.wl-case__info[hidden] {
+  display: none !important;
+}
+
 /* ========================================
    インプラントLP（テンプレート：implant-lp.php）
    ・このファイル1つに、セクションごとに区切って書いています

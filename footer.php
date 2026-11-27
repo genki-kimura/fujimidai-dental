@@ -207,7 +207,7 @@ $is_implant_lp = is_page_template('implant-lp.php');
                                         </a>
                                         <a href="<?php echo esc_url($access_wht_url); ?>" class="Access__btn Access__btn--outline">
                                                 <span class="Access__btn-text">
-                                                        <span class="Access__btn-sub">ホワイトエッセンス加盟店</span>
+                                                        <span class="Access__btn-sub">ホワイトエッセンス加盟院</span>
                                                         <span class="Access__btn-main">ホワイトニング予約</span>
                                                 </span>
                                                 <span class="Access__btn-arrow" aria-hidden="true">→</span>
@@ -295,7 +295,7 @@ $is_implant_lp = is_page_template('implant-lp.php');
         <a class="floating-cta__btn floating-cta__btn--white" href="<?php echo esc_url($footer_url($cta_white_url)); ?>" style="--cta-icon: url('<?php echo esc_url($cta_icon_dir . 'cta-icon02.webp'); ?>')">
             <span class="floating-cta__icon" aria-hidden="true"></span>
             <span class="floating-cta__text">
-                <span class="floating-cta__label"><span class="floating-cta__pc">ホワイトエッセンス加盟店</span><span class="floating-cta__sp">ホワイトエッセンス</span></span>
+                <span class="floating-cta__label"><span class="floating-cta__pc">ホワイトエッセンス加盟院</span><span class="floating-cta__sp">ホワイトエッセンス</span></span>
                 <span class="floating-cta__main"><span class="floating-cta__pc">ホワイトニング予約</span><span class="floating-cta__sp">ホワイトニング予約</span></span>
             </span>
         </a>

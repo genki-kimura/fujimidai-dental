@@ -11983,3 +11983,8 @@ $wl-cta-sub: #6a6a80;
     color: #2e2a33;
   }
 }
+
+// 症例ごとの説明表：表示中の症例以外は隠す（hidden 属性）
+.wl-case__info[hidden] {
+  display: none !important;
+}
