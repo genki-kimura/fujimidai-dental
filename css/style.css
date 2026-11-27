@@ -6805,6 +6805,25 @@ Access（医院情報・アクセス）
 }
 
 /* ----------------------------------------
+本文に埋め込む診療時間の表（フッターと同じデザイン）
+固定ページで <div class="Access Access--embed"> ～ の形で使います
+---------------------------------------- */
+.Access.Access--embed {
+  margin: 24px 0 32px;
+  padding: 0;
+  background: none;
+}
+.Access.Access--embed::before {
+  display: none;
+}
+.Access.Access--embed .Access__table-wrap {
+  margin-top: 0;
+}
+.Access.Access--embed .Access__note {
+  margin-top: 10px;
+}
+
+/* ----------------------------------------
 Footer
 ---------------------------------------- */
 .footer {
