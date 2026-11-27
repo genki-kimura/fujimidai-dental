@@ -1657,7 +1657,7 @@ get_header();
                         </div>
                         <div class="implant-access__row">
                             <dt><img src="<?php echo esc_url($ilp_img_dir . 'implant-lp-access-icon-train.webp'); ?>" alt="" width="18" height="18">アクセス</dt>
-                            <dd>西武池袋線「富士見台駅」より徒歩3分（千川通り沿い）</dd>
+                            <dd>西武池袋線「富士見台駅」より徒歩5分（千川通り沿い）</dd>
                         </div>
                         <div class="implant-access__row">
                             <dt><img src="<?php echo esc_url($ilp_img_dir . 'implant-lp-access-icon-car.webp'); ?>" alt="" width="18" height="18">駐車場</dt>

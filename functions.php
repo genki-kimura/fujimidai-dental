@@ -644,7 +644,7 @@ add_action('acf/init', function () {
                         'label'        => 'SP用の文言（1行）',
                         'name'         => 'text_sp',
                         'type'         => 'text',
-                        'instructions' => '空欄の場合は、左の文言の改行を取って1行にします（例：富士見台駅 徒歩3分・土曜も診療）',
+                        'instructions' => '空欄の場合は、左の文言の改行を取って1行にします（例：富士見台駅 徒歩5分・土曜も診療）',
                     ),
                 ),
             ),
