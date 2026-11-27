@@ -6985,6 +6985,11 @@ html:has(.implant-lp) {
     line-height: 1.5;
     letter-spacing: 0.06em;
     color: #6B6880;
+
+    // 法人名と医院名の間でだけ改行する
+    span {
+      display: inline-block;
+    }
   }
 
   &__corp + &__name {

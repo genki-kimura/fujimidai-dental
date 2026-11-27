@@ -26327,6 +26327,9 @@ html:has(.implant-lp) {
   letter-spacing: 0.06em;
   color: #6B6880;
 }
+.implant-consult__corp span {
+  display: inline-block;
+}
 .implant-consult__corp + .implant-consult__name {
   margin-top: 2px;
 }
