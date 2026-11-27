@@ -9999,17 +9999,13 @@ message mv
   top: 0;
   left: 0;
   display: block;
-  width: 120.5%;
+  width: 100%;
   max-width: none;
-  height: auto;
-}
-.wl-sim__item--before .wl-sim__img {
-  -webkit-transform: translate(-17%, -9.2%);
-          transform: translate(-17%, -9.2%);
-}
-.wl-sim__item--after .wl-sim__img {
-  -webkit-transform: translate(-17%, -5.4%);
-          transform: translate(-17%, -5.4%);
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 48%;
+     object-position: 50% 48%;
 }
 .wl-sim__placeholder {
   position: absolute;
@@ -10289,8 +10285,8 @@ message mv
     height: 100%;
     -o-object-fit: cover;
        object-fit: cover;
-    -o-object-position: 60% 50%;
-       object-position: 60% 50%;
+    -o-object-position: 50% 48%;
+       object-position: 50% 48%;
     -webkit-transform: none;
             transform: none;
   }
