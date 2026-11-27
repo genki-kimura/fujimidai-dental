@@ -54,7 +54,7 @@ $wl_case = array(
             array('内容',               'ホワイトエッセンスコース（5回）＋パーソナルチケット4（2〜4回）', false),
             array('回数',               '10回', false),
             array('費用（自費）',       '149,600円（税込）', true),
-            array('1回あたりの所要時間', '30分〜75分', false),
+            array('1回あたりの|所要時間', '30分〜75分', false),
             array('副作用・リスク',     '施術中から施術後にかけて一時的な知覚過敏やしみる症状が出ることがあります。詰め物・被せ物は白くなりません。時間の経過とともに色調が戻るため、定期的な再施術が必要です。', false),
         )),
         array('before' => 'whitening-case02-before.webp', 'after' => 'whitening-case02-after.webp', 'alt' => 'ホワイトニング症例2', 'info' => array(
@@ -62,7 +62,7 @@ $wl_case = array(
             array('内容',               'ホワイトエッセンスコース（5回）', false),
             array('回数',               '6回', false),
             array('費用（自費）',       '118,800円（税込）', true),
-            array('1回あたりの所要時間', '45分〜60分', false),
+            array('1回あたりの|所要時間', '45分〜60分', false),
             array('副作用・リスク',     '施術中から施術後にかけて一時的な知覚過敏やしみる症状が出ることがあります。詰め物・被せ物は白くなりません。時間の経過とともに色調が戻るため、定期的な再施術が必要です。', false),
         )),
     ),
@@ -1040,7 +1040,7 @@ $wl_cta = array(
             <dl class="wl-case__info" data-case-info<?php echo $i === 0 ? '' : ' hidden'; ?>>
                 <?php foreach ($item['info'] as $row) : ?>
                     <div class="wl-case__row">
-                        <dt><?php echo esc_html($row[0]); ?></dt>
+                        <dt><?php echo str_replace('|', '<wbr>', esc_html($row[0])); // | は改行位置 ?></dt>
                         <dd<?php echo !empty($row[2]) ? ' class="is-strong"' : ''; ?>><?php echo esc_html($row[1]); ?></dd>
                     </div>
                 <?php endforeach; ?>
