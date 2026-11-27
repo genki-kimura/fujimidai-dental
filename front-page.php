@@ -12,7 +12,7 @@ $mv_field = function ($name, $default = '') {
 $mv_en     = $mv_field('mv_en', 'Smiles, in bloom.');
 $mv_lead   = $mv_field('mv_lead', '生涯、自分の歯で笑うために。');
 $mv_badges = $mv_field('mv_badges', array(
-    array('text' => "富士見台駅\n徒歩3分\n土曜も診療", 'text_sp' => '富士見台駅 徒歩3分・土曜も診療'),
+    array('text' => "富士見台駅\n徒歩5分\n土曜も診療", 'text_sp' => '富士見台駅 徒歩5分・土曜も診療'),
     array('text' => "日本口腔インプラント\n学会認定\n口腔インプラント\n専門医在籍", 'text_sp' => "日本口腔インプラント学会認定\n口腔インプラント専門医在籍"),
     array('text' => "予防から審美・\n訪問診療まで対応"),
 ));
@@ -286,7 +286,7 @@ $mv_circles = array(
                                                 </div>
                                                 <div class="Information__row">
                                                         <dt>アクセス</dt>
-                                                        <dd><address>西武池袋線「富士見台駅」より徒歩3分（千川通り沿い）</address></dd>
+                                                        <dd><address>西武池袋線「富士見台駅」より徒歩5分（千川通り沿い）</address></dd>
                                                 </div>
                                                 <div class="Information__row">
                                                         <dt>駐車場</dt>
@@ -298,7 +298,7 @@ $mv_circles = array(
                                 <!-- 右：マップ・訪問歯科診療バナー -->
                                 <div class="Information__side">
                                         <figure class="Information__map">
-                                                <img src="<?php echo esc_url(get_template_directory_uri() . '/img/map.webp'); ?>" alt="富士見台駅から徒歩3分。千川通り沿いの富士見台さくら歯科への地図" width="1006" height="460" loading="lazy">
+                                                <img src="<?php echo esc_url(get_template_directory_uri() . '/img/map.webp'); ?>" alt="富士見台駅から徒歩5分。千川通り沿いの富士見台さくら歯科への地図" width="1006" height="460" loading="lazy">
                                         </figure>
                                         <a href="<?php echo esc_url(home_url('/treatment/home-visit/')); ?>" class="Information__banner">
                                                 <picture>
@@ -737,7 +737,7 @@ $mv_circles = array(
                         ),
                         array(
                                 'title' => '外来から訪問診療まで、|生涯のかかりつけに',
-                                'text'  => '富士見台駅 徒歩3分・土曜も診療。通えなくなっても訪問診療で、一生涯お口の健康を支えます。',
+                                'text'  => '富士見台駅 徒歩5分・土曜も診療。通えなくなっても訪問診療で、一生涯お口の健康を支えます。',
                         ),
                 );
                 $reason_images = array(

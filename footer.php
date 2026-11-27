@@ -142,7 +142,7 @@ $is_implant_lp = is_page_template('implant-lp.php');
                                         </div>
                                         <div class="Access__info-row Access__info-row--access">
                                                 <span class="Access__info-label">アクセス</span>
-                                                <address class="Access__info-text">西武池袋線「富士見台駅」より徒歩3分（千川通り沿い）</address>
+                                                <address class="Access__info-text">西武池袋線「富士見台駅」より徒歩5分（千川通り沿い）</address>
                                         </div>
                                         <div class="Access__info-row Access__info-row--parking">
                                                 <span class="Access__info-label">駐車場</span>
