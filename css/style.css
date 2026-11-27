@@ -10004,8 +10004,8 @@ message mv
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: 50% 48%;
-     object-position: 50% 48%;
+  -o-object-position: 50% 66%;
+     object-position: 50% 66%;
 }
 .wl-sim__placeholder {
   position: absolute;
