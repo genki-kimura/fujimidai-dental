@@ -4340,6 +4340,16 @@ $feature-gap:     14px;    // 特徴リストどうしの間隔
   border-radius: $feature-radius;
   background: $feature-bg;
 
+  // ---------- 法人名(ロゴの上に小さく) ----------
+  .feature-corp {
+    margin: 0 0 8px;
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: $list-accent;
+  }
+
   // ---------- ロゴ + 「の」 ----------
   .feature-logo {
     display: flex;
@@ -4423,6 +4433,11 @@ $feature-gap:     14px;    // 特徴リストどうしの間隔
     margin: 32px 0;
     padding: 36px 16px 28px;
     border-radius: 18px;
+
+    .feature-corp {
+      margin-bottom: 6px;
+      font-size: 11px;
+    }
 
     .feature-logo {
       gap: 6px;
