@@ -12912,3 +12912,9 @@ html:has(.implant-lp) {
     display: block;
   }
 }
+
+// インプラント治療の流れ：各STEPの説明文をPC・SPとも15pxに（所要時間などはそのまま）（2026-11-28）
+html body .implant-flow__step-text.implant-flow__step-text.implant-flow__step-text {
+  font-size: 15px;
+  line-height: 1.8;
+}

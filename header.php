@@ -105,7 +105,7 @@ $menu_treatment = array(
     array('label' => '歯周病',                 'url' => '/treatment/periodontal/'),
     array('label' => '根管治療',               'url' => '/treatment/root-canal/'),
     array('label' => '審美歯科',               'url' => '/treatment/esthetic/'),
-    array('label' => '口腔外科（親知らず）',   'url' => '/treatment/oral-surgery/'),
+    array('label' => '口腔外科|（親知らず）', 'url' => '/treatment/oral-surgery/'), // | の位置で改行
     array('label' => '矯正歯科治療',           'url' => '/treatment/orthodontics/'),
     array('label' => '小児歯科',               'url' => '/treatment/pediatric/'),
     array('label' => '入れ歯・義歯',           'url' => '/treatment/denture/'),
@@ -231,7 +231,7 @@ $menu_sub = array(
                     </ul>
                     <ul class="header__menu-list">
                         <?php foreach ($menu_treatment as $item) : ?>
-                            <li><a class="header__menu-link" href="<?php echo esc_url($header_url($item['url'])); ?>"><span><?php echo implode('<br>', array_map('esc_html', explode('|', $item['label']))); ?></span></a></li>
+                            <li><a class="header__menu-link" href="<?php echo esc_url($header_url($item['url'])); ?>"><span><?php echo implode('<br>', array_map(function ($t) { $t = esc_html($t); return preg_replace('/^（.*）$/u', '<span class="header__menu-note">$0</span>', $t); }, explode('|', $item['label']))); ?></span></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </section>
