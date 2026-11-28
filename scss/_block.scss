@@ -5091,3 +5091,23 @@ html body .is-root-container .wp-block-buttons .internal-btn .wp-block-button__l
     padding-right: 28px;
   }
 }
+
+// まとめCTAの見出し：語の途中で改行しない（句読点の後ろの <wbr> で改行）／SPは横幅を広めに（2026-11-28）
+html body .page-common-content .cta-box .cta-box-title .cta-box-title-seg,
+html body .is-root-container .cta-box .cta-box-title .cta-box-title-seg {
+  display: inline-block;
+}
+
+@media (max-width: 767px) {
+  html body .page-common-content .cta-box,
+  html body .is-root-container .cta-box {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  html body .page-common-content .cta-box .cta-box-title,
+  html body .is-root-container .cta-box .cta-box-title {
+    font-size: 19px;
+    letter-spacing: 0.04em;
+  }
+}

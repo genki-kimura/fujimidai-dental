@@ -43,7 +43,13 @@ if ( ! empty( $attributes['className'] ) ) {
 	<?php endif; ?>
 
 	<?php if ( $cta_title ) : ?>
-		<div class="cta-box-title"><?php echo esc_html( $cta_title ); ?></div>
+		<div class="cta-box-title"><?php
+			// 句読点の後ろ・「ご相談」などの前で区切り、区切ったまとまりごとに改行する（語の途中で改行しにくくする）
+			$cta_title_segs = preg_split( '/(?<=[。、！？」])(?!を|が|は|も|に|で|と)|(?=ご相談|まずは|お気軽に|一緒に|そのまま|｜)/u', (string) $cta_title, -1, PREG_SPLIT_NO_EMPTY );
+			foreach ( $cta_title_segs as $seg ) {
+				echo '<span class="cta-box-title-seg">' . esc_html( $seg ) . '</span>';
+			}
+		?></div>
 	<?php endif; ?>
 
 	<?php if ( $cta_text ) : ?>
