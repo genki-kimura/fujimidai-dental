@@ -1118,7 +1118,7 @@ $mv_circles = array(
                                                                                 <?php endif; ?>
                                                                         </div>
                                                                         <p class="Sakura-mag__name"><span><?php the_title(); ?></span></p>
-                                                                        <p class="Sakura-mag__text"><?php echo esc_html($mag_excerpt); ?></p>
+                                                                        <?php /* 抜粋は非表示（見出しのみ表示・2026-11-28） */ ?>
                                                                 </div>
                                                         </a>
                                                 </li>
