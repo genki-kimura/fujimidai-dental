@@ -200,7 +200,7 @@ $re-sp: 768px;
   }
 
   &__item-text {
-    margin: 0;
+    margin: 8px 0 0; // 見出しとの間に少し余白（2026-11-28）
     font-size: 13px;
     line-height: 1.7;
     letter-spacing: 0.07em;
