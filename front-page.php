@@ -72,7 +72,14 @@ $mv_circles = array(
                                 $badge_sp = !empty($badge['text_sp']) ? $badge['text_sp'] : str_replace(array("\r\n", "\r", "\n"), '', $badge['text']);
                                 ?>
                                 <li class="Mv__badge">
-                                    <span class="Mv__badge-ring"><span class="Mv__badge-text"><span class="Mv__badge-pc"><?php echo nl2br(esc_html($badge['text'])); ?></span><span class="Mv__badge-sp"><?php echo esc_html($badge_sp); ?></span></span></span>
+                                    <span class="Mv__badge-ring"><span class="Mv__badge-text"><span class="Mv__badge-pc"><?php
+                                        // 「日本口腔インプラント／学会認定」の行は小さめ（.Mv__badge-small）、それ以外は他のバッジと同じ大きさ
+                                        $badge_lines = preg_split('/\R/u', (string) $badge['text']);
+                                        foreach ($badge_lines as $line) {
+                                            $is_small = (bool) preg_match('/^日本口腔インプラント$|学会認定$/u', trim($line));
+                                            echo '<span class="Mv__badge-line' . ($is_small ? ' Mv__badge-small' : '') . '">' . esc_html($line) . '</span>';
+                                        }
+                                    ?></span><span class="Mv__badge-sp"><?php echo esc_html($badge_sp); ?></span></span></span>
                                 </li>
                             <?php endforeach; ?>
                         </ul>

@@ -625,9 +625,18 @@ Mv sp（丸く切り取った写真4つを、文字とバッジのまわりに�
 
 /* MVバッジ2（インプラント）：文言が長いため、改行と文字サイズを個別に調整 */
 .Mv__badge:nth-child(2) .Mv__badge-text {
-  font-size: calc(11.5 * var(--mv-u));
+  // 「口腔インプラント専門医在籍」は他のバッジと同じ大きさ、学会名の行だけ小さく
+  font-size: calc(16 * var(--mv-u));
   line-height: 1.5;
   letter-spacing: 0;
+}
+.Mv__badge-pc .Mv__badge-line {
+  display: block;
+  text-align: center;
+}
+.Mv__badge-small {
+  font-size: 0.72em;
+  line-height: 1.6;
 }
 @media (max-width: 1023px) {
   .Mv__badge:nth-child(2) {
