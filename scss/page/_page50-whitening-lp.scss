@@ -11987,3 +11987,81 @@ $wl-cta-sub: #6a6a80;
 .wl-case__info[hidden] {
   display: none !important;
 }
+
+
+/* ----------------------------------------
+本文の文字サイズを統一（2026-11-28／アイル矯正歯科を参考に PC16px・SP15px、行間1.8・字間0.04em）
+注釈・ラベル・ボタン内の小さい文字は対象外
+---------------------------------------- */
+@media (min-width: 769px) {
+  html body .wl-about__texts.wl-about__texts.wl-about__texts,
+  html body .wl-about__texts.wl-about__texts.wl-about__texts > p,
+  html body .wl-about__point-text.wl-about__point-text.wl-about__point-text,
+  html body .wl-bridal__text.wl-bridal__text.wl-bridal__text,
+  html body .wl-case__lead.wl-case__lead.wl-case__lead,
+  html body .wl-cta__card-text.wl-cta__card-text.wl-cta__card-text,
+  html body .wl-doctor__text.wl-doctor__text.wl-doctor__text,
+  html body .wl-faq__a-text.wl-faq__a-text.wl-faq__a-text,
+  html body .wl-faq__q-text.wl-faq__q-text.wl-faq__q-text,
+  html body .wl-flow__item-text.wl-flow__item-text.wl-flow__item-text,
+  html body .wl-guarantee__item-text.wl-guarantee__item-text.wl-guarantee__item-text,
+  html body .wl-menu__line.wl-menu__line.wl-menu__line,
+  html body .wl-plan__contents-list.wl-plan__contents-list.wl-plan__contents-list,
+  html body .wl-plan__contents-list.wl-plan__contents-list.wl-plan__contents-list > li,
+  html body .wl-plan__lead.wl-plan__lead.wl-plan__lead,
+  html body .wl-price__card-text.wl-price__card-text.wl-price__card-text,
+  html body .wl-price__example.wl-price__example.wl-price__example,
+  html body .wl-result__line.wl-result__line.wl-result__line,
+  html body .wl-sim__lead.wl-sim__lead.wl-sim__lead,
+  html body .wl-solution__card-text.wl-solution__card-text.wl-solution__card-text,
+  html body .wl-solution__equip-text.wl-solution__equip-text.wl-solution__equip-text,
+  html body .wl-solution__item-text.wl-solution__item-text.wl-solution__item-text {
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (max-width: 768px) {
+  html body .wl-about__texts.wl-about__texts.wl-about__texts,
+  html body .wl-about__texts.wl-about__texts.wl-about__texts > p,
+  html body .wl-about__point-text.wl-about__point-text.wl-about__point-text,
+  html body .wl-bridal__text.wl-bridal__text.wl-bridal__text,
+  html body .wl-case__lead.wl-case__lead.wl-case__lead,
+  html body .wl-contact__lead-line.wl-contact__lead-line.wl-contact__lead-line,
+  html body .wl-cta__card-text.wl-cta__card-text.wl-cta__card-text,
+  html body .wl-cta__lead.wl-cta__lead.wl-cta__lead,
+  html body .wl-doctor__text.wl-doctor__text.wl-doctor__text,
+  html body .wl-faq__a-text.wl-faq__a-text.wl-faq__a-text,
+  html body .wl-faq__q-text.wl-faq__q-text.wl-faq__q-text,
+  html body .wl-flow__item-text.wl-flow__item-text.wl-flow__item-text,
+  html body .wl-guarantee__item-text.wl-guarantee__item-text.wl-guarantee__item-text,
+  html body .wl-menu__line.wl-menu__line.wl-menu__line,
+  html body .wl-plan__contents-list.wl-plan__contents-list.wl-plan__contents-list,
+  html body .wl-plan__contents-list.wl-plan__contents-list.wl-plan__contents-list > li,
+  html body .wl-plan__lead.wl-plan__lead.wl-plan__lead,
+  html body .wl-price__card-text.wl-price__card-text.wl-price__card-text,
+  html body .wl-price__example.wl-price__example.wl-price__example,
+  html body .wl-price__lead.wl-price__lead.wl-price__lead,
+  html body .wl-result__line.wl-result__line.wl-result__line,
+  html body .wl-sim__lead.wl-sim__lead.wl-sim__lead,
+  html body .wl-solution__banner-text.wl-solution__banner-text.wl-solution__banner-text,
+  html body .wl-solution__card-text.wl-solution__card-text.wl-solution__card-text,
+  html body .wl-solution__equip-text.wl-solution__equip-text.wl-solution__equip-text,
+  html body .wl-solution__item-text.wl-solution__item-text.wl-solution__item-text,
+  html body .wl-solution__lead.wl-solution__lead.wl-solution__lead,
+  html body .wl-trouble__text.wl-trouble__text.wl-trouble__text {
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+}
+
+// 3列の小さなカード（ホワイトニングとは の3つのポイント）はスマホで15pxだと窮屈なので13pxに
+@media (max-width: 768px) {
+  html body .wl-about__point-text.wl-about__point-text.wl-about__point-text {
+    font-size: 13px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+}

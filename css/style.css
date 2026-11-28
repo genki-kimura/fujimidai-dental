@@ -19596,6 +19596,79 @@ message mv
   display: none !important;
 }
 
+/* ----------------------------------------
+本文の文字サイズを統一（2026-11-28／アイル矯正歯科を参考に PC16px・SP15px、行間1.8・字間0.04em）
+注釈・ラベル・ボタン内の小さい文字は対象外
+---------------------------------------- */
+@media (min-width: 769px) {
+  html body .wl-about__texts.wl-about__texts.wl-about__texts,
+  html body .wl-about__texts.wl-about__texts.wl-about__texts > p,
+  html body .wl-about__point-text.wl-about__point-text.wl-about__point-text,
+  html body .wl-bridal__text.wl-bridal__text.wl-bridal__text,
+  html body .wl-case__lead.wl-case__lead.wl-case__lead,
+  html body .wl-cta__card-text.wl-cta__card-text.wl-cta__card-text,
+  html body .wl-doctor__text.wl-doctor__text.wl-doctor__text,
+  html body .wl-faq__a-text.wl-faq__a-text.wl-faq__a-text,
+  html body .wl-faq__q-text.wl-faq__q-text.wl-faq__q-text,
+  html body .wl-flow__item-text.wl-flow__item-text.wl-flow__item-text,
+  html body .wl-guarantee__item-text.wl-guarantee__item-text.wl-guarantee__item-text,
+  html body .wl-menu__line.wl-menu__line.wl-menu__line,
+  html body .wl-plan__contents-list.wl-plan__contents-list.wl-plan__contents-list,
+  html body .wl-plan__contents-list.wl-plan__contents-list.wl-plan__contents-list > li,
+  html body .wl-plan__lead.wl-plan__lead.wl-plan__lead,
+  html body .wl-price__card-text.wl-price__card-text.wl-price__card-text,
+  html body .wl-price__example.wl-price__example.wl-price__example,
+  html body .wl-result__line.wl-result__line.wl-result__line,
+  html body .wl-sim__lead.wl-sim__lead.wl-sim__lead,
+  html body .wl-solution__card-text.wl-solution__card-text.wl-solution__card-text,
+  html body .wl-solution__equip-text.wl-solution__equip-text.wl-solution__equip-text,
+  html body .wl-solution__item-text.wl-solution__item-text.wl-solution__item-text {
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+}
+@media (max-width: 768px) {
+  html body .wl-about__texts.wl-about__texts.wl-about__texts,
+  html body .wl-about__texts.wl-about__texts.wl-about__texts > p,
+  html body .wl-about__point-text.wl-about__point-text.wl-about__point-text,
+  html body .wl-bridal__text.wl-bridal__text.wl-bridal__text,
+  html body .wl-case__lead.wl-case__lead.wl-case__lead,
+  html body .wl-contact__lead-line.wl-contact__lead-line.wl-contact__lead-line,
+  html body .wl-cta__card-text.wl-cta__card-text.wl-cta__card-text,
+  html body .wl-cta__lead.wl-cta__lead.wl-cta__lead,
+  html body .wl-doctor__text.wl-doctor__text.wl-doctor__text,
+  html body .wl-faq__a-text.wl-faq__a-text.wl-faq__a-text,
+  html body .wl-faq__q-text.wl-faq__q-text.wl-faq__q-text,
+  html body .wl-flow__item-text.wl-flow__item-text.wl-flow__item-text,
+  html body .wl-guarantee__item-text.wl-guarantee__item-text.wl-guarantee__item-text,
+  html body .wl-menu__line.wl-menu__line.wl-menu__line,
+  html body .wl-plan__contents-list.wl-plan__contents-list.wl-plan__contents-list,
+  html body .wl-plan__contents-list.wl-plan__contents-list.wl-plan__contents-list > li,
+  html body .wl-plan__lead.wl-plan__lead.wl-plan__lead,
+  html body .wl-price__card-text.wl-price__card-text.wl-price__card-text,
+  html body .wl-price__example.wl-price__example.wl-price__example,
+  html body .wl-price__lead.wl-price__lead.wl-price__lead,
+  html body .wl-result__line.wl-result__line.wl-result__line,
+  html body .wl-sim__lead.wl-sim__lead.wl-sim__lead,
+  html body .wl-solution__banner-text.wl-solution__banner-text.wl-solution__banner-text,
+  html body .wl-solution__card-text.wl-solution__card-text.wl-solution__card-text,
+  html body .wl-solution__equip-text.wl-solution__equip-text.wl-solution__equip-text,
+  html body .wl-solution__item-text.wl-solution__item-text.wl-solution__item-text,
+  html body .wl-solution__lead.wl-solution__lead.wl-solution__lead,
+  html body .wl-trouble__text.wl-trouble__text.wl-trouble__text {
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+}
+@media (max-width: 768px) {
+  html body .wl-about__point-text.wl-about__point-text.wl-about__point-text {
+    font-size: 13px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+}
 /* ========================================
    インプラントLP（テンプレート：implant-lp.php）
    ・このファイル1つに、セクションごとに区切って書いています
@@ -31893,6 +31966,112 @@ html:has(.implant-lp) {
   }
 }
 
+/* ----------------------------------------
+本文の文字サイズを統一（2026-11-28／アイル矯正歯科を参考に PC16px・SP15px、行間1.8・字間0.04em）
+注釈・ラベル・ボタン内の小さい文字は対象外
+---------------------------------------- */
+@media screen and (min-width: 768px) {
+  html body .implant-about__a.implant-about__a.implant-about__a,
+  html body .implant-about__bubble.implant-about__bubble.implant-about__bubble,
+  html body .implant-about__part-text.implant-about__part-text.implant-about__part-text,
+  html body .implant-consult__bubble.implant-consult__bubble.implant-consult__bubble,
+  html body .implant-consult__doctor-text.implant-consult__doctor-text.implant-consult__doctor-text,
+  html body .implant-consult__for.implant-consult__for.implant-consult__for,
+  html body .implant-consult__h3-sub.implant-consult__h3-sub.implant-consult__h3-sub,
+  html body .implant-consult__merit-text.implant-consult__merit-text.implant-consult__merit-text,
+  html body .implant-consult__method-text.implant-consult__method-text.implant-consult__method-text,
+  html body .implant-consult__partner-text.implant-consult__partner-text.implant-consult__partner-text,
+  html body .implant-cta__feature-text.implant-cta__feature-text.implant-cta__feature-text,
+  html body .implant-cta__lead.implant-cta__lead.implant-cta__lead,
+  html body .implant-doctor__history-text.implant-doctor__history-text.implant-doctor__history-text,
+  html body .implant-doctor__license-list.implant-doctor__license-list.implant-doctor__license-list,
+  html body .implant-doctor__license-list.implant-doctor__license-list.implant-doctor__license-list > li,
+  html body .implant-doctor__text.implant-doctor__text.implant-doctor__text,
+  html body .implant-esthetic__bubble.implant-esthetic__bubble.implant-esthetic__bubble,
+  html body .implant-esthetic__feature-text.implant-esthetic__feature-text.implant-esthetic__feature-text,
+  html body .implant-faq__a-text.implant-faq__a-text.implant-faq__a-text,
+  html body .implant-flow__bubble.implant-flow__bubble.implant-flow__bubble,
+  html body .implant-flow__point.implant-flow__point.implant-flow__point,
+  html body .implant-issue__item-text.implant-issue__item-text.implant-issue__item-text,
+  html body .implant-issue__text.implant-issue__text.implant-issue__text,
+  html body .implant-movie__lead.implant-movie__lead.implant-movie__lead,
+  html body .implant-prevention__pc.implant-prevention__pc.implant-prevention__pc,
+  html body .implant-prevention__summary.implant-prevention__summary.implant-prevention__summary,
+  html body .implant-price__bubble.implant-price__bubble.implant-price__bubble,
+  html body .implant-price__guarantee-text.implant-price__guarantee-text.implant-price__guarantee-text,
+  html body .implant-price__h3-sub.implant-price__h3-sub.implant-price__h3-sub,
+  html body .implant-price__item-desc.implant-price__item-desc.implant-price__item-desc,
+  html body .implant-problem__bubble.implant-problem__bubble.implant-problem__bubble,
+  html body .implant-problem__data-desc.implant-problem__data-desc.implant-problem__data-desc,
+  html body .implant-reason__item-text.implant-reason__item-text.implant-reason__item-text,
+  html body .implant-risk__items.implant-risk__items.implant-risk__items,
+  html body .implant-risk__items.implant-risk__items.implant-risk__items > li,
+  html body .implant-risk__lead.implant-risk__lead.implant-risk__lead,
+  html body .implant-solution__item-text.implant-solution__item-text.implant-solution__item-text,
+  html body .implant-why__item-text.implant-why__item-text.implant-why__item-text,
+  html body .implant-why__lead.implant-why__lead.implant-why__lead {
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+}
+@media screen and (max-width: 767px) {
+  html body .implant-about__a.implant-about__a.implant-about__a,
+  html body .implant-about__bubble.implant-about__bubble.implant-about__bubble,
+  html body .implant-about__part-text.implant-about__part-text.implant-about__part-text,
+  html body .implant-consult__bubble.implant-consult__bubble.implant-consult__bubble,
+  html body .implant-consult__doctor-text.implant-consult__doctor-text.implant-consult__doctor-text,
+  html body .implant-consult__for.implant-consult__for.implant-consult__for,
+  html body .implant-consult__h3-sub.implant-consult__h3-sub.implant-consult__h3-sub,
+  html body .implant-consult__merit-text.implant-consult__merit-text.implant-consult__merit-text,
+  html body .implant-consult__method-text.implant-consult__method-text.implant-consult__method-text,
+  html body .implant-consult__partner-text.implant-consult__partner-text.implant-consult__partner-text,
+  html body .implant-cta__feature-text.implant-cta__feature-text.implant-cta__feature-text,
+  html body .implant-cta__lead.implant-cta__lead.implant-cta__lead,
+  html body .implant-doctor__history-text.implant-doctor__history-text.implant-doctor__history-text,
+  html body .implant-doctor__license-list.implant-doctor__license-list.implant-doctor__license-list,
+  html body .implant-doctor__license-list.implant-doctor__license-list.implant-doctor__license-list > li,
+  html body .implant-esthetic__bubble.implant-esthetic__bubble.implant-esthetic__bubble,
+  html body .implant-esthetic__feature-text.implant-esthetic__feature-text.implant-esthetic__feature-text,
+  html body .implant-faq__a-text.implant-faq__a-text.implant-faq__a-text,
+  html body .implant-faq__q-text.implant-faq__q-text.implant-faq__q-text,
+  html body .implant-flow__bubble.implant-flow__bubble.implant-flow__bubble,
+  html body .implant-flow__point.implant-flow__point.implant-flow__point,
+  html body .implant-issue__item-text.implant-issue__item-text.implant-issue__item-text,
+  html body .implant-issue__point-text.implant-issue__point-text.implant-issue__point-text,
+  html body .implant-issue__text.implant-issue__text.implant-issue__text,
+  html body .implant-movie__lead.implant-movie__lead.implant-movie__lead,
+  html body .implant-prevention__sp.implant-prevention__sp.implant-prevention__sp,
+  html body .implant-prevention__summary.implant-prevention__summary.implant-prevention__summary,
+  html body .implant-price__bubble.implant-price__bubble.implant-price__bubble,
+  html body .implant-price__guarantee-text.implant-price__guarantee-text.implant-price__guarantee-text,
+  html body .implant-price__h3-sub.implant-price__h3-sub.implant-price__h3-sub,
+  html body .implant-price__item-desc.implant-price__item-desc.implant-price__item-desc,
+  html body .implant-problem__bubble.implant-problem__bubble.implant-problem__bubble,
+  html body .implant-problem__data-desc.implant-problem__data-desc.implant-problem__data-desc,
+  html body .implant-problem__marker.implant-problem__marker.implant-problem__marker,
+  html body .implant-reason__item-text.implant-reason__item-text.implant-reason__item-text,
+  html body .implant-risk__items.implant-risk__items.implant-risk__items,
+  html body .implant-risk__items.implant-risk__items.implant-risk__items > li,
+  html body .implant-risk__lead.implant-risk__lead.implant-risk__lead,
+  html body .implant-solution__item-text.implant-solution__item-text.implant-solution__item-text,
+  html body .implant-trouble__band-text.implant-trouble__band-text.implant-trouble__band-text,
+  html body .implant-trouble__text.implant-trouble__text.implant-trouble__text,
+  html body .implant-why__item-text.implant-why__item-text.implant-why__item-text,
+  html body .implant-why__lead.implant-why__lead.implant-why__lead,
+  html body .implant-why__message.implant-why__message.implant-why__message {
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+}
+@media screen and (max-width: 767px) {
+  html body .implant-prevention__col-text.implant-prevention__col-text.implant-prevention__col-text {
+    text-align: left;
+    -moz-text-align-last: left;
+         text-align-last: left;
+  }
+}
 /* ----------------------------------------
 last
 ---------------------------------------- */
