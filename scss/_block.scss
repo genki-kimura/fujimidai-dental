@@ -2166,7 +2166,7 @@ $tb-row-h:  53px;         // 1行の高さ
     border: 0;
     border-collapse: separate; // 角丸と罫線を両立させるため
     border-spacing: 0;
-    table-layout: fixed;
+    table-layout: auto; // 列幅は文字数に合わせて可変（2026-11-28。均等割りは fixed）
   }
 
   th,
@@ -5054,5 +5054,13 @@ html body .page-common-content .wp-block-flexible-table-block-table.wp-block-fle
   html body .page-common-content .wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th,
   html body .page-common-content .wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td {
     font-size: 16px;
+  }
+}
+
+// 列幅が可変になったぶん、スマホで極端に細い列（1文字ずつ改行）にならないよう最低幅を確保
+@media (max-width: 767px) {
+  html body .page-common-content .wp-block-flexible-table-block-table th,
+  html body .page-common-content .wp-block-flexible-table-block-table td {
+    min-width: 4em;
   }
 }
