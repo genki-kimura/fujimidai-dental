@@ -19669,6 +19669,34 @@ message mv
     letter-spacing: 0.02em;
   }
 }
+@media (max-width: 768px) {
+  html body .wl-solution__item-title.wl-solution__item-title.wl-solution__item-title {
+    font-size: 19px;
+    line-height: 1.5;
+  }
+  html body .wl-solution__equip-name.wl-solution__equip-name.wl-solution__equip-name,
+  html body .wl-solution__card-title.wl-solution__card-title.wl-solution__card-title {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  html body .wl-plan__flow-title.wl-plan__flow-title.wl-plan__flow-title {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  html body .wl-plan__step-badge.wl-plan__step-badge.wl-plan__step-badge {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  html body .wl-plan__step-title.wl-plan__step-title.wl-plan__step-title {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  html body .wl-plan__step-text.wl-plan__step-text.wl-plan__step-text {
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+}
 /* ========================================
    インプラントLP（テンプレート：implant-lp.php）
    ・このファイル1つに、セクションごとに区切って書いています
@@ -32072,6 +32100,38 @@ html:has(.implant-lp) {
          text-align-last: left;
   }
 }
+/* ----------------------------------------
+本文の文字サイズ 15px 以上に統一（2026-11-28）
+TOP・フッターの本文系テキスト（注釈・ラベル・ボタンは対象外）
+---------------------------------------- */
+html body .About__card-text.About__card-text.About__card-text,
+html body .About__list.About__list.About__list,
+html body .About__list.About__list.About__list > li,
+html body .Dental-esthetics__text.Dental-esthetics__text.Dental-esthetics__text,
+html body .FAQ__a-text.FAQ__a-text.FAQ__a-text,
+html body .Greeting__text.Greeting__text.Greeting__text,
+html body .Greeting__career-line.Greeting__career-line.Greeting__career-line,
+html body .Greeting__member-line.Greeting__member-line.Greeting__member-line.Greeting__member-line,
+html body .Implant__text.Implant__text.Implant__text,
+html body .Information__row.Information__row.Information__row,
+html body .Information__row.Information__row.Information__row > dd,
+html body .Information__row.Information__row.Information__row .Information__tel,
+html body .Menu__points.Menu__points.Menu__points,
+html body .Menu__points.Menu__points.Menu__points > li,
+html body .News__text.News__text.News__text,
+html body .Reason__item-text.Reason__item-text.Reason__item-text,
+html body .Reason__item-text.Reason__item-text.Reason__item-text > span,
+html body .Recommend__text.Recommend__text.Recommend__text,
+html body .Sakura-mag__text.Sakura-mag__text.Sakura-mag__text,
+html body .Staff__text.Staff__text.Staff__text,
+html body .Whitening__text.Whitening__text.Whitening__text,
+html body .Access__info-text.Access__info-text.Access__info-text,
+html body .Access__tel-item.Access__tel-item.Access__tel-item,
+html body .Access__pay-text.Access__pay-text.Access__pay-text {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
 /* ----------------------------------------
 last
 ---------------------------------------- */

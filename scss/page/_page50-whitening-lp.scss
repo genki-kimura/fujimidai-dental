@@ -12065,3 +12065,38 @@ $wl-cta-sub: #6a6a80;
     letter-spacing: 0.02em;
   }
 }
+
+// スマホ：見出しは本文（15px）より大きく／ブライダルプランの施術の流れも拡大（2026-11-28）
+@media (max-width: 768px) {
+  html body .wl-solution__item-title.wl-solution__item-title.wl-solution__item-title {
+    font-size: 19px;
+    line-height: 1.5;
+  }
+
+  html body .wl-solution__equip-name.wl-solution__equip-name.wl-solution__equip-name,
+  html body .wl-solution__card-title.wl-solution__card-title.wl-solution__card-title {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  html body .wl-plan__flow-title.wl-plan__flow-title.wl-plan__flow-title {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  html body .wl-plan__step-badge.wl-plan__step-badge.wl-plan__step-badge {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  html body .wl-plan__step-title.wl-plan__step-title.wl-plan__step-title {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  html body .wl-plan__step-text.wl-plan__step-text.wl-plan__step-text {
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+}
