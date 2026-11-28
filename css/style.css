@@ -5673,10 +5673,8 @@ Sakura MAG（コラムの最新3件）
   transition: color 0.3s;
 }
 .Sakura-mag__name span {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  display: block;
+  overflow: visible;
 }
 .Sakura-mag__card:hover .Sakura-mag__name {
   color: #6a55a8;
