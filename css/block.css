@@ -4674,4 +4674,8 @@ h1.wp-block-post-title::after {
 .page-common-content .cta-box .cta-box-title {
   text-wrap: balance;
 }
+
+.tel-nowrap {
+  white-space: nowrap;
+}
 /*# sourceMappingURL=block.css.map */

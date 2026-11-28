@@ -4908,3 +4908,8 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
 .page-common-content .cta-box .cta-box-title {
   text-wrap: balance;
 }
+
+// 電話番号を途中で改行しない（functions.php の fdc_tel_nowrap で囲んだ部分）
+.tel-nowrap {
+  white-space: nowrap;
+}

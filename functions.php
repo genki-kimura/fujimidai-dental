@@ -714,3 +714,34 @@ add_action('acf/init', function () {
         ),
     ));
 });
+
+/**
+ * 本文中の電話番号（03-5848-8484 など）が行末で途中改行されないよう、
+ * <span class="tel-nowrap"> で囲む（タグの中・属性値は触らない）
+ */
+function fdc_tel_nowrap( $html ) {
+    if ( ! is_string( $html ) || $html === '' || strpos( $html, '-' ) === false ) {
+        return $html;
+    }
+    $parts = preg_split( '/(<[^>]+>)/', $html, -1, PREG_SPLIT_DELIM_CAPTURE );
+    $skip  = 0; // script / style / textarea の中は変換しない
+    foreach ( $parts as $i => $part ) {
+        if ( $part === '' ) {
+            continue;
+        }
+        if ( $part[0] === '<' ) {
+            if ( preg_match( '#^<(script|style|textarea)\b#i', $part ) ) {
+                $skip++;
+            } elseif ( preg_match( '#^</(script|style|textarea)>#i', $part ) ) {
+                $skip = max( 0, $skip - 1 );
+            }
+            continue;
+        }
+        if ( $skip ) {
+            continue;
+        }
+        $parts[ $i ] = preg_replace( '/(?<![\d-])(0\d{1,4}-\d{1,4}-\d{3,4})(?![\d-])/', '<span class="tel-nowrap">$1</span>', $part );
+    }
+    return implode( '', $parts );
+}
+add_filter( 'the_content', 'fdc_tel_nowrap', 20 );
