@@ -4914,6 +4914,12 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
   white-space: nowrap;
 }
 
+// 本文中の電話リンクも途中で改行しない（ボタンは対象外）
+.page-common-content p a[href^="tel:"],
+.page-common-content li a[href^="tel:"] {
+  white-space: nowrap;
+}
+
 
 // ==========================================================
 // 本文の文字サイズ 15px 以上に統一（2026-11-28）
