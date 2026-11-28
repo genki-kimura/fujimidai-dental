@@ -822,16 +822,16 @@ $mv_circles = array(
                                 'items' => array('歯のクリーニングでスッキリしたい', '大切な予定の前に口元を整えたい', 'リラックスしながらお口をケアしたい'),
                         ),
                         array(
+                                'title' => '訪問歯科診療',
+                                'icon'  => 'Menu10.webp', 'w' => 48, 'h' => 41,
+                                'url'   => home_url('/treatment/home-visit/'),
+                                'items' => array('通院が難しい', '自宅・施設で診てほしい', '口腔ケアをしたい'),
+                        ),
+                        array(
                                 'title' => '一般歯科|（むし歯治療）',
                                 'icon'  => 'Menu04.webp', 'w' => 34, 'h' => 41,
                                 'url'   => home_url('/treatment/general/'),
                                 'items' => array('歯がしみる・痛む', '黒い穴・欠けが気になる', '詰め物・被せ物が取れた'),
-                        ),
-                        array(
-                                'title' => '根管治療',
-                                'icon'  => 'Menu04.webp', 'w' => 34, 'h' => 41,
-                                'url'   => home_url('/treatment/root-canal/'),
-                                'items' => array('ズキズキと痛みが続く', '以前治療した歯が痛む', 'できるだけ歯を残したい'),
                         ),
                         array(
                                 'title' => '予防歯科',
@@ -840,16 +840,22 @@ $mv_circles = array(
                                 'items' => array('むし歯になりたくない', '歯石を取りたい', '健康な歯を保ちたい'),
                         ),
                         array(
+                                'title' => '歯周病',
+                                'icon'  => 'Menu07.webp', 'w' => 44, 'h' => 39,
+                                'url'   => home_url('/treatment/periodontal/'),
+                                'items' => array('歯ぐきの腫れ・出血', '口臭が気になる', '歯がぐらつく'),
+                        ),
+                        array(
                                 'title' => '審美歯科',
                                 'icon'  => 'Menu06.webp', 'w' => 41, 'h' => 41,
                                 'url'   => home_url('/treatment/esthetic/'),
                                 'items' => array('銀歯を白くしたい', '見た目を重視したい', '金属アレルギーが心配'),
                         ),
                         array(
-                                'title' => '歯周病',
-                                'icon'  => 'Menu07.webp', 'w' => 44, 'h' => 39,
-                                'url'   => home_url('/treatment/periodontal/'),
-                                'items' => array('歯ぐきの腫れ・出血', '口臭が気になる', '歯がぐらつく'),
+                                'title' => '根管治療',
+                                'icon'  => 'Menu04.webp', 'w' => 34, 'h' => 41,
+                                'url'   => home_url('/treatment/root-canal/'),
+                                'items' => array('ズキズキと痛みが続く', '以前治療した歯が痛む', 'できるだけ歯を残したい'),
                         ),
                         array(
                                 'title' => '小児歯科',
@@ -862,12 +868,6 @@ $mv_circles = array(
                                 'icon'  => 'Menu09.webp', 'w' => 48, 'h' => 44,
                                 'url'   => home_url('/treatment/orthodontics/'),
                                 'items' => array('歯並びを整えたい', '噛み合わせが気になる', '目立たず矯正したい'),
-                        ),
-                        array(
-                                'title' => '訪問歯科診療',
-                                'icon'  => 'Menu10.webp', 'w' => 48, 'h' => 41,
-                                'url'   => home_url('/treatment/home-visit/'),
-                                'items' => array('通院が難しい', '自宅・施設で診てほしい', '口腔ケアをしたい'),
                         ),
                         array(
                                 'title' => '入れ歯・義歯',
