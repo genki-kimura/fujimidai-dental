@@ -1932,7 +1932,7 @@ h1.wp-block-post-title::after {
   border: 0;
   border-collapse: separate;
   border-spacing: 0;
-  table-layout: fixed;
+  table-layout: auto;
 }
 .page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th,
 .page-common-content figure.wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td,
@@ -4806,6 +4806,12 @@ html body .page-common-content .wp-block-flexible-table-block-table.wp-block-fle
   html body .page-common-content .wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th,
   html body .page-common-content .wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td {
     font-size: 16px;
+  }
+}
+@media (max-width: 767px) {
+  html body .page-common-content .wp-block-flexible-table-block-table th,
+  html body .page-common-content .wp-block-flexible-table-block-table td {
+    min-width: 4em;
   }
 }
 /*# sourceMappingURL=block.css.map */
