@@ -12114,3 +12114,15 @@ $wl-cta-sub: #6a6a80;
     letter-spacing: 0.06em;
   }
 }
+
+// 「ホワイトニングと一緒に」の項目名を拡大（2026-11-28）
+html body .wl-option__item-title.wl-option__item-title.wl-option__item-title {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  html body .wl-option__item-title.wl-option__item-title.wl-option__item-title {
+    font-size: 15px;
+  }
+}

@@ -19708,6 +19708,16 @@ message mv
     letter-spacing: 0.06em;
   }
 }
+html body .wl-option__item-title.wl-option__item-title.wl-option__item-title {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  html body .wl-option__item-title.wl-option__item-title.wl-option__item-title {
+    font-size: 15px;
+  }
+}
 /* ========================================
    インプラントLP（テンプレート：implant-lp.php）
    ・このファイル1つに、セクションごとに区切って書いています
