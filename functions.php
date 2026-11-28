@@ -730,9 +730,10 @@ function fdc_tel_nowrap( $html ) {
             continue;
         }
         if ( $part[0] === '<' ) {
-            if ( preg_match( '#^<(script|style|textarea)\b#i', $part ) ) {
+            // script / style / textarea とリンク（ボタン）の中は変換しない
+            if ( preg_match( '#^<(script|style|textarea|a)\b#i', $part ) ) {
                 $skip++;
-            } elseif ( preg_match( '#^</(script|style|textarea)>#i', $part ) ) {
+            } elseif ( preg_match( '#^</(script|style|textarea|a)>#i', $part ) ) {
                 $skip = max( 0, $skip - 1 );
             }
             continue;

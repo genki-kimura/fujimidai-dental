@@ -4679,6 +4679,11 @@ h1.wp-block-post-title::after {
   white-space: nowrap;
 }
 
+.page-common-content p a[href^="tel:"],
+.page-common-content li a[href^="tel:"] {
+  white-space: nowrap;
+}
+
 html body .page-common-content .point-content .point-content-text p,
 html body .page-common-content .point-content .point-content-text li,
 html body .page-common-content .point-content .point-content-text,
