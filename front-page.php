@@ -206,7 +206,7 @@ $mv_circles = array(
                                 <div class="About__col About__col--health">
                                         <p class="About__col-title">健康<span>Health</span></p>
                                         <ul class="About__list">
-                                                <li>予防歯科・定期メンテナンス</li>
+                                                <li>予防歯科・<br>定期メンテナンス</li>
                                                 <li>プロによるクリーニング（PMTC）</li>
                                                 <li>訪問診療・口腔ケア</li>
                                         </ul>
