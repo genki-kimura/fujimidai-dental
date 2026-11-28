@@ -187,7 +187,7 @@ $menu_sub = array(
                         $url = isset($item['url']) ? $item['url'] : '';
                         $url = (strpos($url, '/') === 0) ? home_url($url) : $url;
                         ?>
-                        <?php $has_dropdown = ($item['label'] === '診療案内一覧'); // プルダウンを付ける項目 ?>
+                        <?php $has_dropdown = false; // プルダウンは非表示（2026-11-28）。再表示する場合は ($item['label'] === '診療案内一覧') に戻す ?>
                         <li class="header__nav-item<?php echo $has_dropdown ? ' has-dropdown' : ''; ?>">
                             <a class="header__nav-link" href="<?php echo esc_url($url); ?>"><?php echo esc_html($item['label']); ?><?php echo $has_dropdown ? '<span class="header__nav-arrow" aria-hidden="true"></span>' : ''; ?></a>
                             <?php if ($has_dropdown) : ?>
