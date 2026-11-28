@@ -12905,3 +12905,10 @@ html:has(.implant-lp) {
     white-space: nowrap;
   }
 }
+
+// CTAのリード文：SPは1文ずつ改行（2026-11-28）
+@media screen and (max-width: 767px) {
+  html body .implant-cta__lead .implant-cta__lead-line {
+    display: block;
+  }
+}
