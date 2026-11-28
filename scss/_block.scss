@@ -5064,3 +5064,30 @@ html body .page-common-content .wp-block-flexible-table-block-table.wp-block-fle
     min-width: 4em;
   }
 }
+
+// 内部リンク・外部リンクボタンの大きさをTOPのボタンに合わせる（2026-11-28）
+// 見た目（紫の塗り）はそのまま、高さ約48px・文字14px・幅は文字量＋余白（最低280px）
+html body .page-common-content .wp-block-buttons .internal-btn .wp-block-button__link,
+html body .page-common-content .wp-block-buttons .external-btn .wp-block-button__link,
+html body .is-root-container .wp-block-buttons .internal-btn .wp-block-button__link,
+html body .is-root-container .wp-block-buttons .external-btn .wp-block-button__link {
+  min-width: 280px;
+  min-height: 48px;
+  padding: 12px 36px 12px 44px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+html body .page-common-content .wp-block-buttons .internal-btn .wp-block-button__link::after,
+html body .is-root-container .wp-block-buttons .internal-btn .wp-block-button__link::after {
+  font-size: 16px;
+}
+
+@media (max-width: 767px) {
+  html body .page-common-content .wp-block-buttons .internal-btn .wp-block-button__link,
+  html body .page-common-content .wp-block-buttons .external-btn .wp-block-button__link {
+    min-width: 0;
+    padding-left: 32px;
+    padding-right: 28px;
+  }
+}
