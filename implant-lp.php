@@ -342,7 +342,7 @@ get_header();
                     <span class="implant-trouble__band-icon" aria-hidden="true">
                         <img src="<?php echo esc_url($ilp_img_dir . 'implant-lp-why-now02.webp'); ?>" alt="" width="48" height="48" loading="lazy">
                     </span>
-                    <span class="implant-trouble__band-text">気になるお悩みをタップ<span class="implant-trouble__band-arrow" aria-hidden="true"></span>当院の解決策へ移動します</span>
+                    <span class="implant-trouble__band-text"><span class="implant-trouble__band-line">気になるお悩みをタップ<span class="implant-trouble__band-arrow" aria-hidden="true"></span></span><span class="implant-trouble__band-line">当院の解決策へ移動します</span></span>
                 </p>
             </div>
 

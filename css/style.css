@@ -32130,6 +32130,17 @@ html:has(.implant-lp) {
          text-align-last: left;
   }
 }
+@media screen and (max-width: 767px) {
+  html body .implant-trouble__band-text.implant-trouble__band-text.implant-trouble__band-text {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.6;
+  }
+  html body .implant-trouble__band-line {
+    display: inline-block;
+    white-space: nowrap;
+  }
+}
 /* ----------------------------------------
 本文の文字サイズ 15px 以上に統一（2026-11-28）
 TOP・フッターの本文系テキスト（注釈・ラベル・ボタンは対象外）
