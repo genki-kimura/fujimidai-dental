@@ -436,7 +436,7 @@ $header-menu-line: #ddd7ea;
       gap: 6px;
       padding: 11px 2px 11px 0;
       border-bottom: 1px solid $header-menu-line;
-      font-size: 13px;
+      font-size: 15px;
       letter-spacing: 0.04em;
       line-height: 1.4;
       color: $header-menu-text;
@@ -488,9 +488,10 @@ $header-menu-line: #ddd7ea;
 
     &__menu-card-label {
       display: block;
-      padding: 9px 4px 10px;
-      font-size: 11px;
-      letter-spacing: 0.06em;
+      padding: 9px 2px 10px;
+      font-size: min(15px, 3.9vw); // 幅の狭い端末でも1行に収まるように
+      letter-spacing: 0;
+      white-space: nowrap;
       line-height: 1.4;
       text-align: center;
     }

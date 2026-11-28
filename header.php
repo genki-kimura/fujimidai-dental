@@ -100,7 +100,7 @@ $menu_feature = array(
 );
 
 $menu_treatment = array(
-    array('label' => '一般歯科（むし歯治療）', 'url' => '/treatment/general/'),
+    array('label' => '一般歯科|（むし歯治療）', 'url' => '/treatment/general/'), // | の位置で改行
     array('label' => '予防歯科',               'url' => '/treatment/prevention/'),
     array('label' => '歯周病',                 'url' => '/treatment/periodontal/'),
     array('label' => '根管治療',               'url' => '/treatment/root-canal/'),
@@ -231,7 +231,7 @@ $menu_sub = array(
                     </ul>
                     <ul class="header__menu-list">
                         <?php foreach ($menu_treatment as $item) : ?>
-                            <li><a class="header__menu-link" href="<?php echo esc_url($header_url($item['url'])); ?>"><?php echo esc_html($item['label']); ?></a></li>
+                            <li><a class="header__menu-link" href="<?php echo esc_url($header_url($item['url'])); ?>"><span><?php echo implode('<br>', array_map('esc_html', explode('|', $item['label']))); ?></span></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </section>
