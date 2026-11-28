@@ -4679,6 +4679,12 @@ h1.wp-block-post-title::after {
   white-space: nowrap;
 }
 
+html body .tel-nowrap.tel-nowrap {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
 .page-common-content p a[href^="tel:"],
 .page-common-content li a[href^="tel:"] {
   white-space: nowrap;
@@ -4841,6 +4847,9 @@ html body .is-root-container .wp-block-buttons .internal-btn .wp-block-button__l
 html body .page-common-content .cta-box .cta-box-title .cta-box-title-seg,
 html body .is-root-container .cta-box .cta-box-title .cta-box-title-seg {
   display: inline-block;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
 }
 
 @media (max-width: 767px) {
