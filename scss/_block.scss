@@ -5043,3 +5043,16 @@ html body .is-root-container .related-articles-box .related-articles-text li {
     font-size: 16px;
   }
 }
+
+// 表（flexible-table-block）の文字を本文と同じ大きさに（2026-11-28／PC16px・SP15px）
+html body .page-common-content .wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th,
+html body .page-common-content .wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td {
+  font-size: 15px;
+}
+
+@media (min-width: 768px) {
+  html body .page-common-content .wp-block-flexible-table-block-table.wp-block-flexible-table-block-table th,
+  html body .page-common-content .wp-block-flexible-table-block-table.wp-block-flexible-table-block-table td {
+    font-size: 16px;
+  }
+}
