@@ -132,6 +132,10 @@ $menu_info = array(
 
 // PCのナビ「診療案内一覧」にマウスを乗せると出るプルダウン（リンク先は仮のURLです）
 $header_dropdown = array(
+    // 力を入れている診療を上に
+    array('label' => 'ホワイトニング',         'url' => '/treatment/whitening/'),
+    array('label' => 'インプラント',           'url' => '/treatment/implant/'),
+    array('label' => 'デンタルエステ',         'url' => '/treatment/dental-esthetic/'),
     array('label' => '一般歯科（むし歯治療）', 'url' => '/treatment/general/'),
     array('label' => '根管治療',               'url' => '/treatment/root-canal/'),
     array('label' => '予防歯科',               'url' => '/treatment/prevention/'),
@@ -142,10 +146,7 @@ $header_dropdown = array(
     array('label' => '審美歯科',               'url' => '/treatment/esthetic/'),
     array('label' => '入れ歯・義歯',           'url' => '/treatment/denture/'),
     array('label' => '口腔外科（親知らず）',   'url' => '/treatment/oral-surgery/'),
-    array('label' => 'デンタルエステ',         'url' => '/treatment/dental-esthetic/'),
     array('label' => '訪問歯科診療',           'url' => '/treatment/home-visit/'),
-    array('label' => 'ホワイトニング',         'url' => '/treatment/whitening/'),
-    array('label' => 'インプラント',           'url' => '/treatment/implant/'),
 );
 
 $menu_sub = array(
