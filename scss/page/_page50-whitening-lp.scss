@@ -12100,3 +12100,17 @@ $wl-cta-sub: #6a6a80;
     letter-spacing: 0.04em;
   }
 }
+
+// スマホ：ブライダルのプラン名（ピル・プラン見出し）を拡大（2026-11-28）
+@media (max-width: 768px) {
+  html body .wl-bridal__pill.wl-bridal__pill.wl-bridal__pill {
+    font-size: 15px;
+    letter-spacing: 0.06em;
+  }
+
+  html body .wl-plan__name.wl-plan__name.wl-plan__name {
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+  }
+}
