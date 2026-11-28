@@ -19697,6 +19697,17 @@ message mv
     letter-spacing: 0.04em;
   }
 }
+@media (max-width: 768px) {
+  html body .wl-bridal__pill.wl-bridal__pill.wl-bridal__pill {
+    font-size: 15px;
+    letter-spacing: 0.06em;
+  }
+  html body .wl-plan__name.wl-plan__name.wl-plan__name {
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+  }
+}
 /* ========================================
    インプラントLP（テンプレート：implant-lp.php）
    ・このファイル1つに、セクションごとに区切って書いています
