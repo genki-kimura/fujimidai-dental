@@ -4914,6 +4914,12 @@ $buttons-columns-row-gap: 0.5em; // スマホで縦に積んだときのボタ�
   white-space: nowrap;
 }
 
+html body .tel-nowrap.tel-nowrap {
+  font: inherit; // 周りの文字と同じ書体（span 共通の指定を打ち消す）
+  letter-spacing: inherit;
+  color: inherit;
+}
+
 // 本文中の電話リンクも途中で改行しない（ボタンは対象外）
 .page-common-content p a[href^="tel:"],
 .page-common-content li a[href^="tel:"] {
@@ -5096,6 +5102,9 @@ html body .is-root-container .wp-block-buttons .internal-btn .wp-block-button__l
 html body .page-common-content .cta-box .cta-box-title .cta-box-title-seg,
 html body .is-root-container .cta-box .cta-box-title .cta-box-title-seg {
   display: inline-block;
+  font: inherit; // 見出しの明朝体を引き継ぐ（span 共通のゴシック指定を打ち消す）
+  letter-spacing: inherit;
+  color: inherit;
 }
 
 @media (max-width: 767px) {
