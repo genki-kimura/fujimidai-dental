@@ -12891,3 +12891,17 @@ html:has(.implant-lp) {
     text-align-last: left;
   }
 }
+
+// スマホ：「気になるお悩みをタップ → 当院の解決策へ移動します」が15pxだと1行に収まらないため2行に（2026-11-28）
+@media screen and (max-width: 767px) {
+  html body .implant-trouble__band-text.implant-trouble__band-text.implant-trouble__band-text {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  html body .implant-trouble__band-line {
+    display: inline-block;
+    white-space: nowrap;
+  }
+}
