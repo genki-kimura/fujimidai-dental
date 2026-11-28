@@ -204,12 +204,12 @@ Sakura MAG（コラムの最新3件）
   &__name {
     display: flex;
     align-items: center;
-    min-height: 68px;
+    min-height: 56px;
     margin: 6px 0 0;
     font-family: "Shippori Mincho", serif;
-    font-size: 20px;
+    font-size: 16px; // PCは16px（2026-11-28）
     font-weight: 400;
-    line-height: 34px;
+    line-height: 28px;
     letter-spacing: 0.12em;
     color: #2e2a33;
     transition: color 0.3s;
@@ -277,9 +277,9 @@ Sakura MAG タブレット（3列のまま少しコンパクトに）
     }
 
     &__name {
-      min-height: 58px;
-      font-size: 17px;
-      line-height: 29px;
+      min-height: 56px;
+      font-size: 16px;
+      line-height: 28px;
     }
   }
 }
