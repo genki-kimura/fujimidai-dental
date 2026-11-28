@@ -20808,7 +20808,7 @@ html:has(.implant-lp) {
   gap: 12px;
   width: 580px;
   max-width: 100%;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 48px;
   list-style: none;
 }
@@ -20920,9 +20920,10 @@ html:has(.implant-lp) {
 .implant-trouble__band {
   position: relative;
   z-index: 1;
-  margin-top: 0;
-  background: -webkit-gradient(linear, left top, right top, from(#C2A061), color-stop(50%, #DCC28C), to(#C4A363));
-  background: linear-gradient(90deg, #C2A061 0%, #DCC28C 50%, #C4A363 100%);
+  width: 580px;
+  max-width: 100%;
+  margin-top: 32px;
+  border: 1px solid rgba(205, 174, 110, 0.55);
 }
 .implant-trouble__band-inner {
   display: -webkit-box;
@@ -20933,11 +20934,9 @@ html:has(.implant-lp) {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 20px;
-  max-width: 1366px;
-  min-height: 84px;
-  margin: 0 auto;
-  padding: 12px 40px 12px 100px;
+  gap: 14px;
+  margin: 0;
+  padding: 8px 16px;
 }
 .implant-trouble__band-icon {
   position: relative;
@@ -20956,8 +20955,8 @@ html:has(.implant-lp) {
   -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
           flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: 34px;
+  height: 34px;
   background: #2A2250;
 }
 .implant-trouble__band-icon::before {
@@ -20967,25 +20966,25 @@ html:has(.implant-lp) {
   border: 1px solid rgba(220, 194, 140, 0.6);
 }
 .implant-trouble__band-icon img {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
 }
 .implant-trouble__band-text {
   font-family: "Noto Serif JP", "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  letter-spacing: 0.12em;
-  color: #2A2250;
+  letter-spacing: 0.08em;
+  color: #E9DFC6;
 }
 .implant-trouble__band-arrow {
   position: relative;
   display: inline-block;
-  width: 36px;
+  width: 28px;
   height: 1px;
   margin: 0 0.8em;
   vertical-align: middle;
-  background: #2A2250;
+  background: #E9DFC6;
 }
 .implant-trouble__band-arrow::after {
   content: "";
@@ -20994,8 +20993,8 @@ html:has(.implant-lp) {
   right: 0;
   width: 7px;
   height: 7px;
-  border-top: 1px solid #2A2250;
-  border-right: 1px solid #2A2250;
+  border-top: 1px solid #E9DFC6;
+  border-right: 1px solid #E9DFC6;
   -webkit-transform: translateY(-50%) rotate(45deg);
           transform: translateY(-50%) rotate(45deg);
 }
@@ -21007,14 +21006,8 @@ html:has(.implant-lp) {
     padding-left: 40px;
     padding-right: 40px;
   }
-  .implant-trouble__band-inner {
-    padding-left: 40px;
-  }
   .implant-trouble__catch-lg {
     font-size: 40px;
-  }
-  .implant-trouble__band-text {
-    font-size: 20px;
   }
 }
 @media screen and (max-width: 1023px) {
@@ -21129,9 +21122,8 @@ html:has(.implant-lp) {
     border-color: #B8975A;
   }
   .implant-trouble__band {
-    margin: 36px 20px 0;
-    border: 1px solid rgba(205, 174, 110, 0.55);
-    background: none;
+    width: 100%;
+    margin: 24px 0 0;
   }
   .implant-trouble__band-inner {
     -webkit-box-pack: center;

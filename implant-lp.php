@@ -337,6 +337,15 @@ get_header();
                 </span>
             </h2>
 
+            <div class="implant-trouble__band">
+                <p class="implant-trouble__band-inner">
+                    <span class="implant-trouble__band-icon" aria-hidden="true">
+                        <img src="<?php echo esc_url($ilp_img_dir . 'implant-lp-why-now02.webp'); ?>" alt="" width="48" height="48" loading="lazy">
+                    </span>
+                    <span class="implant-trouble__band-text">気になるお悩みをタップ<span class="implant-trouble__band-arrow" aria-hidden="true"></span>当院の解決策へ移動します</span>
+                </p>
+            </div>
+
             <ul class="implant-trouble__list">
                 <?php foreach ($ilp_trouble_items as $item) : ?>
                     <li>
@@ -350,14 +359,6 @@ get_header();
             </ul>
         </div>
 
-        <div class="implant-trouble__band">
-            <p class="implant-trouble__band-inner">
-                <span class="implant-trouble__band-icon" aria-hidden="true">
-                    <img src="<?php echo esc_url($ilp_img_dir . 'implant-lp-why-now02.webp'); ?>" alt="" width="48" height="48" loading="lazy">
-                </span>
-                <span class="implant-trouble__band-text">気になるお悩みをタップ<span class="implant-trouble__band-arrow" aria-hidden="true"></span>当院の解決策へ移動します</span>
-            </p>
-        </div>
     </section>
 
     <!-- ========================================
