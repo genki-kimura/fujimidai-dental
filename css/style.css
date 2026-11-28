@@ -32141,6 +32141,11 @@ html:has(.implant-lp) {
     white-space: nowrap;
   }
 }
+@media screen and (max-width: 767px) {
+  html body .implant-cta__lead .implant-cta__lead-line {
+    display: block;
+  }
+}
 /* ----------------------------------------
 本文の文字サイズ 15px 以上に統一（2026-11-28）
 TOP・フッターの本文系テキスト（注釈・ラベル・ボタンは対象外）

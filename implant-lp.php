@@ -160,7 +160,13 @@ $ilp_cta = function ($args) use ($ilp_img_dir, $ilp_web_url, $ilp_tel, $ilp_tel_
                 <?php if ($args['tagline']) : ?>
                     <p class="implant-cta__tagline"><?php echo esc_html($args['tagline']); ?></p>
                 <?php elseif ($args['lead']) : ?>
-                    <p class="implant-cta__lead"><?php echo esc_html($args['lead']); ?></p>
+                    <p class="implant-cta__lead"><?php
+                        // 文（「。」）ごとに区切り、SPでは1文ずつ改行（「迷っている段階でも大丈夫です。」を1行に）
+                        $lead_parts = preg_split('/(?<=。)/u', (string) $args['lead'], -1, PREG_SPLIT_NO_EMPTY);
+                        foreach ($lead_parts as $part) {
+                            echo '<span class="implant-cta__lead-line">' . esc_html($part) . '</span>';
+                        }
+                    ?></p>
                 <?php endif; ?>
             </div>
 
