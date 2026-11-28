@@ -214,11 +214,10 @@ Sakura MAG（コラムの最新3件）
     color: #2e2a33;
     transition: color 0.3s;
 
+    // 見出しは省略せず全文表示（2026-11-28）
     span {
-      display: -webkit-box;
-      overflow: hidden;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
+      display: block;
+      overflow: visible;
     }
   }
 
