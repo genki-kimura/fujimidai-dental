@@ -230,9 +230,7 @@ get_header();
             <div class="implant-fv__content">
                 <p class="implant-fv__en" aria-hidden="true"><span class="implant-fv__en-main">IMP<span class="implant-fv__en-gold">LANT</span></span><span class="implant-fv__en-line"></span><span class="implant-fv__en-sub">Treatment</span></p>
                 <h1 class="implant-fv__sub">
-                    <span class="implant-fv__sub-main">富士見台・中野区・練馬区のインプラント治療</span>
-                    <span class="screen-reader-text">｜</span>
-                    <span class="implant-fv__sub-clinic">富士見台さくら歯科</span>
+                    <span class="implant-fv__sub-main">中野区・練馬区でインプラント治療なら富士見台さくら歯科</span>
                 </h1>
                 <p class="implant-fv__title">
                     インプラント治療の<br>
