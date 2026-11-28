@@ -2492,9 +2492,10 @@ $cta-box-bg:     $lb-bg-purple;  // 背景(ラベンダー → ピンクのグ�
       margin: 0 0 0.5em;
       font-family: $text-font;
       font-weight: 400;
-      font-size: 13.5px;
-      line-height: 1.5;
-      letter-spacing: 0;
+      // 本文（.page-common-content p）と同じ大きさ・行間
+      font-size: 15px;
+      line-height: 2;
+      letter-spacing: 0.5px;
       text-align: center; // body の justify を打ち消す
       color: $text-color;
     }
@@ -2539,8 +2540,9 @@ $cta-box-bg:     $lb-bg-purple;  // 背景(ラベンダー → ピンクのグ�
       margin-bottom: 24px;
 
       p {
-        font-size: 14px;
-        letter-spacing: 0.1em;
+        font-size: 15px;
+        line-height: 2;
+        letter-spacing: 0.5px;
         text-align: left; // 長文は左揃えの方が読みやすい。中央のままでよければこの行を削除
       }
     }

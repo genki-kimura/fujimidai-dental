@@ -2259,9 +2259,9 @@ h1.wp-block-post-title::after {
   margin: 0 0 0.5em;
   font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   font-weight: 400;
-  font-size: 13.5px;
-  line-height: 1.5;
-  letter-spacing: 0;
+  font-size: 15px;
+  line-height: 2;
+  letter-spacing: 0.5px;
   text-align: center;
   color: #2b2b33;
 }
@@ -2315,8 +2315,9 @@ h1.wp-block-post-title::after {
   }
   .page-common-content .cta-box .cta-box-text p,
   .is-root-container .cta-box .cta-box-text p {
-    font-size: 14px;
-    letter-spacing: 0.1em;
+    font-size: 15px;
+    line-height: 2;
+    letter-spacing: 0.5px;
     text-align: left;
   }
   .page-common-content .cta-box .cta-box-buttons.wp-block-buttons,
