@@ -4248,7 +4248,7 @@ Information
   color: #2e2a33;
 }
 .Reason__item-text {
-  margin: 0;
+  margin: 8px 0 0;
   font-size: 13px;
   line-height: 1.7;
   letter-spacing: 0.07em;
