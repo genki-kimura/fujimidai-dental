@@ -761,7 +761,7 @@ $mv_circles = array(
                     <div class="Reason__inner">
                             <header class="Reason__head">
                                     <p class="Reason__en">REASON</p>
-                                    <h2 class="Reason__title">富士見台さくら歯科が選ばれる<br class="Reason__br">5つの魅力</h2>
+                                    <h2 class="Reason__title">当院が選ばれる5つの魅力</h2>
                                     <span class="Reason__line" aria-hidden="true"></span>
                             </header>
 
