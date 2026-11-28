@@ -3060,6 +3060,7 @@ h1.wp-block-post-title::after {
           box-sizing: border-box;
   min-width: 0;
   padding: 28px 36px;
+  border: 1px solid #b9acdc;
   border-radius: 24px;
   background: #fff;
   -webkit-box-shadow: 0 8px 28px rgba(80, 60, 110, 0.1);
@@ -3070,10 +3071,12 @@ h1.wp-block-post-title::after {
   content: "";
   position: absolute;
   top: calc(50% - 24px);
-  left: -6px;
+  left: -8px;
   width: 14px;
   height: 14px;
   margin-top: -7px;
+  border-left: 1px solid #b9acdc;
+  border-bottom: 1px solid #b9acdc;
   border-radius: 0 0 0 3px;
   background: #fff;
   -webkit-transform: rotate(45deg);
@@ -3161,9 +3164,12 @@ h1.wp-block-post-title::after {
   }
   .page-common-content .speech-bubble .speech-bubble-body::before,
   .is-root-container .speech-bubble .speech-bubble-body::before {
-    top: -6px;
+    top: -8px;
     left: 38px;
     margin-top: 0;
+    border-top: 1px solid #b9acdc;
+    border-left: 1px solid #b9acdc;
+    border-bottom: 0;
     border-radius: 3px 0 0 0;
   }
   .page-common-content .speech-bubble .speech-bubble-text p,

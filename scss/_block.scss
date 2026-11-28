@@ -3191,6 +3191,7 @@ $speech-bubble-photo-sp:  76px;      // スマホの丸
 $speech-bubble-gap:       36px;      // 左(人物)と吹き出しの間
 $speech-bubble-radius:    24px;
 $speech-bubble-position:  $list-accent; // 肩書きの紫
+$speech-bubble-border:    #b9acdc;   // 吹き出しの縁取り(背景が白でも見える濃さ)
 $speech-bubble-glow:      linear-gradient(135deg, #c9d0ff 0%, #e2d3ff 42%, #ffcadd 100%);
 
 .page-common-content .speech-bubble,
@@ -3277,6 +3278,7 @@ $speech-bubble-glow:      linear-gradient(135deg, #c9d0ff 0%, #e2d3ff 42%, #ffca
     box-sizing: border-box;
     min-width: 0;
     padding: 28px 36px;
+    border: 1px solid $speech-bubble-border;
     border-radius: $speech-bubble-radius;
     background: #fff;
     box-shadow: 0 8px 28px rgba(80, 60, 110, 0.1);
@@ -3286,10 +3288,12 @@ $speech-bubble-glow:      linear-gradient(135deg, #c9d0ff 0%, #e2d3ff 42%, #ffca
       content: "";
       position: absolute;
       top: calc(50% - 24px); // 丸の高さあたりを指す
-      left: -6px;
+      left: -8px;
       width: 14px;
       height: 14px;
       margin-top: -7px;
+      border-left: 1px solid $speech-bubble-border;
+      border-bottom: 1px solid $speech-bubble-border;
       border-radius: 0 0 0 3px;
       background: #fff;
       transform: rotate(45deg);
@@ -3367,9 +3371,12 @@ $speech-bubble-glow:      linear-gradient(135deg, #c9d0ff 0%, #e2d3ff 42%, #ffca
 
       // しっぽは上向き(丸の真下あたり)
       &::before {
-        top: -6px;
+        top: -8px;
         left: 38px;
         margin-top: 0;
+        border-top: 1px solid $speech-bubble-border;
+        border-left: 1px solid $speech-bubble-border;
+        border-bottom: 0;
         border-radius: 3px 0 0 0;
       }
     }
