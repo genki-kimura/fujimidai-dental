@@ -21073,7 +21073,7 @@ html:has(.implant-lp) {
   .implant-trouble__list {
     width: 100%;
     gap: 6px;
-    margin-top: 68px;
+    margin-top: 16px;
     margin-bottom: 0;
   }
   .implant-trouble__link {
